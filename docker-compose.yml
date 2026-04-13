@@ -1,0 +1,3 @@
+# docker-compose.yml
+# Definerer services (web, database, phpMyAdmin)
+# Bruges til at starte hele projektet med Docker
