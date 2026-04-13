@@ -1,0 +1,3 @@
+// Models
+// Indeholder database- og datalogik (via PHP og SQL)
+// Bruges til at hente og gemme data i databasen

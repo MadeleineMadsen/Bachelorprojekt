@@ -1,0 +1,3 @@
+# .htaccess
+# Omskriver alle requests til index.php
+# Bruges til routing og clean URLs

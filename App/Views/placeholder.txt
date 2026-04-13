@@ -1,0 +1,3 @@
+// Views
+// Indeholder HTML og let PHP til visning af data
+// Skal ikke indeholde SQL eller tung logik
