@@ -1,4 +1,11 @@
 /* style.css */
 /* Hoved CSS fil (entry point) */
-/* Importerer alle andre CSS filer */
-/* Eks: @import "./layout.css"; */
+
+/* Variabler */
+@import "./variables.css";
+
+/* Layout - mediaqueries */
+@import "./layout.css";
+
+/* Utilities - genbrugelige utility klasser */
+@import "./utilities.css";
