@@ -1,0 +1,1 @@
+Til login/logud af user for at sørge for sessionstart og load Models som user har ansvar for (hvis admin skal have for sig selv, lav AdminController.php)

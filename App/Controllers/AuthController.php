@@ -1,0 +1,1 @@
+Hjælpefunktion til validering under signup/login/logout
