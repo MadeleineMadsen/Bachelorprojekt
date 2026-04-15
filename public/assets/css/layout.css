@@ -1,2 +1,58 @@
 /* layout.css */
-/* Indeholder layout, grid/flex og responsive media queries så alle sider har samme breakpoints globalt */
+/* ========== RESET / BASE ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* TODO: Rettes efter egne variables */
+body {
+    font-family: Arial, sans-serif;
+}
+
+
+/* ========== MOBILE (DEFAULT) ========== */
+
+/* TODO: Padding rettes efter egne variables */
+.container {
+    width: 100%;
+    padding: 16px;
+}
+
+/* TODO: Gap rettes efter egne variables */
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* TODO: Gap og columns rettes efter egne variables */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+
+/* ========== DESKTOP ========== */
+@media (min-width: 768px) {
+
+    /* TODO: Width rettes efter færdigt UI */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* TODO: Rettes efter nav bestemmes */
+    .nav {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* TODO: Rettes efter grid opsætning på cards bestemmes */
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
