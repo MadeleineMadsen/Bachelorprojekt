@@ -1,2 +1,79 @@
 /* variables.css */
-/* Indeholder vores egne CSS variabler (farver, spacing, fonts osv.) */
+
+/* Importering af fonte */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:wght@400;700;900&display=swap');
+
+:root {
+    /* --- Farver --- */
+
+    /* Accent farver */
+    --color-blue: #0038A8;
+    --color-light-blue: #0C53ED;
+    --color-yellow: #E8D285;
+    --color-light-yellow: #F8EDCA;
+
+    /* Baggrunds farver */
+    --bg-color-black: #000;
+    --bg-color-white: #fff;
+
+    /* Font farver */
+    --font-color-black: #1f1f1f;
+    --font-color-white: #fff;
+
+    /* Toasts farver */
+    --color-success: #06B600;
+    --color-delete: #d10000;
+
+
+
+    /* --- Spacing --- */
+    /* Spacing til både mobil og desktop */
+
+    --gap-xs: 12px;
+/* Til margin i siderne på mobilview */
+    --gap-sm: 20px;
+    --gap-md: 40px;
+    --gap-lg: 60px;
+    --gap-xl: 80px;
+    /* Til margin i siderne på desktopview */
+    --gap-xxl: 120px;
+
+
+
+    /* --- Typografi -- */
+
+    /* Header font */
+    --font-header: 'IBM Plex Sans', sans-serif;
+
+    /* Text font */
+    --font-text: 'Poppins', sans-serif;
+
+
+
+    /* --- Font weight --- */
+
+    /* Normal text */
+    --font-regular: 400;
+
+    /* IBMs mest bold version, Poppins normale bold */
+    --font-semibold: 700;
+
+    /* Poppins mest bold version */
+    --font-bold: 900;
+
+
+
+    /* --- Font størrelser --- */
+
+    /* Desktop */
+    --font-desktop-h1: 200px;
+    --font-desktop-h2: 100px;
+    --font-desktop-h3: 40px;
+    --font-desktop-text: 24px;
+
+    /* Mobil */
+    --font-mobil-h1: 60px;
+    --font-mobil-h2: 30px;
+    --font-mobil-h3: 20px;
+    --font-mobil-text: 14px;
+}
