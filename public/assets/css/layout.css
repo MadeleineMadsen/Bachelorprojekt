@@ -8,35 +8,188 @@
 
 /* TODO: Rettes efter egne variables */
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-text);
+    padding-bottom: var(--gap-xl);
 }
 
 
-/* ========== MOBILE (DEFAULT) ========== */
+/* ========== MOBILE (FIRST) ========== */
+
+/* ----------------------------------- */
+/* Layout */
+/* ----------------------------------- */
 
 /* TODO: Padding rettes efter egne variables */
 .container {
     width: 100%;
-    padding: 16px;
-}
-
-/* TODO: Gap rettes efter egne variables */
-.nav {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    padding: var(--gap-sm);
 }
 
 /* TODO: Gap og columns rettes efter egne variables */
 .grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: var(--gap-sm);
 }
+
+
+/* ----------------------------------- */
+/* Navigation */
+/* ----------------------------------- */
+
+.site-header {
+    background: var(--bg-color-white);
+    border-bottom: 1px solid var(--font-color-black);
+}
+
+.header-inner {
+    min-height: var(--gap-xl);
+    padding: 0 var(--gap-sm);
+    display: grid;
+    grid-template-columns: var(--gap-md) 1fr var(--gap-md);
+    align-items: center;
+}
+
+.logo {
+    justify-self: center;
+}
+
+.top-nav {
+    display: none;
+}
+
+/* Burger */
+.burger {
+    display: flex;
+    position: relative;
+    background: transparent;
+    border: none;
+    width: var(--gap-md);
+    height: var(--gap-md);
+    padding: 0;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.burger span {
+    position: absolute;
+    width: 100%;
+    height: 0.25rem;
+    background: var(--font-color-black);
+    border-radius: 0.25rem;
+    transition: transform 0.3s ease, opacity 0.25s ease;
+}
+
+.burger span:nth-child(1) {
+    transform: translateY(-10px);
+}
+
+.burger span:nth-child(2) {
+    transform: translateY(0);
+}
+
+.burger span:nth-child(3) {
+    transform: translateY(10px);
+}
+
+/* Burger bliver til kryds */
+.burger.open span:nth-child(1) {
+    transform: translateY(0) rotate(45deg);
+}
+
+.burger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.open span:nth-child(3) {
+    transform: translateY(0) rotate(-45deg);
+}
+
+/* Mobil menu */
+.mobile-nav {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    padding: 0 var(--gap-sm);
+    border-top: 0 solid var(--bg-color-white);
+    background: var(--bg-color-white);
+    transition:
+        max-height 0.35s ease,
+        opacity 0.25s ease,
+        transform 0.3s ease,
+        padding 0.35s ease,
+        border-top-width 0.2s ease;
+}
+
+.mobile-nav.open {
+    max-height: 20rem; /* justér hvis menuen bliver højere */
+    opacity: 1;
+    transform: translateY(0);
+    padding: var(--gap-xs) var(--gap-sm) var(--gap-sm);
+    border-top-width: 0.25rem;
+}
+
+.mobile-nav-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-nav-link {
+    text-decoration: none;
+    color: var(--font-color-black);
+    padding: var(--gap-xs) 0;
+    border-bottom: 1px solid var(--bg-color-white);
+}
+
+    /* Desktop subnav skjules på mobil */
+.sub-nav {
+    display: none;
+}
+
+    /* Mobil bundnav */
+.mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg-color-black);
+    border-top: 1px solid var(--bg-color-black);
+    justify-content: space-around;
+    align-items: center;
+    padding: var(--gap-xs) 0;
+    z-index: 999;
+}
+
+.mobile-bottom-link {
+    text-decoration: none;
+    font-size: var(--font-mobil-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--gap-md);
+    min-height: var(--gap-md);
+}
+
+.mobile-bottom-icon {
+    line-height: 1;
+}
+
 
 
 /* ========== DESKTOP ========== */
 @media (min-width: 768px) {
+
+    body {
+        padding-bottom: 0;
+    }
+
+    /* ----------------------------------- */
+    /* Layout */
+    /* ----------------------------------- */
 
     /* TODO: Width rettes efter færdigt UI */
     .container {
@@ -44,15 +197,78 @@ body {
         margin: 0 auto;
     }
 
-    /* TODO: Rettes efter nav bestemmes */
-    .nav {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
     /* TODO: Rettes efter grid opsætning på cards bestemmes */
     .grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* ----------------------------------- */
+    /* Navigation */
+    /* ----------------------------------- */
+    .header-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        min-height: var(--gap-xl);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        justify-self: auto;
+    }
+
+    .burger {
+        display: none;
+    }
+
+    .top-nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .top-nav-link {
+        text-decoration: none;
+        color: var(--font-color-black);
+        padding: 0 var(--gap-sm);
+    }
+
+        .top-nav-link + .top-nav-link {
+        border-left: 1px solid var(--font-color-black);
+    }
+
+    .mobile-nav {
+        display: none !important;
+    }
+
+    .sub-nav {
+        display: block;
+        border-top: 1px solid var(--bg-color-white);
+        background: var(--bg-color-white);
+    }
+
+    .sub-nav-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: var(--gap-xs) var(--gap-sm);
+        display: flex;
+        gap: var(--gap-sm);
+        justify-content: space-around;
+        background: var(--bg-color-black);
+    }
+
+    .sub-nav-link {
+        text-decoration: none;
+        color: var(--font-color-white);
+    }
+
+    .sub-nav-link.active,
+    .top-nav-link.active {
+        color: var(--color-yellow);
+        border-bottom: 1px solid var(--color-yellow);
+    }
+
+    .mobile-bottom-nav {
+        display: none;
     }
 }

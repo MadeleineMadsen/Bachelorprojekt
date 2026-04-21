@@ -1,2 +1,26 @@
 /* utilities.css */
 /* Indeholder genbrugelige utility-klasser der bruges på alle sider (fx scroll to top, toasts, visibility helpers) */
+
+/* ========== MOBILE (default) ========== */
+/* -----------------------------
+    IMAGES
+-------------------------------*/
+/* Logo */
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+
+/* ========== DESKTOP ========== */
+@media (min-width: 768px) {
+
+    /* -----------------------------
+    IMAGES
+    -------------------------------*/
+
+    /* Logo */
+    .logo img {
+        height: 60px;
+    }
+}

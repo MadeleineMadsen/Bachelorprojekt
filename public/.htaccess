@@ -1,3 +1,9 @@
-# .htaccess
-# Omskriver alle requests til index.php
-# Bruges til routing og clean URLs
+RewriteEngine On
+
+# Servér eksisterende filer og mapper direkte
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Alt andet går til index.php
+RewriteRule ^ index.php [QSA,L]

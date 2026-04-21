@@ -1,4 +1,4 @@
-admin profil
+oprettelse af events (admin)
 
 // OBS: Mediaqueries samlet i layout.css
 // Brug .grid til cards og lignende
@@ -6,5 +6,5 @@ admin profil
 // Styles mobilefirst og har desktop breakpoint efter 768px
 
 <main class="container">
-    <h1>Hej igen, admin</h1>
+    <h1>Opret events</h1>
 </main>

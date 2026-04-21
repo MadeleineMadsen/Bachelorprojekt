@@ -1,4 +1,4 @@
-admin profil
+kalender (måske begge? eller opret user kalender også)
 
 // OBS: Mediaqueries samlet i layout.css
 // Brug .grid til cards og lignende
@@ -6,5 +6,5 @@ admin profil
 // Styles mobilefirst og har desktop breakpoint efter 768px
 
 <main class="container">
-    <h1>Hej igen, admin</h1>
+    <h1>Admin kalender</h1>
 </main>
