@@ -69,8 +69,8 @@
     --font-desktop-h1: 200px;
     --font-desktop-h2: 100px;
     --font-desktop-h3: 40px;
-    --font-desktop-text: 24px;
-    --font-desktop-small: 16px;
+    --font-desktop-big: 24px;
+    --font-desktop-text: 16px;
 
     /* Mobil */
     --font-mobil-h1: 60px;
