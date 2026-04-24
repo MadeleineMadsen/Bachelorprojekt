@@ -2,24 +2,63 @@
 
 // Topnavigation
 if ($isLoggedIn) {
-    $topNavItems = [
+    $leftNavItems = [
         [
-            'key'   => 'logout',
-            'label' => 'Log ud',
-            'url'   => '/logout'
+            'key'   => 'events',
+            'label' => 'EVENTS',
+            'url'   => '/events'
+        ],
+        [
+            'key'   => 'om',
+            'label' => 'OM OS',
+            'url'   => '/om'
+        ],
+        [
+            'key'   => 'medlem_sog',
+            'label' => 'BLIV MEDLEM',
+            'url'   => '/medlem_sog'
+        ],
+    ];
+    $rightNavItems = [
+        [
+            'key'   => 'profil',
+            'label' => 'PROFIL',
+            'url'   => '/profil'
+        ],
+        [
+            'key'   => 'log_ud',
+            'label' => 'LOG UD',
+            'url'   => '/log_ud'
         ],
     ];
 } else {
-    $topNavItems = [
+    $leftNavItems = [
         [
-            'key'   => 'login',
-            'label' => 'Log ind',
-            'url'   => '/login'
+            'key'   => 'events',
+            'label' => 'EVENTS',
+            'url'   => '/events'
         ],
         [
-            'key'   => 'signup',
-            'label' => 'Opret dig',
-            'url'   => '/signup'
+            'key'   => 'om',
+            'label' => 'OM OS',
+            'url'   => '/om'
+        ],
+        [
+            'key'   => 'medlem_sog',
+            'label' => 'BLIV MEDLEM',
+            'url'   => '/medlem_sog'
+        ],
+    ];
+    $rightNavItems = [
+        [
+            'key'   => 'log_ind',
+            'label' => 'LOG IND',
+            'url'   => '/log_ind'
+        ],
+        [
+            'key'   => 'opret_dig',
+            'label' => 'OPRET DIG',
+            'url'   => '/opret_dig'
         ],
     ];
 }
@@ -32,28 +71,28 @@ if ($isLoggedIn) {
         $subNavItems = [
             [
                 'key'           => 'profil',
-                'label'         => 'Profil',
+                'label'         => 'PROFIL',
                 'url'           => '/profil',
                 'icon'          => '/assets/img/profile.png',
                 'icon_active'   => '/assets/img/hover_profile.png'
             ],
             [
-                'key'           => 'events',
-                'label'         => 'Opret event',
+                'key'           => 'event_opret',
+                'label'         => 'OPRET EVENT',
                 'url'           => '/event_opret',
                 'icon'          => '/assets/img/add_event.png',
                 'icon_active'   => '/assets/img/hover_add_event.png'
             ],
             [
-                'key'           => 'medlemsskab',
-                'label'         => 'Medlemmer',
-                'url'           => '/medlemsskab',
+                'key'           => 'medlem_godkend',
+                'label'         => 'ANSØGNINGER',
+                'url'           => '/medlem_godkend',
                 'icon'          => '/assets/img/add_member.png',
                 'icon_active'   => '/assets/img/hover_add_member.png'
             ],
             [
                 'key'           => 'kalender',
-                'label'         => 'Kalender',
+                'label'         => 'KALENDER',
                 'url'           => '/kalender',
                 'icon'          => '/assets/img/calender.png',
                 'icon_active'   => '/assets/img/hover_calender.png'
@@ -63,21 +102,21 @@ if ($isLoggedIn) {
         $subNavItems = [
             [
                 'key'           => 'profil',
-                'label'         => 'Profil',
+                'label'         => 'PROFIL',
                 'url'           => '/profil',
                 'icon'          => '/assets/img/profile.png',
                 'icon_active'   => '/assets/img/hover_profile.png'
             ],
             [
-                'key'           => 'events',
-                'label'         => 'Se events',
-                'url'           => '/events',
+                'key'           => 'event_user',
+                'label'         => 'MINE EVENTS',
+                'url'           => '/event_user',
                 'icon'          => '/assets/img/events.png',
                 'icon_active'   => '/assets/img/hover_events.png'
             ],
             [
                 'key'           => 'kalender',
-                'label'         => 'Kalender',
+                'label'         => 'KALENDER',
                 'url'           => '/kalender',
                 'icon'          => '/assets/img/calender.png',
                 'icon_active'   => '/assets/img/hover_calender.png'
@@ -113,29 +152,39 @@ if ($isLoggedIn) {
             <span></span>
             <span></span>
         </button>
-
-        <a href="/" class="logo">
-            <img src="/assets/img/test.png" alt="Logo">
-
-        </a>
-
+        
         <!-- Topnavigation -->
-        <nav class="top-nav" aria-label="Hovednavigation">
-            <?php foreach ($topNavItems as $item): ?>
+        <div class="header-left">
+            <a href="/" class="logo">
+                <img src="/assets/img/logo_header.png" alt="Logo">
+            </a>
+
+            <nav class="top-nav top-nav-left" aria-label="Hovednavigation venstre">
+                <?php foreach ($leftNavItems as $item): ?>
+                    <a 
+                        href="<?= htmlspecialchars($item['url']) ?>"
+                        class="top-nav-link top-nav-link-left <?= ($currentPage === $item['key']) ? 'active' : '' ?>"
+                    >
+                        <?= htmlspecialchars($item['label']) ?>
+                    </a>
+                <?php endforeach; ?>
+            </nav>
+        </div>
+
+        <nav class="top-nav top-nav-right" aria-label="Hovednavigation højre">
+            <?php foreach ($rightNavItems as $item): ?>
                 <a 
                     href="<?= htmlspecialchars($item['url']) ?>"
-                    class="top-nav-link <?=  ($currentPage === $item['key']) ? 'active' : '' ?>"
-                    >
+                    class="top-nav-link top-nav-link-right <?= ($currentPage === $item['key']) ? 'active' : '' ?>"
+                >
                     <?= htmlspecialchars($item['label']) ?>
                 </a>
             <?php endforeach; ?>
         </nav>
     </div>
 
-
         <!-- Subnavigation -->
-
-        <?php if ($isLoggedIn && !empty($subNavItems)): ?>
+        <?php if ($isLoggedIn && !empty($subNavItems) && $isProfileSection): ?>
             <nav class="sub-nav" aria-label="Sekundær navigation">
                 <div class="sub-nav-inner">
                     <?php foreach ($subNavItems as $item): ?>
@@ -149,24 +198,40 @@ if ($isLoggedIn) {
                 </div>
             </nav>
         <?php endif; ?>
-
+        
         <!-- Topnavigation - Mobil -->
         <div class="mobile-nav" id="mobileMenu">
             <nav class="mobile-nav-group" aria-label="Mobil hovednavigation">
-                <?php foreach ($topNavItems as $item): ?>
-                    <a
-                        href="<?= htmlspecialchars($item['url']) ?>"
-                        class="mobile-nav-link"
+
+                <div class="mobile-nav-main">
+                    <?php foreach ($leftNavItems as $item): ?>
+                        <a
+                            href="<?= htmlspecialchars($item['url']) ?>"
+                            class="mobile-nav-link"
                         >
-                        <?= htmlspecialchars($item['label']) ?>
-                    </a>
-                <?php endforeach; ?>
+                            <?= htmlspecialchars($item['label']) ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="mobile-nav-account">
+                    <?php foreach ($rightNavItems as $item): ?>
+                        <a
+                            href="<?= htmlspecialchars($item['url']) ?>"
+                            class="mobile-nav-link"
+                        >
+                            <?= htmlspecialchars($item['label']) ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+
             </nav>
         </div>
-</header>
+    </header>
+
 
 <!-- Subnavigation - Mobil -->
-<?php if ($isLoggedIn && !empty($subNavItems)): ?>
+<?php if ($isLoggedIn && !empty($subNavItems) && $isProfileSection): ?>
     <nav class="mobile-bottom-nav" aria-label="Mobil subnavigation">
         <?php foreach ($subNavItems as $item): ?>
             <a

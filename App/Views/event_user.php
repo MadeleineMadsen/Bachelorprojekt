@@ -1,4 +1,4 @@
-søg om medlemsskab
+egne tilmeldte events (user)
 
 // OBS: Mediaqueries samlet i layout.css
 // Brug .grid til cards og lignende
@@ -6,5 +6,5 @@ søg om medlemsskab
 // Styles mobilefirst og har desktop breakpoint efter 768px
 
 <main class="container">
-    <h1>Godkend medlemsskab / se medlemmer</h1>
+    <h1>Mine events</h1>
 </main>

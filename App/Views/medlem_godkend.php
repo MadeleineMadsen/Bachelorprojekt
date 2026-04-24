@@ -1,4 +1,4 @@
-user profil
+godkend medlemsskab
 
 // OBS: Mediaqueries samlet i layout.css
 // Brug .grid til cards og lignende
@@ -6,5 +6,5 @@ user profil
 // Styles mobilefirst og har desktop breakpoint efter 768px
 
 <main class="container">
-    <h1>Hej igen, bruger</h1>
+    <h1>Godkend medlemsskab / se medlemmer</h1>
 </main>

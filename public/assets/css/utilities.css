@@ -7,10 +7,14 @@
 -------------------------------*/
 /* Logo */
 .logo img {
-    height: 40px;
+    height: 60px;
     width: auto;
 }
 
+.footer-logo img {
+    height: 100px;
+    width: auto;
+}
 
 /* ========== DESKTOP ========== */
 @media (min-width: 768px) {
@@ -21,6 +25,11 @@
 
     /* Logo */
     .logo img {
-        height: 60px;
+        height: 70px;
+        margin: var(--gap-xs) 0;
     }
+
+    .footer-logo img {
+    height: 120px;
+}
 }
