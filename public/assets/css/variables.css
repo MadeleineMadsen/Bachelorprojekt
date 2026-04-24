@@ -70,12 +70,14 @@
     --font-desktop-h2: 100px;
     --font-desktop-h3: 40px;
     --font-desktop-big: 24px;
+    /* Almindelig text størrelse - desktop */
     --font-desktop-text: 16px;
 
     /* Mobil */
     --font-mobil-h1: 60px;
     --font-mobil-h2: 30px;
     --font-mobil-h3: 20px;
+    /* Almindelig text størrelse - mobil */
     --font-mobil-text: 14px;
     --font-mobil-small: 12px;
 }
