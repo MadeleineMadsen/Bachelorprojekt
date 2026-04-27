@@ -1,58 +1,47 @@
 <?php
 
 // Topnavigation
-if ($isLoggedIn) {
-    $leftNavItems = [
-        [
-            'key'   => 'events',
-            'label' => 'EVENTS',
-            'url'   => '/events'
-        ],
-        [
-            'key'   => 'om',
-            'label' => 'OM OS',
-            'url'   => '/om'
-        ],
-    ];
-}
+$leftNavItems = [
+    [
+        'key'   => 'events',
+        'label' => 'EVENTS',
+        'url'   => '/events'
+    ],
+    [
+        'key'   => 'om',
+        'label' => 'OM OS',
+        'url'   => '/om'
+    ],
+];
 
+// Kun almindelige users skal se "BLIV MEDLEM"
     if ($isLoggedIn && $isUser) {
     $leftNavItems[] = [
         'key' => 'medlem_sog',
         'label' => 'BLIV MEDLEM',
         'url' => '/medlem_sog'
     ];
-
-    $rightNavItems = [
-        [
-            'key'   => 'profil',
-            'label' => 'PROFIL',
-            'url'   => '/profil'
-        ],
-        [
-            'key'   => 'log_ud',
-            'label' => 'LOG UD',
-            'url'   => '/log_ud'
-        ],
-    ];
+}
+    if ($isLoggedIn) {
+        $rightNavItems = [
+            [
+                'key'   => 'profil',
+                'label' => 'PROFIL',
+                'url'   => '/profil'
+            ],
+            [
+                'key'   => 'log_ud',
+                'label' => 'LOG UD',
+                'url'   => '/log_ud'
+            ],
+        ];
 } else {
-    $leftNavItems = [
-        [
-            'key'   => 'events',
-            'label' => 'EVENTS',
-            'url'   => '/events'
-        ],
-        [
-            'key'   => 'om',
-            'label' => 'OM OS',
-            'url'   => '/om'
-        ],
-        [
-            'key'   => 'medlem_sog',
-            'label' => 'BLIV MEDLEM',
-            'url'   => '/medlem_sog'
-        ],
+    $leftNavItems[] = [
+        'key'   => 'medlem_sog',
+        'label' => 'BLIV MEDLEM',
+        'url'   => '/medlem_sog'
     ];
+
     $rightNavItems = [
         [
             'key'   => 'log_ind',
