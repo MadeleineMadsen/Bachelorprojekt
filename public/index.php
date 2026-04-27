@@ -6,7 +6,7 @@ session_start();
 $_SESSION['user'] = [
     'id' => 1,
     'name' => 'Test User',
-    'role' => 'user'
+    'role' => 'member'
 ];
 
 
@@ -16,7 +16,12 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // Auth status (i header)
 $isLoggedIn = isset($_SESSION['user']);
-$isAdmin = $isLoggedIn && ($_SESSION['user']['role'] ?? '') === 'admin';
+$userRole = $_SESSION['user']['role'] ?? null;
+
+$isAdmin = $isLoggedIn && $userRole === 'admin';
+$isMember = $isLoggedIn && $userRole === 'member';
+$isUser = $isLoggedIn && $userRole === 'user';
+
 $isProfileSection = false;
 
 // Standard værdier
@@ -56,9 +61,18 @@ switch ($uri) {
         }
 
         $currentPage        = 'profil';
-        $view               = $isAdmin ? '/profil_admin.php' : '/profil_user.php';
+
+        if ($isAdmin) {
+            $view = '/profil_admin.php';
+        } elseif ($isMember) {
+            $view = '/profil_member.php';
+        } else {
+            $view = '/profil_user.php';
+        }
+
         $isProfileSection   = true;
         break;
+
 
     // ALLE EVENTS
     case '/events':
@@ -106,7 +120,7 @@ switch ($uri) {
         $isProfileSection   = true;
         break;
 
-    // KALENDER
+    // KALENDER - OBS: rettes hvis member eller alle skal have egen kalender
     case '/kalender':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
@@ -125,6 +139,11 @@ switch ($uri) {
             exit;
         }
 
+        if (!$isUser) {
+            header('Location: /profil');
+            exit;
+        }
+
         $currentPage        = 'medlem_sog';
         $view               = '/medlem_sog.php';
         break;
@@ -140,12 +159,6 @@ switch ($uri) {
         $view               = '/medlem_godkend.php';
         $isProfileSection   = true;
         break;
-
-    // // KONTAKT
-    // case '/kontakt':
-    //     $currentPage    = 'kontakt';
-    //     $view           = '/om#kontakt';
-    //     break;
 
     // OM
     case '/om':

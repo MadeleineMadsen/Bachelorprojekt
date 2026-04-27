@@ -13,12 +13,16 @@ if ($isLoggedIn) {
             'label' => 'OM OS',
             'url'   => '/om'
         ],
-        [
-            'key'   => 'medlem_sog',
-            'label' => 'BLIV MEDLEM',
-            'url'   => '/medlem_sog'
-        ],
     ];
+}
+
+    if ($isLoggedIn && $isUser) {
+    $leftNavItems[] = [
+        'key' => 'medlem_sog',
+        'label' => 'BLIV MEDLEM',
+        'url' => '/medlem_sog'
+    ];
+
     $rightNavItems = [
         [
             'key'   => 'profil',

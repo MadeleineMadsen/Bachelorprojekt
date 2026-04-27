@@ -1,4 +1,4 @@
-kalender (måske begge? eller opret admin kalender også)
+kalender (måske begge? eller opret admin/member kalender også)
 
 // OBS: Mediaqueries samlet i layout.css
 // Brug .grid til cards og lignende

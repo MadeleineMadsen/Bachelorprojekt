@@ -7,6 +7,30 @@ om os
 
 <main class="container">
     <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
+    <h1>Om os - kontakt linkes hertil også</h1>
     <!-- id´et bruges til at der scroller hertil når man klikker kontakt i footer -->
     <section id="kontakt">
         <h3>Kontakt</h3>
