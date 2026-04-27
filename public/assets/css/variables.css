@@ -80,4 +80,22 @@
     /* Almindelig text størrelse - mobil */
     --font-mobil-text: 14px;
     --font-mobil-small: 12px;
+
+
+
+
+
+
+    
+    /* --- Knapper --- */
+
+    /* Desktop */
+    --btn-height-desktop: 45px;
+    --btn-min-width-desktop: 200px;
+    --btn-font-desktop: 24px;
+
+    /* Mobil */
+    --btn-height-mobil: 30px;
+    --btn-min-width-mobil: 130px;
+    --btn-font-mobil: 16px;
 }

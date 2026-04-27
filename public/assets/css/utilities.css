@@ -16,6 +16,46 @@
     width: auto;
 }
 
+
+/* -----------------------------
+    KNAPPER
+-------------------------------*/
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-text);
+    font-weight: var(--font-semibold);
+    font-size: var(--btn-font-mobil);
+    height: var(--btn-height-mobil);
+    min-width: var(--btn-min-width-mobil);
+    padding: 0 var(--gap-sm);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--color-blue);
+    color: var(--font-color-white);
+}
+
+.btn-secondary {
+    background: var(--color-light-yellow);
+    color: var(--font-color-black);
+}
+
+.btn-nav {
+    background: transparent;
+    color: var(--font-color-black);
+    min-width: unset;
+    height: unset;
+    padding: 0;
+    border-bottom: 1px solid var(--font-color-black);
+    font-size: var(--btn-font-mobil);
+    font-weight: var(--font-regular);
+}
+
 /* ========== DESKTOP ========== */
 @media (min-width: 768px) {
 
@@ -32,4 +72,17 @@
     .footer-logo img {
     height: 120px;
 }
+/* -----------------------------
+    KNAPPER
+-------------------------------*/
+.btn {
+    font-size: var(--btn-font-desktop);
+    height: var(--btn-height-desktop);
+    min-width: var(--btn-min-width-desktop);
+}
+
+.btn-nav {
+    font-size: var(--btn-font-desktop);
+}
+
 }
