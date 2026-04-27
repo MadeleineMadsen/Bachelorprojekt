@@ -1,101 +1,93 @@
 /* variables.css */
 
 /* Importering af fonte */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:wght@400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:wght@400;700;900&display=swap");
 
 :root {
-    /* --- Farver --- */
+  /* --- Farver --- */
 
-    /* Accent farver */
-    --color-blue: #0038A8;
-    --color-light-blue: #0C53ED;
-    --color-yellow: #E8D285;
-    --color-light-yellow: #F8EDCA;
+  /* Accent farver */
+  --color-blue: #0038a8;
+  --color-light-blue: #0c53ed;
+  --color-yellow: #e8d285;
+  --color-light-yellow: #f8edca;
 
-    /* Baggrunds farver */
-    --bg-color-black: #000;
-    --bg-color-white: #fff;
+  /* Baggrunds farver */
+  --bg-color-black: #000;
+  --bg-color-white: #fff;
 
-    /* Font farver */
-    --font-color-black: #1f1f1f;
-    --font-color-white: #fff;
+  /* Font farver */
+  --font-color-black: #1f1f1f;
+  --font-color-white: #fff;
 
-    /* Toasts farver */
-    --color-success: #06B600;
-    --color-delete: #d10000;
+  /* Toasts farver */
+  --color-success: #06b600;
+  --color-delete: #d10000;
 
+  /* --- Spacing --- */
+  /* Spacing til både mobil og desktop */
 
+  --gap-xs: 12px;
+  /* Til margin i siderne på mobilview */
+  --gap-sm: 20px;
+  --gap-md: 40px;
+  --gap-lg: 60px;
+  --gap-xl: 80px;
+  /* Til margin i siderne på desktopview */
+  --gap-xxl: 120px;
 
-    /* --- Spacing --- */
-    /* Spacing til både mobil og desktop */
+  /* --- Typografi -- */
 
-    --gap-xs: 12px;
-/* Til margin i siderne på mobilview */
-    --gap-sm: 20px;
-    --gap-md: 40px;
-    --gap-lg: 60px;
-    --gap-xl: 80px;
-    /* Til margin i siderne på desktopview */
-    --gap-xxl: 120px;
+  /* Header font */
+  --font-header: "IBM Plex Sans", sans-serif;
 
+  /* Text font */
+  --font-text: "Poppins", sans-serif;
 
+  /* --- Font weight --- */
 
-    /* --- Typografi -- */
+  /* Normal text */
+  --font-regular: 400;
 
-    /* Header font */
-    --font-header: 'IBM Plex Sans', sans-serif;
+  /* IBMs font weight */
+  --IBM-font-medium: 500;
+  --IBM-font-semi-bold: 600;
+  --IBM-font-bold: 700;
 
-    /* Text font */
-    --font-text: 'Poppins', sans-serif;
+  /* Poppins font weight */
+  --poppins-font-medium: 500;
+  --poppins-font-semi-bold: 600;
+  --poppins-font-bold: 700;
+  --poppins-font-extra-bold: 800;
+  --poppins-font-black: 900;
 
+  /* --- Font størrelser --- */
 
+  /* Desktop */
+  --font-desktop-h1: 200px;
+  --font-desktop-h2: 100px;
+  --font-desktop-h3: 40px;
+  --font-desktop-text-big: 24px;
+  /* Almindelig text størrelse - desktop */
+  --font-desktop-text-small: 16px;
 
-    /* --- Font weight --- */
+  /* Mobil */
+  --font-mobil-h1: 60px;
+  --font-mobil-h2: 30px;
+  --font-mobil-h3: 20px;
+  /* Almindelig text størrelse - mobil */
+  --font-mobil-text: 14px;
+  --font-mobil-small: 12px;
 
-    /* Normal text */
-    --font-regular: 400;
+  /* --- Knapper --- */
 
-    /* IBMs mest bold version, Poppins normale bold */
-    --font-semibold: 700;
+  /* Desktop */
+  --btn-height-desktop: 45px;
+  --btn-min-width-desktop: 200px;
+  --btn-font-desktop: 24px;
 
-    /* Poppins mest bold version */
-    --font-bold: 900;
-
-
-
-    /* --- Font størrelser --- */
-
-    /* Desktop */
-    --font-desktop-h1: 200px;
-    --font-desktop-h2: 100px;
-    --font-desktop-h3: 40px;
-    --font-desktop-big: 24px;
-    /* Almindelig text størrelse - desktop */
-    --font-desktop-text: 16px;
-
-    /* Mobil */
-    --font-mobil-h1: 60px;
-    --font-mobil-h2: 30px;
-    --font-mobil-h3: 20px;
-    /* Almindelig text størrelse - mobil */
-    --font-mobil-text: 14px;
-    --font-mobil-small: 12px;
-
-
-
-
-
-
-    
-    /* --- Knapper --- */
-
-    /* Desktop */
-    --btn-height-desktop: 45px;
-    --btn-min-width-desktop: 200px;
-    --btn-font-desktop: 24px;
-
-    /* Mobil */
-    --btn-height-mobil: 30px;
-    --btn-min-width-mobil: 130px;
-    --btn-font-mobil: 16px;
+  /* Mobil */
+  --btn-height-mobil: 30px;
+  --btn-min-width-mobil: 130px;
+  --btn-font-mobil: 16px;
 }

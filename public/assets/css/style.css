@@ -9,3 +9,6 @@
 
 /* Utilities - genbrugelige utility klasser */
 @import "./utilities.css";
+
+/* Formularer - styling af alle formularer */
+@import "./forms.css";
