@@ -1,7 +1,7 @@
 /* =========================
 Kalender
 ========================= */
-h1 {
+.kalender_header h1 {
     font-family: var(--font-header);
     font-weight: var(--IBM-font-bold);
     font-size: var(--font-mobil-h1);
