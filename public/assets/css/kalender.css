@@ -1,0 +1,156 @@
+/* =========================
+Kalender
+========================= */
+
+.calendar-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--gap-md);
+}
+
+.calendar-arrows {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+}
+
+.calendar-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--gap-sm);
+    height: var(--gap-sm);
+}
+
+.calendar-arrow img {
+    width: var(--gap-md);
+    height: var(--gap-md);
+    object-fit: contain;
+}
+
+.calendar-month {
+    font-family: var(--font-text);
+    font-size: var(--font-mobil-h2);
+    font-weight: var(--font-regular);
+    margin-bottom: var(--gap-sm);
+}
+
+.calendar-month strong {
+    font-weight: var(--font-bold);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-top: 1px solid var(--font-color-black);
+    border-left: 1px solid var(--font-color-black);
+}
+
+.calendar-day {
+    aspect-ratio: 1 / 1;
+    border: 0;
+    border-right: 1px solid var(--font-color-black);
+    border-bottom: 1px solid var(--font-color-black);
+    background: var(--bg-color-white);
+    color: var(--font-color-black);
+    font-family: var(--font-text);
+    font-size: var(--font-mobil-h3);
+    font-weight: var(--font-bold);
+    position: relative;
+    cursor: pointer;
+}
+
+.calendar-day-muted {
+    color: #999;
+}
+
+.calendar-date {
+    position: absolute;
+    top: 0;
+    right: 0.25rem;
+}
+
+.mobile-event-marker {
+    display: block;
+    width: 90%;
+    height: 0.4rem;
+    background: var(--color-light-blue);
+    position: absolute;
+    bottom: 0.25rem;
+    left: 5%;
+}
+
+.desktop-event-preview {
+    display: none;
+}
+
+/* valgt dag */
+.calendar-day.is-selected {
+    background: var(--color-light-yellow);
+}
+
+/* mobil event-liste */
+.mobile-event-list {
+    margin-top: var(--gap-lg);
+}
+
+.mobile-event-list h2 {
+    font-family: var(--font-header);
+    font-size: var(--font-mobil-h2);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--font-color-black);
+    padding-bottom: var(--gap-xs);
+    margin-bottom: 0;
+}
+
+.mobile-event-card {
+    display: none;
+    grid-template-columns: var(--gap-lg) var(--gap-xxl) 1fr;
+    align-items: center;
+    gap: var(--gap-xxs);
+    padding: var(--gap-xs);
+    border-bottom: 1px solid var(--font-color-black);
+}
+
+.mobile-event-card.is-visible {
+    display: grid;
+}
+
+.mobile-event-date strong {
+    display: block;
+    font-family: var(--font-text);
+    font-size: var(--font-mobil-h2);
+    font-weight: var(--font-bold);
+    line-height: 1;
+}
+
+.mobile-event-date span {
+    font-family: var(--font-text);
+    font-size: var(--font-mobil-h3);
+    font-weight: var(--font-bold);
+}
+
+.mobile-event-card img {
+    width: 6rem;
+    height: 4.5rem;
+    object-fit: cover;
+}
+
+.mobile-event-card p {
+    font-family: var(--font-text);
+    font-size: var(--font-mobil-text);
+}
+
+.no-events {
+    display: none;
+    padding: var(--gap-sm) 0;
+    border-bottom: 1px solid var(--font-color-black);
+    font-family: var(--font-text);
+    font-size: var(--font-mobil-text);
+}
+
+.calendar-day.is-today .calendar-date {
+    color: var(--color-blue);
+}

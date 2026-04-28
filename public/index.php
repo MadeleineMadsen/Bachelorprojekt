@@ -6,7 +6,7 @@ session_start();
 $_SESSION['user'] = [
     'id' => 1,
     'name' => 'Test User',
-    'role' => 'admin'
+    'role' => 'user'
 ];
 
 
