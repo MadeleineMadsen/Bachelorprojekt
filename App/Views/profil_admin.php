@@ -178,7 +178,7 @@
 
             h1 {
                 font-family: var(--font-header);
-                font-size: 185px;
+                font-size: var(--font-desktop-h1-special);
                 writing-mode: vertical-rl;
                 transform: rotate(180deg);
             }
@@ -206,7 +206,7 @@
 
             p {
                 font-family: var(--font-text);
-                font-size: var(--font-desktop-text-big);
+                font-size: var(--font-desktop-text-small);
                 max-width: 90%;
             }
         }
@@ -238,14 +238,14 @@
 
             h4 {
                 font-family: var(--font-header);
-                font-size: var(--font-desktop-text-big);
+                font-size: var(--font-desktop-text-small);
                 margin-bottom: var(--gap-sm);
             }
         }
 
         input {
             font-family: var(--font-text);
-            font-size: var(--font-desktop-text-big);
+            font-size: var(--font-desktop-text-small);
             color: var(--font-color-black);
             width: 100%;
             border: none;

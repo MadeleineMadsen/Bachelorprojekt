@@ -151,7 +151,7 @@
 
         input {
             font-family: var(--font-text);
-            font-size: var(--font-desktop-text-big);
+            font-size: var(--font-desktop-text-small);
             color: var(--font-color-black);
             width: 100%;
             border: none;
@@ -174,7 +174,7 @@
         .form-label {
             display: block;
             font-family: var(--font-text);
-            font-size: var(--font-desktop-text-big);
+            font-size: var(--font-desktop-text-small);
             margin-bottom: var(--gap-sm);
         }
 
@@ -185,7 +185,7 @@
             border: 1px solid var(--font-color-black);
             margin-bottom: var(--gap-md);
             font-family: var(--font-text);
-            font-size: var(--font-desktop-text-big);
+            font-size: var(--font-desktop-text-small);
             padding: var(--gap-sm);
             outline: none;
         }
@@ -201,7 +201,7 @@
             gap: var(--gap-xs);
             text-align: center;
             font-family: var(--font-text);
-            font-size: var(--font-desktop-text-big);
+            font-size: var(--font-desktop-text-small);
             cursor: pointer;
             margin-bottom: var(--gap-md);
         }
@@ -215,7 +215,7 @@
 
             p {
                 font-family: var(--font-text);
-                font-size: var(--font-desktop-text-big);
+                font-size: var(--font-desktop-text-small);
                 color: var(--font-color-black);
                 margin-bottom: var(--gap-md);
             }

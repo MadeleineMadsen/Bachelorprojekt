@@ -246,7 +246,7 @@ Desktop
     }
 
     .mobile-event-date span {
-        font-size: var(--font-desktop-text-big);
+        font-size: var(--font-desktop-text-small);
     }
 
     .mobile-event-card img {

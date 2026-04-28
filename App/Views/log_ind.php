@@ -71,7 +71,7 @@
 
         input {
             font-family: var(--font-text);
-            font-size: var(--font-desktop-text-big);
+            font-size: var(--font-desktop-text-small);
             color: var(--font-color-black);
             width: 100%;
             border: none;
@@ -87,7 +87,7 @@
 
         p {
             font-family: var(--font-text);
-            font-size: var(--font-desktop-text-big);
+            font-size: var(--font-desktop-text-small);
             font-weight: var(--poppins-font-bold);
             margin-top: var(--gap-md);
 

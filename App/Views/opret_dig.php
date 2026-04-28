@@ -106,7 +106,7 @@
 
         input {
             font-family: var(--font-text);
-            font-size: var(--font-desktop-text-big);
+            font-size: var(--font-desktop-text-small);
             color: var(--font-color-black);
             width: 100%;
             border: none;
@@ -136,13 +136,13 @@
         }
 
         span {
-            font-size: var(--font-desktop-text-big);
+            font-size: var(--font-desktop-text-small);
             color: var(--font-color-black);
         }
 
         p {
             font-family: var(--font-text);
-            font-size: var(--font-desktop-text-big);
+            font-size: var(--font-desktop-text-small);
             font-weight: var(--poppins-font-bold);
             color: var(--font-color-black);
             margin-top: var(--gap-md);
