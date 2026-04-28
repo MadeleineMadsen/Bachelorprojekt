@@ -2,36 +2,43 @@
 
 ?>
 
-<main class="container">
-    <h1 class="form-title">OPRET EVENT</h1>
+<main class="container create-event-page">
 
-    <section class="form-container create-event-container">
-        <form method="POST">
-            <input type="text" name="titel" placeholder="Titel på event" required>
+    <div class="create-event-image">
+        <img src="/assets/img/left-layout-picture.webp" alt="Studerende til socialt event">
+    </div>
 
-            <div class="form-row">
-                <input type="date" name="date" placeholder="Dato" required>
+    <div class="create-event-content">
+        <h1 class="form-title">OPRET EVENT</h1>
 
-                <input type="time" name="time" placeholder="Tid" required>
-            </div>
+        <section class="form-container create-event-container">
+            <form method="POST">
+                <input type="text" name="titel" placeholder="Titel på event" required>
 
-            <input type="text" name="location" placeholder="Lokation" required>
+                <div class="form-row">
+                    <input type="date" name="date" placeholder="Dato" required>
 
-            <label class="form-label" for="description">Beskrivelse</label>
-            <textarea id="description" name="description" required></textarea>
+                    <input type="time" name="time" placeholder="Tid" required>
+                </div>
 
-            <label class="form-label">Upload billede</label>
-            <div class="upload-box">
-                <input type="file" name="image" accept="image/*">
-                <div class="upload-icon"><img src="/assets/img/upload_picture.png" alt="Upload billede ikon"></div>
-                <p>Træk og slip et billede her<br>eller klik for at vælge fil</p>
-            </div>
+                <input type="text" name="location" placeholder="Lokation" required>
 
-            <div class="button-row">
-                <button class="btn btn-primary" type="submit">OPRET EVENT</button>
+                <label class="form-label" for="description">Beskrivelse</label>
+                <textarea id="description" name="description" required></textarea>
 
-                <button class="btn btn-secondary" type="reset">ANNULLER</button>
-            </div>
-        </form>
-    </section>
+                <label class="form-label">Upload billede</label>
+                <div class="upload-box">
+                    <input type="file" name="image" accept="image/*">
+                    <div class="upload-icon"><img src="/assets/img/upload_picture.png" alt="Upload billede ikon"></div>
+                    <p>Træk og slip et billede her<br>eller klik for at vælge fil</p>
+                </div>
+
+                <div class="button-row">
+                    <button class="btn btn-primary" type="submit">OPRET EVENT</button>
+
+                    <button class="btn btn-secondary" type="reset">ANNULLER</button>
+                </div>
+            </form>
+        </section>
+    </div>
 </main>

@@ -170,8 +170,12 @@
 
 .button-row {
   display: flex;
-  gap: 55px;
+  gap: 20px;
   align-items: center;
+}
+
+.button-row .btn {
+  padding: 0 12px;
 }
 
 /* ========== DESKTOP ========== */
@@ -290,5 +294,15 @@
   .upload-icon img {
     width: 70px;
     margin-top: var(--gap-md);
+  }
+
+  .button-row {
+    display: flex;
+    gap: 55px;
+    align-items: center;
+  }
+
+  .button-row .btn {
+    padding: 0 var(--gap-sm);
   }
 }
