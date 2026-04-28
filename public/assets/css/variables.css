@@ -27,6 +27,7 @@
   /* --- Spacing --- */
   /* Spacing til både mobil og desktop */
 
+  --gap-xxs: 6px;
   --gap-xs: 12px;
   /* Til margin i siderne på mobilview */
   --gap-sm: 20px;
