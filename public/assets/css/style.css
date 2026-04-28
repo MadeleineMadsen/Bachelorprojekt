@@ -12,3 +12,9 @@
 
 /* Cards */
 @import "./cards.css";
+
+/* Formularer - styling af alle formularer */
+@import "./forms.css";
+
+/* Kalender - styling af alle kalendere */
+@import "./kalender.css";

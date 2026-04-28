@@ -57,7 +57,7 @@
 
 .card-event-info__value {
     font-size: var(--font-mobil-text);
-    font-weight: var(--font-semibold);
+    font-weight: var(--poppins-font-bold);
     text-transform: uppercase;
     letter-spacing: 0.03em;
 }
@@ -93,7 +93,7 @@
 
 .card-event-list__day {
     font-size: var(--font-mobil-h3);
-    font-weight: var(--font-semibold);
+    font-weight: var(--poppins-font-bold);
     line-height: 1;
 }
 
@@ -117,7 +117,7 @@
 
 .card-event-list__tag {
     font-size: var(--font-mobil-small);
-    font-weight: var(--font-semibold);
+    font-weight: var(--poppins-font-bold);
     text-transform: uppercase;
     color: var(--color-blue);
     letter-spacing: 0.08em;
@@ -126,7 +126,7 @@
 .card-event-list__title {
     font-family: var(--font-header);
     font-size: var(--font-mobil-h3);
-    font-weight: var(--font-semibold);
+    font-weight: var(--poppins-font-bold);
     line-height: 1.2;
 }
 
@@ -201,7 +201,7 @@
 
 .card-event-sm__day {
     font-size: var(--font-mobil-h3);
-    font-weight: var(--font-semibold);
+    font-weight: var(--poppins-font-bold);
 }
 
 .card-event-sm__month {
@@ -231,7 +231,7 @@
 
 .card-event-sm__tag {
     font-size: var(--font-mobil-small);
-    font-weight: var(--font-semibold);
+    font-weight: var(--poppins-font-bold);
     text-transform: uppercase;
     color: var(--color-blue);
     letter-spacing: 0.08em;
@@ -241,7 +241,7 @@
 .card-event-sm__title {
     font-family: var(--font-header);
     font-size: var(--font-mobil-h3);
-    font-weight: var(--font-semibold);
+    font-weight: var(--poppins-font-bold);
 }
 
 .card-event-sm__desc {
@@ -285,7 +285,7 @@
 .card-event-sm .btn {
     font-size: var(--btn-font-mobil);
     height: var(--btn-height-mobil);
-    min-width: var(--btn-min-width-mobil);
+
     padding: 0 var(--gap-sm);
 }
 
@@ -312,11 +312,11 @@
     }
 
     .card-event-info__label {
-        font-size: var(--font-desktop-text);
+        font-size: var(--font-desktop-text-small);
     }
 
     .card-event-info__value {
-        font-size: var(--font-desktop-big);
+        font-size: var(--font-desktop-text-big);
     }
 
 
@@ -335,7 +335,7 @@
     }
 
     .card-event-list__month {
-        font-size: var(--font-desktop-text);
+        font-size: var(--font-desktop-text-small);
     }
 
     .card-event-list__img {
@@ -344,7 +344,7 @@
     }
 
     .card-event-list__tag {
-        font-size: var(--font-desktop-text);
+        font-size: var(--font-desktop-text-small);
     }
 
     .card-event-list__title {
@@ -352,11 +352,11 @@
     }
 
     .card-event-list__desc {
-        font-size: var(--font-desktop-text);
+        font-size: var(--font-desktop-text-small);
     }
 
     .card-event-list__meta {
-        font-size: var(--font-desktop-text);
+        font-size: var(--font-desktop-text-small);
         gap: var(--gap-sm);
     }
 
@@ -370,7 +370,7 @@
         CARD 3: EVENT SM
     -------------------------------*/
     .card-event-sm__tag {
-        font-size: var(--font-desktop-text);
+        font-size: var(--font-desktop-text-small);
     }
 
     .card-event-sm__title {
@@ -378,11 +378,11 @@
     }
 
     .card-event-sm__desc {
-        font-size: var(--font-desktop-text);
+        font-size: var(--font-desktop-text-small);
     }
 
     .card-event-sm__meta-item {
-        font-size: var(--font-desktop-text);
+        font-size: var(--font-desktop-text-small);
     }
 
     .card-event-sm__meta-icon {
@@ -390,14 +390,9 @@
         height: 18px;
     }
 
-    .card-event-sm__meta {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
     .card-event-sm .btn {
         font-size: var(--btn-font-desktop);
         height: var(--btn-height-desktop);
-        min-width: var(--btn-min-width-desktop);
+
     }
 }

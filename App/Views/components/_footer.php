@@ -13,6 +13,11 @@ $FooterNavItems = [
         'url'   => '/om'
     ],
     [
+        'key'   => 'medlemmer',
+        'label' => 'MEDLEMMER',
+        'url'   => '/medlemmer'
+    ],
+    [
         'key'   => 'om',
         'label' => 'KONTAKT',
         'url'   => '/om#kontakt'
@@ -73,12 +78,8 @@ $socials = [
 
 
 
-
-
-
-
-
-
 <script src="/assets/js/app.js"></script>
+<script src="/assets/js/utilities.js"></script>
+<script src="/assets/js/kalender.js"></script>
 </body>
 </html>
