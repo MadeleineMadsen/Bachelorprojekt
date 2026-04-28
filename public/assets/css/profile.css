@@ -1,0 +1,138 @@
+/* profile.css */
+
+/* ========== MOBILE (FIRST) ========== */
+
+.profile-page {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  column-gap: var(--gap-xs);
+  margin-top: var(--gap-sm);
+}
+
+.profile-hero {
+  display: contents;
+}
+
+.hello-text {
+  grid-row: 1 / span 2;
+  display: flex;
+  align-items: start;
+}
+
+.hello-text h1 {
+  font-family: var(--font-header);
+  font-size: var(--font-mobil-h1);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  margin-left: -20px;
+}
+
+.hello-text h2 {
+  font-family: var(--font-header);
+  font-size: var(--font-mobil-h2);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.profile-intro {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--gap-sm);
+}
+
+.profile-intro h3 {
+  font-family: var(--font-header);
+  font-size: var(--font-mobil-h3);
+  margin-bottom: var(--gap-sm);
+}
+
+.profile-intro p {
+  font-family: var(--font-text);
+  font-size: var(--font-mobil-text);
+  max-width: 150px;
+}
+
+.profile-image-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.profile-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.camera-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-light-yellow);
+  font-size: 37px;
+  cursor: pointer;
+}
+
+.camera-btn img {
+  width: 30px;
+  height: 30px;
+}
+
+/* ========== DESKTOP ========== */
+
+@media (min-width: 768px) {
+  .profile-page {
+    grid-template-columns: 460px 1fr;
+    column-gap: var(--gap-md);
+    margin-top: var(--gap-md);
+    max-width: 1450px;
+  }
+
+  .hello-text h1 {
+    font-size: var(--font-desktop-h1-special);
+    margin: 0;
+  }
+
+  .hello-text h2 {
+    font-size: var(--font-desktop-h2);
+  }
+
+  .profile-intro {
+    gap: var(--gap-md);
+  }
+
+  .profile-intro h3 {
+    font-size: var(--font-desktop-h3);
+    margin-bottom: var(--gap-md);
+  }
+
+  .profile-intro p {
+    font-size: var(--font-desktop-text-small);
+    max-width: 90%;
+  }
+
+  .profile-image-wrapper {
+    width: 200px;
+    height: 200px;
+    margin-right: var(--gap-md);
+  }
+
+  .camera-btn {
+    width: 58px;
+    height: 58px;
+    font-size: 54px;
+  }
+
+  .camera-btn img {
+    width: 45px;
+    height: 45px;
+  }
+}

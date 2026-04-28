@@ -13,5 +13,8 @@
 /* Formularer - styling af alle formularer */
 @import "./forms.css";
 
+/* Profil sider - styling af profil siderne */
+@import "./profile.css";
+
 /* Kalender - styling af alle kalendere */
 @import "./kalender.css";
