@@ -87,7 +87,7 @@ $monthNames = [
 ?>
 <main class="container">
     <div class="calendar-header">
-    <h1>KALENDER</h1>
+    <h1 class="kalender_header">KALENDER</h1>
 
     <!-- Knapper & pile -->
     <div class="calendar-actions">
