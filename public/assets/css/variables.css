@@ -72,6 +72,7 @@
     --font-desktop-big: 24px;
     /* Almindelig text størrelse - desktop */
     --font-desktop-text: 16px;
+    --font-desktop-text-small: 14px
 
     /* Mobil */
     --font-mobil-h1: 60px;

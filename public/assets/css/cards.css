@@ -1,0 +1,403 @@
+/* cards.css */
+/* ========== MOBILE (default) ========== */
+
+/* -----------------------------
+    CARD 1: EVENT INFO (sort)
+    Bruges på single event siden
+-------------------------------*/
+.card-event-info {
+    background: var(--bg-color-black);
+    color: var(--font-color-white);
+    padding: var(--gap-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid #333;
+}
+
+.card-event-info__row {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+    padding: var(--gap-sm) 0;
+    border-bottom: 1px solid #333;
+}
+
+.card-event-info__icon {
+    width: 40px;
+    height: 40px;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.card-event-info__icon-img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.card-event-info__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.card-event-info__label {
+    font-size: var(--font-mobil-small);
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card-event-info__value {
+    font-size: var(--font-mobil-text);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.card-event-info .btn {
+    width: 100%;
+    margin-top: var(--gap-sm);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+/* -----------------------------
+    CARD 2: EVENT LIST (horisontal)
+    Bruges på events oversigt
+-------------------------------*/
+.card-event-list {
+    display: grid;
+    grid-template-columns: 40px 80px 1fr;
+    gap: var(--gap-xs);
+    align-items: start;
+    padding: var(--gap-sm) 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.card-event-list__date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+}
+
+.card-event-list__day {
+    font-size: var(--font-mobil-h3);
+    font-weight: var(--font-semibold);
+    line-height: 1;
+}
+
+.card-event-list__month {
+    font-size: var(--font-mobil-small);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card-event-list__img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.card-event-list__body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.card-event-list__tag {
+    font-size: var(--font-mobil-small);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    color: var(--color-blue);
+    letter-spacing: 0.08em;
+}
+
+.card-event-list__title {
+    font-family: var(--font-header);
+    font-size: var(--font-mobil-h3);
+    font-weight: var(--font-semibold);
+    line-height: 1.2;
+}
+
+.card-event-list__desc {
+    font-size: var(--font-mobil-small);
+    color: #555;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-event-list__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-xs);
+    font-size: var(--font-mobil-small);
+    color: #555;
+    margin-top: 4px;
+}
+
+.card-event-list__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.card-event-list__meta-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+
+/* -----------------------------
+    CARD 3: EVENT SM
+    Bruges på forsiden og events oversigt
+-------------------------------*/
+.card-event-sm {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-event-sm__img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.card-event-sm__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-event-sm__date {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--bg-color-black);
+    color: var(--font-color-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    line-height: 1.1;
+    z-index: 1;
+}
+
+.card-event-sm__day {
+    font-size: var(--font-mobil-h3);
+    font-weight: var(--font-semibold);
+}
+
+.card-event-sm__month {
+    font-size: var(--font-mobil-small);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card-event-sm__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+    padding-top: var(--gap-xs);
+}
+
+.card-event-sm__category {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+}
+
+.card-event-sm__category::before {
+    content: '';
+    width: 150px;
+    border-top: 1px solid #ccc;
+}
+
+.card-event-sm__tag {
+    font-size: var(--font-mobil-small);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    color: var(--color-blue);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+}
+
+.card-event-sm__title {
+    font-family: var(--font-header);
+    font-size: var(--font-mobil-h3);
+    font-weight: var(--font-semibold);
+}
+
+.card-event-sm__desc {
+    font-size: var(--font-mobil-text);
+    color: var(--font-color-black);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-event-sm__meta {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--gap-xs);
+    margin-top: var(--gap-xs);
+}
+
+.card-event-sm__meta-items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.card-event-sm__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-mobil-small);
+    color: var(--font-color-black);
+}
+
+.card-event-sm__meta-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.card-event-sm .btn {
+    font-size: var(--btn-font-mobil);
+    height: var(--btn-height-mobil);
+    min-width: var(--btn-min-width-mobil);
+    padding: 0 var(--gap-sm);
+}
+
+
+/* ========== DESKTOP ========== */
+@media (min-width: 768px) {
+
+    /* -----------------------------
+        CARD 1: EVENT INFO
+    -------------------------------*/
+    .card-event-info {
+        padding: var(--gap-md);
+        gap: var(--gap-md);
+    }
+
+    .card-event-info__icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .card-event-info__icon-img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .card-event-info__label {
+        font-size: var(--font-desktop-text);
+    }
+
+    .card-event-info__value {
+        font-size: var(--font-desktop-big);
+    }
+
+
+    /* -----------------------------
+        CARD 2: EVENT LIST
+    -------------------------------*/
+    .card-event-list {
+        grid-template-columns: 56px 160px 1fr;
+        gap: var(--gap-md);
+        align-items: center;
+        padding: var(--gap-md) 0;
+    }
+
+    .card-event-list__day {
+        font-size: var(--font-desktop-h3);
+    }
+
+    .card-event-list__month {
+        font-size: var(--font-desktop-text);
+    }
+
+    .card-event-list__img {
+        width: 160px;
+        height: 120px;
+    }
+
+    .card-event-list__tag {
+        font-size: var(--font-desktop-text);
+    }
+
+    .card-event-list__title {
+        font-size: var(--font-desktop-h3);
+    }
+
+    .card-event-list__desc {
+        font-size: var(--font-desktop-text);
+    }
+
+    .card-event-list__meta {
+        font-size: var(--font-desktop-text);
+        gap: var(--gap-sm);
+    }
+
+    .card-event-list__meta-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+
+    /* -----------------------------
+        CARD 3: EVENT SM
+    -------------------------------*/
+    .card-event-sm__tag {
+        font-size: var(--font-desktop-text);
+    }
+
+    .card-event-sm__title {
+        font-size: var(--font-desktop-h3);
+    }
+
+    .card-event-sm__desc {
+        font-size: var(--font-desktop-text);
+    }
+
+    .card-event-sm__meta-item {
+        font-size: var(--font-desktop-text);
+    }
+
+    .card-event-sm__meta-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .card-event-sm__meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .card-event-sm .btn {
+        font-size: var(--btn-font-desktop);
+        height: var(--btn-height-desktop);
+        min-width: var(--btn-min-width-desktop);
+    }
+}

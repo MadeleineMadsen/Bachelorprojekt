@@ -9,3 +9,6 @@
 
 /* Utilities - genbrugelige utility klasser */
 @import "./utilities.css";
+
+/* Cards */
+@import "./cards.css";
