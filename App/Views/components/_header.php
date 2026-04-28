@@ -12,6 +12,11 @@ $leftNavItems = [
         'label' => 'OM OS',
         'url'   => '/om'
     ],
+    [
+        'key'   => 'medlemmer',
+        'label' => 'MEDLEMMER',
+        'url'   => '/medlemmer'
+    ],
 ];
 
 // Kun almindelige users skal se "BLIV MEDLEM"

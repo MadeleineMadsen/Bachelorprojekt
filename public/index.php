@@ -6,7 +6,7 @@ session_start();
 $_SESSION['user'] = [
     'id' => 1,
     'name' => 'Test User',
-    'role' => 'user'
+    'role' => 'admin'
 ];
 
 
@@ -160,12 +160,17 @@ switch ($uri) {
         $isProfileSection   = true;
         break;
 
+    // ALLE MEDLEMMER
+    case '/medlemmer':
+        $currentPage    = 'medlemmer';
+        $view           = '/medlemmer.php';
+        break;
+
     // OM
     case '/om':
         $currentPage    = 'om';
         $view           = '/om.php';
         break;
-
 
     default:
         http_response_code(404);

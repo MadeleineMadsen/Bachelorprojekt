@@ -91,7 +91,7 @@ $monthNames = [
     <!-- Knapper & pile -->
     <div class="calendar-actions">
         <!-- TODO: ret til rigtig button -->
-        <a class="btn-today" href="/kalender?date=<?= $todayDate ?>">
+        <a class="btn btn-secondary" href="/kalender?date=<?= $todayDate ?>">
             I DAG
         </a>
 

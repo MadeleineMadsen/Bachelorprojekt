@@ -27,7 +27,7 @@
   font-weight: var(--poppins-font-bold);
   font-size: var(--btn-font-mobil);
   height: var(--btn-height-mobil);
-  min-width: var(--btn-min-width-mobil);
+  /* min-width: var(--btn-min-width-mobil); */
   padding: 0 var(--gap-sm);
   border: none;
   cursor: pointer;
@@ -76,7 +76,7 @@
   .btn {
     font-size: var(--btn-font-desktop);
     height: var(--btn-height-desktop);
-    min-width: var(--btn-min-width-desktop);
+    /* min-width: var(--btn-min-width-desktop); */
   }
 
   .btn-nav {

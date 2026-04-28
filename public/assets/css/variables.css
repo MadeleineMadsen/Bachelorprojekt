@@ -7,88 +7,88 @@
   /* --- Farver --- */
 
   /* Accent farver */
-  --color-blue: #0038a8;
-  --color-light-blue: #0c53ed;
-  --color-yellow: #e8d285;
-  --color-light-yellow: #f8edca;
+    --color-blue: #0038a8;
+    --color-light-blue: #0c53ed;
+    --color-yellow: #e8d285;
+    --color-light-yellow: #f8edca;
 
   /* Baggrunds farver */
-  --bg-color-black: #000;
-  --bg-color-white: #fff;
+    --bg-color-black: #000;
+    --bg-color-white: #fff;
 
   /* Font farver */
-  --font-color-black: #1f1f1f;
-  --font-color-white: #fff;
+    --font-color-black: #1f1f1f;
+    --font-color-white: #fff;
 
   /* Toasts farver */
-  --color-success: #06b600;
-  --color-delete: #d10000;
+    --color-success: #06b600;
+    --color-delete: #d10000;
 
   /* --- Spacing --- */
   /* Spacing til både mobil og desktop */
 
-  --gap-xxs: 6px;
-  --gap-xs: 12px;
+    --gap-xxs: 6px;
+    --gap-xs: 12px;
   /* Til margin i siderne på mobilview */
-  --gap-sm: 20px;
-  --gap-md: 40px;
-  --gap-lg: 60px;
-  --gap-xl: 80px;
+    --gap-sm: 20px;
+    --gap-md: 40px;
+    --gap-lg: 60px;
+    --gap-xl: 80px;
   /* Til margin i siderne på desktopview */
-  --gap-xxl: 120px;
+    --gap-xxl: 120px;
 
   /* --- Typografi -- */
 
   /* Header font */
-  --font-header: "IBM Plex Sans", sans-serif;
+    --font-header: "IBM Plex Sans", sans-serif;
 
   /* Text font */
-  --font-text: "Poppins", sans-serif;
+    --font-text: "Poppins", sans-serif;
 
   /* --- Font weight --- */
 
   /* Normal text */
-  --font-regular: 400;
+    --font-regular: 400;
 
   /* IBMs font weight */
-  --IBM-font-medium: 500;
-  --IBM-font-semi-bold: 600;
-  --IBM-font-bold: 700;
+    --IBM-font-medium: 500;
+    --IBM-font-semi-bold: 600;
+    --IBM-font-bold: 700;
 
   /* Poppins font weight */
-  --poppins-font-medium: 500;
-  --poppins-font-semi-bold: 600;
-  --poppins-font-bold: 700;
-  --poppins-font-extra-bold: 800;
-  --poppins-font-black: 900;
+    --poppins-font-medium: 500;
+    --poppins-font-semi-bold: 600;
+    --poppins-font-bold: 700;
+    --poppins-font-extra-bold: 800;
+    --poppins-font-black: 900;
 
   /* --- Font størrelser --- */
 
   /* Desktop */
-  --font-desktop-h1: 200px;
-  --font-desktop-h2: 100px;
-  --font-desktop-h3: 40px;
-  --font-desktop-text-big: 24px;
+    --font-desktop-h1: 200px;
+    --font-desktop-h2: 100px;
+    --font-desktop-h3: 40px;
+    --font-desktop-text-big: 24px;
   /* Almindelig text størrelse - desktop */
-  --font-desktop-text-small: 16px;
+    --font-desktop-text-small: 16px;
 
   /* Mobil */
-  --font-mobil-h1: 60px;
-  --font-mobil-h2: 30px;
-  --font-mobil-h3: 20px;
+    --font-mobil-h1: 60px;
+    --font-mobil-h2: 30px;
+    --font-mobil-h3: 20px;
   /* Almindelig text størrelse - mobil */
-  --font-mobil-text: 14px;
-  --font-mobil-small: 12px;
+    --font-mobil-text: 14px;
+    --font-mobil-small: 12px;
 
   /* --- Knapper --- */
 
   /* Desktop */
-  --btn-height-desktop: 45px;
-  --btn-min-width-desktop: 200px;
-  --btn-font-desktop: 24px;
+    --btn-height-desktop: 40px;
+    /* --btn-min-width-desktop: 200px; */
+    --btn-font-desktop: 16px;
 
   /* Mobil */
-  --btn-height-mobil: 30px;
-  --btn-min-width-mobil: 130px;
-  --btn-font-mobil: 16px;
+    --btn-height-mobil: 32px;
+    /* --btn-min-width-mobil: 120px; */
+    --btn-font-mobil: 14px;
 }

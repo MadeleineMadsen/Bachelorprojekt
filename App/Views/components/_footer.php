@@ -13,6 +13,11 @@ $FooterNavItems = [
         'url'   => '/om'
     ],
     [
+        'key'   => 'medlemmer',
+        'label' => 'MEDLEMMER',
+        'url'   => '/medlemmer'
+    ],
+    [
         'key'   => 'om',
         'label' => 'KONTAKT',
         'url'   => '/om#kontakt'
@@ -70,12 +75,6 @@ $socials = [
             <?php endforeach; ?>
     </div>
 </footer>
-
-
-
-
-
-
 
 
 

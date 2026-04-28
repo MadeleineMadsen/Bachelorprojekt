@@ -43,19 +43,21 @@ html {
 .header-inner {
   min-height: var(--gap-xl);
   padding: 0 0 0 var(--gap-sm);
-  display: grid;
-  grid-template-columns: var(--gap-md) 1fr auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
 .logo {
   justify-self: right;
+  display: flex;
 }
 
 .header-left {
   display: flex;
   justify-content: flex-end;
   margin-right: var(--gap-sm);
+  order: 1;
 }
 
 .top-nav {
@@ -75,6 +77,8 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  order: 2;
+  margin-right: var(--gap-sm);
 }
 
 .burger span {
@@ -143,7 +147,7 @@ html {
 }
 
 .mobile-nav.open {
-  max-height: 20rem; /* justér hvis menuen bliver højere */
+  max-height: 22rem; /* justér hvis menuen bliver højere */
   opacity: 1;
   transform: translateY(0);
   padding: var(--gap-xs) var(--gap-sm) var(--gap-sm);
@@ -276,14 +280,17 @@ html {
     display: flex;
     align-items: center;
     gap: var(--gap-md);
+    order: initial;
   }
 
   .logo {
     justify-self: auto;
+    order: initial;
   }
 
   .burger {
     display: none;
+    order: initial;
   }
 
   .top-nav {
