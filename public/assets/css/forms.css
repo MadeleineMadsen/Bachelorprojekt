@@ -24,7 +24,7 @@
   width: 100%;
   border: none;
   border-bottom: 1px solid var(--font-color-black);
-  padding: var(--gap-sm) 0;
+  padding: var(--gap-sm) 0 var(--gap-xxs);
   margin-bottom: var(--gap-sm);
   outline: none;
 }

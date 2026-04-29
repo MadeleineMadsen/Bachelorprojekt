@@ -71,7 +71,7 @@
 }
 
 /* Til profilbillede, "om os" og "ansøgninger" */
-.profile-medium {
+.profile-medium, .profile-profileimg {
   width: 6rem;
   height: 6rem;
 }
@@ -81,6 +81,7 @@
   width: 8rem;
   height: 8rem;
 }
+
 
 /* ========== DESKTOP ========== */
 @media (min-width: 768px) {
@@ -127,7 +128,7 @@
   }
 
   /* Til egen profil og "medlemmer" */
-  .profile-large {
+  .profile-large, .profile-profileimg {
     width: 12.5rem;
     height: 12.5rem;
   }
