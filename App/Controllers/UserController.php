@@ -1,1 +1,7 @@
-Til login/logud af user for at sørge for sessionstart og load Models som user har ansvar for (hvis admin skal have for sig selv, lav AdminController.php)
+<!-- TODO: ret alle disse tre til en enkelt profil.php og kig efter auth her istedet. -->
+- profil_admin.php
+- profil_member.php
+- profil_user.php
+
+- medlemmer.php
+- brugerdata

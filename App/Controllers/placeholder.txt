@@ -1,4 +1,0 @@
-// Controllers
-// Håndterer HTTP requests og styrer flowet i applikationen
-// Kalder models og returnerer views eller redirects
-
