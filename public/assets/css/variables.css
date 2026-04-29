@@ -85,11 +85,9 @@
 
   /* Desktop */
     --btn-height-desktop: 40px;
-    /* --btn-min-width-desktop: 200px; */
     --btn-font-desktop: 16px;
 
   /* Mobil */
     --btn-height-mobil: 32px;
-    /* --btn-min-width-mobil: 120px; */
     --btn-font-mobil: 14px;
 }

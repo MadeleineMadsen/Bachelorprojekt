@@ -7,4 +7,5 @@ alle medlemmer
 
 <main class="container">
     <h1>Alle medlemmer</h1>
+
 </main>

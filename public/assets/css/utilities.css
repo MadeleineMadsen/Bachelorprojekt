@@ -27,7 +27,6 @@
   font-weight: var(--poppins-font-bold);
   font-size: var(--btn-font-mobil);
   height: var(--btn-height-mobil);
-  /* min-width: var(--btn-min-width-mobil); */
   padding: 0 var(--gap-sm);
   border: none;
   cursor: pointer;
@@ -55,6 +54,34 @@
   font-weight: var(--font-regular);
 }
 
+/* -----------------------------
+    PROFILBILLEDER
+-------------------------------*/
+
+/* Class der bruges på alle profilbilleder - herefter vælges også en størrelse af de nedenstående */
+.profile-img {
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+/* Til de små billede-karuseller */
+.profile-small {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Til profilbillede, "om os" og "ansøgninger" */
+.profile-medium {
+  width: 6rem;
+  height: 6rem;
+}
+
+/* Til "medlemmer" */
+.profile-large {
+  width: 8rem;
+  height: 8rem;
+}
+
 /* ========== DESKTOP ========== */
 @media (min-width: 768px) {
   /* -----------------------------
@@ -73,13 +100,35 @@
   /* -----------------------------
     KNAPPER
 -------------------------------*/
+
   .btn {
     font-size: var(--btn-font-desktop);
     height: var(--btn-height-desktop);
-    /* min-width: var(--btn-min-width-desktop); */
   }
 
   .btn-nav {
     font-size: var(--btn-font-desktop);
+  }
+
+  /* -----------------------------
+    PROFILBILLEDER
+  -------------------------------*/
+
+  /* Til de små billede-karuseller */
+  .profile-small {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  /* Til "om os" og cards i "ansøgninger" */
+  .profile-medium {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  /* Til egen profil og "medlemmer" */
+  .profile-large {
+    width: 12.5rem;
+    height: 12.5rem;
   }
 }
