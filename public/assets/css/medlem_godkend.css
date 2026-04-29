@@ -1,0 +1,241 @@
+/* =========================
+Mobilefirst
+========================= */
+.header-container {
+    margin-bottom: var(--gap-md);
+}
+
+.godkend-header {
+    font-family: var(--font-header);
+    font-size: var(--font-mobil-h2);
+    font-weight: var(--IBM-font-bold);
+}
+
+.godkend-p, .godkend-name {
+    font-family: var(--font-text);
+    font-size: var(--font-mobil-text);
+}
+
+.godkend-sub {
+    font-family: var(--font-header);
+    font-size: var(--font-mobil-h3);
+    font-weight: var(--poppins-font-bold);
+    margin-bottom: var(--gap-sm);
+}
+
+.godkend-container {
+    display: grid;
+    gap: var(--gap-sm);
+}
+
+.godkend-card {
+    border: 1px solid var(--font-color-black);
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.godkend-left,
+.godkend-middle,
+.godkend-right {
+    padding: var(--gap-sm);
+}
+
+.godkend-left {
+    display: flex;
+    gap: var(--gap-sm);
+    align-items: center;
+}
+
+.godkend-name {
+    font-weight: var(--font-regular);
+}
+
+.godkend-info p,
+.godkend-middle p {
+    font-family: var(--font-text);
+    font-size: var(--font-mobil-text);
+}
+
+.godkend-info {
+    display: block;
+}
+
+.godkend-left,
+.godkend-middle {
+    position: relative;
+}
+
+.godkend-left::after,
+.godkend-middle::after {
+    content: "";
+    position: absolute;
+    left: var(--gap-sm);
+    right: var(--gap-sm);
+    bottom: 0;
+    height: 1px;
+    background: var(--font-color-black);
+}
+
+.godkend-date {
+    font-weight: var(--poppins-font-bold);
+    margin: 0 0 var(--gap-xs) 0;
+}
+
+.godkend-right {
+    display: flex;
+    gap: var(--gap-xs);
+}
+
+.godkend-right .btn {
+    flex: 1;
+}
+
+/* Godkendte medlemmer */
+.allerede-medlem {
+    margin-top: var(--gap-md);
+}
+
+/* Søge felt og dropdown med studieretning */
+.filter-container {
+    margin: var(--gap-md) 0;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap-sm);
+}
+
+.search-field {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--font-color-black);
+    height: var(--btn-height-desktop);
+    max-width: 32.5rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.search-field input {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: none;
+    outline: none;
+    padding: 0 var(--gap-xs);
+    font-family: var(--font-text);
+    font-size: var(--font-mobil-text);
+    background: transparent;
+}
+
+.search-field button {
+    border: none;
+    background: transparent;
+    padding: 0 var(--gap-xs);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.filter-select {
+    border: 1px solid var(--font-color-black);
+    height: var(--btn-height-desktop);
+    padding: 0 var(--gap-xs);
+    font-family: var(--font-text);
+    font-size: var(--font-mobil-text);
+    background: var(--bg-color-white);
+    max-width: 35rem;
+    cursor: pointer;
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* =========================
+Desktop
+========================= */
+@media (min-width: 768px) {
+    .header_container {
+        margin-bottom: var(--gap-lg);
+    }
+
+    .godkend-header {
+        font-size: var(--font-desktop-h2);
+    }
+
+    .godkend-p {
+        font-size: var(--font-desktop-text-small);
+    }
+
+    .godkend-sub {
+    font-size: var(--font-desktop-text-big);
+    }
+
+    .godkend-container {
+        gap: var(--gap-md);
+    }
+
+    .godkend-card {
+        grid-template-columns: 2fr 1.8fr 1fr;
+    }
+
+    .godkend-info {
+        display: grid;
+        gap: var(--gap-xs);
+    }
+
+    .godkend-date {
+        margin: 1rem 0 var(--gap-xs) 0;
+    }
+
+
+    .godkend-left,
+    .godkend-middle,
+    .godkend-right {
+        padding: var(--gap-md);
+    }
+
+    .godkend-left::after,
+    .godkend-middle::after {
+        left: auto;
+        right: 0;
+        top: var(--gap-sm);
+        bottom: var(--gap-sm);
+        width: 1px;
+        height: auto;
+    }
+
+    .godkend-left {
+        gap: var(--gap-md);
+    }
+
+    .godkend-info p,
+    .godkend-middle p,
+    .godkend-name {
+        font-size: var(--font-desktop-text-small);
+    }
+
+    .godkend-right {
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--gap-sm);
+    }
+
+    .godkend-right .btn {
+        width: 100%;
+        flex: unset;
+    }
+
+    /* Søgefelt og dropdown med studieretning */
+    .search-form {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .search-field input,
+    .filter-select {
+        font-size: var(--font-desktop-text-small);
+    }
+}

@@ -18,3 +18,6 @@
 
 /* Kalender - styling af alle kalendere */
 @import "./kalender.css";
+
+/* Ansøgninger - styling af alle medlemsskaber til godkendelse */
+@import "./medlem_godkend.css";
