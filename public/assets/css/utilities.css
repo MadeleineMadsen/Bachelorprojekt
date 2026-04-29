@@ -71,6 +71,7 @@
 }
 
 /* Til profilbillede, "om os" og "ansøgninger" */
+/* OBS: .profile-profileimg er kun til profil-siden */
 .profile-medium, .profile-profileimg {
   width: 6rem;
   height: 6rem;
@@ -128,6 +129,7 @@
   }
 
   /* Til egen profil og "medlemmer" */
+  /* OBS: .profile-profileimg er kun til profil-siden */
   .profile-large, .profile-profileimg {
     width: 12.5rem;
     height: 12.5rem;
