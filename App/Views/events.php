@@ -5,6 +5,8 @@ alle events (cards)
 // Brug .container til max-width på main
 // Styles mobilefirst og har desktop breakpoint efter 768px
 
-<main class="container">
+<main>
+    <section class="container">
     <h1>Events</h1>
+    </section>
 </main>

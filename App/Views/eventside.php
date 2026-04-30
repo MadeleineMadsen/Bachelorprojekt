@@ -5,6 +5,8 @@ single event
 // Brug .container til max-width på main
 // Styles mobilefirst og har desktop breakpoint efter 768px
 
-<main class="container">
+<main>
+    <section class="container">
     <h1>Single event</h1>
+    </section>
 </main>

@@ -2,7 +2,8 @@
 
 ?>
 
-<main class="container">
+<main>
+    <section class="container">
     <h1 class="form-title">OPRET EVENT</h1>
 
     <section class="form-container create-event-container">
@@ -33,5 +34,6 @@
                 <button class="btn btn-secondary" type="reset">ANNULLER</button>
             </div>
         </form>
+    </section>
     </section>
 </main>

@@ -2,7 +2,8 @@
 
 ?>
 
-<main class="container">
+<main>
+    <section class="container">
     <h1 class="form-title">OPRET DIG</h1>
 
     <section class="form-container signup-container">
@@ -28,5 +29,6 @@
         <div>
             <p class="form-link-text">Har du allerede en bruger? <a href="log_ind">Log ind her</a> </p>
         </div>
+    </section>
     </section>
 </main>

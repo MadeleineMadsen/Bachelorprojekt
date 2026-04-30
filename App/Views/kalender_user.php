@@ -85,7 +85,8 @@ $monthNames = [
 ];
 
 ?>
-<main class="container">
+<main>
+    <section class="container">
     <h1>KALENDER</h1>
 
     <!-- Knapper & pile -->
@@ -197,6 +198,5 @@ $monthNames = [
             Ingen events
         </p>
     </section>
-
-    
+    </section>
 </main>
