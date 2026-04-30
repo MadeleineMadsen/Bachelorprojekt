@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: 100px 1fr;
   column-gap: var(--gap-xs);
-  margin-top: var(--gap-sm);
+  margin: 0;
 }
 
 .profile-hero {
