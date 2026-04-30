@@ -242,6 +242,70 @@ html {
   font-weight: var(--poppins-font-bold);
 }
 
+/* ----------------------------------- */
+/* Layout af log ind, opret dig og opret event sider*/
+/* ----------------------------------- */
+
+.login-page,
+.signup-page,
+.create-event-page {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  padding: 0;
+  max-width: 100%;
+  align-items: stretch;
+}
+
+.login-image,
+.signup-image,
+.create-event-image {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}
+
+.login-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  object-fit: cover;
+  object-position: 45% center; /* flytter billedet i rammen, så personerne ses bedre */
+  transform: scale(1.3);
+}
+
+.signup-image img,
+.create-event-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  object-fit: cover;
+  object-position: 45% center;
+  transform: scale(1.1);
+}
+
+.login-content,
+.signup-content,
+.create-event-content {
+  position: relative;
+  padding: var(--gap-md) var(--gap-sm);
+}
+
+.login-content .form-title,
+.signup-content .form-title,
+.create-event-content .form-title {
+  position: relative;
+  left: -42px;
+  z-index: 2;
+  width: 110%;
+}
+
+/* Rykker teksten ind over billedet */
+.login-content .form-container,
+.signup-content .form-container,
+.create-event-content .form-container {
+  width: 100%;
+}
+
 /* ========== DESKTOP ========== */
 @media (min-width: 768px) {
   body {
@@ -412,5 +476,57 @@ html {
     align-self: center;
     justify-self: center;
     padding: 0;
+  }
+
+  /* ----------------------------------- */
+  /* Layout af log ind, opret dig og opret event sider*/
+  /* ----------------------------------- */
+
+  .login-page,
+  .signup-page,
+  .create-event-page {
+    max-width: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+  }
+
+  .login-image img {
+    min-height: 720px;
+    object-position: 45% center;
+    transform: scale(1.5);
+  }
+
+  .signup-image img,
+  .create-event-image img {
+    min-height: 720px;
+    object-position: 45% center;
+    transform: scale(1);
+  }
+
+  .login-content,
+  .signup-content,
+  .create-event-content {
+    padding-top: 60px;
+  }
+
+  .login-content .form-title {
+    left: -87px;
+  }
+
+  .signup-content .form-title,
+  .create-event-content .form-title {
+    left: -92px;
+    width: 70%;
+  }
+
+  .login-content .form-container,
+  .signup-content .form-container,
+  .create-event-content .form-container {
+    width: 720px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

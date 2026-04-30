@@ -31,9 +31,9 @@
 
             <input type="text" name="last_name" placeholder="Efternavn" required>
 
-            <input type="text" name="last_name" placeholder="Studieretning" required>
+            <input type="text" name="education" placeholder="Studieretning" required>
 
-            <input type="text" name="last_name" placeholder="Semester" required>
+            <input type="text" name="semester" placeholder="Semester" required>
 
             <input type="email" name="email" placeholder="Studiemail" required>
 

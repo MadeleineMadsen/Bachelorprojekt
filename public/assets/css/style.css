@@ -13,6 +13,9 @@
 /* Formularer - styling af alle formularer */
 @import "./forms.css";
 
+/* Bliv medlem side - styling af hele bliv medlem side */
+@import "./membership.css";
+
 /* Profil sider - styling af profil siderne */
 @import "./profile.css";
 
