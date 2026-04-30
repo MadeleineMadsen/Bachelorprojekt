@@ -23,8 +23,13 @@
 
                 <input type="text" name="location" placeholder="Lokation" required>
 
+                <input type="text" name="subtitel" placeholder="Undertitel" required>
+
                 <label class="form-label" for="description">Beskrivelse</label>
                 <textarea id="description" name="description" required></textarea>
+
+                <label class="form-label" for="description-bulletpoints">Beskrivende punkter</label>
+                <textarea id="description-bulletpoints" name="description-bulletpoints" required></textarea>
 
                 <label class="form-label">Upload billede</label>
                 <div class="upload-box">
