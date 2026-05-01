@@ -21,6 +21,7 @@ services:
       MYSQL_DATABASE: bachelor
     volumes:
       - mariadb_data:/var/lib/mysql
+      - ./docker/db/bachelor.sql:/docker-entrypoint-initdb.d/bachelor.sql
     ports:
       - 3306:3306
 
