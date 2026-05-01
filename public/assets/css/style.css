@@ -10,6 +10,13 @@
 /* Utilities - genbrugelige utility klasser */
 @import "./utilities.css";
 
+/* Cards */
+@import "./card-info.css";
+@import "./card-list.css";
+@import "./card-sm.css";
+@import "./eventside.css";
+@import "./events.css";
+
 /* Formularer - styling af alle formularer */
 @import "./forms.css";
 

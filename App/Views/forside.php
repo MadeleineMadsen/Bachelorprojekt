@@ -1,3 +1,10 @@
 <main class="container">
-    <h1>Forside / Velkommen</h1>
+
+
+    <div class="grid">
+        <?php foreach ($events as $event): ?>
+            <?php include __DIR__ . '/components/_card_event_sm.php'; ?>
+        <?php endforeach; ?>
+    </div>
+
 </main>

@@ -7,51 +7,52 @@
 -------------------------------*/
 /* Logo */
 .logo img {
-  height: 60px;
-  width: auto;
+height: 60px;
+width: auto;
 }
 
 .footer-logo img {
-  height: 100px;
-  width: auto;
+height: 100px;
+width: auto;
 }
 
 /* -----------------------------
     KNAPPER
 -------------------------------*/
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-text);
-  font-weight: var(--poppins-font-bold);
-  font-size: var(--btn-font-mobil);
-  height: var(--btn-height-mobil);
-  padding: 0 var(--gap-sm);
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+font-family: var(--font-text);
+font-weight: var(--poppins-font-bold);
+font-size: var(--btn-font-mobil);
+height: var(--btn-height-mobil);
+  /* min-width: var(--btn-min-width-mobil); */
+padding: 0 var(--gap-sm);
+border: none;
+cursor: pointer;
+text-decoration: none;
 }
 
 .btn-primary {
-  background: var(--color-blue);
-  color: var(--font-color-white);
+background: var(--color-blue);
+color: var(--font-color-white);
 }
 
 .btn-secondary {
-  background: var(--color-light-yellow);
-  color: var(--font-color-black);
+background: var(--color-light-yellow);
+color: var(--font-color-black);
 }
 
 .btn-nav {
-  background: transparent;
-  color: var(--font-color-black);
-  min-width: unset;
-  height: unset;
-  padding: 0;
-  border-bottom: 1px solid var(--font-color-black);
-  font-size: var(--btn-font-mobil);
-  font-weight: var(--font-regular);
+background: transparent;
+color: var(--font-color-black);
+min-width: unset;
+height: unset;
+padding: 0;
+border-bottom: 1px solid var(--font-color-black);
+font-size: var(--btn-font-mobil);
+font-weight: var(--font-regular);
 }
 
 /* -----------------------------
@@ -136,72 +137,29 @@
 
 /* ========== DESKTOP ========== */
 @media (min-width: 768px) {
-  /* -----------------------------
+/* -----------------------------
     IMAGES
     -------------------------------*/
 
   /* Logo */
-  .logo img {
+.logo img {
     height: 70px;
     margin: var(--gap-xs) 0;
-  }
+}
 
-  .footer-logo img {
+.footer-logo img {
     height: 120px;
-  }
-  /* -----------------------------
+}
+/* -----------------------------
     KNAPPER
 -------------------------------*/
-
-  .btn {
+.btn {
     font-size: var(--btn-font-desktop);
     height: var(--btn-height-desktop);
-  }
+    /* min-width: var(--btn-min-width-desktop); */
+}
 
-  .btn-nav {
+.btn-nav {
     font-size: var(--btn-font-desktop);
-  }
-
-  /* -----------------------------
-    PROFILBILLEDER
-  -------------------------------*/
-
-  /* Til de små billede-karuseller */
-  .profile-small {
-    width: 5rem;
-    height: 5rem;
-  }
-
-  /* Til "om os" og cards i "ansøgninger" */
-  .profile-medium {
-    width: 8rem;
-    height: 8rem;
-  }
-
-  /* Til egen profil og "medlemmer" */
-  /* OBS: .profile-profileimg er kun til profil-siden */
-  .profile-large, .profile-profileimg {
-    width: 12.5rem;
-    height: 12.5rem;
-  }
-
-  /* -----------------------------
-    SLIDE MED MEDLEMMER
-  -------------------------------*/
-    .member-carousel {
-        grid-template-columns: repeat(4, 1fr);
-        gap: var(--gap-md);
-    }
-
-    .member-slide {
-        flex: 0 0 calc(20% - (var(--gap-md) * 4 / 5));
-    }
-
-    .member-slide h3 {
-        font-size: var(--font-desktop-text-big);
-    }
-
-    .member-slide p {
-        font-size: var(--font-desktop-text-small);
-    }
+}
 }
