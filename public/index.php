@@ -33,6 +33,8 @@ switch ($uri) {
     
     // LANDING / FORSIDE
     case '/':
+        require_once __DIR__ . '/../App/Controllers/EventController.php';
+        $events         = EventController::getLatest(3);
         $currentPage    = '';
         $view           = '/forside.php';
         break;
@@ -81,6 +83,8 @@ switch ($uri) {
             exit;
         }
 
+        require_once __DIR__ . '/../App/Controllers/EventController.php';
+        $events         = EventController::getAll();
         $currentPage    = 'events';
         $view           = '/events.php';
         break;
@@ -92,6 +96,15 @@ switch ($uri) {
             exit;
         }
 
+        require_once __DIR__ . '/../App/Controllers/EventController.php';
+        $event = EventController::getById($_GET['id'] ?? '');
+
+        if (!$event) {
+            header('Location: /events');
+            exit;
+        }
+
+        $dato           = $event['dato'];
         $currentPage    = 'events';
         $view           = '/eventside.php';
         break;

@@ -1,9 +1,3 @@
-<?php
-require_once __DIR__ . '/../../App/Models/EventModel.php';
-$eventModel = new EventModel();
-$events     = $eventModel->getLatest(3);
-?>
-
 <main class="container">
 
 

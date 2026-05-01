@@ -4,14 +4,9 @@ require_once __DIR__ . '/../../private/db.php';
 
 class EventModel {
 
-    private PDO $db;
-
-    public function __construct() {
-        $this->db = getDB();
-    }
-
-    public function getAll(): array {
-        $stmt = $this->db->query('
+    public static function getAll(): array {
+        $db   = getDB();
+        $stmt = $db->query('
             SELECT e.*, COUNT(r.registration_pk) AS participant_count
             FROM events e
             LEFT JOIN event_registrations r ON r.event_fk = e.event_pk
@@ -21,8 +16,9 @@ class EventModel {
         return $stmt->fetchAll();
     }
 
-    public function getById(int $id): array|false {
-        $stmt = $this->db->prepare('
+    public static function getById(string $id): array|false {
+        $db   = getDB();
+        $stmt = $db->prepare('
             SELECT e.*, COUNT(r.registration_pk) AS participant_count
             FROM events e
             LEFT JOIN event_registrations r ON r.event_fk = e.event_pk
@@ -33,8 +29,9 @@ class EventModel {
         return $stmt->fetch();
     }
 
-    public function getLatest(int $limit = 3): array {
-        $stmt = $this->db->prepare('
+    public static function getLatest(int $limit = 3): array {
+        $db   = getDB();
+        $stmt = $db->prepare('
             SELECT e.*, COUNT(r.registration_pk) AS participant_count
             FROM events e
             LEFT JOIN event_registrations r ON r.event_fk = e.event_pk
