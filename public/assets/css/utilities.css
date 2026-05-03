@@ -45,13 +45,20 @@
 
 .btn-nav {
   background: transparent;
-  color: var(--font-color-black);
+  color: var(--color-light-blue);
   min-width: unset;
   height: unset;
   padding: 0;
-  border-bottom: 1px solid var(--font-color-black);
   font-size: var(--btn-font-mobil);
-  font-weight: var(--font-regular);
+  font-weight: var(--poppins-font-semi-bold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-nav::after {
+  content: "➞";  
+  font-size: 1.3em;
 }
 
 /* -----------------------------
@@ -127,11 +134,56 @@
 .carousel-arrow {
     border: none;
     background: transparent;
-    color: var(--color-blue);
+    color: var(--color-light-blue);
     font-size: 2rem;
     cursor: pointer;
     line-height: 1;
 }
+
+/* -----------------------------
+  BANNER
+-------------------------------*/
+
+.text-banner {
+  width: 100vw;
+  overflow: hidden;
+  background: var(--color-blue);
+  color: var(--font-color-white);
+}
+
+.text-banner-track {
+  display: flex;
+  width: max-content;
+  animation: banner-scroll 40s linear infinite;
+}
+
+.text-banner-group {
+  display: flex;
+  gap: var(--gap-lg);
+  padding-right: var(--gap-lg);
+}
+
+.text-banner span {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+
+  font-family: var(--font-text);
+  font-weight: var(--poppins-font-bold);
+  font-size: var(--btn-font-mobil);
+  height: var(--btn-height-mobil);
+}
+
+@keyframes banner-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 
 
 /* ========== DESKTOP ========== */
@@ -151,7 +203,7 @@
   }
   /* -----------------------------
     KNAPPER
--------------------------------*/
+  -------------------------------*/
 
   .btn {
     font-size: var(--btn-font-desktop);
@@ -161,6 +213,10 @@
   .btn-nav {
     font-size: var(--btn-font-desktop);
   }
+
+  .btn-nav::after {
+  font-size: 1.4em;
+}
 
   /* -----------------------------
     PROFILBILLEDER
@@ -188,20 +244,33 @@
   /* -----------------------------
     SLIDE MED MEDLEMMER
   -------------------------------*/
-    .member-carousel {
-        grid-template-columns: repeat(4, 1fr);
-        gap: var(--gap-md);
-    }
+  .member-carousel {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap-md);
+  }
 
-    .member-slide {
-        flex: 0 0 calc(20% - (var(--gap-md) * 4 / 5));
-    }
+  .member-slide {
+    flex: 0 0 calc(20% - (var(--gap-md) * 4 / 5));
+  }
 
-    .member-slide h3 {
-        font-size: var(--font-desktop-text-big);
-    }
+  .member-slide h3 {
+    font-size: var(--font-desktop-text-big);
+  }
 
-    .member-slide p {
-        font-size: var(--font-desktop-text-small);
-    }
+  .member-slide p {
+    font-size: var(--font-desktop-text-small);
+  }
+
+  /* -----------------------------
+  BANNER
+  -------------------------------*/
+  .text-banner span {
+    font-size: var(--btn-font-desktop);
+    height: var(--btn-height-desktop);
+  }
+
+  .text-banner-group {
+    gap: var(--gap-xl);
+    padding-right: var(--gap-xl);
+  }
 }
