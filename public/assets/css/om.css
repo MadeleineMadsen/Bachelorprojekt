@@ -78,6 +78,10 @@
     margin-top: 0;
 }
 
+.om-carousel-section {
+    margin: 0;
+}
+
 .teamet {
     writing-mode: vertical-rl;
     rotate: calc(180deg);
@@ -229,7 +233,7 @@
     }
 
     #teamet h1 {
-        padding-right: 0;
+        padding: 0;
     }
 
     #teamet .mød-sub {
@@ -251,14 +255,14 @@
         font-size: var(--font-desktop-h1-special);
     }
 
-    .member-carousel-section {
+    .om-carousel-section {
         grid-column: 2;
         grid-row: 2;
         overflow: visible;
         width: 100%;
     }
 
-    .member-carousel {
+    .om-carousel {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: var(--gap-md);
@@ -271,7 +275,7 @@
         grid-row: 3;
         display: flex;
         justify-content: flex-end;
-        padding-right: var(--gap-xxl);
+        padding-right: var(--gap-lg);
     }
 
     .desktop-hidden {
@@ -282,7 +286,7 @@
         flex: unset;
     }
 
-    .carousel-arrow {
+    .-om {
         display: none;
     }
 

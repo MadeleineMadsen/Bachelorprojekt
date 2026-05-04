@@ -91,12 +91,12 @@ $members = [
         <div class="team-members">
             <h1 class="om-header teamet">TEAMET</h1>
 
-            <section class="member-carousel-section om-carousel">
+            <section class="member-carousel-section om-carousel-section">
                 <button class="carousel-arrow carousel-prev" type="button" aria-label="Forrige">
                     &#8592;
                 </button>
 
-                <div class="member-carousel" id="memberCarousel" data-visible-slides="1">
+                <div class="member-carousel om-carousel" id="memberCarousel" data-visible-slides="1">
                     <?php foreach ($members as $index => $member): ?>
                         <article class="member-slide om-slide <?= $index >= 8 ? 'desktop-hidden' : ''; ?>">
                             <img src="<?= $member['image']; ?>" alt="" class="profile-img profile-medium">
