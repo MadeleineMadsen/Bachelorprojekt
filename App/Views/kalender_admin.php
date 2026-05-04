@@ -85,7 +85,8 @@ $monthNames = [
 ];
 
 ?>
-<main class="container">
+<main>
+    <section class="container">
     <div class="calendar-header">
     <h1 class="kalender_header">KALENDER</h1>
 
@@ -204,6 +205,5 @@ $monthNames = [
             Ingen events
         </p>
     </section>
-
-    
+    </section>
 </main>

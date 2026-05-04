@@ -41,9 +41,8 @@
                 <div class="button-row">
                     <button class="btn btn-primary" type="submit">OPRET EVENT</button>
 
-                    <button class="btn btn-secondary" type="reset">ANNULLER</button>
-                </div>
-            </form>
-        </section>
-    </div>
+                <button class="btn btn-secondary" type="reset">ANNULLER</button>
+            </div>
+        </form>
+    </section>
 </main>

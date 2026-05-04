@@ -2,7 +2,8 @@
 
 ?>
 
-<main class="container profile-page">
+<main class="profile-page">
+    <section class="container">
     <section class="profile-hero">
         <div class="hello-text">
             <h1>HEJ IGEN</h1>
@@ -41,5 +42,6 @@
 
             <button class="btn btn-primary" type="submit">GEM ÆNDRINGER</button>
         </form>
+    </section>
     </section>
 </main>

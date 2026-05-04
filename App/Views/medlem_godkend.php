@@ -29,7 +29,7 @@ $applications = [
 $members = [
     [
         'name' => 'Isabella',
-        'education' => 'Multimediedesigner',
+        'education' => 'Multimediedesign',
         'image' => '/assets/img/uploads/test_profile.png'
     ],
     [
@@ -44,7 +44,7 @@ $members = [
     ],
         [
         'name' => 'Isabella',
-        'education' => 'Multimediedesigner',
+        'education' => 'Multimediedesign',
         'image' => '/assets/img/uploads/test_profile.png'
     ],
     [
@@ -59,7 +59,7 @@ $members = [
     ],
         [
         'name' => 'Isabella',
-        'education' => 'Multimediedesigner',
+        'education' => 'Multimediedesign',
         'image' => '/assets/img/uploads/test_profile.png'
     ],
     [
@@ -76,7 +76,8 @@ $members = [
 
 ?>
 
-<main class="container">
+<main>
+    <section class="container">
     <div class="header-container">
         <h1 class="godkend-header">ANSØGNINGER</h1>
         <p class="godkend-p">Ansøgninger om medlemsskab til godkendelse</p>
@@ -131,7 +132,7 @@ $members = [
                     <option value="">ALLE MEDLEMMER</option>
                     <!-- TODO: Ret til at hente fra database i stedet for hardcodet -->
                     <option value="datamatiker">Datamatiker</option>
-                    <option value="multimediedesigner">Multimediedesigner</option>
+                    <option value="multimediedesign">Multimediedesign</option>
                     <option value="webudvikling">Webudvikling</option>
                 </select>
             </form>
@@ -164,5 +165,5 @@ $members = [
             &#8594;
         </button>
     </section>
-
+    </section>
 </main>
