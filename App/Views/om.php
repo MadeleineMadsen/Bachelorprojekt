@@ -57,7 +57,7 @@ $members = [
 ];
 ?>
 
-<main>
+<main class="main-om">
     <section class="om-hero">
         <div class="img-hero">
                 <h1 class="om-header">OM OS</h1>
@@ -119,7 +119,6 @@ $members = [
         <div class="team-btn-wrapper">
             <a href="/../App/Views/medlemmer.php" class="btn btn-nav btn-om">SE ALLE MEDLEMMER</a>
         </div>
-    </section>
     </section>
 
     <section id="værdi">

@@ -1,6 +1,11 @@
 /* =========================
 Mobilefirst
 ========================= */
+.godkend-main {
+    margin: 0;
+    padding: 0;
+}
+
 .header-container {
     margin-bottom: var(--gap-md);
 }

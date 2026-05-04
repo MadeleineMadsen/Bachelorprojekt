@@ -76,7 +76,7 @@ $members = [
 
 ?>
 
-<main>
+<main class="godkend-main">
     <section class="container">
     <div class="header-container">
         <h1 class="godkend-header">ANSØGNINGER</h1>

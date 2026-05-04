@@ -1,3 +1,8 @@
+.main-om {
+    margin: 0;
+    padding: 0;
+}
+
 .om-header {
     font-family: var(--font-header);
     font-size: var(--font-mobil-h1);
