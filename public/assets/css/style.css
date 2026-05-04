@@ -21,3 +21,6 @@
 
 /* Ansøgninger - styling af alle medlemsskaber til godkendelse */
 @import "./medlem_godkend.css";
+
+/* Om - styling af om siden */
+@import "./om.css";

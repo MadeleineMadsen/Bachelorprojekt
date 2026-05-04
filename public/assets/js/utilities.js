@@ -11,9 +11,11 @@ const educationFilter = document.querySelector('#educationFilter');
 const memberSlides = document.querySelectorAll('.member-slide');
 
 function updateArrows() {
+    const visibleSlidesAmount = Number(carousel.dataset.visibleSlides) || 2;
+
     const visibleSlides = [...memberSlides].filter(slide => slide.style.display !== 'none');
 
-    if (visibleSlides.length <= 2) {
+    if (visibleSlides.length <= visibleSlidesAmount) {
         prevBtn.style.visibility = 'hidden';
         nextBtn.style.visibility = 'hidden';
         return;
@@ -21,7 +23,7 @@ function updateArrows() {
 
     const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
 
-    prevBtn.style.visibility = carousel.scrollLeft <= 0 ? 'hidden' : 'visible';
+    prevBtn.style.visibility = carousel.scrollLeft <= 1 ? 'hidden' : 'visible';
     nextBtn.style.visibility = carousel.scrollLeft >= maxScrollLeft - 1 ? 'hidden' : 'visible';
 }
 
@@ -55,6 +57,8 @@ nextBtn.addEventListener('click', () => {
         left: getSlideWidth(),
         behavior: 'smooth'
     });
+
+    setTimeout(updateArrows, 400);
 });
 
 prevBtn.addEventListener('click', () => {
@@ -62,10 +66,17 @@ prevBtn.addEventListener('click', () => {
         left: -getSlideWidth(),
         behavior: 'smooth'
     });
+
+    setTimeout(updateArrows, 400);
 });
 
-searchInput.addEventListener('input', filterMembers);
-educationFilter.addEventListener('change', filterMembers);
+if (searchInput) {
+    searchInput.addEventListener('input', filterMembers);
+}
+
+if (educationFilter) {
+    educationFilter.addEventListener('change', filterMembers);
+}
 
 carousel.addEventListener('scroll', updateArrows);
 window.addEventListener('load', updateArrows);
