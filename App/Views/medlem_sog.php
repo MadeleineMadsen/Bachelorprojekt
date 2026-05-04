@@ -29,7 +29,7 @@ $bannerText = 'BLIV EN DEL AF FÆLLESSKABET';
 include __DIR__ . '/micro/___banner.php';
 ?>
 
-<main>
+<main class="membership-page">
 
     <!-- Hvorfor blive medlem -->
     <section class="membership-benefits">
