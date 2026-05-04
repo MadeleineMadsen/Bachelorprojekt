@@ -1,4 +1,4 @@
-# ROS Projekt – Studieliv Platform
+# GBG Social – Social Studenterforening Platform
 
 Dette er et bachelorprojekt udviklet af Kamilla, Naomi og Madeleine på 7. semester (Webudvikling, EK).
 
