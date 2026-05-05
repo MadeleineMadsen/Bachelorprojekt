@@ -35,8 +35,13 @@ $address = [
 $socials = [
     [
         'name' => 'Instagram',
-        'icon' => '/assets/img/insta.png',
+        'icon' => '/assets/img/insta.svg',
         'url'  => 'https://www.instagram.com/_ekdigital/'
+    ],
+    [
+        'name' => 'Facebook',
+        'icon' => '/assets/img/face.svg',
+        'url'  => 'https://www.facebook.com'
     ],
 ];
 
@@ -68,11 +73,13 @@ $socials = [
     </div>
     <div class="some-container">
         <p>FØLG OS</p>
+        <div>
             <?php foreach ($socials as $social): ?>
                 <a href="<?= $social['url'] ?>">
                     <img src="<?= $social['icon'] ?>" alt="<?= $social['name'] ?>">
                 </a>
             <?php endforeach; ?>
+        </div>
     </div>
 </footer>
 
