@@ -24,16 +24,12 @@
 </section>
 
 <!-- Banner -->
-<section class="membership-banner">
-    <p>
-        <span>BLIV EN DEL AF FÆLLESSKABET</span>
-        <span>BLIV EN DEL AF FÆLLESSKABET</span>
-        <span>BLIV EN DEL AF FÆLLESSKABET</span>
-        <span>BLIV EN DEL AF FÆLLESSKABET</span>
-    </p>
-</section>
+<?php
+$bannerText = 'BLIV EN DEL AF FÆLLESSKABET';
+include __DIR__ . '/micro/___banner.php';
+?>
 
-<main>
+<main class="membership-page">
 
     <!-- Hvorfor blive medlem -->
     <section class="membership-benefits">

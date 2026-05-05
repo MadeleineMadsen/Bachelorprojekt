@@ -20,6 +20,9 @@
 /* Formularer - styling af alle formularer */
 @import "./forms.css";
 
+/* Medlemmer side - styling af hele medlemmer side */
+@import "./members.css";
+
 /* Bliv medlem side - styling af hele bliv medlem side */
 @import "./membership.css";
 
