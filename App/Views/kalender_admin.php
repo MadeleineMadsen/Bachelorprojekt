@@ -106,7 +106,7 @@ $monthNames = [
             <a  class="calendar-arrow" 
                 href="/kalender?month=<?= $prev->format('n') ?>&year=<?= $prev->format('Y') ?>"
             >
-                <img src="/assets/img/arrow-left.png" alt="Forrige måned">
+                <img src="/assets/img/icons/arrow-left.png" alt="Forrige måned">
             </a>
             <a  class="calendar-arrow" 
             href="/kalender?month=<?= $next->format('n') ?>&year=<?= $next->format('Y') ?>"

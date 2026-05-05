@@ -124,21 +124,21 @@ $members = [
     <section id="værdi">
         <h2 class="sub container">VORES VÆRDIER</h2>
         <div class="værdi-container">
-            <img src="/assets/img/fælles.svg" alt="Fællesskab icon">
+            <img src="/assets/img/icons/fælles.svg" alt="Fællesskab icon">
             <div>
                 <h3>FÆLLESSKAB</h3>
                 <p class="sub-text">Et trygt fællesskab, hvor studerende mødes og lærer hinanden at kende på tværs.</p>
             </div>
         </div>
         <div class="værdi-container">
-            <img src="/assets/img/oplev.svg" alt="Menneske med armene over hovedet icon">
+            <img src="/assets/img/icons/oplev.svg" alt="Menneske med armene over hovedet icon">
             <div>
                 <h3>OPLEVELSER</h3>
                 <p class="sub-text">Vi skaber sociale events, der samler studerende og giver gode minder.</p>
             </div>
         </div>
         <div class="værdi-container">
-            <img src="/assets/img/inklusion.svg" alt="Hjerte icon">
+            <img src="/assets/img/icons/inklusion.svg" alt="Hjerte icon">
             <div>
                 <h3>INKLUSION</h3>
                 <p class="sub-text">Et inkluderende miljø, der har plads til alle, og hvor du kan være dig selv.</p>
@@ -154,25 +154,25 @@ $members = [
         <p class="sub-text">Har du spørgsmål, ideer til events eller lyst til at samarbejde? Så ræk endelig ud!</p>
 
         <div class="kontakt-container">
-            <img src="/assets/img/mail.svg" alt="Mail icon">
+            <img src="/assets/img/icons/svg" alt="Mail icon">
             <div>
                 <p class="sub-text">GBG@SOCIAL.COM</p>
             </div>
         </div>
         <div class="kontakt-container">
-            <img src="/assets/img/insta-sort.svg" alt="Instagram icon">
+            <img src="/assets/img/icons/insta-sort.svg" alt="Instagram icon">
             <div>
                 <p class="sub-text">@GBG.SOCIAL</p>
             </div>
         </div>
         <div class="kontakt-container">
-            <img src="/assets/img/face-sort.svg" alt="Facebook icon">
+            <img src="/assets/img/icons/face-sort.svg" alt="Facebook icon">
             <div>
                 <p class="sub-text">GBG SOCIAL - MEMBERGROUP</p>
             </div>
         </div>
         <div class="kontakt-container">
-            <img src="/assets/img/pin.svg" alt="Pin icon">
+            <img src="/assets/img/icons/pin.svg" alt="Pin icon">
             <div>
                 <p class="sub-text">GULDBERGSGADE 29N, 2200 KØBENHAVN N</p>
             </div>

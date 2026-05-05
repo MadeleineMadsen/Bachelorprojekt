@@ -71,29 +71,29 @@ if ($isLoggedIn) {
                 'key'           => 'profil',
                 'label'         => 'PROFIL',
                 'url'           => '/profil',
-                'icon'          => '/assets/img/profile.png',
-                'icon_active'   => '/assets/img/hover_profile.png'
+                'icon'          => '/assets/img/icons/profile.png',
+                'icon_active'   => '/assets/img/icons/hover_profile.png'
             ],
             [
                 'key'           => 'event_opret',
                 'label'         => 'OPRET EVENT',
                 'url'           => '/event_opret',
-                'icon'          => '/assets/img/add_event.png',
-                'icon_active'   => '/assets/img/hover_add_event.png'
+                'icon'          => '/assets/img/icons/add_event.png',
+                'icon_active'   => '/assets/img/icons/hover_add_event.png'
             ],
             [
                 'key'           => 'medlem_godkend',
                 'label'         => 'ANSØGNINGER',
                 'url'           => '/medlem_godkend',
-                'icon'          => '/assets/img/add_member.png',
-                'icon_active'   => '/assets/img/hover_add_member.png'
+                'icon'          => '/assets/img/icons/add_member.png',
+                'icon_active'   => '/assets/img/icons/hover_add_member.png'
             ],
             [
                 'key'           => 'kalender',
                 'label'         => 'KALENDER',
                 'url'           => '/kalender',
-                'icon'          => '/assets/img/calender.png',
-                'icon_active'   => '/assets/img/hover_calender.png'
+                'icon'          => '/assets/img/icons/calender.png',
+                'icon_active'   => '/assets/img/icons/hover_calender.png'
             ],
         ];
     } else {
@@ -102,22 +102,22 @@ if ($isLoggedIn) {
                 'key'           => 'profil',
                 'label'         => 'PROFIL',
                 'url'           => '/profil',
-                'icon'          => '/assets/img/profile.png',
-                'icon_active'   => '/assets/img/hover_profile.png'
+                'icon'          => '/assets/img/icons/profile.png',
+                'icon_active'   => '/assets/img/icons/hover_profile.png'
             ],
             [
                 'key'           => 'event_user',
                 'label'         => 'MINE EVENTS',
                 'url'           => '/event_user',
-                'icon'          => '/assets/img/events.png',
-                'icon_active'   => '/assets/img/hover_events.png'
+                'icon'          => '/assets/img/icons/events.png',
+                'icon_active'   => '/assets/img/icons/hover_events.png'
             ],
             [
                 'key'           => 'kalender',
                 'label'         => 'KALENDER',
                 'url'           => '/kalender',
-                'icon'          => '/assets/img/calender.png',
-                'icon_active'   => '/assets/img/hover_calender.png'
+                'icon'          => '/assets/img/icons/calender.png',
+                'icon_active'   => '/assets/img/icons/hover_calender.png'
             ],
         ];
     }
@@ -154,7 +154,7 @@ if ($isLoggedIn) {
         <!-- Topnavigation -->
         <div class="header-left">
             <a href="/" class="logo">
-                <img src="/assets/img/logo_header.png" alt="Logo">
+                <img src="/assets/img/icons/logo_header.png" alt="Logo">
             </a>
 
             <nav class="top-nav top-nav-left" aria-label="Hovednavigation venstre">

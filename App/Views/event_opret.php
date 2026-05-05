@@ -34,7 +34,7 @@
                 <label class="form-label">Upload billede</label>
                 <div class="upload-box">
                     <input type="file" name="image" accept="image/*">
-                    <div class="upload-icon"><img src="/assets/img/upload_picture.png" alt="Upload billede ikon"></div>
+                    <div class="upload-icon"><img src="/assets/img/icons/upload_picture.png" alt="Upload billede ikon"></div>
                     <p>Træk og slip et billede her<br>eller klik for at vælge fil</p>
                 </div>
 

@@ -39,7 +39,7 @@ include __DIR__ . '/micro/___banner.php';
         <div class="benefits-grid">
 
             <article class="benefit-card">
-                <img src="assets/img/fællesskab.png" alt="Fællesskab logo">
+                <img src="assets/img/icons/fællesskab.png" alt="Fællesskab logo">
                 <h3>FÆLLESSKAB</h3>
                 <p>
                     FG GDFDGJHDFJFFG<br>
@@ -49,7 +49,7 @@ include __DIR__ . '/micro/___banner.php';
             </article>
 
             <article class="benefit-card">
-                <img src="assets/img/events2.png" alt="Events logo">
+                <img src="assets/img/icons/events2.png" alt="Events logo">
                 <h3>EVENTS</h3>
                 <p>
                     FG GDFDGJHDFJFFG<br>
@@ -59,7 +59,7 @@ include __DIR__ . '/micro/___banner.php';
             </article>
 
             <article class="benefit-card">
-                <img src="assets/img/netværk.png" alt="Netværk logo">
+                <img src="assets/img/icons/.png" alt="Netværk logo">
                 <h3>NETVÆRK</h3>
                 <p>
                     FG GDFDGJHDFJFFG<br>
@@ -76,7 +76,7 @@ include __DIR__ . '/micro/___banner.php';
     <section class="membership-stats">
 
         <div class="stat">
-            <img src="assets/img/user_account.svg" alt="">
+            <img src="assets/img/icons/user_account.svg" alt="">
             <div class="stat-text">
                 <h3>+30</h3>
                 <p>AKTIVE MEDLEMMER</p>
@@ -84,7 +84,7 @@ include __DIR__ . '/micro/___banner.php';
         </div>
 
         <div class="stat">
-            <img src="assets/img/calender.png" alt="">
+            <img src="assets/img/icons/calender.png" alt="">
             <div class="stat-text">
                 <h3>+10</h3>
                 <p>EVENTS OM ÅRET</p>
@@ -92,7 +92,7 @@ include __DIR__ . '/micro/___banner.php';
         </div>
 
         <div class="stat">
-            <img src="assets/img/favorite.svg" alt="">
+            <img src="assets/img/icons/favorite.svg" alt="">
             <div class="stat-text">
                 <h3>100%</h3>
                 <p>FÆLLESSKAB</p>

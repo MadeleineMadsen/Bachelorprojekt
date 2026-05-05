@@ -27,16 +27,16 @@
         <div class="card-event-sm-meta">
             <div class="card-event-sm-meta-items">
                 <span class="card-event-sm-meta-item">
-                    <img src="/assets/img/ur_icon.png" alt="" class="card-event-sm-meta-icon">
+                    <img src="/assets/img/icons/ur_icon.png" alt="" class="card-event-sm-meta-icon">
                     <?= htmlspecialchars(substr($event['event_time'], 0, 5)) ?>
                     <?php if (!empty($event['event_end_time'])): ?>- <?= htmlspecialchars(substr($event['event_end_time'], 0, 5)) ?><?php endif; ?>
                 </span>
                 <span class="card-event-sm-meta-item">
-                    <img src="/assets/img/placering_icon.png" alt="" class="card-event-sm-meta-icon">
+                    <img src="/assets/img/icons/placering_icon.png" alt="" class="card-event-sm-meta-icon">
                     <?= htmlspecialchars($event['event_location']) ?>
                 </span>
                 <span class="card-event-sm-meta-item">
-                    <img src="/assets/img/person_icon.png" alt="" class="card-event-sm-meta-icon">
+                    <img src="/assets/img/icons/person_icon.png" alt="" class="card-event-sm-meta-icon">
                     <?= htmlspecialchars($event['participant_count'] ?? '0') ?> deltagere
                 </span>
             </div>

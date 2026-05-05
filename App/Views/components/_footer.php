@@ -35,12 +35,12 @@ $address = [
 $socials = [
     [
         'name' => 'Instagram',
-        'icon' => '/assets/img/insta.svg',
+        'icon' => '/assets/img/icons/insta.svg',
         'url'  => 'https://www.instagram.com/_ekdigital/'
     ],
     [
         'name' => 'Facebook',
-        'icon' => '/assets/img/face.svg',
+        'icon' => '/assets/img/icons/face.svg',
         'url'  => 'https://www.facebook.com'
     ],
 ];
@@ -50,7 +50,7 @@ $socials = [
 <footer class="site-footer">
     <div class="img-container">
         <a href="/" class="footer-logo">
-            <img src="/assets/img/logo_footer_black.png" alt="Logo">
+            <img src="/assets/img/icons/logo_footer_black.png" alt="Logo">
         </a>
     </div>
     <div class="footer-container">

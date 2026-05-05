@@ -1,7 +1,7 @@
 <div class="card-event-info">
     <div class="card-event-info-row">
         <div class="card-event-info-icon">
-            <img src="/assets/img/placering_icon.png" alt="" class="card-event-info-icon-img">
+            <img src="/assets/img/icons/placering_icon.png" alt="" class="card-event-info-icon-img">
         </div>
         <div class="card-event-info-text">
             <span class="card-event-info-label">Lokation</span>
@@ -10,7 +10,7 @@
     </div>
     <div class="card-event-info-row">
         <div class="card-event-info-icon">
-            <img src="/assets/img/ur_icon.png" alt="" class="card-event-info-icon-img">
+            <img src="/assets/img/icons/ur_icon.png" alt="" class="card-event-info-icon-img">
         </div>
         <div class="card-event-info-text">
             <span class="card-event-info-label">Tid</span>
@@ -23,7 +23,7 @@
     </div>
     <div class="card-event-info-row">
         <div class="card-event-info-icon">
-            <img src="/assets/img/person_icon.png" alt="" class="card-event-info-icon-img">
+            <img src="/assets/img/icons/person_icon.png" alt="" class="card-event-info-icon-img">
         </div>
         <div class="card-event-info-text">
             <span class="card-event-info-label">Deltagere</span>

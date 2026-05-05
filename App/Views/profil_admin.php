@@ -17,7 +17,7 @@
 
             <div class="profile-image-wrapper">
                 <img src="/assets/img/uploads/test_profile.png" alt="Profilbillede" class="profile-img profile-profileimg">
-                <button class="camera-btn" type="button"><img src="/assets/img/camera_icon.png"
+                <button class="camera-btn" type="button"><img src="/assets/img/icons/camera_icon.png"
                         alt="Kamera ikon"></button>
             </div>
         </div>
