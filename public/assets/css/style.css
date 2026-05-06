@@ -14,7 +14,11 @@
 @import "./card-info.css";
 @import "./card-list.css";
 @import "./card-sm.css";
+
+/* Single event - styling af det enkelte event */
 @import "./eventside.css";
+
+/* Events - Alle events med cardopsætning */
 @import "./events.css";
 
 /* Formularer - styling af alle formularer */
