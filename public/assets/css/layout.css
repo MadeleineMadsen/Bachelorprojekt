@@ -332,7 +332,7 @@ html {
   /* Navigation */
   /* ----------------------------------- */
   .header-inner {
-    max-width: 1400px;
+    max-width: 3000px;
     margin: 0 auto;
     min-height: var(--gap-xl);
     display: flex;
