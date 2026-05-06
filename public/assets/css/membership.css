@@ -209,7 +209,7 @@
     font-size: var(--font-desktop-text-small);
   }
 
-  main {
+  .membership-page {
     margin: var(--gap-md);
   }
 

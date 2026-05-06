@@ -117,10 +117,7 @@ include __DIR__ . '/micro/___banner.php';
         </section>
 
         <div class="members-link-wrapper">
-            <a href="#" class="members-link">
-                SE ALLE MEDLEMMER
-                <span aria-hidden="true">&#8594;</span>
-            </a>
+            <a href="#" class="members-link btn-nav">SE ALLE MEDLEMMER</a>
         </div>
 
     </section>
