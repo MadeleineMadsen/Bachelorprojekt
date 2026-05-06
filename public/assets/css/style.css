@@ -15,14 +15,20 @@
 @import "./card-list.css";
 @import "./card-sm.css";
 
-/* Single event - styling af det enkelte event */
-@import "./eventside.css";
+/* Formularer - styling af alle formularer */
+@import "./forms.css";
+
+/* Forsiden - styling af hele forsiden */
+@import "./front-page.css";
 
 /* Events - Alle events med cardopsætning */
 @import "./events.css";
 
-/* Formularer - styling af alle formularer */
-@import "./forms.css";
+/* Single event - styling af det enkelte event */
+@import "./eventside.css";
+
+/* Om os - styling af om os siden */
+@import "./om.css";
 
 /* Medlemmer side - styling af hele medlemmer side */
 @import "./members.css";
@@ -38,6 +44,3 @@
 
 /* Ansøgninger - styling af alle medlemsskaber til godkendelse */
 @import "./medlem_godkend.css";
-
-/* Om - styling af om siden */
-@import "./om.css";
