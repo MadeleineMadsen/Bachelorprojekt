@@ -1,4 +1,4 @@
-Find/opret/opdater/slet brugere via databasen
+<!-- Find/opret/opdater/slet brugere via databasen
 
 login
 signup
@@ -13,4 +13,4 @@ UserModel
 - getById()
 - updateUser()
 - getAllUsers()
-- updateRole()
+- updateRole() -->

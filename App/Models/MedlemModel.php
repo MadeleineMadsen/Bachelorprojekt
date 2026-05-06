@@ -1,4 +1,4 @@
-medlem_sog
+<!-- medlem_sog
 medlem_godkend
 ansøgninger
 godkendelse af user → member
@@ -8,4 +8,4 @@ MedlemModel
 - createApplication()
 - getPendingApplications()
 - approveApplication()
-- rejectApplication()
+- rejectApplication() -->

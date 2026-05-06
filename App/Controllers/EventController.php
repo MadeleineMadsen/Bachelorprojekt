@@ -1,9 +1,9 @@
-controller til events - henter fra eventmodel
+<!-- controller til events - henter fra eventmodel
 
 - events.php
 - eventside.php
 - event_opret.php
-- event_user.php
+- event_user.php -->
 <?php
 
 require_once __DIR__ . '/../Models/EventModel.php';

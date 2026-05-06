@@ -1,4 +1,4 @@
-hvor al event sql logik skal ligge - kalender controller og event controllers henter herfra
+<!-- hvor al event sql logik skal ligge - kalender controller og event controllers henter herfra
 
 events
 eventside
@@ -15,7 +15,7 @@ EventModel
 - getEventsByUser()
 - joinEvent()
 - leaveEvent()
-- getCalendarEventsForUser()
+- getCalendarEventsForUser() -->
 <?php
 
 require_once __DIR__ . '/../../private/db.php';
