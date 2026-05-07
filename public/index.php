@@ -105,6 +105,7 @@ switch ($uri) {
         }
 
         $dato           = $event['dato'];
+        $participants   = EventController::getParticipants($_GET['id'] ?? '');
         $currentPage    = 'events';
         $view           = '/eventside.php';
         break;

@@ -59,4 +59,26 @@
         </div>
     </section>
 
+    <?php if (!empty($participants)): ?>
+    <section class="event-deltagere">
+        <div class="container">
+            <h2 class="deltagere-heading">DELTAGERE</h2>
+            <div class="deltagere-carousel-wrapper">
+                <button class="deltagere-arrow carousel-prev" aria-label="Forrige">←</button>
+                <div class="deltagere-carousel" id="memberCarousel">
+                    <?php foreach (array_chunk($participants, 2) as $slide): ?>
+                        <div class="deltager-slide member-slide">
+                            <?php foreach ($slide as $p): ?>
+                                <?php $img = !empty($p['user_image']) ? '/assets/img/' . $p['user_image'] : '/assets/img/uploads/test_profile.png'; ?>
+                                <img src="<?= htmlspecialchars($img) ?>" alt="" class="profile-img profile-medium">
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <button class="deltagere-arrow carousel-next" aria-label="Næste">→</button>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
 </main>

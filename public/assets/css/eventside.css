@@ -3,6 +3,10 @@
 
 /* ========== MOBILE (default) ========== */
 
+.eventside-page {
+    overflow: hidden;
+}
+
 .eventside-hero {
     position: relative;
     width: 100%;
@@ -126,6 +130,73 @@
     line-height: 1.6;
 }
 
+/* ========== DELTAGERE ========== */
+
+.event-deltagere {
+    background: var(--bg-color-black);
+    color: var(--font-color-white);
+    padding: var(--gap-lg) 0;
+}
+
+.deltagere-heading {
+    font-family: var(--font-header);
+    font-size: var(--font-mobil-h3);
+    font-weight: var(--IBM-font-bold);
+    text-transform: uppercase;
+    margin-bottom: var(--gap-sm);
+}
+
+.deltagere-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+}
+
+.deltagere-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    flex: 1;
+}
+
+.deltagere-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.deltager-slide {
+    display: flex;
+    gap: var(--gap-xs);
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+}
+
+
+.event-deltagere .profile-img {
+    width: calc(50% - var(--gap-xs) / 2);
+    height: auto;
+    aspect-ratio: 1;
+}
+
+.deltagere-arrow {
+    background: none;
+    border: none;
+    color: var(--color-blue);
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0 var(--gap-xxs);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.deltagere-arrow:hover {
+    opacity: 0.7;
+}
+
+
+/* ========== GALLERY ========== */
+
 .event-gallery {
     padding: var(--gap-md) 0;
 }
@@ -176,11 +247,13 @@
 /* ========== DESKTOP ========== */
 @media (min-width: 768px) {
 
+    /* --- Container --- */
     .eventside-page .container {
         max-width: 1400px;
         padding: 0 var(--gap-md);
     }
 
+    /* --- Hero --- */
     .eventside-hero {
         aspect-ratio: 4 / 1;
     }
@@ -194,6 +267,7 @@
         font-size: var(--font-desktop-text-small);
     }
 
+    /* --- Layout (indhold + sidebar) --- */
     .eventside-layout {
         display: grid;
         grid-template-columns: 1fr 360px;
@@ -215,6 +289,7 @@
         font-size: var(--font-desktop-text-small);
     }
 
+    /* --- Om eventet --- */
     .eventside-om {
         display: block;
         background: var(--bg-color-black);
@@ -232,6 +307,7 @@
         font-size: var(--font-desktop-text-small);
     }
 
+    /* --- Gallery --- */
     .event-gallery-title {
         font-size: var(--font-desktop-h3);
     }
@@ -247,5 +323,40 @@
 
     .event-gallery-img:nth-child(n+3) {
         display: block;
+    }
+
+    /* --- Deltagere --- */
+    .deltagere-heading {
+        font-size: var(--font-desktop-h3);
+    }
+
+    .event-deltagere .profile-img {
+        width: 6rem;
+        height: 6rem;
+        aspect-ratio: auto;
+    }
+
+    /* Bredde = præcist antal cirkler (6rem + gap) så ingen cirkel klippes */
+    .deltagere-carousel {
+        overflow: hidden;
+        flex: none;
+        gap: var(--gap-xs);
+        width: calc(6 * 6rem + 6s * var(--gap-xs));
+    }
+
+    .deltager-slide {
+        flex: 0 0 auto;
+    }
+}
+
+@media (min-width: 1100px) {
+    .deltagere-carousel {
+        width: calc(8 * 6rem + 7 * var(--gap-xs));
+    }
+}
+
+@media (min-width: 1400px) {
+    .deltagere-carousel {
+        width: calc(12 * 6rem + 11 * var(--gap-xs));
     }
 }
