@@ -13,12 +13,6 @@ require_once __DIR__ . '/../private/db.php';
 require_once __DIR__ . '/../App/Controllers/AuthController.php';
 require_once __DIR__ . '/../App/Controllers/MedlemController.php';
 
-
-$db = getDB();
-
-$authController = new AuthController($db);require_once __DIR__ . '/../private/db.php';
-require_once __DIR__ . '/../App/Controllers/AuthController.php';
-
 $db = getDB();
 
 $authController = new AuthController($db);
@@ -85,6 +79,9 @@ switch ($uri) {
             header('Location: /log_ind');
             exit;
         }
+
+        $user = $userModel->findById($_SESSION['user']['user_pk']);
+        $member = $userModel->findMemberByUserId($_SESSION['user']['user_pk']);
 
         $currentPage = 'profil';
 
