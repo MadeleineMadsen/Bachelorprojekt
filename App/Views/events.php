@@ -1,11 +1,14 @@
 
 <main>
 
-    <div class="events-hero container">
+    <div class="events-hero">
         <h1 class="events-hero-title">EVENTS</h1>
     </div>
 
-    <div class="container">
+    <?php
+    $bannerText = '  KOMMENDE EVENTS';
+    include __DIR__ . '/micro/___banner.php';
+    ?>
 
         <div class="events-filter">
             <h2 class="events-filter-title">KOMMENDE EVENTS</h2>
@@ -30,7 +33,5 @@
                 <?php include __DIR__ . '/components/_card_list.php'; ?>
             <?php endforeach; ?>
         </div>
-
-    </div>
 
 </main>

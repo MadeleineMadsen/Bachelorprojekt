@@ -4,7 +4,7 @@
 /* ========== MOBILE (default) ========== */
 
 .events-hero {
-    padding: var(--gap-md) 0 0;
+    padding: var(--gap-md) var(--gap-sm) 0;
 }
 
 .events-hero-title {
@@ -19,7 +19,11 @@
     display: flex;
     flex-direction: column;
     gap: var(--gap-sm);
-    padding: var(--gap-md) 0 var(--gap-sm);
+    padding: var(--gap-md) var(--gap-sm) var(--gap-sm);
+}
+
+.events-list {
+    padding: 0 var(--gap-sm);
 }
 
 .events-filter-title {
@@ -83,11 +87,19 @@
         font-size: var(--font-desktop-h1);
     }
 
+    .events-hero {
+        padding: var(--gap-md) var(--gap-md) 0;
+    }
+
     .events-filter {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: var(--gap-lg) 0 var(--gap-sm);
+        padding: var(--gap-lg) var(--gap-md) var(--gap-sm);
+    }
+
+    .events-list {
+        padding: 0 var(--gap-md);
     }
 
     .events-filter-title {

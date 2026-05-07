@@ -18,7 +18,12 @@
     align-items: center;
     gap: var(--gap-xs);
     padding: var(--gap-sm) 0;
-    border-bottom: 1px solid var(--font-color-black);
+    border-bottom: 1px solid var(--font-color-white);
+}
+
+.card-event-info-row:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .card-event-info-icon {
@@ -75,7 +80,7 @@
 
     .card-event-info {
         padding: var(--gap-md);
-        gap: var(--gap-md);
+        gap: var(--gap-xs);
     }
 
     .card-event-info-icon {
@@ -92,4 +97,5 @@
     .card-event-info-value {
         font-size: var(--font-desktop-text-small);
     }
+
 }

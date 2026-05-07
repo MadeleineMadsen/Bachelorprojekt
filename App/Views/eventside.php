@@ -9,9 +9,8 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="eventside-layout">
-            <div class="eventside-layout-content">
+    <div class="eventside-layout">
+        <div class="eventside-layout-content">
                 <?php if (!empty($event['event_subtitle'])): ?>
                     <h2 class="eventside-layout-heading"><?= htmlspecialchars($event['event_subtitle']) ?></h2>
                 <?php else: ?>
@@ -31,10 +30,9 @@
                     </div>
                 <?php endif; ?>
             </div>
-            <aside class="eventside-layout-sidebar">
-                <?php include __DIR__ . '/components/_card_info.php'; ?>
-            </aside>
-        </div>
+        <aside class="eventside-layout-sidebar">
+            <?php include __DIR__ . '/components/_card_info.php'; ?>
+        </aside>
     </div>
 
     <section class="eventside-om">
@@ -45,23 +43,20 @@
     </section>
 
     <section class="event-gallery">
-        <div class="container">
-            <div class="event-gallery-header">
-                <h2 class="event-gallery-title">FRA SIDSTE EVENT</h2>
-                <a href="#" class="event-gallery-link">SE FLERE BILLEDER →</a>
-            </div>
-            <div class="event-gallery-grid">
-                <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
-                <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
-                <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
-                <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
-            </div>
+        <div class="event-gallery-header">
+            <h2 class="event-gallery-title">FRA SIDSTE EVENT</h2>
+            <a href="#" class="event-gallery-link">SE FLERE BILLEDER →</a>
+        </div>
+        <div class="event-gallery-grid">
+            <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
+            <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
+            <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
+            <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
         </div>
     </section>
 
     <?php if (!empty($participants)): ?>
     <section class="event-deltagere">
-        <div class="container">
             <h2 class="deltagere-heading">DELTAGERE</h2>
             <div class="deltagere-carousel-wrapper">
                 <button class="deltagere-arrow carousel-prev" aria-label="Forrige">←</button>
@@ -77,7 +72,6 @@
                 </div>
                 <button class="deltagere-arrow carousel-next" aria-label="Næste">→</button>
             </div>
-        </div>
     </section>
     <?php endif; ?>
 
