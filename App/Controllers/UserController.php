@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../models/UserModel.php';
+require_once __DIR__ . '/../models/MedlemModel.php';
 
 class UserController
 {
@@ -17,9 +18,12 @@ class UserController
             header('Location: /log_ind');
             exit;
         }
-
+        
         $user = $this->userModel->findById($_SESSION['user']['user_pk']);
         $member = $this->userModel->findMemberByUserId($_SESSION['user']['user_pk']);
+        
+        $educations = MedlemModel::getEducations();
+        $semesters = MedlemModel::getSemesters();
 
         require __DIR__ . '/../views/users/profile.php';
     }
@@ -38,8 +42,8 @@ class UserController
         $email = trim($_POST['user_email'] ?? '');
         $password = $_POST['user_password'] ?? '';
 
-        $education = trim($_POST['education'] ?? '');
-        $semester = trim($_POST['semester'] ?? '');
+        $educationFk = (int) ($_POST['education_fk'] ?? 0);
+        $semesterFk = (int) ($_POST['semester_fk'] ?? 0);
 
         $this->userModel->updateProfile($id, $userName, $lastName, $email);
 
@@ -47,8 +51,8 @@ class UserController
             $this->userModel->updatePassword($id, $password);
         }
 
-        if (!empty($education) || !empty($semester)) {
-            $this->userModel->updateMemberProfile($id, $education, $semester);
+        if ($educationFk > 0 && $semesterFk > 0) {
+            $this->userModel->updateMemberProfile($id, $educationFk, $semesterFk);
         }
 
         $_SESSION['user']['user_name'] = $userName;

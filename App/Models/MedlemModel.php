@@ -9,8 +9,10 @@ class MedlemModel {
         $stmt = $db->query("
             SELECT
                 m.member_pk,
-                m.education,
-                m.semester,
+                m.education_fk,
+                m.semester_fk,
+                e.education_name,
+                s.semester_number,
                 m.application_text,
                 m.applied_at,
                 u.user_name,
@@ -18,6 +20,8 @@ class MedlemModel {
                 u.user_email
             FROM members m
             INNER JOIN users u ON m.user_fk = u.user_pk
+            LEFT JOIN educations e ON m.education_fk = e.education_pk
+            LEFT JOIN semesters s ON m.semester_fk = s.semester_pk
             WHERE m.status = 'approved'
                 AND m.deleted_at = 0
                 AND u.user_deleted_at = 0
@@ -33,8 +37,10 @@ class MedlemModel {
         $stmt = $db->query("
             SELECT
                 m.member_pk,
-                m.education,
-                m.semester,
+                m.education_fk,
+                m.semester_fk,
+                e.education_name,
+                s.semester_number,
                 m.application_text,
                 m.applied_at,
                 u.user_name,
@@ -42,6 +48,8 @@ class MedlemModel {
                 u.user_email
             FROM members m
             INNER JOIN users u ON m.user_fk = u.user_pk
+            LEFT JOIN educations e ON m.education_fk = e.education_pk
+            LEFT JOIN semesters s ON m.semester_fk = s.semester_pk
             WHERE m.status = 'pending'
                 AND m.deleted_at = 0
                 AND u.user_deleted_at = 0
@@ -53,25 +61,51 @@ class MedlemModel {
 
     public static function createApplication(
         string $userId,
-        string $education,
-        int $semester,
+        int $educationFk,
+        int $semesterFk,
         string $applicationText
     ): bool {
         $db = getDB();
 
         $stmt = $db->prepare("
             INSERT INTO members
-                (member_pk, user_fk, education, semester, application_text, status)
+                (member_pk, user_fk, education_fk, semester_fk, application_text, status)
             VALUES
                 (UUID(), ?, ?, ?, ?, 'pending')
         ");
 
         return $stmt->execute([
             $userId,
-            $education,
-            $semester,
+            $educationFk,
+            $semesterFk,
             $applicationText
         ]);
+    }
+
+    public static function getEducations(): array
+    {
+        $db = getDB();
+
+        $stmt = $db->query("
+            SELECT *
+            FROM educations
+            ORDER BY education_name ASC
+        ");
+
+        return $stmt->fetchAll();
+    }
+
+    public static function getSemesters(): array
+    {
+        $db = getDB();
+
+        $stmt = $db->query("
+            SELECT *
+            FROM semesters
+            ORDER BY semester_number ASC
+        ");
+
+        return $stmt->fetchAll();
     }
 
     public static function approve(string $memberId, string $adminId): bool {
