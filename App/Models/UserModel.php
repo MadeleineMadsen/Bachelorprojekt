@@ -14,23 +14,21 @@ class UserModel
         string $lastName,
         string $email,
         string $password,
-        int $roleFk = 2
     ): bool {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $stmt = $this->db->prepare(
             "INSERT INTO users 
-                (user_name, user_last_name, user_email, user_password, role_fk)
+                (user_name, user_last_name, user_email, user_password)
             VALUES 
-                (:user_name, :user_last_name, :user_email, :user_password, :role_fk)"
+                (:user_name, :user_last_name, :user_email, :user_password)"
         );
 
         return $stmt->execute([
             ':user_name' => $userName,
             ':user_last_name' => $lastName,
             ':user_email' => $email,
-            ':user_password' => $hashedPassword,
-            ':role_fk' => $roleFk
+            ':user_password' => $hashedPassword
         ]);
     }
 
