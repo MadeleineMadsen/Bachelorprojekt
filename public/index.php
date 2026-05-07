@@ -3,24 +3,31 @@ session_start();
 
 // TIL TEST AF NAV - SKAL FJERNES NÅR LOGIN/SIGNUP VIRKER
 // ret til role=admin for at teste admin-sider, og udkommenter alt hvis der skal testes uden login
-$_SESSION['user'] = [
-    'id' => 1,
-    'name' => 'Test User',
-    'role' => 'admin'
-];
+// $_SESSION['user'] = [
+//     'id' => 1,
+//     'name' => 'Test User',
+//     'role' => 'admin'
+// ];
+
+require_once __DIR__ . '/../private/db.php';
+require_once __DIR__ . '/../App/Controllers/AuthController.php';
+require_once __DIR__ . '/../App/Controllers/MedlemController.php';
 
 
+$db = getDB();
+
+$authController = new AuthController($db);
 
 // Henter kun path fra URL
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // Auth status (i header)
 $isLoggedIn = isset($_SESSION['user']);
-$userRole = $_SESSION['user']['role'] ?? null;
+$userRole = $_SESSION['user']['role_fk'] ?? null;
 
-$isAdmin = $isLoggedIn && $userRole === 'admin';
-$isMember = $isLoggedIn && $userRole === 'member';
-$isUser = $isLoggedIn && $userRole === 'user';
+$isAdmin = $isLoggedIn && $userRole == 1;
+$isMember = $isLoggedIn && $userRole == 2;
+$isUser = $isLoggedIn && $userRole == 3;
 
 $isProfileSection = false;
 
@@ -30,39 +37,51 @@ $view = null;
 
 // Router
 switch ($uri) {
-    
-    // LANDING / FORSIDE
+
+// LANDING / FORSIDE
     case '/':
         require_once __DIR__ . '/../App/Controllers/EventController.php';
-        $events         = EventController::getLatest(3);
-        $currentPage    = '';
-        $view           = '/forside.php';
+        $events = EventController::getLatest(3);
+        $currentPage = '';
+        $view = '/forside.php';
         break;
 
-        // LOGIN / SIGNUP
+        // LOG IND
     case '/log_ind':
-        $currentPage    = 'log_ind';
-        $view           = '/log_ind.php';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $authController->login();
+            exit;
+        }
+
+        $currentPage = 'log_ind';
+        $view = '/log_ind.php';
         break;
 
+        // OPRET DIG
     case '/opret_dig':
-        $currentPage    = 'opret_dig';
-        $view           = '/opret_dig.php';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $authController->signup();
+            exit;
+        }
+
+        $currentPage = 'opret_dig';
+        $view = '/opret_dig.php';
         break;
 
+        // LOG UD
     case '/log_ud':
         session_destroy();
         header('Location: /');
         exit;
 
-    // PROFILER
+        // PROFIL
     case '/profil':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
             exit;
         }
 
-        $currentPage        = 'profil';
+        $currentPage = 'profil';
 
         if ($isAdmin) {
             $view = '/profil_admin.php';
@@ -72,11 +91,10 @@ switch ($uri) {
             $view = '/profil_user.php';
         }
 
-        $isProfileSection   = true;
+        $isProfileSection = true;
         break;
 
-
-    // ALLE EVENTS
+        // EVENTS
     case '/events':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
@@ -84,12 +102,12 @@ switch ($uri) {
         }
 
         require_once __DIR__ . '/../App/Controllers/EventController.php';
-        $events         = EventController::getAll();
-        $currentPage    = 'events';
-        $view           = '/events.php';
+        $events = EventController::getAll();
+        $currentPage = 'events';
+        $view = '/events.php';
         break;
 
-    // SINGLE EVENT
+        // SINGLE EVENT
     case '/eventside':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
@@ -104,48 +122,48 @@ switch ($uri) {
             exit;
         }
 
-        $dato           = $event['dato'];
-        $currentPage    = 'events';
-        $view           = '/eventside.php';
+        $dato = $event['dato'];
+        $currentPage = 'events';
+        $view = '/eventside.php';
         break;
 
-    // TILMELDTE EVENTS
+        // TILMELDTE EVENTS
     case '/event_user':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
             exit;
         }
 
-        $currentPage    = 'event_user';
-        $view           = '/event_user.php';
-        $isProfileSection   = true;
+        $currentPage = 'event_user';
+        $view = '/event_user.php';
+        $isProfileSection = true;
         break;
 
-    // OPRET EVENT (admin)
+        // OPRET EVENT (ADMIN)
     case '/event_opret':
         if (!$isAdmin) {
             header('Location: /');
             exit;
         }
 
-        $currentPage    = 'event_opret';
-        $view           = '/event_opret.php';
-        $isProfileSection   = true;
+        $currentPage = 'event_opret';
+        $view = '/event_opret.php';
+        $isProfileSection = true;
         break;
 
-    // KALENDER - OBS: rettes hvis member eller alle skal have egen kalender
+        // KALENDER
     case '/kalender':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
             exit;
         }
 
-        $currentPage    = 'kalender';
-        $view           = $isAdmin ? '/kalender_admin.php' : '/kalender_user.php';
-        $isProfileSection   = true;
+        $currentPage = 'kalender';
+        $view = $isAdmin ? '/kalender_admin.php' : '/kalender_user.php';
+        $isProfileSection = true;
         break;
 
-    // SØG OM MEDLEMSSKAB
+        // SØG OM MEDLEMSSKAB
     case '/medlem_sog':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
@@ -157,44 +175,80 @@ switch ($uri) {
             exit;
         }
 
-        $currentPage        = 'medlem_sog';
-        $view               = '/medlem_sog.php';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            MedlemController::createApplication();
+            exit;
+        }
+
+        $currentPage = 'medlem_sog';
+        $view = '/medlem_sog.php';
         break;
 
-    // GODKEND MEDLEMSSKAB
+        // GODKEND MEDLEMSSKAB
     case '/medlem_godkend':
         if (!$isAdmin) {
             header('Location: /');
             exit;
         }
 
-        $currentPage        = 'medlem_godkend';
-        $view               = '/medlem_godkend.php';
-        $isProfileSection   = true;
+        $applications = MedlemController::getPending();
+        $members = MedlemController::getApproved();
+
+        $currentPage = 'medlem_godkend';
+        $view = '/medlem_godkend.php';
+        $isProfileSection = true;
         break;
 
-    // ALLE MEDLEMMER
+        // ALLE MEDLEMMER
     case '/medlemmer':
-        $currentPage    = 'medlemmer';
-        $view           = '/medlemmer.php';
+        $members = MedlemController::getApproved();
+        
+        $currentPage = 'medlemmer';
+        $view = '/medlemmer.php';
         break;
 
-    // OM
+        // OM
     case '/om':
-        $currentPage    = 'om';
-        $view           = '/om.php';
+        $currentPage = 'om';
+        $view = '/om.php';
         break;
 
+        // GODKEND, AFVIS OG SLET MEDLEMMER
+    case '/godkend_medlem':
+        if (!$isAdmin || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: /');
+            exit;
+        }
+
+        MedlemController::approve();
+        exit;
+
+    case '/afvis_medlem':
+        if (!$isAdmin || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: /');
+            exit;
+        }
+
+        MedlemController::reject();
+        exit;
+
+    case '/slet_medlem':
+        if (!$isAdmin || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: /');
+            exit;
+        }
+
+        MedlemController::delete();
+        exit;
+
+        // DEFAULT
     default:
         http_response_code(404);
         echo '404 - Not Found';
         exit;
 }
 
-// --------------------------------------
-// Load layout (header + view + footer)
-// --------------------------------------
-
+// LOAD LAYOUT
 require __DIR__ . '/../App/Views/components/_header.php';
 require __DIR__ . '/../App/Views' . $view;
 require __DIR__ . '/../App/Views/components/_footer.php';
