@@ -83,6 +83,9 @@ switch ($uri) {
         $user = $userModel->findById($_SESSION['user']['user_pk']);
         $member = $userModel->findMemberByUserId($_SESSION['user']['user_pk']);
 
+        $educations = MedlemModel::getEducations();
+        $semesters = MedlemModel::getSemesters();
+
         $currentPage = 'profil';
 
         if ($isAdmin) {
@@ -95,6 +98,18 @@ switch ($uri) {
 
         $isProfileSection = true;
         break;
+
+    case '/profile/update':
+        if (!$isLoggedIn || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: /log_ind');
+            exit;
+        }
+
+        require_once __DIR__ . '/../App/Controllers/UserController.php';
+
+        $userController = new UserController($db);
+        $userController->updateProfile();
+        exit;
 
         // EVENTS
     case '/events':
@@ -182,6 +197,9 @@ switch ($uri) {
             MedlemController::createApplication();
             exit;
         }
+
+        $educations = MedlemModel::getEducations();
+        $semesters = MedlemModel::getSemesters();
 
         $currentPage = 'medlem_sog';
         $view = '/medlem_sog.php';

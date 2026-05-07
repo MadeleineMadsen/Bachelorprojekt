@@ -39,11 +39,52 @@ INSERT INTO `event_registrations` (`registration_pk`, `event_fk`, `user_fk`, `re
 ('34e703af-4484-11f1-b685-0242ac1d0002', 'df5ef636-4478-11f1-b685-0242ac1d0002', 2, '2026-04-30 12:04:20'),
 ('681d5803-4483-11f1-b685-0242ac1d0002', 'df5ef636-4478-11f1-b685-0242ac1d0002', 6, '2026-04-30 11:58:37');
 
+CREATE TABLE `educations` (
+  `education_pk` INT NOT NULL AUTO_INCREMENT,
+  `education_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`education_pk`),
+  UNIQUE KEY `education_name` (`education_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `educations` (`education_name`) VALUES
+('Designteknolog'),
+('Entreprenørskab & Design'),
+('Smykker Teknologi & Business'),
+('Design & Business'),
+('Datamatiker'),
+('IT-teknolog'),
+('Multimediedesign'),
+('Operationel Cybersikkerhed'),
+('Cybersikkerhed'),
+('IT-arkitektur'),
+('Økonomi & IT'),
+('Digital Konceptudvikling'),
+('IT-sikkerhed'),
+('Softwareudvikling'),
+('Webudvikling'),
+('Optometri');
+
+CREATE TABLE `semesters` (
+  `semester_pk` INT NOT NULL AUTO_INCREMENT,
+  `semester_number` INT NOT NULL,
+  PRIMARY KEY (`semester_pk`),
+  UNIQUE KEY `semester_number` (`semester_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `semesters` (`semester_number`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7);
+
 CREATE TABLE `members` (
   `member_pk` char(36) NOT NULL,
   `user_fk` INT NOT NULL,
-  `education` varchar(100) DEFAULT NULL,
-  `semester` int(11) DEFAULT NULL,
+  `education_fk` INT DEFAULT NULL,
+  `semester_fk` INT DEFAULT NULL,
   `application_text` text DEFAULT NULL,
   `status` enum('pending','approved','rejected') DEFAULT 'pending',
   `approved_by_fk` INT DEFAULT NULL,
@@ -73,7 +114,7 @@ CREATE TABLE `users` (
   `user_deleted_at` bigint(20) UNSIGNED DEFAULT 0,
   `user_verified_at` bigint(20) UNSIGNED DEFAULT 0,
   `user_verification_key` char(36) DEFAULT NULL,
-  `role_fk` char(36) DEFAULT 3,
+  `role_fk` char(36) DEFAULT '3',
   PRIMARY KEY (`user_pk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -97,7 +138,9 @@ ALTER TABLE `event_registrations`
 ALTER TABLE `members`
   ADD PRIMARY KEY (`member_pk`),
   ADD UNIQUE KEY `unique_member_user` (`user_fk`),
-  ADD KEY `fk_member_approved_by` (`approved_by_fk`);
+  ADD KEY `fk_member_approved_by` (`approved_by_fk`),
+  ADD KEY `fk_member_education` (`education_fk`),
+  ADD KEY `fk_member_semester` (`semester_fk`);
 
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`role_pk`);
@@ -115,6 +158,8 @@ ALTER TABLE `event_registrations`
 
 ALTER TABLE `members`
   ADD CONSTRAINT `fk_member_approved_by` FOREIGN KEY (`approved_by_fk`) REFERENCES `users` (`user_pk`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_member_education` FOREIGN KEY (`education_fk`) REFERENCES `educations` (`education_pk`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_member_semester` FOREIGN KEY (`semester_fk`) REFERENCES `semesters` (`semester_pk`) ON DELETE SET NULL,
   ADD CONSTRAINT `fk_member_user` FOREIGN KEY (`user_fk`) REFERENCES `users` (`user_pk`) ON DELETE CASCADE;
 
 ALTER TABLE `users`

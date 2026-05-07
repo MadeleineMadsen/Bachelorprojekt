@@ -133,11 +133,25 @@ include __DIR__ . '/micro/___banner.php';
                         disabled
                     >
                 </div>
+                <select name="education_fk" required>
+                    <option value="">Vælg studieretning</option>
 
-                <input type="text" name="education" placeholder="Studieretning" required>
+                    <?php foreach ($educations as $education): ?>
+                        <option value="<?= $education['education_pk'] ?>">
+                            <?= htmlspecialchars($education['education_name']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
 
-                <input type="text" name="semester" placeholder="Semester" required>
+                <select name="semester_fk" required>
+                    <option value="">Vælg semester</option>
 
+                    <?php foreach ($semesters as $semester): ?>
+                        <option value="<?= $semester['semester_pk'] ?>">
+                            <?= htmlspecialchars($semester['semester_number']) ?>. semester
+                        </option>
+                    <?php endforeach; ?>
+                </select>
                 <input 
                     type="email" 
                     value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" 

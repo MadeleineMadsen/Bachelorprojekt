@@ -65,7 +65,15 @@ class UserModel
     public function findMemberByUserId(int $userId): ?array
     {
         $stmt = $this->db->prepare(
-            "SELECT * FROM members WHERE user_fk = :user_fk LIMIT 1"
+            "SELECT 
+                members.*,
+                educations.education_name,
+                semesters.semester_number
+            FROM members
+            LEFT JOIN educations ON members.education_fk = educations.education_pk
+            LEFT JOIN semesters ON members.semester_fk = semesters.semester_pk
+            WHERE members.user_fk = :user_fk
+            LIMIT 1"
         );
 
         $stmt->execute([
@@ -117,20 +125,20 @@ class UserModel
 
     public function updateMemberProfile(
         int $userId,
-        string $education,
-        string $semester
+        int $educationFk,
+        int $semesterFk
     ): bool {
         $stmt = $this->db->prepare(
             "UPDATE members
-            SET education = :education,
-                semester = :semester
+            SET education_fk = :education_fk,
+                semester_fk = :semester_fk
             WHERE user_fk = :user_fk"
         );
 
         return $stmt->execute([
             ':user_fk' => $userId,
-            ':education' => $education,
-            ':semester' => $semester
+            ':education_fk' => $educationFk,
+            ':semester_fk' => $semesterFk
         ]);
     }
 

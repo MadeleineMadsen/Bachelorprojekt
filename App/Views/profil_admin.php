@@ -34,12 +34,32 @@
             <input type="text" name="user_last_name" value="<?= htmlspecialchars($user['user_last_name'] ?? '') ?>"
                 placeholder="Efternavn" required>
 
-            <input type="text" name="education" value="<?= htmlspecialchars($member['education'] ?? '') ?>"
-                placeholder="Studieretning" required>
+            <select name="education_fk" required>
+                <option value="">Vælg studieretning</option>
 
-            <input type="text" name="semester" value="<?= htmlspecialchars($member['semester'] ?? '') ?>"
-                placeholder="Semester" required>
+                <?php foreach ($educations as $education): ?>
+                    <option 
+                        value="<?= $education['education_pk'] ?>"
+                        <?= (($member['education_fk'] ?? '') == $education['education_pk']) ? 'selected' : '' ?>
+                    >
+                        <?= htmlspecialchars($education['education_name']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
+            <select name="semester_fk" required>
+                <option value="">Vælg semester</option>
+
+                <?php foreach ($semesters as $semester): ?>
+                    <option 
+                        value="<?= $semester['semester_pk'] ?>"
+                        <?= (($member['semester_fk'] ?? '') == $semester['semester_pk']) ? 'selected' : '' ?>
+                    >
+                        <?= htmlspecialchars($semester['semester_number']) ?>. semester
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            
             <input type="email" name="user_email" value="<?= htmlspecialchars($user['user_email']) ?>"
                 placeholder="Studiemail" required>
 

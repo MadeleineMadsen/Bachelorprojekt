@@ -17,7 +17,7 @@
 
                     <div class="godkend-info">
                         <h2 class="godkend-name"><strong><?= $app['user_name']; ?></strong>, <?= $app['user_last_name']; ?> år</h2>
-                        <p><?= $app['education']; ?></p>
+                        <p><?= htmlspecialchars($app['education_name']); ?></p>
                         <p><?= $app['user_email']; ?></p>
                     </div>
                 </div>
@@ -59,10 +59,12 @@
 
                 <select name="education" id="educationFilter" class="filter-select">
                     <option value="">ALLE MEDLEMMER</option>
-                    <!-- TODO: Ret til at hente fra database i stedet for hardcodet -->
-                    <option value="datamatiker">Datamatiker</option>
-                    <option value="multimediedesign">Multimediedesign</option>
-                    <option value="webudvikling">Webudvikling</option>
+
+                    <?php foreach ($educations as $education): ?>
+                        <option value="<?= strtolower($education['education_name']); ?>">
+                            <?= htmlspecialchars($education['education_name']); ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </form>
         </div>
@@ -76,16 +78,16 @@
         <div class="member-carousel" id="memberCarousel">
             <?php foreach ($members as $member): ?>
                 <article    class="member-slide"
-                            data-name="<?= strtolower($member['name']); ?>"
-                            data-education="<?= strtolower($member['education']); ?>"
+                            data-name="<?= strtolower($member['user_name']); ?>"
+                            data-education="<?= strtolower($member['education_name']); ?>"
                             >
                     <img src="<?= $member['image']; ?>" alt="" class="profile-img profile-medium">
 
                     <h3>
-                        <?= $member['name']; ?>
+                        <?= $member['user_name']; ?>
                     </h3>
 
-                    <p><?= $member['education']; ?></p>
+                    <p><?= htmlspecialchars($member['education_name']); ?></p>
                 </article>
             <?php endforeach; ?>
         </div>

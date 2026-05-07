@@ -20,24 +20,31 @@ class MedlemController {
             exit;
         }
 
-        $education = trim($_POST['education'] ?? '');
-        $semester = (int) ($_POST['semester'] ?? 0);
+        $educationFk = (int) ($_POST['education_fk'] ?? 0);
+        $semesterFk = (int) ($_POST['semester_fk'] ?? 0);
         $applicationText = trim($_POST['description'] ?? '');
 
-        if ($education === '' || $semester <= 0 || $applicationText === '') {
+        if ($educationFk <= 0 || $semesterFk <= 0 || $applicationText === '') {
             header('Location: /medlem_sog?error=missing_fields');
             exit;
         }
 
         MedlemModel::createApplication(
             $userId,
-            $education,
-            $semester,
+            $educationFk,
+            $semesterFk,
             $applicationText
         );
 
         header('Location: /medlem_sog?success=sent');
         exit;
+    }
+
+    public static function showApplicationForm(): void {
+        $educations = MedlemModel::getEducations();
+        $semesters = MedlemModel::getSemesters();
+
+        require __DIR__ . '/../Views/medlem_sog.php';
     }
 
     public static function approve(): void {
