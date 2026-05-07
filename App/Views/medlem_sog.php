@@ -120,19 +120,30 @@ include __DIR__ . '/micro/___banner.php';
 
         <!-- Højre side -->
         <div class="form-container membership-container">
-            <form method="POST">
+            <form method="POST" action="/medlem_sog">
                 <div class="form-row">
-                    <input type="text" name="name" placeholder="Fornavn" required>
-
-                    <input type="text" name="last_name" placeholder="Efternavn" required>
+                    <input 
+                        type="text" 
+                        value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" 
+                        disabled
+                    >
+                    <input 
+                        type="text" 
+                        value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>" 
+                        disabled
+                    >
                 </div>
 
                 <input type="text" name="education" placeholder="Studieretning" required>
 
                 <input type="text" name="semester" placeholder="Semester" required>
 
-                <input type="email" name="email" placeholder="Studiemail" required>
-
+                <input 
+                    type="email" 
+                    value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" 
+                    disabled
+                >
+                
                 <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende
                     aktiviteter
                     vil du have ansvaret for?</label>

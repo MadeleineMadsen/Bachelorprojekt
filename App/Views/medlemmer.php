@@ -1,56 +1,3 @@
-<?php
-$members = [
-    [
-        'name' => 'Gigi Hadid',
-        'education' => 'Designteknolog',
-        'semester' => '3. semester',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Gigi Hadid',
-        'education' => 'Designteknolog',
-        'semester' => '3. semester',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Gigi Hadid',
-        'education' => 'Designteknolog',
-        'semester' => '3. semester',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Gigi Hadid',
-        'education' => 'Designteknolog',
-        'semester' => '3. semester',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Gigi Hadid',
-        'education' => 'Designteknolog',
-        'semester' => '3. semester',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Gigi Hadid',
-        'education' => 'Designteknolog',
-        'semester' => '3. semester',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Gigi Hadid',
-        'education' => 'Designteknolog',
-        'semester' => '3. semester',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Gigi Hadid',
-        'education' => 'Designteknolog',
-        'semester' => '3. semester',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-];
-?>
-
 <!-- Hero section -->
 <section class="members-hero">
     <h1>MEDLEMMER</h1>
@@ -109,9 +56,9 @@ include __DIR__ . '/micro/___banner.php';
                 <article class="member-card">
                     <img src="<?= $member['image']; ?>" alt="Portræt af <?= $member['name']; ?>" class="member-img">
 
-                    <h3><?= $member['name']; ?></h3>
+                    <h3><?= $member['user_name']; ?></h3>
                     <p><?= $member['education']; ?></p>
-                    <p><?= $member['semester']; ?></p>
+                    <p><?= $member['semester']; ?>. semester</p>
                 </article>
             <?php endforeach; ?>
         </section>

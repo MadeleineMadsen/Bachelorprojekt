@@ -1,81 +1,3 @@
-<?php
-$applications = [
-    [
-        'name' => 'Marie Andersen',
-        'age' => 25,
-        'title' => 'Datamatiker',
-        'email' => 'marie.andersen@email.dk',
-        'date' => '22. april',
-        'motivation' => 'blabla. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt quod accusantium rem, beatae maiores numquam. Nisi, officiis et, ratione nobis suscipit vero quo iste, ex corporis voluptas nam error eius?Jeg vil gerne være en del af GBG SOCIAL, fordi jeg elsker at møde nye mennesker og deltage i sociale arrangementer.'
-    ],
-    [
-        'name' => 'Jonas Mikkelsen',
-        'age' => 28,
-        'title' => 'Frontend udvikler',
-        'email' => 'jonas.mikkelsen@email.dk',
-        'date' => '20. april',
-        'motivation' => 'Jeg søger, fordi jeg gerne vil være med.'
-    ],
-    [
-        'name' => 'Sofie Larsen',
-        'age' => 23,
-        'title' => 'Studerende',
-        'email' => 'sofie.larsen@email.dk',
-        'date' => '18. april',
-        'motivation' => 'Jeg er ny i byen og vil rigtig gerne møde nye mennesker gennem events og fællesskab.'
-    ],
-];
-
-$members = [
-    [
-        'name' => 'Isabella',
-        'education' => 'Multimediedesign',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Maja',
-        'education' => 'Datamatiker',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Noah',
-        'education' => 'Webudvikling',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-        [
-        'name' => 'Isabella',
-        'education' => 'Multimediedesign',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Maja',
-        'education' => 'Datamatiker',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Noah',
-        'education' => 'Webudvikling',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-        [
-        'name' => 'Isabella',
-        'education' => 'Multimediedesign',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Maja',
-        'education' => 'Datamatiker',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Noah',
-        'education' => 'Webudvikling',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-];
-
-?>
-
 <main class="godkend-main">
     <section class="container">
     <div class="header-container">
@@ -94,24 +16,31 @@ $members = [
                     <img src="/assets/img/uploads/test_profile.png" alt="" class="profile-img profile-medium">
 
                     <div class="godkend-info">
-                        <h2 class="godkend-name"><strong><?= $app['name']; ?></strong>, <?= $app['age']; ?> år</h2>
-                        <p><?= $app['title']; ?></p>
-                        <p><?= $app['email']; ?></p>
+                        <h2 class="godkend-name"><strong><?= $app['user_name']; ?></strong>, <?= $app['user_last_name']; ?> år</h2>
+                        <p><?= $app['education']; ?></p>
+                        <p><?= $app['user_email']; ?></p>
                     </div>
                 </div>
 
                 <!-- Midte -->
                 <div class="godkend-middle inner">
-                    <p class="godkend-date">Ansøgt d. <?= $app['date']; ?></p>
+                    <p class="godkend-date">Ansøgt d. <?= date('d M', strtotime($app['applied_at'])); ?></p>
                     <p class="motivation">
-                        <?= $app['motivation']; ?>
+                        <?= $app['application_text']; ?>
                     </p>
                 </div>
 
                 <!-- Højre (knapper) -->
                 <div class="godkend-right">
-                    <button class="btn btn-primary">GODKEND</button>
-                    <button class="btn btn-secondary">AFVIS</button>
+                    <form method="POST" action="/godkend_medlem">
+                        <input type="hidden" name="member_pk" value="<?= $app['member_pk']; ?>">
+                        <button class="btn btn-primary">GODKEND</button>
+                    </form>
+
+                    <form method="POST" action="/afvis_medlem">
+                        <input type="hidden" name="member_pk" value="<?= $app['member_pk']; ?>">
+                        <button class="btn btn-secondary">AFVIS</button>
+                    </form>
                 </div>
 
             </div>
