@@ -73,7 +73,7 @@ CREATE TABLE `users` (
   `user_deleted_at` bigint(20) UNSIGNED DEFAULT 0,
   `user_verified_at` bigint(20) UNSIGNED DEFAULT 0,
   `user_verification_key` char(36) DEFAULT NULL,
-  `role_fk` char(36) DEFAULT NULL,
+  `role_fk` char(36) DEFAULT 3,
   PRIMARY KEY (`user_pk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
