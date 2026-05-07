@@ -4,9 +4,16 @@
 /* ========== MOBILE (default) ========== */
 
 .card-event-list {
+    position: relative;
     display: flex;
     flex-direction: column;
     padding: var(--gap-sm) 0;
+}
+
+.card-event-list-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
 }
 
 .card-event-list-img-wrap {

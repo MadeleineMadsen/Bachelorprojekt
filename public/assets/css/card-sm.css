@@ -4,8 +4,17 @@
 /* ========== MOBILE (default) ========== */
 
 .card-event-sm {
+    position: relative;
     display: flex;
     flex-direction: column;
+    border-bottom: 1px solid var(--font-color-black);
+    padding-bottom: var(--gap-sm);
+}
+
+.card-event-sm-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
 }
 
 .card-event-sm-img-wrap {
