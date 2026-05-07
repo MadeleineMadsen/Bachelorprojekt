@@ -12,10 +12,10 @@
         <h1 class="form-title">LOG IND</h1>
 
         <section class="form-container login-container">
-            <form method="POST">
-                <input type="email" name="email" placeholder="Studiemail" required>
+            <form method="POST" action="">
+                <input type="email" name="user_email" placeholder="Studiemail" required>
 
-                <input type="password" name="password" placeholder="Adgangskode" required>
+                <input type="password" name="user_password" placeholder="Adgangskode" required>
 
                 <button class="btn btn-primary" type="submit">LOG IND</button>
             </form>

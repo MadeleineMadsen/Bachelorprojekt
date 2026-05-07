@@ -6,7 +6,9 @@
     <section class="profile-hero">
         <div class="hello-text">
             <h1>HEJ IGEN</h1>
-            <h2>NAVN</h2>
+            <h2>
+                <?= htmlspecialchars($user['user_name']) ?>
+            </h2>
         </div>
 
         <div class="profile-intro">
@@ -16,7 +18,8 @@
             </div>
 
             <div class="profile-image-wrapper">
-                <img src="/assets/img/uploads/test_profile.png" alt="Profilbillede" class="profile-img profile-profileimg">
+                <img src="/assets/img/uploads/test_profile.png" alt="Profilbillede"
+                    class="profile-img profile-profileimg">
                 <button class="camera-btn" type="button"><img src="/assets/img/icons/camera_icon.png"
                         alt="Kamera ikon"></button>
             </div>
@@ -26,18 +29,23 @@
     <section class="form-container profile-member-container">
         <h4>REDIGER PROFIL</h4>
 
-        <form method="POST">
-            <input type="text" name="name" placeholder="Fornavn" required>
+        <form method="POST" action="/profile/update">
+            <input type="text" name="user_name" value="<?= htmlspecialchars($user['user_name']) ?>"
+                placeholder="Fornavn" required>
 
-            <input type="text" name="last_name" placeholder="Efternavn" required>
+            <input type="text" name="user_last_name" value="<?= htmlspecialchars($user['user_last_name'] ?? '') ?>"
+                placeholder="Efternavn" required>
 
-            <input type="text" name="education" placeholder="Studieretning" required>
+            <input type="text" name="education" value="<?= htmlspecialchars($member['education'] ?? '') ?>"
+                placeholder="Studieretning" required>
 
-            <input type="text" name="semester" placeholder="Semester" required>
+            <input type="text" name="semester" value="<?= htmlspecialchars($member['semester'] ?? '') ?>"
+                placeholder="Semester" required>
 
-            <input type="email" name="email" placeholder="Studiemail" required>
+            <input type="email" name="user_email" value="<?= htmlspecialchars($user['user_email']) ?>"
+                placeholder="Studiemail" required>
 
-            <input type="password" name="password" placeholder="Adgangskode" required>
+            <input type="password" name="password" placeholder="Adgangskode">
 
             <button class="btn btn-primary" type="submit">GEM ÆNDRINGER</button>
         </form>
