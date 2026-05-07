@@ -18,6 +18,10 @@ class EventController {
         return array_map([self::class, 'formatDates'], EventModel::getLatest($limit));
     }
 
+    public static function getParticipants(string $id): array {
+        return EventModel::getParticipantsByEventId($id);
+    }
+
     public static function getById(string $id): array|false {
         $event = EventModel::getById($id);
 

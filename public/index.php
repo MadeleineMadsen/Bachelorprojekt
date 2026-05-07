@@ -124,9 +124,10 @@ switch ($uri) {
             exit;
         }
 
-        $dato = $event['dato'];
-        $currentPage = 'events';
-        $view = '/eventside.php';
+        $dato           = $event['dato'];
+        $participants   = EventController::getParticipants($_GET['id'] ?? '');
+        $currentPage    = 'events';
+        $view           = '/eventside.php';
         break;
 
         // TILMELDTE EVENTS

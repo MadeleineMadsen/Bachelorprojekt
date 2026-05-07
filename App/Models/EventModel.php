@@ -47,6 +47,19 @@ class EventModel {
         return $stmt->fetch();
     }
 
+    public static function getParticipantsByEventId(string $id): array {
+        $db   = getDB();
+        $stmt = $db->prepare('
+            SELECT u.user_pk, u.user_name, u.user_last_name, u.user_image
+            FROM event_registrations r
+            JOIN users u ON u.user_pk = r.user_fk
+            WHERE r.event_fk = ?
+            ORDER BY r.registered_at ASC
+        ');
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
+    }
+
     public static function getLatest(int $limit = 3): array {
         $db   = getDB();
         $stmt = $db->prepare('
