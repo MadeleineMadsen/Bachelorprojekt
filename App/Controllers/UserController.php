@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../models/UserModel.php';
-require_once __DIR__ . '/../models/MedlemModel.php';
+require_once __DIR__ . '/../Models/UserModel.php';
+require_once __DIR__ . '/../Models/MedlemModel.php';
 
 class UserController
 {
@@ -25,7 +25,7 @@ class UserController
         $educations = MedlemModel::getEducations();
         $semesters = MedlemModel::getSemesters();
 
-        require __DIR__ . '/../views/users/profile.php';
+        require __DIR__ . '/../views/users/profil.php';
     }
 
     public function updateProfile(): void
@@ -59,7 +59,7 @@ class UserController
         $_SESSION['user']['user_last_name'] = $lastName;
         $_SESSION['user']['user_email'] = $email;
 
-        header('Location: /profile');
+        header('Location: /profil');
         exit;
     }
 
