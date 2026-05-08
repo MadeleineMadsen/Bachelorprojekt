@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../Models/MedlemModel.php';
+require_once __DIR__ . '/../../private/helpers.php';
 
 class MedlemController {
 
@@ -12,33 +13,57 @@ class MedlemController {
         return MedlemModel::getPending();
     }
 
-    public static function createApplication(): void {
-        $userId = $_SESSION['user']['user_pk'] ?? $_SESSION['user']['id'] ?? null;
+public static function createApplication(): void {
 
-        if (!$userId) {
-            header('Location: /log_ind');
-            exit;
-        }
+    $userId = $_SESSION['user']['user_pk'] ?? $_SESSION['user']['id'] ?? null;
 
-        $educationFk = (int) ($_POST['education_fk'] ?? 0);
-        $semesterFk = (int) ($_POST['semester_fk'] ?? 0);
-        $applicationText = trim($_POST['description'] ?? '');
+    if (!$userId) {
+        header('Location: /log_ind');
+        exit;
+    }
 
-        if ($educationFk <= 0 || $semesterFk <= 0 || $applicationText === '') {
-            header('Location: /medlem_sog?error=missing_fields');
-            exit;
-        }
+    $educationFk = (int) ($_POST['education_fk'] ?? 0);
+    $semesterFk = (int) ($_POST['semester_fk'] ?? 0);
+    $applicationText = trim($_POST['description'] ?? '');
 
-        MedlemModel::createApplication(
-            $userId,
-            $educationFk,
-            $semesterFk,
-            $applicationText
+    if ($educationFk <= 0 || $semesterFk <= 0 || $applicationText === '') {
+        header('Location: /medlem_sog?error=missing_fields');
+        exit;
+    }
+
+    if (MedlemModel::hasApplication($userId)) {
+        header('Location: /medlem_sog?error=already_applied');
+        exit;
+    }
+
+    $created = MedlemModel::createApplication(
+        $userId,
+        $educationFk,
+        $semesterFk,
+        $applicationText
+    );
+
+    if ($created) {
+
+        // Til når det skal fungere til rigtige mails
+        // sendMembershipConfirmationMail(
+        //     $_SESSION['user']['user_email'],
+        //     $_SESSION['user']['user_name']
+        // );
+
+        // Testmail
+        sendMembershipConfirmationMail(
+            'kamiweb1031@gmail.com',
+            $_SESSION['user']['user_name']
         );
 
         header('Location: /medlem_sog?success=sent');
         exit;
     }
+
+    header('Location: /medlem_sog?error=failed');
+    exit;
+}
 
     public static function showApplicationForm(): void {
         $educations = MedlemModel::getEducations();

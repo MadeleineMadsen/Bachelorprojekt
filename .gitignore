@@ -1,3 +1,4 @@
 # .gitignore
 # Angiver hvilke filer Git skal ignorere
 # Fx .env, uploads, logs osv.
+/vendor/

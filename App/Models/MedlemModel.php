@@ -82,6 +82,23 @@ class MedlemModel {
         ]);
     }
 
+    public static function hasApplication(string $userId): bool
+    {
+        $db = getDB();
+
+        $stmt = $db->prepare("
+            SELECT member_pk
+            FROM members
+            WHERE user_fk = ?
+            AND deleted_at IS NULL
+            LIMIT 1
+        ");
+
+        $stmt->execute([$userId]);
+
+        return (bool) $stmt->fetch();
+    }
+
     public static function getEducations(): array
     {
         $db = getDB();
