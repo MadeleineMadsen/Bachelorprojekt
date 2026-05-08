@@ -4,10 +4,12 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$env = parse_ini_file(__DIR__ . '/.env');
 
 // Send bekræftelsesmail efter ansøgning
 function sendMembershipConfirmationMail(string $toEmail, string $firstName): bool
 {
+    global $env;
     $mail = new PHPMailer(true);
 
     try {
@@ -15,13 +17,13 @@ function sendMembershipConfirmationMail(string $toEmail, string $firstName): boo
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
 
-        $mail->Username = 'kamiweb1031@gmail.com';
-        $mail->Password = 'sjiw chwn saxm qous';
+        $mail->Username = $env['SMTP_EMAIL'];
+        $mail->Password = $env['SMTP_PASSWORD'];
 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
-        $mail->setFrom('kamiweb1031@gmail.com', 'GBG Social');
+        $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
         $mail->addAddress($toEmail, $firstName);
 
         $mail->CharSet = 'UTF-8';
