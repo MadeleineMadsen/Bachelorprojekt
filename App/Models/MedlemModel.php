@@ -23,8 +23,8 @@ class MedlemModel {
             LEFT JOIN educations e ON m.education_fk = e.education_pk
             LEFT JOIN semesters s ON m.semester_fk = s.semester_pk
             WHERE m.status = 'approved'
-                AND m.deleted_at = 0
-                AND u.user_deleted_at = 0
+                AND m.deleted_at IS NULL
+                AND u.user_deleted_at IS NULL
             ORDER BY u.user_name ASC
         ");
 
@@ -51,8 +51,8 @@ class MedlemModel {
             LEFT JOIN educations e ON m.education_fk = e.education_pk
             LEFT JOIN semesters s ON m.semester_fk = s.semester_pk
             WHERE m.status = 'pending'
-                AND m.deleted_at = 0
-                AND u.user_deleted_at = 0
+                AND m.deleted_at IS NULL
+                AND u.user_deleted_at IS NULL
             ORDER BY m.applied_at DESC
         ");
 
@@ -134,7 +134,7 @@ class MedlemModel {
                 approved_by_fk = ?,
                 approved_at = NOW()
             WHERE member_pk = ?
-                AND deleted_at = 0
+                AND deleted_at IS NULL
         ");
 
         return $stmt->execute([$adminId, $memberId]);
@@ -147,7 +147,7 @@ class MedlemModel {
             UPDATE members
             SET status = 'rejected'
             WHERE member_pk = ?
-                AND deleted_at = 0
+                AND deleted_at IS NULL
         ");
 
         return $stmt->execute([$memberId]);
@@ -158,9 +158,9 @@ class MedlemModel {
 
         $stmt = $db->prepare("
             UPDATE members
-            SET deleted_at = UNIX_TIMESTAMP()
+            SET deleted_at = NOW()
             WHERE member_pk = ?
-                AND deleted_at = 0
+                AND deleted_at IS NULL
         ");
 
         return $stmt->execute([$memberId]);

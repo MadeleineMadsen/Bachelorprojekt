@@ -61,6 +61,12 @@ $leftNavItems = [
     ];
 }
 
+$pendingApplicationsCount = 0;
+
+if ($isLoggedIn && $isAdmin) {
+    $pendingApplicationsCount = count(MedlemController::getPending());
+}
+
 // Subnavigation
 $subNavItems = [];
 
@@ -86,7 +92,8 @@ if ($isLoggedIn) {
                 'label'         => 'ANSØGNINGER',
                 'url'           => '/medlem_godkend',
                 'icon'          => '/assets/img/icons/add_member.png',
-                'icon_active'   => '/assets/img/icons/hover_add_member.png'
+                'icon_active'   => '/assets/img/icons/hover_add_member.png',
+                'badge'         => $pendingApplicationsCount
             ],
             [
                 'key'           => 'kalender',
@@ -191,6 +198,10 @@ if ($isLoggedIn) {
                             class="sub-nav-link <?= ($currentPage === $item['key']) ? 'active' : '' ?>"
                             >
                             <?= htmlspecialchars($item['label']) ?>
+
+                            <?php if (!empty($item['badge'])): ?>
+                                <span class="sub-nav-badge"><?= htmlspecialchars($item['badge']) ?></span>
+                            <?php endif; ?>
                         </a>
                     <?php endforeach; ?>
                 </div>
@@ -240,7 +251,10 @@ if ($isLoggedIn) {
                     src="<?= ($currentPage === $item['key']) ? $item['icon_active'] : $item['icon']; ?>"
                     alt="<?= htmlspecialchars($item['label']) ?>"
                     class="mobile-bottom-icon"
-                >            
+                >   
+                <?php if (!empty($item['badge'])): ?>
+                    <span class="mobile-nav-badge"><?= htmlspecialchars($item['badge']) ?></span>
+                <?php endif; ?>         
             </a>
         <?php endforeach; ?>
     </nav>

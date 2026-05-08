@@ -16,7 +16,7 @@
                     <img src="/assets/img/uploads/test_profile.png" alt="" class="profile-img profile-medium">
 
                     <div class="godkend-info">
-                        <h2 class="godkend-name"><strong><?= $app['user_name']; ?></strong>, <?= $app['user_last_name']; ?> år</h2>
+                        <h2 class="godkend-name"><strong><?= $app['user_name']; ?> <?= $app['user_last_name']; ?></strong></h2>
                         <p><?= htmlspecialchars($app['education_name']); ?></p>
                         <p><?= $app['user_email']; ?></p>
                     </div>
@@ -24,7 +24,7 @@
 
                 <!-- Midte -->
                 <div class="godkend-middle inner">
-                    <p class="godkend-date">Ansøgt d. <?= date('d M', strtotime($app['applied_at'])); ?></p>
+                    <p class="godkend-date">Ansøgt d. <?= formatDanishDate($app['applied_at']); ?></p>
                     <p class="motivation">
                         <?= $app['application_text']; ?>
                     </p>
