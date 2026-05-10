@@ -125,6 +125,30 @@ class MedlemModel {
         return $stmt->fetchAll();
     }
 
+    // Til at sende godkendelses-mail
+    public static function getApplicationById(string $memberId): ?array
+    {
+        $db = getDB();
+
+        $stmt = $db->prepare("
+            SELECT
+                m.member_pk,
+                u.user_name,
+                u.user_email
+            FROM members m
+            INNER JOIN users u ON m.user_fk = u.user_pk
+            WHERE m.member_pk = ?
+                AND m.deleted_at IS NULL
+            LIMIT 1
+        ");
+
+        $stmt->execute([$memberId]);
+
+        $application = $stmt->fetch();
+
+        return $application ?: null;
+    }
+
     public static function approve(string $memberId, string $adminId): bool {
         $db = getDB();
 

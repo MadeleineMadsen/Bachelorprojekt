@@ -77,7 +77,16 @@ public static function createApplication(): void {
         $adminId = $_SESSION['user']['user_pk'] ?? $_SESSION['user']['id'] ?? null;
 
         if ($memberId && $adminId) {
-            MedlemModel::approve($memberId, $adminId);
+            $application = MedlemModel::getApplicationById($memberId);
+
+            $approved = MedlemModel::approve($memberId, $adminId);
+
+            if ($approved && $application) {
+                sendMembershipApprovedMail(
+                    'kamiweb1031@gmail.com',
+                    $application['user_name']
+                );
+            }
         }
 
         header('Location: /medlem_godkend');
@@ -88,7 +97,25 @@ public static function createApplication(): void {
         $memberId = $_POST['member_pk'] ?? null;
 
         if ($memberId) {
-            MedlemModel::reject($memberId);
+
+            $application = MedlemModel::getApplicationById($memberId);
+
+            $rejected = MedlemModel::reject($memberId);
+
+            if ($rejected && $application) {
+
+                // Til rigtige mails senere:
+                // sendMembershipRejectedMail(
+                //     $application['user_email'],
+                //     $application['user_name']
+                // );
+
+                // Testmail til eksamen:
+                sendMembershipRejectedMail(
+                    'kamiweb1031@gmail.com',
+                    $application['user_name']
+                );
+            }
         }
 
         header('Location: /medlem_godkend');

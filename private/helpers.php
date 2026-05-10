@@ -8,62 +8,150 @@ $env = parse_ini_file(__DIR__ . '/.env');
 
 // Send bekræftelsesmail efter ansøgning
 function sendMembershipConfirmationMail(string $toEmail, string $firstName): bool
-{
-    global $env;
-    $mail = new PHPMailer(true);
+    {
+        global $env;
+        $mail = new PHPMailer(true);
 
-    try {
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
 
-        $mail->Username = $env['SMTP_EMAIL'];
-        $mail->Password = $env['SMTP_PASSWORD'];
+            $mail->Username = $env['SMTP_EMAIL'];
+            $mail->Password = $env['SMTP_PASSWORD'];
 
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
 
-        $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
-        $mail->addAddress($toEmail, $firstName);
+            $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
+            $mail->addAddress($toEmail, $firstName);
 
-        $mail->CharSet = 'UTF-8';
-        $mail->isHTML(false);
+            $mail->CharSet = 'UTF-8';
+            $mail->isHTML(false);
 
-        $mail->Subject = 'Vi har modtaget din ansøgning';
-        $mail->Body = "Hej {$firstName}
+            $mail->Subject = 'Vi har modtaget din ansøgning';
+            $mail->Body = "Hej {$firstName}
 
-Tak for din ansøgning om medlemskab hos GBG Social.
+    Tak for din ansøgning om medlemskab hos GBG Social.
 
-Vi har modtaget din ansøgning og vender tilbage hurtigst muligt.
+    Vi har modtaget din ansøgning og vender tilbage hurtigst muligt.
 
-Venlig hilsen
-GBG Social";
+    Venlig hilsen
+    GBG Social";
 
-        return $mail->send();
+            return $mail->send();
 
-    } catch (Exception $e) {
-        error_log('Mailfejl: ' . $mail->ErrorInfo);
-        return false;
+        } catch (Exception $e) {
+            error_log('Mailfejl: ' . $mail->ErrorInfo);
+            return false;
+        }
     }
-}
+
+// Send mail når ansøgning er godkendt
+function sendMembershipApprovedMail(string $toEmail, string $firstName): bool
+    {
+        global $env;
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+
+            $mail->Username = $env['SMTP_EMAIL'];
+            $mail->Password = $env['SMTP_PASSWORD'];
+
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
+            $mail->addAddress($toEmail, $firstName);
+
+            $mail->CharSet = 'UTF-8';
+            $mail->isHTML(false);
+
+            $mail->Subject = 'Tillykke - du er nu medlem af GBG Social';
+            $mail->Body = "Hej {$firstName}
+
+    Tillykke! Din ansøgning er blevet godkendt.
+
+    Du er nu medlem og vejleder hos GBG Social og kan være med til at skabe fællesskab og gode oplevelser for andre studerende.
+
+    Husk at gå ind på eventsiden og tilmelde dig de events, du gerne vil være vejleder på:
+    http://localhost/events
+
+    Venlig hilsen
+    GBG Social";
+
+            return $mail->send();
+
+        } catch (Exception $e) {
+            error_log('Mailfejl: ' . $mail->ErrorInfo);
+            return false;
+        }
+    }
+
+// Send mail når ansøgning er afvist
+function sendMembershipRejectedMail(string $toEmail, string $firstName): bool
+    {
+        global $env;
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+
+            $mail->Username = $env['SMTP_EMAIL'];
+            $mail->Password = $env['SMTP_PASSWORD'];
+
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
+            $mail->addAddress($toEmail, $firstName);
+
+            $mail->CharSet = 'UTF-8';
+            $mail->isHTML(false);
+
+            $mail->Subject = 'Svar på din ansøgning hos GBG Social';
+
+            $mail->Body = "Hej {$firstName}
+
+    Tak for din ansøgning om at blive vejleder hos GBG Social.
+
+    Vi har desværre valgt ikke at godkende din ansøgning som vejleder denne gang.
+
+    Du er altid velkommen til at ansøge igen senere!
+
+    Venlig hilsen
+    GBG Social";
+
+            return $mail->send();
+
+        } catch (Exception $e) {
+            error_log('Mailfejl: ' . $mail->ErrorInfo);
+            return false;
+        }
+    }
 
 // Ret dato i ansøngninger til dansk
 function formatDanishDate(string $date): string
-{
-    $months = [
-        'Jan' => 'jan',
-        'Feb' => 'feb',
-        'Mar' => 'mar',
-        'Apr' => 'apr',
-        'May' => 'maj',
-        'Jun' => 'jun',
-        'Jul' => 'jul',
-        'Aug' => 'aug',
-        'Sep' => 'sep',
-        'Oct' => 'okt',
-        'Nov' => 'nov',
-        'Dec' => 'dec'
-    ];
+    {
+        $months = [
+            'Jan' => 'jan',
+            'Feb' => 'feb',
+            'Mar' => 'mar',
+            'Apr' => 'apr',
+            'May' => 'maj',
+            'Jun' => 'jun',
+            'Jul' => 'jul',
+            'Aug' => 'aug',
+            'Sep' => 'sep',
+            'Oct' => 'okt',
+            'Nov' => 'nov',
+            'Dec' => 'dec'
+        ];
 
-    return strtr(date('d M', strtotime($date)), $months);
-}
+        return strtr(date('d M', strtotime($date)), $months);
+    }
