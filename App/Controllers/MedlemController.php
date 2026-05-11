@@ -122,12 +122,16 @@ public static function createApplication(): void {
         exit;
     }
 
-    public static function delete(): void {
+    public static function delete(): void
+    {
         $memberId = $_POST['member_pk'] ?? null;
 
-        if ($memberId) {
-            MedlemModel::delete($memberId);
+        if (!$memberId) {
+            header('Location: /medlem_godkend');
+            exit;
         }
+
+        MedlemModel::delete($memberId);
 
         header('Location: /medlem_godkend');
         exit;

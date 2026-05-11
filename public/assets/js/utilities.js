@@ -29,7 +29,7 @@ function updateArrows() {
 
 function filterMembers() {
     const searchValue = searchInput.value.toLowerCase().trim();
-    const selectedEducation = educationFilter.value.toLowerCase();
+    const selectedEducation = educationFilter.value;
 
     memberSlides.forEach(slide => {
         const name = slide.dataset.name;
@@ -48,6 +48,8 @@ function filterMembers() {
 function getSlideWidth() {
     const slide = document.querySelector('.member-slide:not([style*="display: none"])');
     const gap = parseInt(getComputedStyle(carousel).gap) || 0;
+
+    if (!slide) return 0;
 
     return slide.offsetWidth + gap;
 }

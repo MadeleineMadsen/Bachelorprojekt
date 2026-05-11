@@ -205,9 +205,8 @@ html {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 1.25rem;
-    height: 1.25rem;
-    padding: 0 0.35rem;
+    min-width: 1.40rem;
+    height: 1.40rem;
     border-radius: 999px;
     background: var(--color-yellow);
     color: var(--font-color-black);
@@ -222,8 +221,8 @@ html {
 
   .mobile-nav-badge {
     position: absolute;
-    top: 2.42rem;
-    right: 7.8rem;
+    top: 2.37rem;
+    right: 7.7rem;
   }
 
 /* ----------------------------------- */

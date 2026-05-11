@@ -213,6 +213,7 @@ switch ($uri) {
         }
 
         $applications = MedlemController::getPending();
+        $educations = MedlemModel::getEducations();
         $members = MedlemController::getApproved();
 
         $currentPage = 'medlem_godkend';
@@ -220,9 +221,15 @@ switch ($uri) {
         $isProfileSection = true;
         break;
 
+        // SLET MEDLEMSSKAB
+    case '/slet_medlem':
+        MedlemController::delete();
+        break;
+
         // ALLE MEDLEMMER
     case '/medlemmer':
         $members = MedlemController::getApproved();
+        $educations = MedlemModel::getEducations();
         
         $currentPage = 'medlemmer';
         $view = '/medlemmer.php';

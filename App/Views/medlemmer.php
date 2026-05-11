@@ -14,7 +14,7 @@ include __DIR__ . '/micro/___banner.php';
     <!-- Medlemmer overview -->
     <section class="members-overview">
 
-        <h2>ALLE AKTIVE MEDLEM-MER I GBG SOCIAL</h2>
+        <h2>ALLE AKTIVE MEDLEMMER I GBG SOCIAL</h2>
 
         <div class="members-stats">
             <div class="members-stat">
