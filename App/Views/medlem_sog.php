@@ -18,7 +18,7 @@
     </div>
 
     <div class="membership-right">
-        <img src="assets/img/dj.png" alt="GBG Social medlemmer">
+        <img src="assets/img/udklædningsfest.webp" alt="GBG Social medlemmer">
     </div>
 
 </section>
@@ -114,7 +114,7 @@ include __DIR__ . '/micro/___banner.php';
             </p>
 
             <div class="membership-image">
-                <img src="assets/img/dj.png" alt="GBG Social medlemmer">
+                <img src="assets/img/fredagsbar-udenfor2.webp" alt="GBG Social medlemmer">
             </div>
         </div>
 
@@ -122,16 +122,9 @@ include __DIR__ . '/micro/___banner.php';
         <div class="form-container membership-container">
             <form method="POST" action="/medlem_sog">
                 <div class="form-row">
-                    <input 
-                        type="text" 
-                        value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" 
-                        disabled
-                    >
-                    <input 
-                        type="text" 
-                        value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>" 
-                        disabled
-                    >
+                    <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" disabled>
+                    <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>"
+                        disabled>
                 </div>
                 <select name="education_fk" required>
                     <option value="">Vælg studieretning</option>
@@ -152,12 +145,8 @@ include __DIR__ . '/micro/___banner.php';
                         </option>
                     <?php endforeach; ?>
                 </select>
-                <input 
-                    type="email" 
-                    value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" 
-                    disabled
-                >
-                
+                <input type="email" value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" disabled>
+
                 <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende
                     aktiviteter
                     vil du have ansvaret for?</label>
