@@ -35,7 +35,10 @@ class UserModel
     public function findByEmail(string $email): ?array
     {
         $stmt = $this->db->prepare(
-            "SELECT * FROM users WHERE user_email = :user_email LIMIT 1"
+            "SELECT * FROM users 
+            WHERE user_email = :user_email 
+            AND user_deleted_at IS NULL
+            LIMIT 1"
         );
 
         $stmt->execute([
@@ -145,5 +148,18 @@ class UserModel
         );
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function softDelete(int $userId): bool
+    {
+        $stmt = $this->db->prepare(
+            "UPDATE users
+            SET user_deleted_at = NOW()
+            WHERE user_pk = :user_pk"
+        );
+
+        return $stmt->execute([
+            ':user_pk' => $userId
+        ]);
     }
 }

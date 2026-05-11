@@ -131,6 +131,14 @@
   margin-bottom: var(--gap-xs);
 }
 
+.profile-button-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  align-items: flex-start;
+  margin-top: var(--gap-sm);
+}
+
 /* ----------------------------------- */
 /* Opret event formular */
 /* ----------------------------------- */
@@ -274,6 +282,13 @@
     font-family: var(--font-header);
     font-size: var(--font-desktop-text-big);
     margin-bottom: var(--gap-sm);
+  }
+
+  .profile-button-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
 
   /* ----------------------------------- */

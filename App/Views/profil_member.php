@@ -29,7 +29,7 @@
     <section class="form-container profile-member-container">
         <h4>REDIGER PROFIL</h4>
 
-        <form method="POST" action="/profile/update">
+        <form method="POST" action="/profil/update">
             <input type="text" name="user_name" value="<?= htmlspecialchars($user['user_name']) ?>"
                 placeholder="Fornavn" required>
 
@@ -45,9 +45,18 @@
             <input type="email" name="user_email" value="<?= htmlspecialchars($user['user_email']) ?>"
                 placeholder="Studiemail" required>
 
-            <input type="password" name="password" placeholder="Adgangskode">
+            <input type="password" name="user_password" placeholder="Adgangskode">
 
-            <button class="btn btn-primary" type="submit">GEM ÆNDRINGER</button>
+            <div class="profile-button-row">
+                <button class="btn btn-primary" type="submit">GEM ÆNDRINGER</button>
+
+                <button class="btn btn-delete" type="submit" form="deleteProfileForm">
+                    SLET MIN PROFIL
+                </button>
+            </div>
         </form>
+
+        <form id="deleteProfileForm" method="POST" action="/profil/delete"
+            onsubmit="return confirm('Er du sikker på, at du vil slette din profil?');"></form>
     </section>
 </main>

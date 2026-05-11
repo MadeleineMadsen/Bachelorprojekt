@@ -7,41 +7,46 @@
 -------------------------------*/
 /* Logo */
 .logo img {
-height: 60px;
-width: auto;
+  height: 60px;
+  width: auto;
 }
 
 .footer-logo img {
-height: 100px;
-width: auto;
+  height: 100px;
+  width: auto;
 }
 
 /* -----------------------------
     KNAPPER
 -------------------------------*/
 .btn {
-display: inline-flex;
-align-items: center;
-justify-content: center;
-font-family: var(--font-text);
-font-weight: var(--poppins-font-bold);
-font-size: var(--btn-font-mobil);
-height: var(--btn-height-mobil);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-text);
+  font-weight: var(--poppins-font-bold);
+  font-size: var(--btn-font-mobil);
+  height: var(--btn-height-mobil);
   /* min-width: var(--btn-min-width-mobil); */
-padding: 0 var(--gap-sm);
-border: none;
-cursor: pointer;
-text-decoration: none;
+  padding: 0 var(--gap-sm);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .btn-primary {
-background: var(--color-blue);
-color: var(--font-color-white);
+  background: var(--color-blue);
+  color: var(--font-color-white);
 }
 
 .btn-secondary {
-background: var(--color-light-yellow);
-color: var(--font-color-black);
+  background: var(--color-light-yellow);
+  color: var(--font-color-black);
+}
+
+.btn-delete {
+  background: var(--color-delete);
+  color: var(--font-color-white);
 }
 
 .btn-nav {
@@ -58,7 +63,7 @@ color: var(--font-color-black);
 }
 
 .btn-nav::after {
-  content: "➞";  
+  content: "➞";
   font-size: 1.3em;
 }
 
@@ -80,7 +85,8 @@ color: var(--font-color-black);
 
 /* Til profilbillede, "om os" og "ansøgninger" */
 /* OBS: .profile-profileimg er kun til profil-siden */
-.profile-medium, .profile-profileimg {
+.profile-medium,
+.profile-profileimg {
   width: 6rem;
   height: 6rem;
 }
@@ -95,50 +101,50 @@ color: var(--font-color-black);
     SLIDE MED MEDLEMMER
 -------------------------------*/
 .member-carousel-section {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    margin-top: var(--gap-lg);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  margin-top: var(--gap-lg);
 }
 
 .member-carousel {
-    display: flex;
-    overflow: hidden;
-    gap: var(--gap-sm);
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
+  display: flex;
+  overflow: hidden;
+  gap: var(--gap-sm);
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
 
 .member-slide {
-    flex: 0 0 calc((100% - var(--gap-sm)) / 2);
-    text-align: center;
-    scroll-snap-align: start;
+  flex: 0 0 calc((100% - var(--gap-sm)) / 2);
+  text-align: center;
+  scroll-snap-align: start;
 }
 
 .member-slide img {
-    margin-bottom: var(--gap-xs);
+  margin-bottom: var(--gap-xs);
 }
 
 .member-slide h3 {
-    font-family: var(--font-text);
-    font-size: var(--font-mobil-h3);
-    font-weight: var(--poppins-font-semi-bold);
-    text-transform: uppercase;
+  font-family: var(--font-text);
+  font-size: var(--font-mobil-h3);
+  font-weight: var(--poppins-font-semi-bold);
+  text-transform: uppercase;
 }
 
 .member-slide p {
-    font-family: var(--font-text);
-    font-size: var(--font-mobil-text);
-    text-transform: uppercase;
+  font-family: var(--font-text);
+  font-size: var(--font-mobil-text);
+  text-transform: uppercase;
 }
 
 .carousel-arrow {
-    border: none;
-    background: transparent;
-    color: var(--color-light-blue);
-    font-size: 2rem;
-    cursor: pointer;
-    line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--color-light-blue);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
 }
 
 /* -----------------------------
@@ -185,24 +191,22 @@ color: var(--font-color-black);
   }
 }
 
-
-
 /* ========== DESKTOP ========== */
 @media (min-width: 768px) {
-/* -----------------------------
+  /* -----------------------------
     IMAGES
     -------------------------------*/
 
   /* Logo */
-.logo img {
+  .logo img {
     height: 70px;
     margin: var(--gap-xs) 0;
-}
+  }
 
-.footer-logo img {
+  .footer-logo img {
     height: 120px;
-}
-/* -----------------------------
+  }
+  /* -----------------------------
     KNAPPER
   -------------------------------*/
 
@@ -216,8 +220,8 @@ color: var(--font-color-black);
   }
 
   .btn-nav::after {
-  font-size: 1.4em;
-}
+    font-size: 1.4em;
+  }
 
   /* -----------------------------
     PROFILBILLEDER
@@ -237,7 +241,8 @@ color: var(--font-color-black);
 
   /* Til egen profil og "medlemmer" */
   /* OBS: .profile-profileimg er kun til profil-siden */
-  .profile-large, .profile-profileimg {
+  .profile-large,
+  .profile-profileimg {
     width: 12.5rem;
     height: 12.5rem;
   }
