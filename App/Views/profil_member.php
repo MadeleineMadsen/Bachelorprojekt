@@ -6,6 +6,7 @@
     <section class="profile-hero">
         <div class="hello-text">
             <h1>HEJ IGEN</h1>
+
             <h2>
                 <?= htmlspecialchars($user['user_name']) ?>
             </h2>
@@ -17,12 +18,22 @@
                 <p>Her kan du se og redigere dine personlige oplysninger</p>
             </div>
 
-            <div class="profile-image-wrapper">
-                <img src="/assets/img/uploads/test_profile.png" alt="Profilbillede"
-                    class="profile-img profile-profileimg">
-                <button class="camera-btn" type="button"><img src="/assets/img/icons/camera_icon.png"
-                        alt="Kamera ikon"></button>
-            </div>
+            <form id="profileImageForm" method="POST" action="/profil/update" enctype="multipart/form-data">
+                <div class="profile-image-wrapper">
+
+                    <img id="profilePreview" src="<?= !empty($user['user_profile_image'])
+                        ? '/assets/img/uploads/' . htmlspecialchars($user['user_profile_image'])
+                        : '/assets/img/uploads/default_profile_image.webp' ?>" alt="Profilbillede"
+                        class="profile-img profile-profileimg">
+
+                    <label class="camera-btn">
+                        <img src="/assets/img/icons/camera_icon.png" alt="Kamera ikon">
+
+                        <input id="profileImageInput" type="file" name="profile_image" accept="image/*" hidden>
+                    </label>
+
+                </div>
+            </form>
         </div>
     </section>
 
@@ -48,7 +59,9 @@
             <input type="password" name="user_password" placeholder="Adgangskode">
 
             <div class="profile-button-row">
-                <button class="btn btn-primary" type="submit">GEM ÆNDRINGER</button>
+                <button class="btn btn-primary" type="submit">
+                    GEM ÆNDRINGER
+                </button>
 
                 <button class="btn btn-delete" type="submit" form="deleteProfileForm">
                     SLET MIN PROFIL

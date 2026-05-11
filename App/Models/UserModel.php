@@ -137,6 +137,20 @@ class UserModel
         ]);
     }
 
+    public function updateProfileImage(int $userId, string $fileName): bool
+    {
+        $stmt = $this->db->prepare(
+            "UPDATE users
+            SET user_profile_image = :user_profile_image
+            WHERE user_pk = :user_pk"
+        );
+
+        return $stmt->execute([
+            ':user_profile_image' => $fileName,
+            ':user_pk' => $userId
+        ]);
+    }
+
     public function getAll(): array
     {
         $stmt = $this->db->query(

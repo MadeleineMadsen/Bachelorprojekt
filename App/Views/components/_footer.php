@@ -3,24 +3,24 @@
 // Footer navigation
 $FooterNavItems = [
     [
-        'key'   => 'events',
+        'key' => 'events',
         'label' => 'EVENTS',
-        'url'   => '/events'
+        'url' => '/events'
     ],
     [
-        'key'   => 'om',
+        'key' => 'om',
         'label' => 'OM OS',
-        'url'   => '/om'
+        'url' => '/om'
     ],
     [
-        'key'   => 'medlemmer',
+        'key' => 'medlemmer',
         'label' => 'MEDLEMMER',
-        'url'   => '/medlemmer'
+        'url' => '/medlemmer'
     ],
     [
-        'key'   => 'om',
+        'key' => 'om',
         'label' => 'KONTAKT',
-        'url'   => '/om#kontakt'
+        'url' => '/om#kontakt'
     ],
 ];
 
@@ -36,12 +36,12 @@ $socials = [
     [
         'name' => 'Instagram',
         'icon' => '/assets/img/icons/insta.svg',
-        'url'  => 'https://www.instagram.com/_ekdigital/'
+        'url' => 'https://www.instagram.com/_ekdigital/'
     ],
     [
         'name' => 'Facebook',
         'icon' => '/assets/img/icons/face.svg',
-        'url'  => 'https://www.facebook.com'
+        'url' => 'https://www.facebook.com'
     ],
 ];
 
@@ -56,10 +56,8 @@ $socials = [
     <div class="footer-container">
         <div class="footer-inner">
             <?php foreach ($FooterNavItems as $item): ?>
-                <a 
-                    href="<?= htmlspecialchars($item['url']) ?>"
-                    class="bottom-nav-link <?= ($currentPage === $item['key']) ? 'active' : '' ?>"
-                >
+                <a href="<?= htmlspecialchars($item['url']) ?>"
+                    class="bottom-nav-link <?= ($currentPage === $item['key']) ? 'active' : '' ?>">
                     <?= htmlspecialchars($item['label']) ?>
                 </a>
             <?php endforeach; ?>
@@ -88,5 +86,7 @@ $socials = [
 <script src="/assets/js/app.js"></script>
 <script src="/assets/js/utilities.js"></script>
 <script src="/assets/js/kalender.js"></script>
+<script src="/assets/js/profile.js"></script>
 </body>
+
 </html>

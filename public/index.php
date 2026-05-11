@@ -104,6 +104,7 @@ switch ($uri) {
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             $userId = $_SESSION['user']['user_pk'];
 
             $userName = trim($_POST['user_name'] ?? '');
@@ -114,16 +115,81 @@ switch ($uri) {
             $education = trim($_POST['education'] ?? '');
             $semester = trim($_POST['semester'] ?? '');
 
-            $userModel->updateProfile($userId, $userName, $lastName, $email);
+            // OPDATER BRUGERDATA
+            $userModel->updateProfile(
+                $userId,
+                $userName,
+                $lastName,
+                $email
+            );
 
+            // OPDATER PASSWORD
             if (!empty($password)) {
                 $userModel->updatePassword($userId, $password);
             }
 
+            // OPDATER MEMBER DATA
             if (!empty($education) || !empty($semester)) {
-                $userModel->updateMemberProfile($userId, $education, $semester);
+                $userModel->updateMemberProfile(
+                    $userId,
+                    $education,
+                    $semester
+                );
             }
 
+            // UPLOAD PROFILBILLEDE
+            if (
+                isset($_FILES['profile_image']) &&
+                $_FILES['profile_image']['error'] === UPLOAD_ERR_OK
+            ) {
+
+                $extension = strtolower(
+                    pathinfo(
+                        $_FILES['profile_image']['name'],
+                        PATHINFO_EXTENSION
+                    )
+                );
+
+                $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+
+                if (in_array($extension, $allowedExtensions)) {
+
+                    $fileName =
+                        'profile_' .
+                        $userId .
+                        '_' .
+                        time() .
+                        '.' .
+                        $extension;
+
+                    $uploadDir =
+                        __DIR__ . '/assets/img/uploads/';
+
+                    // Opret mappe hvis den ikke findes
+                    if (!is_dir($uploadDir)) {
+                        mkdir($uploadDir, 0777, true);
+                    }
+
+                    $uploadPath = $uploadDir . $fileName;
+
+                    // Flyt fil til uploads mappe
+                    if (
+                        move_uploaded_file(
+                            $_FILES['profile_image']['tmp_name'],
+                            $uploadPath
+                        )
+                    ) {
+
+                        // Gem filnavn i database
+                        $userModel->updateProfileImage(
+                            $userId,
+                            $fileName
+                        );
+                    }
+                }
+            }
+
+            // OPDATER SESSION
             $_SESSION['user']['user_name'] = $userName;
             $_SESSION['user']['user_last_name'] = $lastName;
             $_SESSION['user']['user_email'] = $email;
