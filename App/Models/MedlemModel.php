@@ -91,7 +91,7 @@ class MedlemModel {
     }
 
     public static function createApplication(
-        string $userId,
+        int $userId,
         int $educationFk,
         int $semesterFk,
         string $applicationText
@@ -113,7 +113,7 @@ class MedlemModel {
         ]);
     }
 
-    public static function hasApplication(string $userId): bool
+    public static function hasApplication(int $userId): bool
     {
         $db = getDB();
 
@@ -179,6 +179,22 @@ class MedlemModel {
 
         return $application ?: null;
     }
+
+    public static function updateUserProfileImage(int $userId, string $imageName): bool
+        {
+            $db = getDB();
+
+            $stmt = $db->prepare("
+                UPDATE users
+                SET user_profile_image = :image
+                WHERE user_pk = :user_id
+            ");
+
+            return $stmt->execute([
+                ':image' => $imageName,
+                ':user_id' => $userId
+            ]);
+        }
 
     public static function approve(string $memberId, string $adminId): bool {
         $db = getDB();

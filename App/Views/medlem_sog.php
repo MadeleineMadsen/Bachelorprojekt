@@ -108,7 +108,7 @@ include __DIR__ . '/micro/___banner.php';
 
         <!-- Højre side -->
         <div class="form-container membership-container">
-            <form method="POST" action="/medlem_sog">
+            <form method="POST" action="/medlem_sog" enctype="multipart/form-data">
                 <div class="form-row">
                     <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" disabled>
                     <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>"
@@ -134,10 +134,15 @@ include __DIR__ . '/micro/___banner.php';
                 </select>
                 <input type="email" value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" disabled>
 
-                <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende
-                    aktiviteter
-                    vil du have ansvaret for?</label>
+                <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende aktiviteter vil du have ansvaret for?</label>
                 <textarea id="description" name="description" required></textarea>
+
+                <label class="form-label">Upload profilbillede</label>
+                    <div class="upload-box">
+                        <input type="file" name="profile_image" accept="image/*" required>
+                        <div class="upload-icon"><img src="/assets/img/icons/upload_picture.png" alt="Upload billede ikon"></div>
+                        <p>Træk og slip et billede her<br>eller klik for at vælge fil</p>
+                    </div>
 
                 <button class="btn btn-primary" type="submit">SEND ANSØGNING</button>
             </form>
