@@ -14,10 +14,13 @@
             <h2 class="events-filter-title">KOMMENDE EVENTS</h2>
             <div class="events-filter-controls">
                 <select class="events-filter-select">
-                    <option value="">KATEGORIER</option>
-                    <option value="socialt">Socialt</option>
-                    <option value="fest">Fest</option>
-                    <option value="turnering">Turnering</option>
+                    <option value="" disabled selected hidden>KATEGORIER</option>
+                    <option value="">ALLE</option>
+                    <?php foreach ($categories as $cat): ?>
+                        <option value="<?= htmlspecialchars($cat['category_pk']) ?>">
+                            <?= htmlspecialchars($cat['category_name']) ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
                 <div class="events-filter-search">
                     <input type="text" placeholder="SØG" class="events-filter-input">
@@ -28,10 +31,11 @@
             </div>
         </div>
 
-        <div class="events-list">
+        <div class="events-list" id="events-list">
             <?php foreach ($events as $event): ?>
                 <?php include __DIR__ . '/components/_card_list.php'; ?>
             <?php endforeach; ?>
         </div>
 
 </main>
+

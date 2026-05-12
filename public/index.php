@@ -212,6 +212,7 @@ switch ($uri) {
 
         require_once __DIR__ . '/../App/Controllers/EventController.php';
         $events = EventController::getAll();
+        $categories = EventController::getCategories();
         $currentPage = 'events';
         $view = '/events.php';
         break;
@@ -229,8 +230,32 @@ switch ($uri) {
 
         $dato = $event['dato'];
         $participants = EventController::getParticipants($_GET['id'] ?? '');
+        $isRegistered = $isLoggedIn && EventController::isRegistered($_GET['id'] ?? '', $_SESSION['user']['user_pk']);
         $currentPage = 'events';
         $view = '/eventside.php';
+        break;
+
+    // TILMELD EVENT
+    case '/event_tilmeld':
+        if (!$isLoggedIn) {
+            header('Location: /log_ind');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_once __DIR__ . '/../App/Controllers/EventController.php';
+            $eventId = $_POST['event_id'] ?? '';
+            $action  = $_POST['action'] ?? 'tilmeld';
+
+            if ($action === 'frameld') {
+                EventController::unregister($eventId, $_SESSION['user']['user_pk']);
+            } else {
+                EventController::register($eventId, $_SESSION['user']['user_pk']);
+            }
+
+            header('Location: /eventside?id=' . urlencode($eventId));
+            exit;
+        }
         break;
 
     // TILMELDTE EVENTS
@@ -240,10 +265,50 @@ switch ($uri) {
             exit;
         }
 
+        require_once __DIR__ . '/../App/Controllers/EventController.php';
+        $events = EventController::getByUser($_SESSION['user']['user_pk']);
         $currentPage = 'event_user';
         $view = '/event_user.php';
         $isProfileSection = true;
         break;
+
+    // REDIGER EVENT (ADMIN)
+    case '/event_rediger':
+        if (!$isAdmin) {
+            header('Location: /events');
+            exit;
+        }
+
+        require_once __DIR__ . '/../App/Controllers/EventController.php';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            EventController::update();
+            exit;
+        }
+
+        $event = EventController::getById($_GET['id'] ?? '');
+        if (!$event) {
+            header('Location: /events');
+            exit;
+        }
+
+        $categories = EventController::getCategories();
+        $currentPage = 'events';
+        $view = '/event_opret.php';
+        $isProfileSection = true;
+        break;
+
+    // SLET EVENT (ADMIN)
+    case '/event_slet':
+        if (!$isAdmin || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: /events');
+            exit;
+        }
+
+        require_once __DIR__ . '/../App/Controllers/EventController.php';
+        EventController::delete($_POST['event_id'] ?? '');
+        header('Location: /events');
+        exit;
 
     // OPRET EVENT (ADMIN)
     case '/event_opret':
@@ -252,6 +317,14 @@ switch ($uri) {
             exit;
         }
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_once __DIR__ . '/../App/Controllers/EventController.php';
+            EventController::create();
+            exit;
+        }
+
+        require_once __DIR__ . '/../App/Controllers/EventController.php';
+        $categories = EventController::getCategories();
         $currentPage = 'event_opret';
         $view = '/event_opret.php';
         $isProfileSection = true;
@@ -264,8 +337,12 @@ switch ($uri) {
             exit;
         }
 
+        require_once __DIR__ . '/../App/Controllers/EventController.php';
+        $calendarEvents = EventController::getAllForCalendar();
+        $registeredEventIds = $isAdmin ? [] : EventController::getRegisteredEventIds($_SESSION['user']['user_pk']);
+
         $currentPage = 'kalender';
-        $view = $isAdmin ? '/kalender_admin.php' : '/kalender_user.php';
+        $view = '/kalender.php';
         $isProfileSection = true;
         break;
 

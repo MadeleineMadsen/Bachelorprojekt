@@ -1,4 +1,4 @@
-<article class="card-event-list">
+<article class="card-event-list" data-category="<?= htmlspecialchars($event['category_fk'] ?? '') ?>" data-title="<?= htmlspecialchars(strtolower($event['event_title'])) ?>">
     <div class="card-event-list-img-wrap">
         <div class="card-event-list-date">
             <span class="card-event-list-day"><?= htmlspecialchars($event['date_day']) ?></span>
@@ -12,7 +12,7 @@
     </div>
     <div class="card-event-list-body">
         <div class="card-event-list-category">
-            <span class="card-event-list-tag"><?= htmlspecialchars($event['event_category'] ?? '') ?></span>
+            <span class="card-event-list-tag"><?= htmlspecialchars($event['category_name'] ?? '') ?></span>
         </div>
         <h3 class="card-event-list-title"><?= htmlspecialchars($event['event_title']) ?></h3>
         <p class="card-event-list-desc"><?= htmlspecialchars($event['event_description']) ?></p>
@@ -32,7 +32,16 @@
                     <?= htmlspecialchars($event['participant_count'] ?? '0') ?> deltagere
                 </span>
             </div>
-            <a href="/eventside?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-secondary card-event-list-link">Læs mere</a>
+            <div class="card-event-list-actions">
+                <a href="/eventside?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-secondary card-event-list-link"><?= (isset($isAdmin) && $isAdmin) ? 'Se event' : 'Læs mere' ?></a>
+                <?php if (isset($isAdmin) && $isAdmin): ?>
+                    <a href="/event_rediger?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-secondary">Rediger</a>
+                    <form method="POST" action="/event_slet" onsubmit="return confirm('Er du sikker på at du vil slette dette event?')">
+                        <input type="hidden" name="event_id" value="<?= htmlspecialchars($event['event_pk']) ?>">
+                        <button type="submit" class="btn btn-delete">Slet</button>
+                    </form>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </article>

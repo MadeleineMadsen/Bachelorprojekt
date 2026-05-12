@@ -57,6 +57,27 @@ INSERT INTO `educations` (`education_pk`, `education_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur-dump for tabellen `event_categories`
+--
+
+CREATE TABLE `event_categories` (
+  `category_pk` char(36) NOT NULL,
+  `category_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Data dump for tabellen `event_categories`
+--
+
+INSERT INTO `event_categories` (`category_pk`, `category_name`) VALUES
+('1', 'Social'),
+('2', 'Faglig'),
+('3', 'Krea'),
+('4', 'Sport');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur-dump for tabellen `events`
 --
 
@@ -70,7 +91,7 @@ CREATE TABLE `events` (
   `event_time` time NOT NULL,
   `event_end_time` time DEFAULT NULL,
   `event_location` varchar(150) DEFAULT NULL,
-  `event_category` varchar(100) DEFAULT NULL,
+  `category_fk` char(36) DEFAULT NULL,
   `event_image` varchar(255) DEFAULT NULL,
   `created_by_fk` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -80,10 +101,10 @@ CREATE TABLE `events` (
 -- Data dump for tabellen `events`
 --
 
-INSERT INTO `events` (`event_pk`, `event_title`, `event_subtitle`, `event_description`, `event_expectations`, `event_date`, `event_time`, `event_end_time`, `event_location`, `event_category`, `event_image`, `created_by_fk`, `created_at`) VALUES
-('df5ef636-4478-11f1-b685-0242ac1d0002', 'Fredagsbar', 'GBG Social inviterer til en hyggelig fredagsbar, h.', 'GBG Social inviterer til en hyggelig fredagsbar, hvor studerende kan mødes og skabe nye relationer i afslappede omgivelser.', 'Kolde drinks i baren\r\nGod musik og stemning\r\nMulighed for at møde nye mennesker\r\nHygge og fællesskab', '2026-02-20', '18:00:00', '23:00:00', 'KEA Kantinen', 'Social', 'fredagsbar-udenfor.webp', 1, '2026-05-07 12:18:16'),
-('df5efe72-4478-11f1-b685-0242ac1d0002', 'Fodboldturnering', 'Torsdag d. 5 marts kl. 14:00', 'Kom og vær med til en aktiv dag med fodbold, hvor både begyndere og øvede kan deltage.', 'Holdturnering\r\nPræmier til vinderne\r\nGod energi og fællesskab\r\nMulighed for nye bekendtskaber', '2026-03-05', '14:00:00', '18:00:00', 'KEA Boldbane', 'Sport', 'turnering.webp', 1, '2026-05-07 12:18:16'),
-('df5effe9-4478-11f1-b685-0242ac1d0002', 'CV Workshop', 'Tirsdag d. 10 marts kl. 10:00', 'Få hjælp til at optimere dit CV og forbedre dine jobmuligheder gennem sparring og feedback.', 'Feedback på CV\r\nTips til ansøgninger\r\nVejledning fra erfarne studerende\r\nMulighed for spørgsmål', '2026-03-10', '10:00:00', '13:00:00', 'Lokale A1', 'Fagligt', 'workshop.webp', 1, '2026-05-07 12:18:16');
+INSERT INTO `events` (`event_pk`, `event_title`, `event_subtitle`, `event_description`, `event_expectations`, `event_date`, `event_time`, `event_end_time`, `event_location`, `category_fk`, `event_image`, `created_by_fk`, `created_at`) VALUES
+('df5ef636-4478-11f1-b685-0242ac1d0002', 'Fredagsbar', 'GBG Social inviterer til en hyggelig fredagsbar, h.', 'GBG Social inviterer til en hyggelig fredagsbar, hvor studerende kan mødes og skabe nye relationer i afslappede omgivelser.', 'Kolde drinks i baren\r\nGod musik og stemning\r\nMulighed for at møde nye mennesker\r\nHygge og fællesskab', '2026-02-20', '18:00:00', '23:00:00', 'KEA Kantinen', '1', 'fredagsbar-udenfor.webp', 1, '2026-05-07 12:18:16'),
+('df5efe72-4478-11f1-b685-0242ac1d0002', 'Fodboldturnering', 'Torsdag d. 5 marts kl. 14:00', 'Kom og vær med til en aktiv dag med fodbold, hvor både begyndere og øvede kan deltage.', 'Holdturnering\r\nPræmier til vinderne\r\nGod energi og fællesskab\r\nMulighed for nye bekendtskaber', '2026-03-05', '14:00:00', '18:00:00', 'KEA Boldbane', '4', 'turnering.webp', 1, '2026-05-07 12:18:16'),
+('df5effe9-4478-11f1-b685-0242ac1d0002', 'CV Workshop', 'Tirsdag d. 10 marts kl. 10:00', 'Få hjælp til at optimere dit CV og forbedre dine jobmuligheder gennem sparring og feedback.', 'Feedback på CV\r\nTips til ansøgninger\r\nVejledning fra erfarne studerende\r\nMulighed for spørgsmål', '2026-03-10', '10:00:00', '13:00:00', 'Lokale A1', '2', 'workshop.webp', 1, '2026-05-07 12:18:16');
 
 --
 -- Triggers/udløsere `events`
@@ -291,11 +312,18 @@ ALTER TABLE `educations`
   ADD UNIQUE KEY `education_name` (`education_name`);
 
 --
+-- Indeks for tabel `event_categories`
+--
+ALTER TABLE `event_categories`
+  ADD PRIMARY KEY (`category_pk`);
+
+--
 -- Indeks for tabel `events`
 --
 ALTER TABLE `events`
   ADD PRIMARY KEY (`event_pk`),
-  ADD KEY `fk_event_created_by` (`created_by_fk`);
+  ADD KEY `fk_event_created_by` (`created_by_fk`),
+  ADD KEY `fk_event_category` (`category_fk`);
 
 --
 -- Indeks for tabel `event_registrations`
@@ -366,7 +394,8 @@ ALTER TABLE `users`
 -- Begrænsninger for tabel `events`
 --
 ALTER TABLE `events`
-  ADD CONSTRAINT `fk_event_created_by` FOREIGN KEY (`created_by_fk`) REFERENCES `users` (`user_pk`);
+  ADD CONSTRAINT `fk_event_created_by` FOREIGN KEY (`created_by_fk`) REFERENCES `users` (`user_pk`),
+  ADD CONSTRAINT `fk_event_category` FOREIGN KEY (`category_fk`) REFERENCES `event_categories` (`category_pk`);
 
 --
 -- Begrænsninger for tabel `event_registrations`

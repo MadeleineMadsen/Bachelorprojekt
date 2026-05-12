@@ -87,6 +87,7 @@ $socials = [
 <script src="/assets/js/utilities.js"></script>
 <script src="/assets/js/kalender.js"></script>
 <script src="/assets/js/profile.js"></script>
+<script src="/assets/js/events.js"></script>
 </body>
 
 </html>
