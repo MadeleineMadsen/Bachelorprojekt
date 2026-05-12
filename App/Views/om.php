@@ -60,12 +60,13 @@ $members = [
 <main class="main-om">
     <section class="om-hero">
         <div class="img-hero">
-                <h1 class="om-header">OM OS</h1>
-                <img class="om-img" src="/assets/img/om.webp" alt="Billede af unge kvinder fra GBG Social">
+            <h1 class="om-header">OM OS</h1>
+            <img class="om-img" src="/assets/img/om.webp" alt="Billede af unge kvinder fra GBG Social">
             <div class=" container sub-header">
-            <h2 class="sub">DEN SOCIALE STUDENTERFORENING</h2>
-            <p class="sub-text">GBG Social er for alle studerende på Guldbergsgade.</p>
-            <p class="sub-text">Vi skaber fællesskab gennem sjove events, gode vibes og uforglemmelige oplevelser</p>
+                <h2 class="sub">DEN SOCIALE STUDENTERFORENING</h2>
+                <p class="sub-text">GBG Social er for alle studerende på Guldbergsgade.</p>
+                <p class="sub-text">Vi skaber fællesskab gennem sjove events, gode vibes og uforglemmelige oplevelser
+                </p>
             </div>
         </div>
     </section>
@@ -78,10 +79,11 @@ $members = [
 
     <section id="vil-du">
         <section class="vil-du-container">
-        <h2 class="vil-du-sub sub">VIL DU VÆRE MED?</h2>
-        <img class="vil-du-img" src="/assets/img/vil-du.webp" alt="Billede af studerende der smiler til kameraet">
-        <p class="sub-text vil-du-text">Har du lyst til at være en del af et socialt fællesskab, hvor du kan være med til at planlægge og stå for de fedeste events?</p>
-        <button class="btn btn-primary">BLIV MEDLEM</button>
+            <h2 class="vil-du-sub sub">VIL DU VÆRE MED?</h2>
+            <img class="vil-du-img" src="/assets/img/vil-du.webp" alt="Billede af studerende der smiler til kameraet">
+            <p class="sub-text vil-du-text">Har du lyst til at være en del af et socialt fællesskab, hvor du kan være
+                med til at planlægge og stå for de fedeste events?</p>
+            <button class="btn btn-primary">BLIV MEDLEM</button>
         </section>
     </section>
 
@@ -147,14 +149,14 @@ $members = [
 
         <img class="værdi-img" src="/assets/img/værdi.webp" alt="Studerende der kigger på solnedgangen sammen">
     </section>
-    
+
     <!-- id´et bruges til at der scroller hertil når man klikker kontakt i footer -->
     <section class="kontakt container" id="kontakt">
         <h2 class="sub">KONTAKT OS</h2>
         <p class="sub-text">Har du spørgsmål, ideer til events eller lyst til at samarbejde? Så ræk endelig ud!</p>
 
         <div class="kontakt-container">
-            <img src="/assets/img/icons/svg" alt="Mail icon">
+            <img src="/assets/img/icons/mail.svg" alt="Mail icon">
             <div>
                 <p class="sub-text">GBG@SOCIAL.COM</p>
             </div>
