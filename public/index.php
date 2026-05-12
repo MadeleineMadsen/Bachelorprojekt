@@ -2,6 +2,7 @@
 session_start();
 
 require_once __DIR__ . '/../private/db.php';
+require_once __DIR__ . '/../private/helpers.php';
 require_once __DIR__ . '/../App/Controllers/AuthController.php';
 require_once __DIR__ . '/../App/Controllers/MedlemController.php';
 
@@ -59,6 +60,11 @@ switch ($uri) {
         $view = '/opret_dig.php';
         break;
 
+    // VERIFICER BRUGER
+    case '/verificer_bruger':
+        $authController->verifyUser();
+        exit;
+
     // LOG UD
     case '/log_ud':
         session_destroy();
@@ -107,8 +113,8 @@ switch ($uri) {
             $email = trim($_POST['user_email'] ?? '');
             $password = $_POST['user_password'] ?? '';
 
-            $education = trim($_POST['education'] ?? '');
-            $semester = trim($_POST['semester'] ?? '');
+            $education = (int) ($_POST['education_fk'] ?? 0);
+            $semester = (int) ($_POST['semester_fk'] ?? 0);
 
             // OPDATER BRUGERDATA
             $userModel->updateProfile(
@@ -124,64 +130,12 @@ switch ($uri) {
             }
 
             // OPDATER MEMBER DATA
-            if (!empty($education) || !empty($semester)) {
+            if ($education > 0 && $semester > 0) {
                 $userModel->updateMemberProfile(
                     $userId,
                     $education,
                     $semester
                 );
-            }
-
-            // UPLOAD PROFILBILLEDE
-            if (
-                isset($_FILES['profile_image']) &&
-                $_FILES['profile_image']['error'] === UPLOAD_ERR_OK
-            ) {
-
-                $extension = strtolower(
-                    pathinfo(
-                        $_FILES['profile_image']['name'],
-                        PATHINFO_EXTENSION
-                    )
-                );
-
-                $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
-
-                if (in_array($extension, $allowedExtensions)) {
-
-                    $fileName =
-                        'profile_' .
-                        $userId .
-                        '_' .
-                        time() .
-                        '.' .
-                        $extension;
-
-                    $uploadDir =
-                        __DIR__ . '/assets/img/uploads/';
-
-                    // Opret mappe hvis den ikke findes
-                    if (!is_dir($uploadDir)) {
-                        mkdir($uploadDir, 0777, true);
-                    }
-
-                    $uploadPath = $uploadDir . $fileName;
-
-                    // Flyt fil til uploads mappe
-                    if (
-                        move_uploaded_file(
-                            $_FILES['profile_image']['tmp_name'],
-                            $uploadPath
-                        )
-                    ) {
-
-                        // Gem filnavn i database
-                        $userModel->updateProfileImage(
-                            $userId,
-                            $fileName
-                        );
-                    }
-                }
             }
 
             // OPDATER SESSION
@@ -191,6 +145,44 @@ switch ($uri) {
 
             header('Location: /profil');
             exit;
+        }
+
+        header('Location: /profil');
+        exit;
+
+    // PROFIL - OPDATER KUN PROFILBILLEDE
+    case '/profil/update-image':
+        if (!$isLoggedIn) {
+            header('Location: /log_ind');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userId = $_SESSION['user']['user_pk'];
+
+            if (
+                isset($_FILES['profile_image']) &&
+                $_FILES['profile_image']['error'] === UPLOAD_ERR_OK
+            ) {
+                $extension = strtolower(pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION));
+                $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+
+                if (in_array($extension, $allowedExtensions)) {
+                    $fileName = 'profile_' . $userId . '_' . time() . '.' . $extension;
+                    $uploadDir = __DIR__ . '/assets/img/uploads/';
+
+                    if (!is_dir($uploadDir)) {
+                        mkdir($uploadDir, 0777, true);
+                    }
+
+                    $uploadPath = $uploadDir . $fileName;
+
+                    if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadPath)) {
+                        $userModel->updateProfileImage($userId, $fileName);
+                        $_SESSION['user']['user_profile_image'] = $fileName;
+                    }
+                }
+            }
         }
 
         header('Location: /profil');
@@ -317,17 +309,17 @@ switch ($uri) {
         $isProfileSection = true;
         break;
 
-        // SLET MEDLEMSSKAB
+    // SLET MEDLEMSSKAB
     case '/slet_medlem':
         MedlemController::delete();
         break;
 
-        // ALLE MEDLEMMER
+    // ALLE MEDLEMMER
     case '/medlemmer':
         $members = MedlemController::getApproved();
         $educations = MedlemModel::getEducations();
         $memberStats = MedlemController::getStats();
-        
+
         $currentPage = 'medlemmer';
         $view = '/medlemmer.php';
         break;

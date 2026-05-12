@@ -14,22 +14,52 @@ class UserModel
         string $lastName,
         string $email,
         string $password,
+        string $verificationKey
     ): bool {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $stmt = $this->db->prepare(
             "INSERT INTO users 
-                (user_name, user_last_name, user_email, user_password)
-            VALUES 
-                (:user_name, :user_last_name, :user_email, :user_password)"
+            (
+                user_name, 
+                user_last_name, 
+                user_email, 
+                user_password,
+                user_verification_key
+            )
+        VALUES 
+            (
+                :user_name, 
+                :user_last_name, 
+                :user_email, 
+                :user_password,
+                :user_verification_key
+            )"
         );
 
         return $stmt->execute([
             ':user_name' => $userName,
             ':user_last_name' => $lastName,
             ':user_email' => $email,
-            ':user_password' => $hashedPassword
+            ':user_password' => $hashedPassword,
+            ':user_verification_key' => $verificationKey
         ]);
+    }
+
+    public function verifyUser(string $key): bool
+    {
+        $stmt = $this->db->prepare("
+        UPDATE users
+        SET user_verified_at = NOW(),
+            user_verification_key = NULL
+        WHERE user_verification_key = ?
+            AND user_verified_at IS NULL
+            AND user_deleted_at IS NULL
+    ");
+
+        $stmt->execute([$key]);
+
+        return $stmt->rowCount() > 0;
     }
 
     public function findByEmail(string $email): ?array

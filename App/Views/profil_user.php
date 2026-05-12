@@ -18,7 +18,7 @@
                 <p>Her kan du se og redigere dine personlige oplysninger</p>
             </div>
 
-            <form id="profileImageForm" method="POST" action="/profil/update" enctype="multipart/form-data">
+            <form id="profileImageForm" method="POST" action="/profil/update-image" enctype="multipart/form-data">
                 <div class="profile-image-wrapper">
                     <img id="profilePreview" src="<?= !empty($user['user_profile_image'])
                         ? '/assets/img/uploads/' . htmlspecialchars($user['user_profile_image'])
@@ -48,7 +48,7 @@
             <input type="email" name="user_email" value="<?= htmlspecialchars($user['user_email']) ?>"
                 placeholder="Studiemail" required>
 
-            <input type="password" name="user_password" placeholder="Adgangskode">
+            <input type="password" name="user_password" placeholder="Ret adgangskode">
 
             <div class="profile-button-row">
                 <button class="btn btn-primary" type="submit">
