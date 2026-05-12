@@ -119,7 +119,7 @@ $members = [
             </section>
         </div>
         <div class="team-btn-wrapper">
-            <a href="/../App/Views/medlemmer.php" class="btn btn-nav btn-om">SE ALLE MEDLEMMER</a>
+            <a href="/medlemmer" class="btn btn-nav btn-om">SE ALLE MEDLEMMER</a>
         </div>
     </section>
 

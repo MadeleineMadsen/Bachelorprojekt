@@ -1,4 +1,5 @@
 /* members.css */
+@import '/medlem_godkend.css';
 
 /* ========== MOBILE (FIRST) ========== */
 
@@ -57,61 +58,6 @@
   font-size: var(--font-mobil-text);
   font-weight: var(--poppins-font-bold);
   margin: 0;
-}
-
-/* Filters */
-.members-filters {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 37px;
-  margin-bottom: var(--gap-sm);
-}
-
-.search-field,
-.education-filter {
-  border: 1px solid var(--font-color-black);
-  height: 40px;
-  display: flex;
-  align-items: center;
-  background: var(--bg-color-white);
-}
-
-.members-filters .search-field {
-  width: 100px;
-  padding: 0 var(--gap-xs);
-  flex-direction: row-reverse;
-}
-
-.members-filters .search-field span {
-  font-size: var(--font-mobil-text);
-}
-
-.members-filters .search-field input {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  padding: 0;
-  font-size: var(--font-mobil-text);
-  background: transparent;
-}
-
-.members-filters .search-field input::placeholder {
-  color: var(--font-color-black);
-}
-
-.education-filter {
-  width: 160px;
-}
-
-.education-filter select {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  font-size: var(--font-mobil-text);
-  padding: 0 var(--gap-xs);
 }
 
 /* Grid */
@@ -208,24 +154,6 @@
   }
 
   .members-stat p {
-    font-size: var(--font-desktop-text-small);
-  }
-
-  .members-filters {
-    gap: 0;
-    margin-bottom: var(--gap-md);
-  }
-
-  .members-filters .search-field {
-    width: 450px;
-  }
-
-  .education-filter {
-    width: 255px;
-  }
-
-  .members-filters .search-field input,
-  .education-filter select {
     font-size: var(--font-desktop-text-small);
   }
 

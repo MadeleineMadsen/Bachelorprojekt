@@ -63,6 +63,48 @@ class UserController
         exit;
     }
 
+    public function updateProfileImage(): void
+    {
+        if (!isset($_SESSION['user'])) {
+            header('Location: /log_ind');
+            exit;
+        }
+
+        $userId = $_SESSION['user']['user_pk'];
+
+        if (!isset($_FILES['profile_image']) || $_FILES['profile_image']['error'] !== UPLOAD_ERR_OK) {
+            header('Location: /profil');
+            exit;
+        }
+
+        $uploadDir = __DIR__ . '/../../public/assets/img/uploads/';
+
+        $fileTmp = $_FILES['profile_image']['tmp_name'];
+        $fileName = $_FILES['profile_image']['name'];
+        $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+
+        if (!in_array($fileExt, $allowedExtensions)) {
+            header('Location: /profil');
+            exit;
+        }
+
+        $profileImageName = uniqid('profile_', true) . '.' . $fileExt;
+
+        if (!move_uploaded_file($fileTmp, $uploadDir . $profileImageName)) {
+            header('Location: /profil');
+            exit;
+        }
+
+        $this->userModel->updateProfileImage($userId, $profileImageName);
+
+        $_SESSION['user']['user_profile_image'] = $profileImageName;
+
+        header('Location: /profil');
+        exit;
+    }
+
     public function members(): void
     {
         $users = $this->userModel->getAll();
