@@ -117,7 +117,7 @@ $members = [
             </section>
         </div>
         <div class="team-btn-wrapper">
-            <a href="/../App/Views/medlemmer.php" class="btn btn-nav btn-om">SE ALLE MEDLEMMER</a>
+            <a href="/medlemmer" class="btn btn-nav btn-om">SE ALLE MEDLEMMER</a>
         </div>
     </section>
 
@@ -154,7 +154,7 @@ $members = [
         <p class="sub-text">Har du spørgsmål, ideer til events eller lyst til at samarbejde? Så ræk endelig ud!</p>
 
         <div class="kontakt-container">
-            <img src="/assets/img/icons/svg" alt="Mail icon">
+            <img src="/assets/img/icons/mail.svg" alt="Mail icon">
             <div>
                 <p class="sub-text">GBG@SOCIAL.COM</p>
             </div>

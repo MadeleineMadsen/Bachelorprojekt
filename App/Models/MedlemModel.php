@@ -17,7 +17,8 @@ class MedlemModel {
                 m.applied_at,
                 u.user_name,
                 u.user_last_name,
-                u.user_email
+                u.user_email,
+                u.user_profile_image
             FROM members m
             INNER JOIN users u ON m.user_fk = u.user_pk
             LEFT JOIN educations e ON m.education_fk = e.education_pk
@@ -76,7 +77,8 @@ class MedlemModel {
                 m.applied_at,
                 u.user_name,
                 u.user_last_name,
-                u.user_email
+                u.user_email,
+                u.user_profile_image
             FROM members m
             INNER JOIN users u ON m.user_fk = u.user_pk
             LEFT JOIN educations e ON m.education_fk = e.education_pk
@@ -91,7 +93,7 @@ class MedlemModel {
     }
 
     public static function createApplication(
-        string $userId,
+        int $userId,
         int $educationFk,
         int $semesterFk,
         string $applicationText
@@ -113,7 +115,7 @@ class MedlemModel {
         ]);
     }
 
-    public static function hasApplication(string $userId): bool
+    public static function hasApplication(int $userId): bool
     {
         $db = getDB();
 
@@ -179,6 +181,40 @@ class MedlemModel {
 
         return $application ?: null;
     }
+
+    public static function getUserProfileImage(int $userId): ?string
+    {
+        $db = getDB();
+
+        $stmt = $db->prepare("
+            SELECT user_profile_image
+            FROM users
+            WHERE user_pk = ?
+            LIMIT 1
+        ");
+
+        $stmt->execute([$userId]);
+
+        $image = $stmt->fetchColumn();
+
+        return $image ?: null;
+    }
+
+    public static function updateUserProfileImage(int $userId, string $imageName): bool
+        {
+            $db = getDB();
+
+            $stmt = $db->prepare("
+                UPDATE users
+                SET user_profile_image = :image
+                WHERE user_pk = :user_id
+            ");
+
+            return $stmt->execute([
+                ':image' => $imageName,
+                ':user_id' => $userId
+            ]);
+        }
 
     public static function approve(string $memberId, string $adminId): bool {
         $db = getDB();

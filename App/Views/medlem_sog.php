@@ -1,5 +1,6 @@
 <?php
-
+$profileImage = $_SESSION['user']['user_profile_image'] ?? null;
+$hasProfileImage = !empty($profileImage);
 ?>
 
 <!-- Hero section -->
@@ -77,7 +78,7 @@ include __DIR__ . '/micro/___banner.php';
         <div class="stat">
             <img src="assets/img/icons/user_account.svg" alt="">
             <div class="stat-text">
-                <h3>+30</h3>
+                <h3><?= $memberStats['active_members']; ?></h3>
                 <p>AKTIVE MEDLEMMER</p>
             </div>
         </div>
@@ -85,7 +86,7 @@ include __DIR__ . '/micro/___banner.php';
         <div class="stat">
             <img src="assets/img/icons/calender.png" alt="">
             <div class="stat-text">
-                <h3>+10</h3>
+                <h3>+<?= $memberStats['events_this_year']; ?></h3>
                 <p>EVENTS OM ÅRET</p>
             </div>
         </div>
@@ -119,7 +120,7 @@ include __DIR__ . '/micro/___banner.php';
 
         <!-- Højre side -->
         <div class="form-container membership-container">
-            <form method="POST" action="/medlem_sog">
+            <form method="POST" action="/medlem_sog" enctype="multipart/form-data">
                 <div class="form-row">
                     <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" disabled>
                     <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>"
@@ -137,7 +138,6 @@ include __DIR__ . '/micro/___banner.php';
 
                 <select name="semester_fk" required>
                     <option value="">Vælg semester</option>
-
                     <?php foreach ($semesters as $semester): ?>
                         <option value="<?= $semester['semester_pk'] ?>">
                             <?= htmlspecialchars($semester['semester_number']) ?>. semester
@@ -146,10 +146,35 @@ include __DIR__ . '/micro/___banner.php';
                 </select>
                 <input type="email" value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" disabled>
 
-                <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende
-                    aktiviteter
-                    vil du have ansvaret for?</label>
+                <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende aktiviteter vil du have ansvaret for?</label>
                 <textarea id="description" name="description" required></textarea>
+
+                <label class="form-label">Upload profilbillede</label>
+
+                <label class="upload-box" for="profile_image">
+                    <input id="profile_image" type="file" name="profile_image" accept="image/*">
+
+                    <div class="upload-icon">
+                        <img src="/assets/img/icons/upload_picture.png" alt="Upload billede ikon">
+                    </div>
+
+                    <p id="uploadText">
+                        <?php if ($hasProfileImage): ?>
+                            Du har allerede et profilbillede<br>Upload kun hvis du vil skifte det
+                        <?php else: ?>
+                            Træk og slip et billede her<br>eller klik for at vælge fil
+                        <?php endif; ?>
+                    </p>
+
+                    <img 
+                        id="uploadPreview"
+                        src="<?= $hasProfileImage
+                            ? '/assets/img/uploads/' . htmlspecialchars($profileImage)
+                            : '/assets/img/uploads/default_profile_image.webp' ?>"
+                        alt="Profil preview"
+                        class="upload-preview"
+                    >
+                </label>
 
                 <button class="btn btn-primary" type="submit">SEND ANSØGNING</button>
             </form>

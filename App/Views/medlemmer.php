@@ -33,26 +33,29 @@ include __DIR__ . '/micro/___banner.php';
             </div>
         </div>
 
-        <div class="members-filters">
-            <label class="search-field" for="memberSearch">
-                <span aria-hidden="true">&#128269;</span>
-                <input id="memberSearch" type="search" name="search" placeholder="SØG">
-            </label>
+<div class="filter-container">
+    <form class="search-form" action="" onsubmit="return false;">
 
-            <label class="education-filter" for="educationFilter">
-                <span class="sr-only">Filtrer efter uddannelse</span>
+        <div class="search-field">
+            <input id="memberSearch" type="search" name="search" placeholder="SØG">
 
-                <select id="educationFilter" name="education">
-                    <option value="">UDDANNELSE</option>
-
-                    <?php foreach ($educations as $education): ?>
-                        <option value="<?= $education['education_pk']; ?>">
-                            <?= htmlspecialchars($education['education_name']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </label>
+            <button type="button" aria-label="Søg">
+                <img src="/assets/img/icons/search.svg" alt="">
+            </button>
         </div>
+
+        <select name="education" id="educationFilter" class="filter-select">
+            <option value="">ALLE MEDLEMMER</option>
+
+            <?php foreach ($educations as $education): ?>
+                <option value="<?= $education['education_pk']; ?>">
+                    <?= htmlspecialchars($education['education_name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+    </form>
+</div>
 
         <section class="members-grid" aria-label="Medlemmer">
             <?php foreach ($members as $member): ?>
@@ -61,8 +64,14 @@ include __DIR__ . '/micro/___banner.php';
                     data-name="<?= strtolower(htmlspecialchars($member['user_name'])); ?>"
                     data-education="<?= $member['education_fk']; ?>"
                 >
-                    <img src="/public/assets/img/uploads/test_profile.png" alt="Portræt af <?= htmlspecialchars($member['user_name']); ?>" class="member-img">
-
+                    <img 
+                        src="<?= !empty($member['user_profile_image'])
+                            ? '/assets/img/uploads/' . htmlspecialchars($member['user_profile_image'])
+                            : '/assets/img/uploads/default_profile_image.webp' ?>"
+                        alt="Portræt af <?= htmlspecialchars($member['user_name']); ?>"
+                        class="member-img"
+                    >
+                    
                     <h3><?= htmlspecialchars($member['user_name']); ?></h3>
                     <p><?= htmlspecialchars($member['education_name']); ?></p>
                     <p><?= htmlspecialchars($member['semester_number']); ?>. semester</p>
@@ -70,9 +79,6 @@ include __DIR__ . '/micro/___banner.php';
             <?php endforeach; ?>
         </section>
 
-        <div class="members-link-wrapper">
-            <a href="#" class="members-link btn-nav">SE ALLE MEDLEMMER</a>
-        </div>
 
     </section>
 

@@ -41,7 +41,8 @@ class AuthController
             'user_name' => $user['user_name'],
             'user_last_name' => $user['user_last_name'],
             'user_email' => $user['user_email'],
-            'role_fk' => $user['role_fk']
+            'role_fk' => $user['role_fk'],
+            'user_profile_image' => $user['user_profile_image']
         ];
 
         header('Location: /profil');

@@ -10,6 +10,9 @@
 /* Utilities - genbrugelige utility klasser */
 @import "./utilities.css";
 
+/* Filter - input felter med filtrering */
+@import "./filter.css";
+
 /* Cards */
 @import "./card-info.css";
 @import "./card-list.css";
