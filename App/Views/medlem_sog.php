@@ -102,7 +102,7 @@ include __DIR__ . '/micro/___banner.php';
     </section>
 
     <!-- Bliv en del af holdet -->
-    <section class="get-membership">
+    <section class="get-membership" id="membership-form">
 
         <!-- Venstre side -->
         <div class="membership-info">
@@ -120,6 +120,19 @@ include __DIR__ . '/micro/___banner.php';
 
         <!-- Højre side -->
         <div class="form-container membership-container">
+                <?php if (isset($_SESSION['success'])): ?>
+                    <div class="form-message success">
+                        <?= htmlspecialchars($_SESSION['success']); ?>
+                    </div>
+                    <?php unset($_SESSION['success']); ?>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="form-message error">
+                        <?= htmlspecialchars($_SESSION['error']); ?>
+                    </div>
+                    <?php unset($_SESSION['error']); ?>
+                <?php endif; ?>
             <form method="POST" action="/medlem_sog" enctype="multipart/form-data">
                 <div class="form-row">
                     <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" disabled>

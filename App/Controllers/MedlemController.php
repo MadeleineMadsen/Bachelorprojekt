@@ -29,14 +29,16 @@ class MedlemController {
         $educationFk = (int) ($_POST['education_fk'] ?? 0);
         $semesterFk = (int) ($_POST['semester_fk'] ?? 0);
         $applicationText = trim($_POST['description'] ?? '');
-
+        
         if ($educationFk <= 0 || $semesterFk <= 0 || $applicationText === '') {
-            header('Location: /medlem_sog?error=missing_fields');
+            $_SESSION['error'] = 'Udfyld venligst alle felter i ansøgningen.';
+            header('Location: /medlem_sog#membership-form');
             exit;
         }
 
-        if (MedlemModel::hasApplication($userId)) {
-            header('Location: /medlem_sog?error=already_applied');
+        if (MedlemModel::hasApplication((int) $userId)) {
+            $_SESSION['error'] = 'Du har allerede sendt en medlemsansøgning.';
+            header('Location: /medlem_sog#membership-form');
             exit;
         }
 
@@ -56,14 +58,16 @@ class MedlemController {
             $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
 
             if (!in_array($fileExt, $allowedExtensions)) {
-                header('Location: /medlem_sog?error=invalid_image');
+                $_SESSION['error'] = 'Profilbilledet skal være jpg, jpeg, png eller webp.';
+                header('Location: /medlem_sog#membership-form');
                 exit;
             }
 
             $profileImageName = uniqid('profile_', true) . '.' . $fileExt;
 
             if (!move_uploaded_file($fileTmp, $uploadDir . $profileImageName)) {
-                header('Location: /medlem_sog?error=image_upload_failed');
+                $_SESSION['error'] = 'Profilbilledet kunne ikke uploades. Prøv igen.';
+                header('Location: /medlem_sog#membership-form');
                 exit;
             }
 
@@ -73,10 +77,10 @@ class MedlemController {
         }
 
         if (empty($profileImageName)) {
-            header('Location: /medlem_sog?error=missing_image');
+            $_SESSION['error'] = 'Upload venligst et profilbillede.';
+            header('Location: /medlem_sog#membership-form');
             exit;
         }
-
 
         $created = MedlemModel::createApplication(
             $userId,
@@ -99,11 +103,13 @@ class MedlemController {
                 $_SESSION['user']['user_name']
             );
 
-            header('Location: /medlem_sog?success=sent');
+            $_SESSION['success'] = 'Din ansøgning er afsendt. Du modtager en bekræftelsesmail.';
+            header('Location: /medlem_sog#membership-form');
             exit;
         }
 
-        header('Location: /medlem_sog?error=failed');
+        $_SESSION['error'] = 'Der skete en fejl. Din ansøgning blev ikke sendt.';
+        header('Location: /medlem_sog#membership-form');
         exit;
     }
 
@@ -173,7 +179,23 @@ class MedlemController {
             exit;
         }
 
-        MedlemModel::delete($memberId);
+        $member = MedlemModel::getMemberById($memberId);
+
+        $deleted = MedlemModel::delete($memberId);
+
+        if ($deleted && $member) {
+            // Til rigtige mails senere:
+            // sendMembershipRemovedMail(
+            //     $member['user_email'],
+            //     $member['user_name']
+            // );
+
+            // Testmail til eksamen:
+            sendMembershipRemovedMail(
+                'kamiweb1031@gmail.com',
+                $member['user_name']
+            );
+        }
 
         header('Location: /medlem_godkend');
         exit;

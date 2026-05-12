@@ -135,6 +135,50 @@ function sendMembershipRejectedMail(string $toEmail, string $firstName): bool
     }
 }
 
+//  Send mail når man slettes som medlem af admin
+function sendMembershipRemovedMail(string $toEmail, string $firstName): bool
+{
+    global $env;
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+
+        $mail->Username = $env['SMTP_EMAIL'];
+        $mail->Password = $env['SMTP_PASSWORD'];
+
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
+        $mail->addAddress($toEmail, $firstName);
+
+        $mail->CharSet = 'UTF-8';
+        $mail->isHTML(false);
+
+        $mail->Subject = 'Du er blevet fjernet som medlem hos GBG Social';
+
+        $mail->Body = "Hej {$firstName}
+
+Du er desværre blevet fjernet som medlem hos GBG Social.
+
+Det betyder, at du ikke længere har adgang som medlem på siden.
+
+Hvis du mener, at dette er en fejl, er du meget velkommen til at kontakte os.
+
+Venlig hilsen
+GBG Social";
+
+        return $mail->send();
+
+    } catch (Exception $e) {
+        error_log('Mailfejl: ' . $mail->ErrorInfo);
+        return false;
+    }
+}
+
 // Ret dato i ansøngninger til dansk
 function formatDanishDate(string $date): string
 {
@@ -156,6 +200,7 @@ function formatDanishDate(string $date): string
     return strtr(date('d M', strtotime($date)), $months);
 }
 
+// Send verifikationsmail når bruger opretter sig
 function sendUserVerificationMail(string $toEmail, string $firstName, string $verificationKey): bool
 {
     global $env;

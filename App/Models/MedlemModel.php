@@ -36,6 +36,28 @@ class MedlemModel {
         return $stmt->fetchAll();
     }
 
+    public static function getMemberById(string $memberId): ?array {
+        $db = getDB();
+
+        $stmt = $db->prepare("
+            SELECT
+                m.member_pk,
+                u.user_name,
+                u.user_email
+            FROM members m
+            INNER JOIN users u ON m.user_fk = u.user_pk
+            WHERE m.member_pk = ?
+                AND m.deleted_at IS NULL
+            LIMIT 1
+        ");
+
+        $stmt->execute([$memberId]);
+
+        $member = $stmt->fetch();
+
+        return $member ?: null;
+    }
+
     public static function getStats(): array {
         $db = getDB();
 
@@ -127,7 +149,6 @@ class MedlemModel {
             SELECT member_pk
             FROM members
             WHERE user_fk = ?
-            AND deleted_at IS NULL
             LIMIT 1
         ");
 
@@ -251,13 +272,28 @@ class MedlemModel {
     public static function delete(string $memberId): bool {
         $db = getDB();
 
-        $stmt = $db->prepare("
+        $stmtUser = $db->prepare("
+            UPDATE users
+            SET role_fk = 3
+            WHERE user_pk = (
+                SELECT user_fk
+                FROM members
+                WHERE member_pk = ?
+                LIMIT 1
+            )
+        ");
+
+        $userUpdated = $stmtUser->execute([$memberId]);
+
+        $stmtMember = $db->prepare("
             UPDATE members
             SET deleted_at = NOW()
             WHERE member_pk = ?
                 AND deleted_at IS NULL
         ");
 
-        return $stmt->execute([$memberId]);
+        $memberDeleted = $stmtMember->execute([$memberId]);
+
+        return $userUpdated && $memberDeleted;
     }
 }
