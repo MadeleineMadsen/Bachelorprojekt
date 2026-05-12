@@ -49,7 +49,7 @@ include __DIR__ . '/micro/___banner.php';
         </div>
 
         <div class="about-content">
-            <img src="/assets/img/tøser.webp" alt="Studerende samlet til fest">
+            <img src="/assets/img/guldbar-hygge.webp" alt="Studerende samlet til fest">
 
             <div class="about-text">
                 <p>
@@ -76,10 +76,10 @@ include __DIR__ . '/micro/___banner.php';
         </div>
 
         <div class="feed-grid">
-            <img src="/assets/img/guldbar-billede.webp" alt="Studerende til arrangement">
-            <img src="/assets/img/om.webp" alt="Studerende omkring bord">
-            <img src="/assets/img/kontakt.webp" alt="Studerende til fest">
-            <img src="/assets/img/tøser.webp" alt="Studerende med drikkevarer">
+            <img src="/assets/img/guldbar-billede.webp" alt="Studerende i Guldbar">
+            <img src="/assets/img/om.webp" alt="Studerende til fest">
+            <img src="/assets/img/kontakt.webp" alt="Grillaften med studerende">
+            <img src="/assets/img/udklædningsfest.webp" alt="Studerende til udklædningsfest">
         </div>
     </section>
 </main>

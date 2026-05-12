@@ -18,7 +18,7 @@
     </div>
 
     <div class="membership-right">
-        <img src="assets/img/udklædningsfest.webp" alt="GBG Social medlemmer">
+        <img src="assets/img/solnedgang.webp" alt="GBG Social medlemmer">
     </div>
 
 </section>
@@ -59,7 +59,7 @@ include __DIR__ . '/micro/___banner.php';
             </article>
 
             <article class="benefit-card">
-                <img src="assets/img/icons/.png" alt="Netværk logo">
+                <img src="assets/img/icons/netværk.png" alt="Netværk logo">
                 <h3>NETVÆRK</h3>
                 <p>
                     FG GDFDGJHDFJFFG<br>

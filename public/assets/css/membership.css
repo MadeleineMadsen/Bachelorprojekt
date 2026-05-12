@@ -179,18 +179,23 @@
 @media (min-width: 768px) {
   .membership-hero {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    height: 680px;
+    grid-template-columns: 1fr 1.05fr;
+    height: auto;
+    align-items: start;
   }
 
   .membership-left {
     position: static;
-    padding: var(--gap-md);
+    grid-column: 1;
+    grid-row: 1;
+    padding: 0 var(--gap-lg);
+    align-self: start;
   }
 
   .membership-left h1 {
     color: var(--font-color-black);
     font-size: var(--font-desktop-h1-special);
+    margin: 0;
   }
 
   .hero-line,
@@ -202,11 +207,26 @@
     width: 380px;
     height: 2px;
     background: var(--font-color-black);
-    margin: var(--gap-xs) 0 var(--gap-md);
+    margin: var(--gap-md) 0;
   }
 
   .membership-left p {
     font-size: var(--font-desktop-text-small);
+    max-width: 40rem;
+  }
+
+  .membership-right {
+    grid-column: 2;
+    grid-row: 1;
+    height: 40em;
+  }
+
+  .membership-right img {
+    width: 100%;
+    height: 40em;
+    display: block;
+    object-fit: cover;
+    object-position: center;
   }
 
   .membership-page {
@@ -307,7 +327,11 @@
   }
 
   .membership-image img {
-    max-width: 530px;
+    width: 100%;
+    max-width: none;
+    height: 22.1rem;
+    object-fit: cover;
+    object-position: center;
   }
 
   .membership-container {
