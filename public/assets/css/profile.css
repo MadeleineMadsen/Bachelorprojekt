@@ -72,13 +72,20 @@
   position: absolute;
   right: 0;
   bottom: 0;
+
   width: 40px;
   height: 40px;
+
   border: none;
   border-radius: 50%;
   background: var(--color-light-yellow);
-  font-size: 37px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   cursor: pointer;
+  padding: 0;
 }
 
 .camera-btn img {
@@ -90,10 +97,12 @@
 
 @media (min-width: 768px) {
   .profile-page {
-    grid-template-columns: 460px 1fr;
-    column-gap: var(--gap-md);
+    grid-template-columns: 450px 1fr;
+    column-gap: var(--gap-lg);
     margin-top: var(--gap-md);
     max-width: 1450px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hello-text h1 {
@@ -107,6 +116,7 @@
 
   .profile-intro {
     gap: var(--gap-md);
+    max-width: 800px;
   }
 
   .profile-intro h3 {
@@ -122,13 +132,14 @@
   .profile-image-wrapper {
     width: 200px;
     height: 200px;
-    margin-right: var(--gap-md);
+    margin-left: auto;
+    margin-right: 0;
+    flex-shrink: 0;
   }
 
   .camera-btn {
     width: 58px;
     height: 58px;
-    font-size: 54px;
   }
 
   .camera-btn img {

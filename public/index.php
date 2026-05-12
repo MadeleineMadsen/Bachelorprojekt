@@ -37,7 +37,7 @@ $view = null;
 // Router
 switch ($uri) {
 
-// LANDING / FORSIDE
+    // LANDING / FORSIDE
     case '/':
         require_once __DIR__ . '/../App/Controllers/EventController.php';
         $events = EventController::getLatest(3);
@@ -45,7 +45,7 @@ switch ($uri) {
         $view = '/forside.php';
         break;
 
-        // LOG IND
+    // LOG IND
     case '/log_ind':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $authController->login();
@@ -56,7 +56,7 @@ switch ($uri) {
         $view = '/log_ind.php';
         break;
 
-        // OPRET DIG
+    // OPRET DIG
     case '/opret_dig':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $authController->signup();
@@ -67,13 +67,13 @@ switch ($uri) {
         $view = '/opret_dig.php';
         break;
 
-        // LOG UD
+    // LOG UD
     case '/log_ud':
         session_destroy();
         header('Location: /');
         exit;
 
-        // PROFIL
+    // PROFIL
     case '/profil':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
@@ -99,19 +99,131 @@ switch ($uri) {
         $isProfileSection = true;
         break;
 
-    case '/profile/update':
-        if (!$isLoggedIn || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+    // PROFIL - OPDATERING AF OPLYSNINGER
+    case '/profil/update':
+        if (!$isLoggedIn) {
             header('Location: /log_ind');
             exit;
         }
 
-        require_once __DIR__ . '/../App/Controllers/UserController.php';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $userController = new UserController($db);
-        $userController->updateProfile();
+            $userId = $_SESSION['user']['user_pk'];
+
+            $userName = trim($_POST['user_name'] ?? '');
+            $lastName = trim($_POST['user_last_name'] ?? '');
+            $email = trim($_POST['user_email'] ?? '');
+            $password = $_POST['user_password'] ?? '';
+
+            $education = trim($_POST['education'] ?? '');
+            $semester = trim($_POST['semester'] ?? '');
+
+            // OPDATER BRUGERDATA
+            $userModel->updateProfile(
+                $userId,
+                $userName,
+                $lastName,
+                $email
+            );
+
+            // OPDATER PASSWORD
+            if (!empty($password)) {
+                $userModel->updatePassword($userId, $password);
+            }
+
+            // OPDATER MEMBER DATA
+            if (!empty($education) || !empty($semester)) {
+                $userModel->updateMemberProfile(
+                    $userId,
+                    $education,
+                    $semester
+                );
+            }
+
+            // UPLOAD PROFILBILLEDE
+            if (
+                isset($_FILES['profile_image']) &&
+                $_FILES['profile_image']['error'] === UPLOAD_ERR_OK
+            ) {
+
+                $extension = strtolower(
+                    pathinfo(
+                        $_FILES['profile_image']['name'],
+                        PATHINFO_EXTENSION
+                    )
+                );
+
+                $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+
+                if (in_array($extension, $allowedExtensions)) {
+
+                    $fileName =
+                        'profile_' .
+                        $userId .
+                        '_' .
+                        time() .
+                        '.' .
+                        $extension;
+
+                    $uploadDir =
+                        __DIR__ . '/assets/img/uploads/';
+
+                    // Opret mappe hvis den ikke findes
+                    if (!is_dir($uploadDir)) {
+                        mkdir($uploadDir, 0777, true);
+                    }
+
+                    $uploadPath = $uploadDir . $fileName;
+
+                    // Flyt fil til uploads mappe
+                    if (
+                        move_uploaded_file(
+                            $_FILES['profile_image']['tmp_name'],
+                            $uploadPath
+                        )
+                    ) {
+
+                        // Gem filnavn i database
+                        $userModel->updateProfileImage(
+                            $userId,
+                            $fileName
+                        );
+                    }
+                }
+            }
+
+            // OPDATER SESSION
+            $_SESSION['user']['user_name'] = $userName;
+            $_SESSION['user']['user_last_name'] = $lastName;
+            $_SESSION['user']['user_email'] = $email;
+
+            header('Location: /profil');
+            exit;
+        }
+
+        header('Location: /profil');
         exit;
 
-        // EVENTS
+    // PROFIL - SLET PROFIL
+    case '/profil/delete':
+        if (!$isLoggedIn) {
+            header('Location: /log_ind');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userModel->softDelete($_SESSION['user']['user_pk']);
+
+            session_destroy();
+
+            header('Location: /');
+            exit;
+        }
+
+        header('Location: /profil');
+        exit;
+
+    // EVENTS
     case '/events':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
@@ -124,7 +236,7 @@ switch ($uri) {
         $view = '/events.php';
         break;
 
-        // SINGLE EVENT
+    // SINGLE EVENT
     case '/eventside':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
@@ -139,13 +251,13 @@ switch ($uri) {
             exit;
         }
 
-        $dato           = $event['dato'];
-        $participants   = EventController::getParticipants($_GET['id'] ?? '');
-        $currentPage    = 'events';
-        $view           = '/eventside.php';
+        $dato = $event['dato'];
+        $participants = EventController::getParticipants($_GET['id'] ?? '');
+        $currentPage = 'events';
+        $view = '/eventside.php';
         break;
 
-        // TILMELDTE EVENTS
+    // TILMELDTE EVENTS
     case '/event_user':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
@@ -157,7 +269,7 @@ switch ($uri) {
         $isProfileSection = true;
         break;
 
-        // OPRET EVENT (ADMIN)
+    // OPRET EVENT (ADMIN)
     case '/event_opret':
         if (!$isAdmin) {
             header('Location: /');
@@ -169,7 +281,7 @@ switch ($uri) {
         $isProfileSection = true;
         break;
 
-        // KALENDER
+    // KALENDER
     case '/kalender':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
@@ -181,7 +293,7 @@ switch ($uri) {
         $isProfileSection = true;
         break;
 
-        // SØG OM MEDLEMSSKAB
+    // SØG OM MEDLEMSSKAB
     case '/medlem_sog':
         if (!$isLoggedIn) {
             header('Location: /log_ind');
@@ -205,7 +317,7 @@ switch ($uri) {
         $view = '/medlem_sog.php';
         break;
 
-        // GODKEND MEDLEMSSKAB
+    // GODKEND MEDLEMSSKAB
     case '/medlem_godkend':
         if (!$isAdmin) {
             header('Location: /');
@@ -220,21 +332,21 @@ switch ($uri) {
         $isProfileSection = true;
         break;
 
-        // ALLE MEDLEMMER
+    // ALLE MEDLEMMER
     case '/medlemmer':
         $members = MedlemController::getApproved();
-        
+
         $currentPage = 'medlemmer';
         $view = '/medlemmer.php';
         break;
 
-        // OM
+    // OM
     case '/om':
         $currentPage = 'om';
         $view = '/om.php';
         break;
 
-        // GODKEND, AFVIS OG SLET MEDLEMMER
+    // GODKEND, AFVIS OG SLET MEDLEMMER
     case '/godkend_medlem':
         if (!$isAdmin || $_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: /');
@@ -262,7 +374,7 @@ switch ($uri) {
         MedlemController::delete();
         exit;
 
-        // DEFAULT
+    // DEFAULT
     default:
         http_response_code(404);
         echo '404 - Not Found';

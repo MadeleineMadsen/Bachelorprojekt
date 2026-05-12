@@ -6,7 +6,10 @@
     <section class="profile-hero">
         <div class="hello-text">
             <h1>HEJ IGEN</h1>
-            <h2><?= htmlspecialchars($user['user_name']) ?></h2>
+
+            <h2>
+                <?= htmlspecialchars($user['user_name']) ?>
+            </h2>
         </div>
 
         <div class="profile-intro">
@@ -15,19 +18,29 @@
                 <p>Her kan du se og redigere dine personlige oplysninger</p>
             </div>
 
-            <div class="profile-image-wrapper">
-                <img src="/assets/img/uploads/test_profile.png" alt="Profilbillede"
-                    class="profile-img profile-profileimg">
-                <button class="camera-btn" type="button"><img src="/assets/img/icons/camera_icon.png"
-                        alt="Kamera ikon"></button>
-            </div>
+            <form id="profileImageForm" method="POST" action="/profil/update" enctype="multipart/form-data">
+                <div class="profile-image-wrapper">
+
+                    <img id="profilePreview" src="<?= !empty($user['user_profile_image'])
+                        ? '/assets/img/uploads/' . htmlspecialchars($user['user_profile_image'])
+                        : '/assets/img/uploads/default_profile_image.webp' ?>" alt="Profilbillede"
+                        class="profile-img profile-profileimg">
+
+                    <label class="camera-btn">
+                        <img src="/assets/img/icons/camera_icon.png" alt="Kamera ikon">
+
+                        <input id="profileImageInput" type="file" name="profile_image" accept="image/*" hidden>
+                    </label>
+
+                </div>
+            </form>
         </div>
     </section>
 
     <section class="form-container profile-admin-container">
         <h4>REDIGER PROFIL</h4>
 
-        <form method="POST" action="/profile/update">
+        <form method="POST" action="/profil/update">
             <input type="text" name="user_name" value="<?= htmlspecialchars($user['user_name']) ?>"
                 placeholder="Fornavn" required>
 
@@ -63,9 +76,20 @@
             <input type="email" name="user_email" value="<?= htmlspecialchars($user['user_email']) ?>"
                 placeholder="Studiemail" required>
 
-            <input type="password" name="password" placeholder="Adgangskode">
+            <input type="password" name="user_password" placeholder="Adgangskode">
 
-            <button class="btn btn-primary" type="submit">GEM ÆNDRINGER</button>
+            <div class="profile-button-row">
+                <button class="btn btn-primary" type="submit">
+                    GEM ÆNDRINGER
+                </button>
+
+                <button class="btn btn-delete" type="submit" form="deleteProfileForm">
+                    SLET MIN PROFIL
+                </button>
+            </div>
         </form>
+
+        <form id="deleteProfileForm" method="POST" action="/profil/delete"
+            onsubmit="return confirm('Er du sikker på, at du vil slette din profil?');"></form>
     </section>
 </main>
