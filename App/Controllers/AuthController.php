@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../Models/UserModel.php';
+require_once __DIR__ . '/../../private/helpers.php';
 
 class AuthController
 {
@@ -25,6 +26,12 @@ class AuthController
 
         if (!$user || !password_verify($password, $user['user_password'])) {
             $_SESSION['error'] = 'Forkert email eller adgangskode';
+            header('Location: /log_ind');
+            exit;
+        }
+
+        if ($user['user_verified_at'] === null) {
+            $_SESSION['error'] = 'Du skal bekræfte din mail, før du kan logge ind';
             header('Location: /log_ind');
             exit;
         }
@@ -59,8 +66,47 @@ class AuthController
             exit;
         }
 
-        $this->userModel->create($userName, $lastName, $email, $password);
+        $verificationKey = bin2hex(random_bytes(16));
 
+        $created = $this->userModel->create(
+            $userName,
+            $lastName,
+            $email,
+            $password,
+            $verificationKey
+        );
+
+        if ($created) {
+            sendUserVerificationMail($email, $userName, $verificationKey);
+
+            $_SESSION['success'] = 'Din bruger er oprettet. Tjek din mail for at bekræfte din konto.';
+            header('Location: /log_ind');
+            exit;
+        }
+
+        $_SESSION['error'] = 'Der skete en fejl. Prøv igen.';
+        header('Location: /opret_dig');
+        exit;
+    }
+
+    public function verifyUser(): void
+    {
+        $key = $_GET['key'] ?? '';
+
+        if (!$key) {
+            $_SESSION['error'] = 'Ugyldigt bekræftelseslink';
+            header('Location: /log_ind');
+            exit;
+        }
+
+        $verified = $this->userModel->verifyUser($key);
+
+        if ($verified) {
+            header('Location: /log_ind');
+            exit;
+        }
+
+        $_SESSION['error'] = 'Linket er ugyldigt eller allerede brugt';
         header('Location: /log_ind');
         exit;
     }
