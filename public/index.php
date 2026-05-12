@@ -303,7 +303,7 @@ switch ($uri) {
 
         $applications = MedlemController::getPending();
         $educations = MedlemModel::getEducations();
-        $members = MedlemController::getApproved();
+        $members = MedlemController::getVisibleMembers();
 
         $currentPage = 'medlem_godkend';
         $view = '/medlem_godkend.php';
@@ -317,7 +317,7 @@ switch ($uri) {
 
     // ALLE MEDLEMMER
     case '/medlemmer':
-        $members = MedlemController::getApproved();
+        $members = MedlemController::getVisibleMembers();
         $educations = MedlemModel::getEducations();
         $memberStats = MedlemController::getStats();
 
@@ -327,6 +327,7 @@ switch ($uri) {
 
     // OM
     case '/om':
+        $members = MedlemController::getVisibleMembers();
         $currentPage = 'om';
         $view = '/om.php';
         break;

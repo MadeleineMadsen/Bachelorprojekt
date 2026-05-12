@@ -3,30 +3,34 @@
 require_once __DIR__ . '/../../private/db.php';
 
 class MedlemModel {
-    public static function getApproved(): array {
+    public static function getVisibleMembers(): array {
         $db = getDB();
 
         $stmt = $db->query("
             SELECT
-                m.member_pk,
-                m.education_fk,
-                m.semester_fk,
-                e.education_name,
-                s.semester_number,
-                m.application_text,
-                m.applied_at,
+                u.user_pk AS id,
                 u.user_name,
                 u.user_last_name,
                 u.user_email,
-                u.user_profile_image
-            FROM members m
-            INNER JOIN users u ON m.user_fk = u.user_pk
+                u.user_profile_image,
+                u.role_fk,
+                m.member_pk,
+                m.education_fk,
+                e.education_name,
+                s.semester_number
+            FROM users u
+            LEFT JOIN members m 
+                ON u.user_pk = m.user_fk
+                AND m.status = 'approved'
+                AND m.deleted_at IS NULL
             LEFT JOIN educations e ON m.education_fk = e.education_pk
             LEFT JOIN semesters s ON m.semester_fk = s.semester_pk
-            WHERE m.status = 'approved'
-                AND m.deleted_at IS NULL
-                AND u.user_deleted_at IS NULL
-            ORDER BY u.user_name ASC
+            WHERE u.user_deleted_at IS NULL
+                AND (
+                    u.role_fk = '1'
+                    OR m.status = 'approved'
+                )
+            ORDER BY u.role_fk ASC, u.user_name ASC
         ");
 
         return $stmt->fetchAll();

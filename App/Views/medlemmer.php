@@ -62,8 +62,7 @@ include __DIR__ . '/micro/___banner.php';
                 <article 
                     class="member-card"
                     data-name="<?= strtolower(htmlspecialchars($member['user_name'])); ?>"
-                    data-education="<?= $member['education_fk']; ?>"
-                >
+                    data-education="<?= $member['education_fk'] ?? ''; ?>"                >
                     <img 
                         src="<?= !empty($member['user_profile_image'])
                             ? '/assets/img/uploads/' . htmlspecialchars($member['user_profile_image'])
@@ -73,8 +72,16 @@ include __DIR__ . '/micro/___banner.php';
                     >
                     
                     <h3><?= htmlspecialchars($member['user_name']); ?></h3>
-                    <p><?= htmlspecialchars($member['education_name']); ?></p>
-                    <p><?= htmlspecialchars($member['semester_number']); ?>. semester</p>
+                    <p>
+                        <?= !empty($member['education_name'])
+                            ? htmlspecialchars($member['education_name'])
+                            : 'Bestyrelsesmedlem' ?>
+                    </p>
+
+                    <?php if (!empty($member['semester_number'])): ?>
+                        <p><?= htmlspecialchars($member['semester_number']); ?>. semester</p>
+                    <?php endif; ?>
+
                 </article>
             <?php endforeach; ?>
         </section>

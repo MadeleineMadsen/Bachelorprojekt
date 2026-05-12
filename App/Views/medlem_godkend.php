@@ -84,7 +84,7 @@
             <?php foreach ($members as $member): ?>
                 <article    class="member-slide"
                             data-name="<?= strtolower($member['user_name']); ?>"
-                            data-education="<?= $member['education_fk']; ?>"
+                            data-education="<?= $member['education_fk'] ?? ''; ?>"
                             >
 
                     <form method="POST" action="/slet_medlem" 
@@ -108,7 +108,11 @@
                         <?= $member['user_name']; ?>
                     </h3>
 
-                    <p><?= htmlspecialchars($member['education_name']); ?></p>
+                    <p>
+                        <?= !empty($member['education_name'])
+                            ? htmlspecialchars($member['education_name'])
+                            : 'Bestyrelsesmedlem' ?>
+                    </p>
                 </article>
             <?php endforeach; ?>
         </div>

@@ -5,8 +5,8 @@ require_once __DIR__ . '/../../private/helpers.php';
 
 class MedlemController {
 
-    public static function getApproved(): array {
-        return MedlemModel::getApproved();
+    public static function getVisibleMembers(): array {
+        return MedlemModel::getVisibleMembers();
     }
 
     public static function getPending(): array {

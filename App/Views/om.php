@@ -1,62 +1,3 @@
-<?php
-$members = [
-    [
-        'name' => 'Gigi',
-        'age' => 27,
-        'education' => 'Multimedie',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Maja',
-        'age' => 24,
-        'education' => 'Datamatiker',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Noah',
-        'age' => 29,
-        'education' => 'Webudvikling',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Gigi',
-        'age' => 27,
-        'education' => 'Multimedie',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Maja',
-        'age' => 24,
-        'education' => 'Datamatiker',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Noah',
-        'age' => 29,
-        'education' => 'Webudvikling',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Gigi',
-        'age' => 27,
-        'education' => 'Multimedie',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Maja',
-        'age' => 24,
-        'education' => 'Datamatiker',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-    [
-        'name' => 'Noah',
-        'age' => 29,
-        'education' => 'Webudvikling',
-        'image' => '/assets/img/uploads/test_profile.png'
-    ],
-];
-?>
-
 <main class="main-om">
     <section class="om-hero">
         <div class="img-hero">
@@ -101,14 +42,22 @@ $members = [
                 <div class="member-carousel om-carousel" id="memberCarousel" data-visible-slides="1">
                     <?php foreach ($members as $index => $member): ?>
                         <article class="member-slide om-slide <?= $index >= 8 ? 'desktop-hidden' : ''; ?>">
-                            <img src="<?= $member['image']; ?>" alt="" class="profile-img profile-medium">
+                            <img 
+                                src="<?= !empty($member['user_profile_image'])
+                                    ? '/assets/img/uploads/' . htmlspecialchars($member['user_profile_image'])
+                                    : '/assets/img/uploads/default_profile_image.webp' ?>"
+                                alt="Portræt af <?= htmlspecialchars($member['user_name']); ?>"
+                                class="profile-img profile-medium"
+                            >
 
                             <h3>
-                                <?= $member['name']; ?>
-                                <?= $member['age']; ?> ÅR
+                                <?= htmlspecialchars($member['user_name']); ?>
                             </h3>
-
-                            <p><?= $member['education']; ?></p>
+                            <p>
+                                <?= !empty($member['education_name'])
+                                    ? htmlspecialchars($member['education_name'])
+                                    : 'Bestyrelsesmedlem' ?>
+                            </p>
                         </article>
                     <?php endforeach; ?>
                 </div>
