@@ -98,6 +98,26 @@ Mobilefirst
 /* Godkendte medlemmer */
 .allerede-medlem {
     margin-top: var(--gap-md);
+    font-family: var(--font-header);
+    font-size: var(--font-desktop-text-big);
+}
+
+/* Slet medlemmer */
+.member-slide {
+    position: relative;
+}
+
+.member-delete-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    border: none;
+    background: transparent;
+    color: var(--font-color-black);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
 }
 
 /* Søge felt og dropdown med studieretning */

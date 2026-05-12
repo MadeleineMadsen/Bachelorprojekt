@@ -200,6 +200,31 @@ html {
   line-height: 1;
 }
 
+  .sub-nav-badge,
+  .mobile-nav-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.40rem;
+    height: 1.40rem;
+    border-radius: 999px;
+    background: var(--color-yellow);
+    color: var(--font-color-black);
+    font-size: 0.75rem;
+    font-weight: var(--poppins-font-bold);
+    line-height: 1;
+  }
+
+  .sub-nav-badge {
+    margin-left: 0.35rem;
+  }
+
+  .mobile-nav-badge {
+    position: absolute;
+    top: 2.37rem;
+    right: 7.7rem;
+  }
+
 /* ----------------------------------- */
 /* Footer */
 /* ----------------------------------- */
@@ -425,6 +450,11 @@ html {
 
   .mobile-bottom-nav {
     display: none;
+  }
+
+  .sub-nav-link,
+  .mobile-bottom-link {
+    position: relative;
   }
 
   /* ----------------------------------- */

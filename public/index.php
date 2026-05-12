@@ -1,14 +1,6 @@
 <?php
 session_start();
 
-// TIL TEST AF NAV - SKAL FJERNES NÅR LOGIN/SIGNUP VIRKER
-// ret til role=admin for at teste admin-sider, og udkommenter alt hvis der skal testes uden login
-// $_SESSION['user'] = [
-//     'id' => 1,
-//     'name' => 'Test User',
-//     'role' => 'admin'
-// ];
-
 require_once __DIR__ . '/../private/db.php';
 require_once __DIR__ . '/../App/Controllers/AuthController.php';
 require_once __DIR__ . '/../App/Controllers/MedlemController.php';
@@ -325,6 +317,7 @@ switch ($uri) {
         }
 
         $applications = MedlemController::getPending();
+        $educations = MedlemModel::getEducations();
         $members = MedlemController::getApproved();
 
         $currentPage = 'medlem_godkend';
@@ -332,10 +325,17 @@ switch ($uri) {
         $isProfileSection = true;
         break;
 
-    // ALLE MEDLEMMER
+        // SLET MEDLEMSSKAB
+    case '/slet_medlem':
+        MedlemController::delete();
+        break;
+
+        // ALLE MEDLEMMER
     case '/medlemmer':
         $members = MedlemController::getApproved();
-
+        $educations = MedlemModel::getEducations();
+        $memberStats = MedlemController::getStats();
+        
         $currentPage = 'medlemmer';
         $view = '/medlemmer.php';
         break;

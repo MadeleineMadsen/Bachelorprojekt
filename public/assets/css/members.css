@@ -133,6 +133,7 @@
   object-fit: cover;
   display: block;
   margin: 0 auto var(--gap-sm);
+  background-color: beige;
 }
 
 .member-card h3 {

@@ -14,21 +14,21 @@ include __DIR__ . '/micro/___banner.php';
     <!-- Medlemmer overview -->
     <section class="members-overview">
 
-        <h2>ALLE AKTIVE MEDLEM-MER I GBG SOCIAL</h2>
+        <h2>ALLE AKTIVE MEDLEMMER I GBG SOCIAL</h2>
 
         <div class="members-stats">
             <div class="members-stat">
-                <h3>44</h3>
+                <h3><?= $memberStats['active_members']; ?></h3>
                 <p>AKTIVE MEDLEMMER</p>
             </div>
 
             <div class="members-stat">
-                <h3>12</h3>
+                <h3><?= $memberStats['board_members']; ?></h3>
                 <p>BESTYRELSES-MEDLEMMER</p>
             </div>
 
             <div class="members-stat">
-                <h3>+10</h3>
+                <h3>+<?= $memberStats['events_this_year']; ?></h3>
                 <p>EVENTS OM ÅRET</p>
             </div>
         </div>
@@ -41,24 +41,31 @@ include __DIR__ . '/micro/___banner.php';
 
             <label class="education-filter" for="educationFilter">
                 <span class="sr-only">Filtrer efter uddannelse</span>
+
                 <select id="educationFilter" name="education">
                     <option value="">UDDANNELSE</option>
-                    <option value="designteknolog">Designteknolog</option>
-                    <option value="multimediedesigner">Multimediedesigner</option>
-                    <option value="webudvikling">Webudvikling</option>
-                    <option value="datamatiker">Datamatiker</option>
+
+                    <?php foreach ($educations as $education): ?>
+                        <option value="<?= $education['education_pk']; ?>">
+                            <?= htmlspecialchars($education['education_name']); ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </label>
         </div>
 
         <section class="members-grid" aria-label="Medlemmer">
             <?php foreach ($members as $member): ?>
-                <article class="member-card">
-                    <img src="<?= $member['image']; ?>" alt="Portræt af <?= $member['name']; ?>" class="member-img">
+                <article 
+                    class="member-card"
+                    data-name="<?= strtolower(htmlspecialchars($member['user_name'])); ?>"
+                    data-education="<?= $member['education_fk']; ?>"
+                >
+                    <img src="/public/assets/img/uploads/test_profile.png" alt="Portræt af <?= htmlspecialchars($member['user_name']); ?>" class="member-img">
 
-                    <h3><?= $member['user_name']; ?></h3>
-                    <p><?= $member['education']; ?></p>
-                    <p><?= $member['semester']; ?>. semester</p>
+                    <h3><?= htmlspecialchars($member['user_name']); ?></h3>
+                    <p><?= htmlspecialchars($member['education_name']); ?></p>
+                    <p><?= htmlspecialchars($member['semester_number']); ?>. semester</p>
                 </article>
             <?php endforeach; ?>
         </section>

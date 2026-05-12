@@ -23,12 +23,43 @@ class MedlemModel {
             LEFT JOIN educations e ON m.education_fk = e.education_pk
             LEFT JOIN semesters s ON m.semester_fk = s.semester_pk
             WHERE m.status = 'approved'
-                AND m.deleted_at = 0
-                AND u.user_deleted_at = 0
+                AND m.deleted_at IS NULL
+                AND u.user_deleted_at IS NULL
             ORDER BY u.user_name ASC
         ");
 
         return $stmt->fetchAll();
+    }
+
+    public static function getStats(): array {
+        $db = getDB();
+
+        $stmt = $db->query("
+            SELECT
+                (
+                    SELECT COUNT(*)
+                    FROM members m
+                    INNER JOIN users u ON m.user_fk = u.user_pk
+                    WHERE m.status = 'approved'
+                        AND m.deleted_at IS NULL
+                        AND u.user_deleted_at IS NULL
+                ) AS active_members,
+
+                (
+                    SELECT COUNT(*)
+                    FROM users
+                    WHERE role_fk = '1'
+                        AND user_deleted_at IS NULL
+                ) AS board_members,
+
+                (
+                    SELECT COUNT(*)
+                    FROM events
+                    WHERE YEAR(event_date) = YEAR(CURDATE())
+                ) AS events_this_year
+        ");
+
+        return $stmt->fetch();
     }
 
     public static function getPending(): array {
@@ -51,8 +82,8 @@ class MedlemModel {
             LEFT JOIN educations e ON m.education_fk = e.education_pk
             LEFT JOIN semesters s ON m.semester_fk = s.semester_pk
             WHERE m.status = 'pending'
-                AND m.deleted_at = 0
-                AND u.user_deleted_at = 0
+                AND m.deleted_at IS NULL
+                AND u.user_deleted_at IS NULL
             ORDER BY m.applied_at DESC
         ");
 
@@ -82,6 +113,23 @@ class MedlemModel {
         ]);
     }
 
+    public static function hasApplication(string $userId): bool
+    {
+        $db = getDB();
+
+        $stmt = $db->prepare("
+            SELECT member_pk
+            FROM members
+            WHERE user_fk = ?
+            AND deleted_at IS NULL
+            LIMIT 1
+        ");
+
+        $stmt->execute([$userId]);
+
+        return (bool) $stmt->fetch();
+    }
+
     public static function getEducations(): array
     {
         $db = getDB();
@@ -108,6 +156,30 @@ class MedlemModel {
         return $stmt->fetchAll();
     }
 
+    // Til at sende godkendelses-mail
+    public static function getApplicationById(string $memberId): ?array
+    {
+        $db = getDB();
+
+        $stmt = $db->prepare("
+            SELECT
+                m.member_pk,
+                u.user_name,
+                u.user_email
+            FROM members m
+            INNER JOIN users u ON m.user_fk = u.user_pk
+            WHERE m.member_pk = ?
+                AND m.deleted_at IS NULL
+            LIMIT 1
+        ");
+
+        $stmt->execute([$memberId]);
+
+        $application = $stmt->fetch();
+
+        return $application ?: null;
+    }
+
     public static function approve(string $memberId, string $adminId): bool {
         $db = getDB();
 
@@ -117,7 +189,7 @@ class MedlemModel {
                 approved_by_fk = ?,
                 approved_at = NOW()
             WHERE member_pk = ?
-                AND deleted_at = 0
+                AND deleted_at IS NULL
         ");
 
         return $stmt->execute([$adminId, $memberId]);
@@ -130,7 +202,7 @@ class MedlemModel {
             UPDATE members
             SET status = 'rejected'
             WHERE member_pk = ?
-                AND deleted_at = 0
+                AND deleted_at IS NULL
         ");
 
         return $stmt->execute([$memberId]);
@@ -141,9 +213,9 @@ class MedlemModel {
 
         $stmt = $db->prepare("
             UPDATE members
-            SET deleted_at = UNIX_TIMESTAMP()
+            SET deleted_at = NOW()
             WHERE member_pk = ?
-                AND deleted_at = 0
+                AND deleted_at IS NULL
         ");
 
         return $stmt->execute([$memberId]);

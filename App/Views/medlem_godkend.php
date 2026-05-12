@@ -16,7 +16,7 @@
                     <img src="/assets/img/uploads/test_profile.png" alt="" class="profile-img profile-medium">
 
                     <div class="godkend-info">
-                        <h2 class="godkend-name"><strong><?= $app['user_name']; ?></strong>, <?= $app['user_last_name']; ?> år</h2>
+                        <h2 class="godkend-name"><strong><?= $app['user_name']; ?> <?= $app['user_last_name']; ?></strong></h2>
                         <p><?= htmlspecialchars($app['education_name']); ?></p>
                         <p><?= $app['user_email']; ?></p>
                     </div>
@@ -24,7 +24,7 @@
 
                 <!-- Midte -->
                 <div class="godkend-middle inner">
-                    <p class="godkend-date">Ansøgt d. <?= date('d M', strtotime($app['applied_at'])); ?></p>
+                    <p class="godkend-date">Ansøgt d. <?= formatDanishDate($app['applied_at']); ?></p>
                     <p class="motivation">
                         <?= $app['application_text']; ?>
                     </p>
@@ -61,7 +61,7 @@
                     <option value="">ALLE MEDLEMMER</option>
 
                     <?php foreach ($educations as $education): ?>
-                        <option value="<?= strtolower($education['education_name']); ?>">
+                        <option value="<?= $education['education_pk']; ?>">
                             <?= htmlspecialchars($education['education_name']); ?>
                         </option>
                     <?php endforeach; ?>
@@ -79,9 +79,21 @@
             <?php foreach ($members as $member): ?>
                 <article    class="member-slide"
                             data-name="<?= strtolower($member['user_name']); ?>"
-                            data-education="<?= strtolower($member['education_name']); ?>"
+                            data-education="<?= $member['education_fk']; ?>"
                             >
-                    <img src="<?= $member['image']; ?>" alt="" class="profile-img profile-medium">
+
+                    <form method="POST" action="/slet_medlem" 
+                        onsubmit="return confirm('Er du sikker på, at du vil slette <?= htmlspecialchars($member['user_name']); ?> som medlem?');">
+
+                        <input type="hidden" name="member_pk" value="<?= $member['member_pk']; ?>">
+
+                        <button type="submit" class="member-delete-btn" aria-label="Slet medlem">
+                            ×
+                        </button>
+                    </form>
+                    
+                    <!-- <img src="<?= $member['image']; ?>" alt="" class="profile-img profile-medium"> -->
+                    <img src="/public/assets/img/uploads/test_profile.png" alt="" class="profile-img profile-medium">
 
                     <h3>
                         <?= $member['user_name']; ?>
