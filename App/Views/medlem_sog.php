@@ -42,9 +42,9 @@ include __DIR__ . '/micro/___banner.php';
                 <img src="assets/img/icons/fællesskab.png" alt="Fællesskab logo">
                 <h3>FÆLLESSKAB</h3>
                 <p>
-                    FG GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG
+                    Bliv en del af et socialt og inkluderende studiemiljø, hvor du kan møde nye mennesker på tværs af
+                    uddannelser og årgange.
+                    Vi skaber rammerne for nye venskaber og stærkere relationer i hverdagen.
                 </p>
             </article>
 
@@ -52,9 +52,8 @@ include __DIR__ . '/micro/___banner.php';
                 <img src="assets/img/icons/events2.png" alt="Events logo">
                 <h3>EVENTS</h3>
                 <p>
-                    FG GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG
+                    Som medlem får du adgang til sociale arrangementer, aktiviteter og events gennem hele studieåret.
+                    Vi arrangerer alt fra fredagsbarer og fester til hyggelige fællesaktiviteter for alle studerende.
                 </p>
             </article>
 
@@ -62,9 +61,9 @@ include __DIR__ . '/micro/___banner.php';
                 <img src="assets/img/icons/netværk.png" alt="Netværk logo">
                 <h3>NETVÆRK</h3>
                 <p>
-                    FG GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG
+                    Udvid dit netværk og lær studerende fra andre uddannelser at kende.
+                    Foreningen giver mulighed for at skabe relationer, dele erfaringer og blive en del af et stærkt
+                    fællesskab.
                 </p>
             </article>
 

@@ -19,10 +19,8 @@ include __DIR__ . '/micro/___banner.php';
         </p>
 
         <p>
-            Foreningen har til formål at skabe et levende og inkluderende
-            studiemiljø, hvor alle har mulighed for at deltage i sociale
-            aktiviteter, møde nye mennesker og opbygge relationer uden for
-            undervisningen.
+            Foreningen har til formål at skabe sociale aktiviteter, arrangementer og nye relationer, så alle studerende
+            får mulighed for at lære hinanden at kende og føle sig som en del af studiemiljøet.
         </p>
 
         <a href="#" class="btn btn-primary">BLIV MEDLEM</a>
@@ -53,14 +51,13 @@ include __DIR__ . '/micro/___banner.php';
 
             <div class="about-text">
                 <p>
-                    Den sociale studenterforening på EK GulbergsGade er et nyt
-                    initiativ skabt af studerende, for studerende, med fokus på at
-                    styrke fællesskabet på tværs af uddannelser og årgange.
+                    Vi tror på, at et godt studieliv også handler om fællesskab. Derfor arrangerer vi sociale events og
+                    aktiviteter, hvor studerende kan mødes på tværs af hold og uddannelser.
                 </p>
 
                 <p>
-                    Foreningen har til formål at skabe et levende og inkluderende
-                    studiemiljø, hvor alle har mulighed for at deltage.
+                    Vores mål er at skabe et inkluderende miljø med plads til alle, uanset hvem du er, eller hvor du er
+                    i dit studie.
                 </p>
 
                 <a href="#" class="btn btn-secondary">LÆS MERE</a>
