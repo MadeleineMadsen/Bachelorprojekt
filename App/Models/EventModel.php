@@ -50,7 +50,7 @@ class EventModel {
     public static function getParticipantsByEventId(string $id): array {
         $db   = getDB();
         $stmt = $db->prepare('
-            SELECT u.user_pk, u.user_name, u.user_last_name, u.user_image
+            SELECT u.user_pk, u.user_name, u.user_last_name, u.user_profile_image
             FROM event_registrations r
             JOIN users u ON u.user_pk = r.user_fk
             WHERE r.event_fk = ?

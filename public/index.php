@@ -217,10 +217,6 @@ switch ($uri) {
 
     // EVENTS
     case '/events':
-        if (!$isLoggedIn) {
-            header('Location: /log_ind');
-            exit;
-        }
 
         require_once __DIR__ . '/../App/Controllers/EventController.php';
         $events = EventController::getAll();
@@ -230,10 +226,6 @@ switch ($uri) {
 
     // SINGLE EVENT
     case '/eventside':
-        if (!$isLoggedIn) {
-            header('Location: /log_ind');
-            exit;
-        }
 
         require_once __DIR__ . '/../App/Controllers/EventController.php';
         $event = EventController::getById($_GET['id'] ?? '');
