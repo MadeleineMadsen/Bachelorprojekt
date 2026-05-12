@@ -304,6 +304,7 @@ switch ($uri) {
 
         $educations = MedlemModel::getEducations();
         $semesters = MedlemModel::getSemesters();
+        $memberStats = MedlemController::getStats();
 
         $currentPage = 'medlem_sog';
         $view = '/medlem_sog.php';

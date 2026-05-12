@@ -17,7 +17,8 @@
   width: 80%;
 }
 
-.form-container input {
+.form-container input,
+.form-container select {
   font-family: var(--font-text);
   font-size: var(--font-mobil-text);
   color: var(--font-color-black);
@@ -29,7 +30,12 @@
   outline: none;
 }
 
-.form-container input::placeholder {
+.form-container select {
+  background-color: var(--bg-color-white);
+}
+
+.form-container input::placeholder,
+.form-container select::placeholder {
   color: var(--font-color-black);
 }
 
@@ -106,6 +112,7 @@
 /* ----------------------------------- */
 
 .membership-container input,
+.membership-container select,
 .membership-container textarea,
 .membership-container .form-label {
   font-size: var(--font-mobil-text);
@@ -204,7 +211,8 @@
     width: 80%;
   }
 
-  .form-container input {
+  .form-container input,
+  .form-container select {
     font-size: var(--font-desktop-text-small);
     border-bottom: 2px solid var(--font-color-black);
     margin-bottom: var(--gap-md);
@@ -258,6 +266,7 @@
   /* ----------------------------------- */
 
   .membership-container input,
+  .membership-container select,
   .membership-container textarea,
   .membership-container .form-label {
     font-size: var(--font-desktop-text-small);

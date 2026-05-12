@@ -41,31 +41,19 @@ include __DIR__ . '/micro/___banner.php';
             <article class="benefit-card">
                 <img src="assets/img/icons/fællesskab.png" alt="Fællesskab logo">
                 <h3>FÆLLESSKAB</h3>
-                <p>
-                    FG GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG
-                </p>
+                <p>Et trygt fællesskab, hvor studerende mødes og lærer hinanden at kende på tværs.</p>
             </article>
 
             <article class="benefit-card">
                 <img src="assets/img/icons/events2.png" alt="Events logo">
                 <h3>EVENTS</h3>
-                <p>
-                    FG GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG
-                </p>
+                <p>Vi skaber sociale events, der samler studerende og giver gode minder.</p>
             </article>
 
             <article class="benefit-card">
-                <img src="assets/img/icons/.png" alt="Netværk logo">
+                <img src="assets/img/icons/netværk.png" alt="Netværk logo">
                 <h3>NETVÆRK</h3>
-                <p>
-                    FG GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG<br>
-                    GDFDGJHDFJFFG
-                </p>
+                <p>Et inkluderende miljø, der har plads til alle, og hvor du kan være dig selv.</p>
             </article>
 
         </div>
@@ -78,7 +66,7 @@ include __DIR__ . '/micro/___banner.php';
         <div class="stat">
             <img src="assets/img/icons/user_account.svg" alt="">
             <div class="stat-text">
-                <h3>+30</h3>
+                <h3><?= $memberStats['active_members']; ?></h3>
                 <p>AKTIVE MEDLEMMER</p>
             </div>
         </div>
@@ -86,7 +74,7 @@ include __DIR__ . '/micro/___banner.php';
         <div class="stat">
             <img src="assets/img/icons/calender.png" alt="">
             <div class="stat-text">
-                <h3>+10</h3>
+                <h3>+<?= $memberStats['events_this_year']; ?></h3>
                 <p>EVENTS OM ÅRET</p>
             </div>
         </div>
@@ -138,7 +126,6 @@ include __DIR__ . '/micro/___banner.php';
 
                 <select name="semester_fk" required>
                     <option value="">Vælg semester</option>
-
                     <?php foreach ($semesters as $semester): ?>
                         <option value="<?= $semester['semester_pk'] ?>">
                             <?= htmlspecialchars($semester['semester_number']) ?>. semester

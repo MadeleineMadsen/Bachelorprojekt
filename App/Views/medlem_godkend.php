@@ -92,8 +92,8 @@
                         </button>
                     </form>
                     
-                    <!-- <img src="<?= $member['image']; ?>" alt="" class="profile-img profile-medium"> -->
-                    <img src="/public/assets/img/uploads/test_profile.png" alt="" class="profile-img profile-medium">
+                    <img src="<?= $member['image']; ?>" alt="" class="profile-img profile-medium">
+                    <!-- <img src="/public/assets/img/uploads/test_profile.png" alt="" class="profile-img profile-medium"> -->
 
                     <h3>
                         <?= $member['user_name']; ?>

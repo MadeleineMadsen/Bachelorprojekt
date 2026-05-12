@@ -33,26 +33,29 @@ include __DIR__ . '/micro/___banner.php';
             </div>
         </div>
 
-        <div class="members-filters">
-            <label class="search-field" for="memberSearch">
-                <span aria-hidden="true">&#128269;</span>
-                <input id="memberSearch" type="search" name="search" placeholder="SØG">
-            </label>
+<div class="filter-container">
+    <form class="search-form" action="" onsubmit="return false;">
 
-            <label class="education-filter" for="educationFilter">
-                <span class="sr-only">Filtrer efter uddannelse</span>
+        <div class="search-field">
+            <input id="memberSearch" type="search" name="search" placeholder="SØG">
 
-                <select id="educationFilter" name="education">
-                    <option value="">UDDANNELSE</option>
-
-                    <?php foreach ($educations as $education): ?>
-                        <option value="<?= $education['education_pk']; ?>">
-                            <?= htmlspecialchars($education['education_name']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </label>
+            <button type="button" aria-label="Søg">
+                <img src="/assets/img/icons/search.svg" alt="">
+            </button>
         </div>
+
+        <select name="education" id="educationFilter" class="filter-select">
+            <option value="">ALLE MEDLEMMER</option>
+
+            <?php foreach ($educations as $education): ?>
+                <option value="<?= $education['education_pk']; ?>">
+                    <?= htmlspecialchars($education['education_name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+    </form>
+</div>
 
         <section class="members-grid" aria-label="Medlemmer">
             <?php foreach ($members as $member): ?>
@@ -70,9 +73,6 @@ include __DIR__ . '/micro/___banner.php';
             <?php endforeach; ?>
         </section>
 
-        <div class="members-link-wrapper">
-            <a href="#" class="members-link btn-nav">SE ALLE MEDLEMMER</a>
-        </div>
 
     </section>
 
