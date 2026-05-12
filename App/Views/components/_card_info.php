@@ -30,5 +30,20 @@
             <span class="card-event-info-value"><?= htmlspecialchars($event['participant_count'] ?? '0') ?> deltager</span>
         </div>
     </div>
-    <a href="#" class="btn btn-primary">Tilmeld dig eventet</a>
+    <?php if (isset($_SESSION['user'])): ?>
+        <form method="POST" action="/event_tilmeld">
+            <input type="hidden" name="event_id" value="<?= htmlspecialchars($event['event_pk']) ?>">
+            <?php if (($_SESSION['user']['role_fk'] ?? null) == 1): ?>
+                <button type="submit" class="btn btn-primary" disabled>Tilmeld dig eventet</button>
+            <?php elseif (!empty($isRegistered)): ?>
+                <input type="hidden" name="action" value="frameld">
+                <button type="submit" class="btn btn-secondary">Frameld dig eventet</button>
+            <?php else: ?>
+                <input type="hidden" name="action" value="tilmeld">
+                <button type="submit" class="btn btn-primary">Tilmeld dig eventet</button>
+            <?php endif; ?>
+        </form>
+    <?php else: ?>
+        <a href="/log_ind" class="btn btn-primary">Log ind for at tilmelde</a>
+    <?php endif; ?>
 </div>

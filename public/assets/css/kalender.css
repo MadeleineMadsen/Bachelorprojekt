@@ -215,7 +215,8 @@ Desktop
         height: 8rem;
         aspect-ratio: auto;
         padding: var(--gap-xxs);
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
         display: block;
         text-align: left;
         font-size: var(--font-desktop-small);
@@ -283,5 +284,21 @@ Desktop
 
     .no-events {
         font-size: var(--font-desktop-text-small);
+    }
+
+    .calendar-img-wrap {
+        position: relative;
+    }
+
+    .calendar-tilmeldt-label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: var(--color-black);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 8px;
+        letter-spacing: 0.08em;
     }
 }

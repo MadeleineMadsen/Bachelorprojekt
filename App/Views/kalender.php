@@ -27,26 +27,8 @@ if ($hasSelectedDate) {
 }
 
 
-// TEST EVENTS - hardcodet, men nedenstående linje skal rettes når database er klar
-$events = [];
-
-// midlertidige test-events hvis databasen er tom
-if (empty($events)) {
-    $events = [
-        '2026-04-10' => [
-            [
-                'title' => 'DJ aften',
-                'image' => '/assets/img/dj.png',
-            ]
-        ],
-        '2026-04-15' => [
-            [
-                'title' => 'Spil aften, hvor der sker mega mange fede ting!',
-                'image' => '/assets/img/spil.png',
-            ]
-        ],
-    ];
-}
+$events = $calendarEvents;
+$registeredIds = $registeredEventIds ?? [];
 
 
 
@@ -94,9 +76,11 @@ $monthNames = [
     <div class="calendar-actions">
 
         <div class="buttons">
+        <?php if ($isAdmin): ?>
         <a class="btn btn-primary" href="/event_opret">
             OPRET EVENT
         </a>
+        <?php endif; ?>
         <a class="btn btn-secondary" href="/kalender?date=<?= $todayDate ?>">
             I DAG
         </a>
@@ -111,7 +95,7 @@ $monthNames = [
             <a  class="calendar-arrow" 
             href="/kalender?month=<?= $next->format('n') ?>&year=<?= $next->format('Y') ?>"
             >
-                <img src="/assets/img/arrow-right.png" alt="Næste måned">
+                <img src="/assets/img/icons/arrow-right.png" alt="Næste måned">
             </a>
         </div>
     </div>
@@ -142,7 +126,8 @@ $monthNames = [
 
             <button
                 class="calendar-day <?= !$isCurrentMonth ? 'calendar-day-muted' : '' ?>
-                <?= $dateKey && $dateKey === $selectedDate ? 'is-selected' : '' ?>"
+                <?= $dateKey && $dateKey === $selectedDate ? 'is-selected' : '' ?>
+                <?= $dateKey && $dateKey === $todayDate ? 'is-today' : '' ?>"
                 type="button"
                 data-date="<?= $dateKey ?>"
             >
@@ -155,10 +140,16 @@ $monthNames = [
 
                     <div class="desktop-event-preview">
                         <?php foreach ($dayEvents as $event): ?>
-                            <img 
-                                src="<?= htmlspecialchars($event['image'] ?? '') ?>" 
-                                alt="<?= htmlspecialchars($event['title'] ?? '') ?>"
-                            >
+                            <?php $isTilmeldt = in_array($event['pk'], $registeredIds); ?>
+                            <div class="calendar-img-wrap">
+                                <img
+                                    src="<?= htmlspecialchars($event['image'] ?? '') ?>"
+                                    alt="<?= htmlspecialchars($event['title'] ?? '') ?>"
+                                >
+                                <?php if ($isTilmeldt): ?>
+                                    <span class="calendar-tilmeldt-label">TILMELDT</span>
+                                <?php endif; ?>
+                            </div>
                             <p><?= htmlspecialchars($event['title'] ?? 'Event uden titel') ?></p>
                         <?php endforeach; ?>
                     </div>
@@ -182,10 +173,11 @@ $monthNames = [
             ?>
 
             <?php foreach ($dayEvents as $event): ?>
-                    <article 
-                        class="mobile-event-card <?= $eventDate === $selectedDate ? 'is-visible' : '' ?>" 
+                <?php $isTilmeldt = in_array($event['pk'], $registeredIds); ?>
+                    <article
+                        class="mobile-event-card <?= $eventDate === $selectedDate ? 'is-visible' : '' ?>"
                         data-event-date="<?= $eventDate ?>"
-                    >                    
+                    >
                         <div class="mobile-event-date">
                         <strong><?= $eventDateObj->format('j') ?></strong>
                         <span><?= mb_substr($monthNames[$month], 0, 3) ?></span>
@@ -193,6 +185,9 @@ $monthNames = [
 
                     <img src="<?= $event['image'] ?>" alt="">
                     <p><?= htmlspecialchars($event['title']) ?></p>
+                    <?php if ($isTilmeldt): ?>
+                        <span class="calendar-tilmeldt-label">TILMELDT</span>
+                    <?php endif; ?>
                 </article>
             <?php endforeach; ?>
         <?php endforeach; ?>
