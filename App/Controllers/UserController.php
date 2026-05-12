@@ -18,14 +18,14 @@ class UserController
             header('Location: /log_ind');
             exit;
         }
-        
+
         $user = $this->userModel->findById($_SESSION['user']['user_pk']);
-        $member = $this->userModel->findMemberByUserId($_SESSION['user']['user_pk']);
-        
+        $member = $this->userModel->findMemberByUserId($_SESSION['user']['user_pk']) ?? [];
+
         $educations = MedlemModel::getEducations();
         $semesters = MedlemModel::getSemesters();
 
-        require __DIR__ . '/../views/users/profil.php';
+        require __DIR__ . '/../Views/profil.php';
     }
 
     public function updateProfile(): void

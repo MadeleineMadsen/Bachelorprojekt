@@ -86,13 +86,7 @@ switch ($uri) {
 
         $currentPage = 'profil';
 
-        if ($isAdmin) {
-            $view = '/profil_admin.php';
-        } elseif ($isMember) {
-            $view = '/profil_member.php';
-        } else {
-            $view = '/profil_user.php';
-        }
+        $view = '/profil.php';
 
         $isProfileSection = true;
         break;
@@ -245,7 +239,7 @@ switch ($uri) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require_once __DIR__ . '/../App/Controllers/EventController.php';
             $eventId = $_POST['event_id'] ?? '';
-            $action  = $_POST['action'] ?? 'tilmeld';
+            $action = $_POST['action'] ?? 'tilmeld';
 
             if ($action === 'frameld') {
                 EventController::unregister($eventId, $_SESSION['user']['user_pk']);
