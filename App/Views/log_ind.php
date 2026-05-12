@@ -12,6 +12,21 @@
         <h1 class="form-title">LOG IND</h1>
 
         <section class="form-container login-container">
+
+            <?php if (isset($_SESSION['success'])): ?>
+                <div class="form-message success">
+                    <?= $_SESSION['success']; ?>
+                </div>
+                <?php unset($_SESSION['success']); ?>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="form-message error">
+                    <?= $_SESSION['error']; ?>
+                </div>
+                <?php unset($_SESSION['error']); ?>
+            <?php endif; ?>
+
             <form method="POST" action="">
                 <input type="email" name="user_email" placeholder="Studiemail" required>
 
@@ -21,8 +36,12 @@
             </form>
 
             <div>
-                <p class="form-link-text">Ikke medlem endnu? <a href="opret_dig">Opret dig her</a> </p>
+                <p class="form-link-text">
+                    Ikke medlem endnu?
+                    <a href="opret_dig">Opret dig her</a>
+                </p>
             </div>
+
         </section>
     </div>
 

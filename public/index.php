@@ -2,6 +2,7 @@
 session_start();
 
 require_once __DIR__ . '/../private/db.php';
+require_once __DIR__ . '/../private/helpers.php';
 require_once __DIR__ . '/../App/Controllers/AuthController.php';
 require_once __DIR__ . '/../App/Controllers/MedlemController.php';
 
@@ -58,6 +59,11 @@ switch ($uri) {
         $currentPage = 'opret_dig';
         $view = '/opret_dig.php';
         break;
+
+    // VERIFICER BRUGER
+    case '/verificer_bruger':
+        $authController->verifyUser();
+        exit;
 
     // LOG UD
     case '/log_ud':
