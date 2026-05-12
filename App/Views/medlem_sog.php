@@ -1,5 +1,6 @@
 <?php
-
+$profileImage = $_SESSION['user']['user_profile_image'] ?? null;
+$hasProfileImage = !empty($profileImage);
 ?>
 
 <!-- Hero section -->
@@ -138,11 +139,31 @@ include __DIR__ . '/micro/___banner.php';
                 <textarea id="description" name="description" required></textarea>
 
                 <label class="form-label">Upload profilbillede</label>
-                    <div class="upload-box">
-                        <input type="file" name="profile_image" accept="image/*" required>
-                        <div class="upload-icon"><img src="/assets/img/icons/upload_picture.png" alt="Upload billede ikon"></div>
-                        <p>Træk og slip et billede her<br>eller klik for at vælge fil</p>
+
+                <label class="upload-box" for="profile_image">
+                    <input id="profile_image" type="file" name="profile_image" accept="image/*">
+
+                    <div class="upload-icon">
+                        <img src="/assets/img/icons/upload_picture.png" alt="Upload billede ikon">
                     </div>
+
+                    <p id="uploadText">
+                        <?php if ($hasProfileImage): ?>
+                            Du har allerede et profilbillede<br>Upload kun hvis du vil skifte det
+                        <?php else: ?>
+                            Træk og slip et billede her<br>eller klik for at vælge fil
+                        <?php endif; ?>
+                    </p>
+
+                    <img 
+                        id="uploadPreview"
+                        src="<?= $hasProfileImage
+                            ? '/assets/img/uploads/' . htmlspecialchars($profileImage)
+                            : '/assets/img/uploads/default_profile_image.webp' ?>"
+                        alt="Profil preview"
+                        class="upload-preview"
+                    >
+                </label>
 
                 <button class="btn btn-primary" type="submit">SEND ANSØGNING</button>
             </form>

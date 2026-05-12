@@ -17,7 +17,8 @@ class MedlemModel {
                 m.applied_at,
                 u.user_name,
                 u.user_last_name,
-                u.user_email
+                u.user_email,
+                u.user_profile_image
             FROM members m
             INNER JOIN users u ON m.user_fk = u.user_pk
             LEFT JOIN educations e ON m.education_fk = e.education_pk
@@ -76,7 +77,8 @@ class MedlemModel {
                 m.applied_at,
                 u.user_name,
                 u.user_last_name,
-                u.user_email
+                u.user_email,
+                u.user_profile_image
             FROM members m
             INNER JOIN users u ON m.user_fk = u.user_pk
             LEFT JOIN educations e ON m.education_fk = e.education_pk
@@ -178,6 +180,24 @@ class MedlemModel {
         $application = $stmt->fetch();
 
         return $application ?: null;
+    }
+
+    public static function getUserProfileImage(int $userId): ?string
+    {
+        $db = getDB();
+
+        $stmt = $db->prepare("
+            SELECT user_profile_image
+            FROM users
+            WHERE user_pk = ?
+            LIMIT 1
+        ");
+
+        $stmt->execute([$userId]);
+
+        $image = $stmt->fetchColumn();
+
+        return $image ?: null;
     }
 
     public static function updateUserProfileImage(int $userId, string $imageName): bool

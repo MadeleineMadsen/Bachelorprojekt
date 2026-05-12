@@ -64,8 +64,14 @@ include __DIR__ . '/micro/___banner.php';
                     data-name="<?= strtolower(htmlspecialchars($member['user_name'])); ?>"
                     data-education="<?= $member['education_fk']; ?>"
                 >
-                    <img src="/public/assets/img/uploads/test_profile.png" alt="Portræt af <?= htmlspecialchars($member['user_name']); ?>" class="member-img">
-
+                    <img 
+                        src="<?= !empty($member['user_profile_image'])
+                            ? '/assets/img/uploads/' . htmlspecialchars($member['user_profile_image'])
+                            : '/assets/img/uploads/default_profile_image.webp' ?>"
+                        alt="Portræt af <?= htmlspecialchars($member['user_name']); ?>"
+                        class="member-img"
+                    >
+                    
                     <h3><?= htmlspecialchars($member['user_name']); ?></h3>
                     <p><?= htmlspecialchars($member['education_name']); ?></p>
                     <p><?= htmlspecialchars($member['semester_number']); ?>. semester</p>

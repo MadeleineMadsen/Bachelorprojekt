@@ -20,6 +20,7 @@
 
             <form id="profileImageForm" method="POST" action="/profil/update-image" enctype="multipart/form-data">
                 <div class="profile-image-wrapper">
+                    
                     <img id="profilePreview" src="<?= !empty($user['user_profile_image'])
                         ? '/assets/img/uploads/' . htmlspecialchars($user['user_profile_image'])
                         : '/assets/img/uploads/default_profile_image.webp' ?>" alt="Profilbillede"

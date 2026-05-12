@@ -13,8 +13,13 @@
 
                 <!-- Venstre (profil) -->
                 <div class="godkend-left inner">
-                    <img src="/assets/img/uploads/test_profile.png" alt="" class="profile-img profile-medium">
-
+                    <img 
+                        src="<?= !empty($app['user_profile_image'])
+                            ? '/assets/img/uploads/' . htmlspecialchars($app['user_profile_image'])
+                            : '/assets/img/uploads/default_profile_image.webp' ?>"
+                        alt="Profilbillede"
+                        class="profile-img profile-medium"
+                    >
                     <div class="godkend-info">
                         <h2 class="godkend-name"><strong><?= $app['user_name']; ?> <?= $app['user_last_name']; ?></strong></h2>
                         <p><?= htmlspecialchars($app['education_name']); ?></p>
@@ -92,9 +97,13 @@
                         </button>
                     </form>
                     
-                    <img src="<?= $member['image']; ?>" alt="" class="profile-img profile-medium">
-                    <!-- <img src="/public/assets/img/uploads/test_profile.png" alt="" class="profile-img profile-medium"> -->
-
+                    <img 
+                        src="<?= !empty($member['user_profile_image'])
+                            ? '/assets/img/uploads/' . htmlspecialchars($member['user_profile_image'])
+                            : '/assets/img/uploads/default_profile_image.webp' ?>"
+                        alt="Profilbillede"
+                        class="profile-img profile-medium"
+                    >
                     <h3>
                         <?= $member['user_name']; ?>
                     </h3>

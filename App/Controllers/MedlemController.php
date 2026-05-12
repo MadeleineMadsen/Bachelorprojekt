@@ -40,9 +40,13 @@ class MedlemController {
             exit;
         }
 
-        $profileImageName = null;
+        $existingProfileImage = MedlemModel::getUserProfileImage($userId);
+        $profileImageName = $existingProfileImage;
 
-        if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
+        if (
+            isset($_FILES['profile_image']) &&
+            $_FILES['profile_image']['error'] === UPLOAD_ERR_OK
+        ) {
             $uploadDir = __DIR__ . '/../../public/assets/img/uploads/';
 
             $fileTmp = $_FILES['profile_image']['tmp_name'];
@@ -52,7 +56,7 @@ class MedlemController {
             $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
 
             if (!in_array($fileExt, $allowedExtensions)) {
-                header('Location: /medlem_sog');
+                header('Location: /medlem_sog?error=invalid_image');
                 exit;
             }
 
@@ -62,14 +66,17 @@ class MedlemController {
                 header('Location: /medlem_sog?error=image_upload_failed');
                 exit;
             }
-            
+
             MedlemModel::updateUserProfileImage($userId, $profileImageName);
 
             $_SESSION['user']['user_profile_image'] = $profileImageName;
-        } else {
-            header('Location: /medlem_sog');
+        }
+
+        if (empty($profileImageName)) {
+            header('Location: /medlem_sog?error=missing_image');
             exit;
         }
+
 
         $created = MedlemModel::createApplication(
             $userId,

@@ -136,6 +136,15 @@
   font-size: var(--font-mobil-text);
 }
 
+.upload-preview {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: var(--gap-sm);
+  border: 1px solid var(--font-color-black);
+}
+
 /* ----------------------------------- */
 /* Profil formular */
 /* ----------------------------------- */
@@ -294,6 +303,11 @@
   .membership-container .form-label {
     font-size: var(--font-desktop-text-small);
   }
+
+    .upload-preview {
+      width: 100px;
+      height: 100px;
+    }
 
   /* ----------------------------------- */
   /* Profil formular */
