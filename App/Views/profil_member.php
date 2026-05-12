@@ -18,7 +18,7 @@
                 <p>Her kan du se og redigere dine personlige oplysninger</p>
             </div>
 
-            <form id="profileImageForm" method="POST" action="/profil/update" enctype="multipart/form-data">
+            <form id="profileImageForm" method="POST" action="/profil/update-image" enctype="multipart/form-data">
                 <div class="profile-image-wrapper">
 
                     <img id="profilePreview" src="<?= !empty($user['user_profile_image'])
@@ -51,10 +51,7 @@
                 <option value="">Vælg studieretning</option>
 
                 <?php foreach ($educations as $education): ?>
-                    <option 
-                        value="<?= $education['education_pk'] ?>"
-                        <?= (($member['education_fk'] ?? '') == $education['education_pk']) ? 'selected' : '' ?>
-                    >
+                    <option value="<?= $education['education_pk'] ?>" <?= (($member['education_fk'] ?? '') == $education['education_pk']) ? 'selected' : '' ?>>
                         <?= htmlspecialchars($education['education_name']) ?>
                     </option>
                 <?php endforeach; ?>
@@ -64,18 +61,16 @@
                 <option value="">Vælg semester</option>
 
                 <?php foreach ($semesters as $semester): ?>
-                    <option 
-                        value="<?= $semester['semester_pk'] ?>"
-                        <?= (($member['semester_fk'] ?? '') == $semester['semester_pk']) ? 'selected' : '' ?>
-                    >
+                    <option value="<?= $semester['semester_pk'] ?>" <?= (($member['semester_fk'] ?? '') == $semester['semester_pk']) ? 'selected' : '' ?>>
                         <?= htmlspecialchars($semester['semester_number']) ?>. semester
                     </option>
                 <?php endforeach; ?>
             </select>
+
             <input type="email" name="user_email" value="<?= htmlspecialchars($user['user_email']) ?>"
                 placeholder="Studiemail" required>
 
-            <input type="password" name="user_password" placeholder="Adgangskode">
+            <input type="password" name="user_password" placeholder="Ret adgangskode">
 
             <div class="profile-button-row">
                 <button class="btn btn-primary" type="submit">
