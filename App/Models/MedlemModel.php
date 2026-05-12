@@ -31,6 +31,37 @@ class MedlemModel {
         return $stmt->fetchAll();
     }
 
+    public static function getStats(): array {
+        $db = getDB();
+
+        $stmt = $db->query("
+            SELECT
+                (
+                    SELECT COUNT(*)
+                    FROM members m
+                    INNER JOIN users u ON m.user_fk = u.user_pk
+                    WHERE m.status = 'approved'
+                        AND m.deleted_at IS NULL
+                        AND u.user_deleted_at IS NULL
+                ) AS active_members,
+
+                (
+                    SELECT COUNT(*)
+                    FROM users
+                    WHERE role_fk = '1'
+                        AND user_deleted_at IS NULL
+                ) AS board_members,
+
+                (
+                    SELECT COUNT(*)
+                    FROM events
+                    WHERE YEAR(event_date) = YEAR(CURDATE())
+                ) AS events_this_year
+        ");
+
+        return $stmt->fetch();
+    }
+
     public static function getPending(): array {
         $db = getDB();
 

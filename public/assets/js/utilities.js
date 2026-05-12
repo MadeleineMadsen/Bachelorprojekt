@@ -2,7 +2,6 @@
 // Genbrugelige JavaScript funktioner
 // Fx buttons, UI funktioner osv.
 
-// Karusel til billeder af members
 const carousel = document.querySelector('#memberCarousel');
 const nextBtn = document.querySelector('.carousel-next');
 const prevBtn = document.querySelector('.carousel-prev');
@@ -11,8 +10,9 @@ const educationFilter = document.querySelector('#educationFilter');
 const memberSlides = document.querySelectorAll('.member-slide');
 
 function updateArrows() {
-    const visibleSlidesAmount = Number(carousel.dataset.visibleSlides) || 2;
+    if (!carousel || !prevBtn || !nextBtn) return;
 
+    const visibleSlidesAmount = Number(carousel.dataset.visibleSlides) || 2;
     const visibleSlides = [...memberSlides].filter(slide => slide.style.display !== 'none');
 
     if (visibleSlides.length <= visibleSlidesAmount) {
@@ -27,25 +27,43 @@ function updateArrows() {
     nextBtn.style.visibility = carousel.scrollLeft >= maxScrollLeft - 1 ? 'hidden' : 'visible';
 }
 
-function filterMembers() {
+function filterMemberElements(elements, resetCarousel = false) {
+    if (!searchInput || !educationFilter) return;
+
     const searchValue = searchInput.value.toLowerCase().trim();
     const selectedEducation = educationFilter.value;
 
-    memberSlides.forEach(slide => {
-        const name = slide.dataset.name;
-        const education = slide.dataset.education;
+    elements.forEach(element => {
+        const name = element.dataset.name || '';
+        const education = element.dataset.education || '';
 
         const matchesName = name.includes(searchValue);
         const matchesEducation = selectedEducation === '' || education === selectedEducation;
 
-        slide.style.display = matchesName && matchesEducation ? '' : 'none';
+        element.style.display = matchesName && matchesEducation ? '' : 'none';
     });
 
-    carousel.scrollLeft = 0;
-    updateArrows();
+    if (resetCarousel && carousel) {
+        carousel.scrollLeft = 0;
+        updateArrows();
+    }
+}
+
+function filterMembers() {
+    const memberCards = document.querySelectorAll('.member-card');
+
+    if (memberSlides.length > 0) {
+        filterMemberElements(memberSlides, true);
+    }
+
+    if (memberCards.length > 0) {
+        filterMemberElements(memberCards);
+    }
 }
 
 function getSlideWidth() {
+    if (!carousel) return 0;
+
     const slide = document.querySelector('.member-slide:not([style*="display: none"])');
     const gap = parseInt(getComputedStyle(carousel).gap) || 0;
 
@@ -54,23 +72,27 @@ function getSlideWidth() {
     return slide.offsetWidth + gap;
 }
 
-nextBtn.addEventListener('click', () => {
-    carousel.scrollBy({
-        left: getSlideWidth(),
-        behavior: 'smooth'
+if (nextBtn && carousel) {
+    nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({
+            left: getSlideWidth(),
+            behavior: 'smooth'
+        });
+
+        setTimeout(updateArrows, 400);
     });
+}
 
-    setTimeout(updateArrows, 400);
-});
+if (prevBtn && carousel) {
+    prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({
+            left: -getSlideWidth(),
+            behavior: 'smooth'
+        });
 
-prevBtn.addEventListener('click', () => {
-    carousel.scrollBy({
-        left: -getSlideWidth(),
-        behavior: 'smooth'
+        setTimeout(updateArrows, 400);
     });
-
-    setTimeout(updateArrows, 400);
-});
+}
 
 if (searchInput) {
     searchInput.addEventListener('input', filterMembers);
@@ -80,6 +102,8 @@ if (educationFilter) {
     educationFilter.addEventListener('change', filterMembers);
 }
 
-carousel.addEventListener('scroll', updateArrows);
-window.addEventListener('load', updateArrows);
-window.addEventListener('resize', updateArrows);
+if (carousel) {
+    carousel.addEventListener('scroll', updateArrows);
+    window.addEventListener('load', updateArrows);
+    window.addEventListener('resize', updateArrows);
+}
