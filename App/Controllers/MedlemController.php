@@ -91,15 +91,8 @@ class MedlemController {
 
         if ($created) {
 
-            // Til når det skal fungere til rigtige mails
-            // sendMembershipConfirmationMail(
-            //     $_SESSION['user']['user_email'],
-            //     $_SESSION['user']['user_name']
-            // );
-
-            // Testmail
             sendMembershipConfirmationMail(
-                'kamiweb1031@gmail.com',
+                $_SESSION['user']['user_email'],
                 $_SESSION['user']['user_name']
             );
 
@@ -131,7 +124,7 @@ class MedlemController {
 
             if ($approved && $application) {
                 sendMembershipApprovedMail(
-                    'kamiweb1031@gmail.com',
+                    $application['user_email'],
                     $application['user_name']
                 );
             }
@@ -152,15 +145,8 @@ class MedlemController {
 
             if ($rejected && $application) {
 
-                // Til rigtige mails senere:
-                // sendMembershipRejectedMail(
-                //     $application['user_email'],
-                //     $application['user_name']
-                // );
-
-                // Testmail til eksamen:
                 sendMembershipRejectedMail(
-                    'kamiweb1031@gmail.com',
+                    $application['user_email'],
                     $application['user_name']
                 );
             }
@@ -184,15 +170,8 @@ class MedlemController {
         $deleted = MedlemModel::delete($memberId);
 
         if ($deleted && $member) {
-            // Til rigtige mails senere:
-            // sendMembershipRemovedMail(
-            //     $member['user_email'],
-            //     $member['user_name']
-            // );
-
-            // Testmail til eksamen:
             sendMembershipRemovedMail(
-                'kamiweb1031@gmail.com',
+                $member['user_email'],
                 $member['user_name']
             );
         }
