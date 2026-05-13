@@ -11,7 +11,8 @@
 
     <section class="events-list">
         <?php if (empty($events)): ?>
-            <p class="events-empty">Du er ikke tilmeldt nogen events endnu. <a href="/events">Se kommende events</a></p>
+            <p class="events-empty">Du er ikke tilmeldt nogen events endnu.</p>
+            <a href="/events" class="btn btn-secondary">SE EVENTS</a>
         <?php else: ?>
             <?php foreach ($events as $event): ?>
                 <?php include __DIR__ . '/components/_card_list.php'; ?>
