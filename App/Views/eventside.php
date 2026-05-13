@@ -44,14 +44,14 @@
 
     <section class="event-gallery">
         <div class="event-gallery-header">
-            <h2 class="event-gallery-title">FRA SIDSTE EVENT</h2>
+            <h2 class="event-gallery-title">FRA VORES EVENTS</h2>
             <a href="#" class="event-gallery-link">SE FLERE BILLEDER →</a>
         </div>
         <div class="event-gallery-grid">
-            <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
-            <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
-            <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
-            <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>" alt="" class="event-gallery-img">
+            <img src="/assets/img/fredagsbar-udenfor.webp" alt="" class="event-gallery-img">
+            <img src="/assets/img/guldbar-hygge.webp" alt="" class="event-gallery-img">
+            <img src="/assets/img/fredagsbar-udenfor2.webp" alt="" class="event-gallery-img">
+            <img src="/assets/img/tøser.webp" alt="" class="event-gallery-img">
         </div>
     </section>
 

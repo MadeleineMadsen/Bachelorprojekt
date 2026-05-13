@@ -56,18 +56,33 @@ $formAction = $isEditing ? '/event_rediger' : '';
                 <textarea id="description-bulletpoints" name="description-bulletpoints"><?= $isEditing ? htmlspecialchars($event['event_expectations'] ?? '') : '' ?></textarea>
 
                 <label class="form-label">Upload billede<?= $isEditing ? ' <small class="form-hint">(valgfrit – behold nuværende hvis tomt)</small>' : '' ?></label>
-                <div class="upload-box">
-                    <input type="file" name="image" accept="image/*" <?= !$isEditing ? 'required' : '' ?>>
-                    <div class="upload-icon"><img src="/assets/img/icons/upload_picture.png" alt="Upload billede ikon"></div>
-                    <p>Træk og slip et billede her<br>eller klik for at vælge fil</p>
-                </div>
+                <label class="upload-box" for="profile_image">
+                    <input id="profile_image" type="file" name="image" accept="image/*" <?= !$isEditing ? 'required' : '' ?>>
+                    <div class="upload-icon">
+                        <img src="/assets/img/icons/upload_picture.png" alt="Upload billede ikon">
+                    </div>
+                    <p id="uploadText">
+                        <?php if ($isEditing && !empty($event['event_image'])): ?>
+                            Der er allerede et billede – upload kun hvis du vil skifte det
+                        <?php else: ?>
+                            Træk og slip et billede her<br>eller klik for at vælge fil
+                        <?php endif; ?>
+                    </p>
+                    <img
+                        id="uploadPreview"
+                        src="<?= $isEditing && !empty($event['event_image']) ? '/assets/img/' . htmlspecialchars($event['event_image']) : '' ?>"
+                        alt="Billede preview"
+                        class="upload-preview"
+                        <?= (!$isEditing || empty($event['event_image'])) ? 'style="display:none"' : '' ?>
+                    >
+                </label>
 
                 <div class="button-row">
                     <button class="btn btn-primary" type="submit"><?= $isEditing ? 'GEM ÆNDRINGER' : 'OPRET EVENT' ?></button>
                     <?php if ($isEditing): ?>
                         <a href="/eventside?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-secondary">ANNULLER</a>
                     <?php else: ?>
-                        <button class="btn btn-secondary" type="reset">ANNULLER</button>
+                        <a href="/events" class="btn btn-secondary">ANNULLER</a>
                     <?php endif; ?>
                 </div>
             </form>
