@@ -92,6 +92,7 @@ Systemet benytter relationel MySQL-database med:
 - members
 - events
 - event_registrations
+- event_categories
 - educations
 - semesters
 - roles
