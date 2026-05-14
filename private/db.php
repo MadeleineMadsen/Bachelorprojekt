@@ -1,16 +1,15 @@
 <?php
-// db.php
-// Opretter PDO databaseforbindelse
-// Bruges i models til at kommunikere med databasen
 
 function getDB(): PDO {
     static $pdo = null;
 
     if ($pdo === null) {
+        $env = parse_ini_file(__DIR__ . '/.env');
+
         $pdo = new PDO(
-            'mysql:host=mariadb;dbname=bachelor;charset=utf8mb4',
-            'root',
-            'password',
+            'mysql:host=' . $env['DB_HOST'] . ';dbname=' . $env['DB_NAME'] . ';charset=utf8mb4',
+            $env['DB_USER'],
+            $env['DB_PASSWORD'],
             [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
