@@ -73,20 +73,22 @@ CREATE TABLE `events` (
   `category_fk` char(36) DEFAULT NULL,
   `event_image` varchar(255) DEFAULT NULL,
   `created_by_fk` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `reminder_sent_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Data dump for tabellen `events`
 --
 
-INSERT INTO `events` (`event_pk`, `event_title`, `event_subtitle`, `event_description`, `event_expectations`, `event_date`, `event_time`, `event_end_time`, `event_location`, `category_fk`, `event_image`, `created_by_fk`, `created_at`) VALUES
-('2327f709-4e02-11f1-975b-0242ac1d0002', 'Karaoke Night', 'Syng dine yndlingssange', 'Tag dine venner med til en sjov karaokeaften med drinks og god stemning.', 'Musik, dans og masser af grin', '2026-06-15', '20:00:00', '23:30:00', 'Downtown Bar', '1', 'fredagsbar-udenfor.webp', 1, '2026-05-12 16:46:58'),
-('2f7ba6e5-4e02-11f1-975b-0242ac1d0002', 'Coding Bootcamp', 'Lær webudvikling på én dag', 'En intensiv workshop hvor du lærer HTML, CSS og JavaScript fra bunden.', 'Praktiske øvelser og nye skills', '2026-07-01', '09:00:00', '16:00:00', 'KEA Guldbergsgade', '2', 'fredagsbar-udenfor.webp', 1, '2026-05-12 16:47:18'),
-('912af718-4dff-11f1-975b-0242ac1d0002', 'Sommerfest på taget', 'DJ og drinks hele aftenen', 'Kom og vær med til årets sommerfest med musik, drinks og udsigt over byen.', 'God stemning og fest hele natten', '2026-06-20', '19:00:00', '02:00:00', 'Nørrebro Tagterrasse', '1', 'fredagsbar-udenfor.webp', 1, '2026-05-12 12:39:06'),
-('df5ef636-4478-11f1-b685-0242ac1d0002', 'Fredagsbar', 'GBG Social inviterer til en hyggelig fredagsbar, h.', 'GBG Social inviterer til en hyggelig fredagsbar, hvor studerende kan mødes og skabe nye relationer i afslappede omgivelser.', 'Kolde drinks i baren\r\nGod musik og stemning\r\nMulighed for at møde nye mennesker\r\nHygge og fællesskab', '2026-06-20', '18:00:00', '23:00:00', 'KEA Kantinen', '1', 'fredagsbar-udenfor.webp', 1, '2026-05-07 12:18:16'),
-('df5efe72-4478-11f1-b685-0242ac1d0002', 'Fodboldturneringg', 'Torsdag d. 5 marts kl. 14:00', 'Kom og vær med til en aktiv dag med fodbold, hvor både begyndere og øvede kan deltage.\r\n\r\nvi elsker kage', 'Holdturnering\r\nPræmier til vinderne\r\nGod energi og fællesskab\r\nMulighed for nye bekendtskaber', '2026-03-05', '14:00:00', '18:00:00', 'KEA Boldbane', '4', 'turnering.webp', 1, '2026-05-07 12:18:16'),
-('df5effe9-4478-11f1-b685-0242ac1d0002', 'CV Workshop', 'Tirsdag d. 10 marts kl. 10:00', 'Få hjælp til at optimere dit CV og forbedre dine jobmuligheder gennem sparring og feedback.', 'Feedback på CV\r\nTips til ansøgninger\r\nVejledning fra erfarne studerende\r\nMulighed for spørgsmål', '2026-03-10', '10:00:00', '13:00:00', 'Lokale A1', '2', 'workshop.webp', 1, '2026-05-07 12:18:16');
+INSERT INTO `events` (`event_pk`, `event_title`, `event_subtitle`, `event_description`, `event_expectations`, `event_date`, `event_time`, `event_end_time`, `event_location`, `category_fk`, `event_image`, `created_by_fk`, `created_at`, `reminder_sent_at`, `deleted_at`) VALUES
+('2327f709-4e02-11f1-975b-0242ac1d0002', 'Karaoke Night', 'Syng dine yndlingssange', 'Tag dine venner med til en sjov karaokeaften med drinks og god stemning.', 'Musik, dans og masser af grin', '2026-06-15', '20:00:00', '23:30:00', 'Downtown Bar', '1', 'fredagsbar-udenfor.webp', 1, '2026-05-12 16:46:58', NULL, NULL),
+('2f7ba6e5-4e02-11f1-975b-0242ac1d0002', 'Coding Bootcamp', 'Lær webudvikling på én dag', 'En intensiv workshop hvor du lærer HTML, CSS og JavaScript fra bunden.', 'Praktiske øvelser og nye skills', '2026-07-01', '09:00:00', '16:00:00', 'KEA Guldbergsgade', '2', 'fredagsbar-udenfor.webp', 1, '2026-05-12 16:47:18', NULL, NULL),
+('912af718-4dff-11f1-975b-0242ac1d0002', 'Sommerfest på taget', 'DJ og drinks hele aftenen', 'Kom og vær med til årets sommerfest med musik, drinks og udsigt over byen.', 'God stemning og fest hele natten', '2026-06-20', '19:00:00', '02:00:00', 'Nørrebro Tagterrasse', '1', 'fredagsbar-udenfor.webp', 1, '2026-05-12 12:39:06', NULL, NULL),
+('df5ef636-4478-11f1-b685-0242ac1d0002', 'Fredagsbar', 'GBG Social inviterer til en hyggelig fredagsbar, h.', 'GBG Social inviterer til en hyggelig fredagsbar, hvor studerende kan mødes og skabe nye relationer i afslappede omgivelser.', 'Kolde drinks i baren\r\nGod musik og stemning\r\nMulighed for at møde nye mennesker\r\nHygge og fællesskab', '2026-06-20', '18:00:00', '23:00:00', 'KEA Kantinen', '1', 'fredagsbar-udenfor.webp', 1, '2026-05-07 12:18:16', NULL, NULL),
+('df5efe72-4478-11f1-b685-0242ac1d0002', 'Fodboldturnering', 'Torsdag d. 5 marts kl. 14:00', 'Kom og vær med til en aktiv dag med fodbold, hvor både begyndere og øvede kan deltage.', 'Holdturnering\r\nPræmier til vinderne\r\nGod energi og fællesskab\r\nMulighed for nye bekendtskaber', '2026-03-05', '14:00:00', '18:00:00', 'KEA Boldbane', '4', 'turnering.webp', 1, '2026-05-07 12:18:16', NULL, NULL),
+('df5effe9-4478-11f1-b685-0242ac1d0002', 'CV Workshop', 'Tirsdag d. 10 marts kl. 10:00', 'Få hjælp til at optimere dit CV og forbedre dine jobmuligheder gennem sparring og feedback.', 'Feedback på CV\r\nTips til ansøgninger\r\nVejledning fra erfarne studerende\r\nMulighed for spørgsmål', '2026-03-10', '10:00:00', '13:00:00', 'Lokale A1', '2', 'workshop.webp', 1, '2026-05-07 12:18:16', NULL, NULL);
 
 --
 -- Triggers/udløsere `events`
@@ -167,12 +169,10 @@ CREATE TABLE `event_registrations` (
 --
 
 INSERT INTO `event_registrations` (`registration_pk`, `event_fk`, `user_fk`, `registered_at`) VALUES
-('', 'df5ef636-4478-11f1-b685-0242ac1d0002', 7, '2026-05-12 10:49:44'),
 ('34e6b8f9-4484-11f1-b685-0242ac1d0002', 'df5ef636-4478-11f1-b685-0242ac1d0002', 1, '2026-05-07 12:18:16'),
 ('34e703af-4484-11f1-b685-0242ac1d0002', 'df5ef636-4478-11f1-b685-0242ac1d0002', 2, '2026-05-07 12:18:16'),
 ('681d5803-4483-11f1-b685-0242ac1d0002', 'df5ef636-4478-11f1-b685-0242ac1d0002', 4, '2026-05-07 12:18:16'),
-('8472c84e-c6f5-4e60-8e17-cdffb5b2428a', 'df5efe72-4478-11f1-b685-0242ac1d0002', 1, '2026-05-12 12:53:05'),
-('acb164f1-d450-4883-95ce-37dbf688f3aa', 'df5efe72-4478-11f1-b685-0242ac1d0002', 7, '2026-05-12 10:55:30');
+('8472c84e-c6f5-4e60-8e17-cdffb5b2428a', 'df5efe72-4478-11f1-b685-0242ac1d0002', 1, '2026-05-12 12:53:05');
 
 -- --------------------------------------------------------
 
@@ -197,9 +197,6 @@ CREATE TABLE `members` (
 -- Data dump for tabellen `members`
 --
 
-INSERT INTO `members` (`member_pk`, `user_fk`, `education_fk`, `semester_fk`, `application_text`, `status`, `approved_by_fk`, `applied_at`, `approved_at`, `deleted_at`) VALUES
-('d4e9d414-4dd9-11f1-9329-6e60d370be62', 3, 15, 7, 'Fordi jeg er det allerede', 'pending', NULL, '2026-05-12 08:09:00', NULL, NULL);
-
 --
 -- Triggers/udløsere `members`
 --
@@ -219,7 +216,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `trg_members_after_update_soft_delete` AFTER UPDATE ON `members` FOR EACH ROW BEGIN
   IF NEW.deleted_at IS NOT NULL
-     AND OLD.deleted_at IS NULL THEN
+    AND OLD.deleted_at IS NULL THEN
 
     UPDATE `users`
     SET `role_fk` = '3'
@@ -301,11 +298,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_pk`, `user_name`, `user_last_name`, `user_email`, `user_password`, `user_created_at`, `user_updated_at`, `user_deleted_at`, `user_verified_at`, `user_verification_key`, `role_fk`, `user_profile_image`) VALUES
-(1, 'Admin', 'Strator', 'admin@admin.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-12 07:52:23', NULL, NULL, NULL, '1', NULL),
-(2, 'Naomi', 'Rasmussen', 'n@r.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-12 07:52:21', NULL, NULL, NULL, '3', NULL),
-(3, 'Madeleine', 'Madsen', 'm@m.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-12 07:52:18', NULL, NULL, NULL, '3', NULL),
-(4, 'Kamilla', 'Huhnke', 'k@h.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-12 07:52:15', NULL, NULL, NULL, '3', NULL),
-(7, 'sofus', 'sofus', 'sofus@live.dk', '$2y$10$TEZL0b.Sl3mpE8T.BgPInOpvwXFbzQz7T7m5m9QkHDMNDeR1MzlhO', '2026-05-12 10:42:26', '2026-05-12 11:25:56', NULL, NULL, NULL, '3', 'turnering.webp');
+(1, 'Admin', 'Strator', 'admin@admin.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-12 07:52:23', NULL, '2026-05-12 07:55:15', NULL, '1', NULL),
+(2, 'Naomi', 'Rasmussen', 'n@r.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-12 07:52:21', NULL, '2026-05-12 07:52:49', NULL, '3', NULL),
+(3, 'Madeleine', 'Madsen', 'm@m.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-12 07:52:18', NULL, '2026-05-12 07:53:12', NULL, '3', NULL),
+(4, 'Kamilla', 'Huhnke', 'k@h.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-12 07:52:15', NULL, '2026-05-12 07:54:15', NULL, '3', NULL);
 
 --
 -- Begrænsninger for dumpede tabeller
