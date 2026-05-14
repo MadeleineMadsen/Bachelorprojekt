@@ -183,6 +183,30 @@ GBG Social"
     );
 }
 
+// Send oplåsningsmail når konto er låst
+function sendAccountUnlockMail(string $toEmail, string $firstName, string $unlockKey): bool
+{
+    $unlockLink = "http://localhost:8000/laas_op?key=" . urlencode($unlockKey);
+
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Lås din konto op hos GBG Social',
+        "Hej {$firstName}
+
+Din konto hos GBG Social er blevet låst, da der er foretaget for mange fejlede loginforsøg.
+
+Klik på linket herunder for at låse din konto op igen:
+
+{$unlockLink}
+
+Hvis det ikke var dig, der forsøgte at logge ind, kan du ignorere denne mail.
+
+Venlig hilsen
+GBG Social"
+    );
+}
+
 //  Send mail når event opdateres af admin
 function sendEventUpdatedMail(string $toEmail, string $firstName, string $eventTitle): bool
 {

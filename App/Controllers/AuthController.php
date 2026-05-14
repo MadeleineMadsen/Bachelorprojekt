@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../Models/UserModel.php';
+require_once __DIR__ . '/../../private/helpers.php';
 require_once __DIR__ . '/../../private/mailhelpers.php';
 
 class AuthController
@@ -24,8 +25,31 @@ class AuthController
 
         $user = $this->userModel->findByEmail($email);
 
-        if (!$user || !password_verify($password, $user['user_password'])) {
+        if (!$user) {
             $_SESSION['error'] = 'Forkert email eller adgangskode';
+            header('Location: /log_ind');
+            exit;
+        }
+
+        if ($user['locked_at'] !== null) {
+            $_SESSION['error'] = 'Din konto er låst. Tjek din mail for et oplåsningslink.';
+            header('Location: /log_ind');
+            exit;
+        }
+
+        if (!password_verify($password, $user['user_password'])) {
+            $attempts = $this->userModel->recordFailedAttempt($user['user_pk']);
+
+            if ($attempts >= 5) {
+                $unlockKey = bin2hex(random_bytes(16));
+                $this->userModel->lockAccount($user['user_pk'], $unlockKey);
+                sendAccountUnlockMail($user['user_email'], $user['user_name'], $unlockKey);
+                $_SESSION['error'] = 'Din konto er låst pga. for mange fejlede forsøg. Vi har sendt et oplåsningslink til din mail.';
+            } else {
+                $remaining = 5 - $attempts;
+                $_SESSION['error'] = 'Forkert email eller adgangskode. ' . $remaining . ' forsøg tilbage.';
+            }
+
             header('Location: /log_ind');
             exit;
         }
@@ -35,6 +59,8 @@ class AuthController
             header('Location: /log_ind');
             exit;
         }
+
+        $this->userModel->resetLoginAttempts($user['user_pk']);
 
         $_SESSION['user'] = [
             'user_pk' => $user['user_pk'],
@@ -46,6 +72,29 @@ class AuthController
         ];
 
         header('Location: /profil');
+        exit;
+    }
+
+    public function unlockAccount(): void
+    {
+        $key = $_GET['key'] ?? '';
+
+        if (!$key) {
+            $_SESSION['error'] = 'Ugyldigt oplåsningslink';
+            header('Location: /log_ind');
+            exit;
+        }
+
+        $unlocked = $this->userModel->unlockAccount($key);
+
+        if ($unlocked) {
+            $_SESSION['success'] = 'Din konto er nu låst op. Du kan logge ind igen.';
+            header('Location: /log_ind');
+            exit;
+        }
+
+        $_SESSION['error'] = 'Linket er ugyldigt eller allerede brugt';
+        header('Location: /log_ind');
         exit;
     }
 

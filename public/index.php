@@ -65,6 +65,11 @@ switch ($uri) {
         $authController->verifyUser();
         exit;
 
+    // LÅS OP
+    case '/laas_op':
+        $authController->unlockAccount();
+        exit;
+
     // LOG UD
     case '/log_ud':
         session_destroy();

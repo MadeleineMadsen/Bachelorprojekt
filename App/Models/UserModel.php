@@ -214,4 +214,64 @@ class UserModel
             ':user_pk' => $userId
         ]);
     }
+
+    public function recordFailedAttempt(int $userId): int
+    {
+        $this->db->prepare(
+            "UPDATE users
+            SET failed_login_attempts = failed_login_attempts + 1
+            WHERE user_pk = :user_pk"
+        )->execute([':user_pk' => $userId]);
+
+        $stmt = $this->db->prepare(
+            "SELECT failed_login_attempts FROM users WHERE user_pk = :user_pk"
+        );
+        $stmt->execute([':user_pk' => $userId]);
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function lockAccount(int $userId, string $unlockKey): bool
+    {
+        $stmt = $this->db->prepare(
+            "UPDATE users
+            SET locked_at = NOW(),
+                login_unlock_key = :login_unlock_key,
+                failed_login_attempts = 0
+            WHERE user_pk = :user_pk"
+        );
+
+        return $stmt->execute([
+            ':login_unlock_key' => $unlockKey,
+            ':user_pk' => $userId
+        ]);
+    }
+
+    public function resetLoginAttempts(int $userId): bool
+    {
+        $stmt = $this->db->prepare(
+            "UPDATE users
+            SET failed_login_attempts = 0
+            WHERE user_pk = :user_pk"
+        );
+
+        return $stmt->execute([':user_pk' => $userId]);
+    }
+
+    public function unlockAccount(string $key): bool
+    {
+        $stmt = $this->db->prepare(
+            "UPDATE users
+            SET locked_at = NULL,
+                login_unlock_key = NULL,
+                failed_login_attempts = 0
+            WHERE login_unlock_key = :key
+                AND locked_at IS NOT NULL
+                AND user_deleted_at IS NULL"
+        );
+
+        $stmt->execute([':key' => $key]);
+
+        return $stmt->rowCount() > 0;
+    }
 }
