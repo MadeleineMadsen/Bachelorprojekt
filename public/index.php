@@ -2,7 +2,7 @@
 session_start();
 
 require_once __DIR__ . '/../private/db.php';
-require_once __DIR__ . '/../private/helpers.php';
+require_once __DIR__ . '/../private/mailhelpers.php';
 require_once __DIR__ . '/../App/Controllers/AuthController.php';
 require_once __DIR__ . '/../App/Controllers/MedlemController.php';
 

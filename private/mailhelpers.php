@@ -6,20 +6,19 @@ use PHPMailer\PHPMailer\Exception;
 require_once __DIR__ . '/../vendor/autoload.php';
 $env = parse_ini_file(__DIR__ . '/.env');
 
-// Send bekræftelsesmail efter ansøgning
-function sendMembershipConfirmationMail(string $toEmail, string $firstName): bool
+// Global mail-helper
+function sendMail(string $toEmail, string $firstName, string $subject, string $body): bool
 {
     global $env;
+
     $mail = new PHPMailer(true);
 
     try {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-
         $mail->Username = $env['SMTP_EMAIL'];
         $mail->Password = $env['SMTP_PASSWORD'];
-
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
@@ -29,15 +28,8 @@ function sendMembershipConfirmationMail(string $toEmail, string $firstName): boo
         $mail->CharSet = 'UTF-8';
         $mail->isHTML(false);
 
-        $mail->Subject = 'Vi har modtaget din ansøgning';
-        $mail->Body = "Hej {$firstName}
-
-    Tak for din ansøgning om medlemskab hos GBG Social.
-
-    Vi har modtaget din ansøgning og vender tilbage hurtigst muligt.
-
-    Venlig hilsen
-    GBG Social";
+        $mail->Subject = $subject;
+        $mail->Body = $body;
 
         return $mail->send();
 
@@ -46,168 +38,17 @@ function sendMembershipConfirmationMail(string $toEmail, string $firstName): boo
         return false;
     }
 }
-
-// Send mail når ansøgning er godkendt
-function sendMembershipApprovedMail(string $toEmail, string $firstName): bool
-{
-    global $env;
-    $mail = new PHPMailer(true);
-
-    try {
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-
-        $mail->Username = $env['SMTP_EMAIL'];
-        $mail->Password = $env['SMTP_PASSWORD'];
-
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-
-        $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
-        $mail->addAddress($toEmail, $firstName);
-
-        $mail->CharSet = 'UTF-8';
-        $mail->isHTML(false);
-
-        $mail->Subject = 'Tillykke - du er nu medlem af GBG Social';
-        $mail->Body = "Hej {$firstName}
-
-    Tillykke! Din ansøgning er blevet godkendt.
-
-    Du er nu medlem og vejleder hos GBG Social og kan være med til at skabe fællesskab og gode oplevelser for andre studerende.
-
-    Husk at gå ind på eventsiden og tilmelde dig de events, du gerne vil være vejleder på:
-    http://localhost/events
-
-    Venlig hilsen
-    GBG Social";
-
-        return $mail->send();
-
-    } catch (Exception $e) {
-        error_log('Mailfejl: ' . $mail->ErrorInfo);
-        return false;
-    }
-}
-
-// Send mail når ansøgning er afvist
-function sendMembershipRejectedMail(string $toEmail, string $firstName): bool
-{
-    global $env;
-    $mail = new PHPMailer(true);
-
-    try {
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-
-        $mail->Username = $env['SMTP_EMAIL'];
-        $mail->Password = $env['SMTP_PASSWORD'];
-
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-
-        $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
-        $mail->addAddress($toEmail, $firstName);
-
-        $mail->CharSet = 'UTF-8';
-        $mail->isHTML(false);
-
-        $mail->Subject = 'Svar på din ansøgning hos GBG Social';
-
-        $mail->Body = "Hej {$firstName}
-
-    Tak for din ansøgning om at blive vejleder hos GBG Social.
-
-    Vi har desværre valgt ikke at godkende din ansøgning som vejleder denne gang.
-
-    Du er altid velkommen til at ansøge igen senere!
-
-    Venlig hilsen
-    GBG Social";
-
-        return $mail->send();
-
-    } catch (Exception $e) {
-        error_log('Mailfejl: ' . $mail->ErrorInfo);
-        return false;
-    }
-}
-
-//  Send mail når man slettes som medlem af admin
-function sendMembershipRemovedMail(string $toEmail, string $firstName): bool
-{
-    global $env;
-    $mail = new PHPMailer(true);
-
-    try {
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-
-        $mail->Username = $env['SMTP_EMAIL'];
-        $mail->Password = $env['SMTP_PASSWORD'];
-
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-
-        $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
-        $mail->addAddress($toEmail, $firstName);
-
-        $mail->CharSet = 'UTF-8';
-        $mail->isHTML(false);
-
-        $mail->Subject = 'Du er blevet fjernet som medlem hos GBG Social';
-
-        $mail->Body = "Hej {$firstName}
-
-Du er desværre blevet fjernet som medlem hos GBG Social.
-
-Det betyder, at du ikke længere har adgang som medlem på siden.
-
-Hvis du mener, at dette er en fejl, er du meget velkommen til at kontakte os.
-
-Venlig hilsen
-GBG Social";
-
-        return $mail->send();
-
-    } catch (Exception $e) {
-        error_log('Mailfejl: ' . $mail->ErrorInfo);
-        return false;
-    }
-}
-
 
 // Send verifikationsmail når bruger opretter sig
 function sendUserVerificationMail(string $toEmail, string $firstName, string $verificationKey): bool
 {
-    global $env;
-    $mail = new PHPMailer(true);
-
     $verificationLink = "http://localhost/verificer_bruger?key=" . urlencode($verificationKey);
 
-    try {
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-
-        $mail->Username = $env['SMTP_EMAIL'];
-        $mail->Password = $env['SMTP_PASSWORD'];
-
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-
-        $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
-        $mail->addAddress($toEmail, $firstName);
-
-        $mail->CharSet = 'UTF-8';
-        $mail->isHTML(false);
-
-        $mail->Subject = 'Bekræft din bruger hos GBG Social';
-
-        $mail->Body = "Hej {$firstName}
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Bekræft din bruger hos GBG Social',
+        "Hej {$firstName}
 
 Tak fordi du har oprettet dig hos GBG Social.
 
@@ -218,12 +59,186 @@ Klik på linket herunder for at bekræfte din bruger:
 Når du har bekræftet din mail, kan du logge ind.
 
 Venlig hilsen
-GBG Social";
+GBG Social"
+    );
+}
 
-        return $mail->send();
+// Send bekræftelsesmail efter ansøgning
+function sendMembershipConfirmationMail(string $toEmail, string $firstName): bool
+{
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Vi har modtaget din ansøgning',
+        "Hej {$firstName}
 
-    } catch (Exception $e) {
-        error_log('Mailfejl: ' . $mail->ErrorInfo);
-        return false;
-    }
+Tak for din ansøgning om medlemskab hos GBG Social.
+
+Vi har modtaget din ansøgning og vender tilbage hurtigst muligt.
+
+Venlig hilsen
+GBG Social"
+    );
+}
+
+// Send mail når ansøgning er godkendt
+function sendMembershipApprovedMail(string $toEmail, string $firstName): bool
+{  
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Tillykke - du er nu medlem af GBG Social',
+        "Hej {$firstName}
+
+Tillykke! Din ansøgning er blevet godkendt.
+
+Du er nu medlem og vejleder hos GBG Social og kan være med til at skabe fællesskab og gode oplevelser for andre studerende.
+
+Husk at gå ind på eventsiden og tilmelde dig de events, du gerne vil være vejleder på:
+http://localhost/events
+
+Venlig hilsen
+GBG Social"
+    );
+}
+
+// Send mail når ansøgning er afvist
+function sendMembershipRejectedMail(string $toEmail, string $firstName): bool
+{
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Svar på din ansøgning hos GBG Social',
+        "Hej {$firstName}
+
+Tak for din ansøgning om at blive vejleder hos GBG Social.
+
+Vi har desværre valgt ikke at godkende din ansøgning som vejleder denne gang.
+Du er altid velkommen til at ansøge igen senere!
+
+Venlig hilsen
+GBG Social"
+    );
+}
+
+//  Send mail når man slettes som medlem af admin
+function sendMembershipRemovedMail(string $toEmail, string $firstName): bool
+{
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Du er blevet fjernet som medlem hos GBG Social',
+        "Hej {$firstName}
+
+Du er desværre blevet fjernet som medlem hos GBG Social.
+
+Det betyder, at du ikke længere har adgang som medlem på siden.
+
+Hvis du mener, at dette er en fejl, er du meget velkommen til at kontakte os.
+
+Venlig hilsen
+GBG Social"
+    );
+}
+
+//  Send mail når man deltager i event
+function sendEventConfirmMail(string $toEmail, string $firstName, string $eventTitle): bool
+{
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Du er nu tilmeldt event hos GBG Social',
+        "Hej {$firstName}
+
+Tak for din tilmelding til eventet {$eventTitle}.
+
+Vi glæder os til at se dig til en hyggelig og social oplevelse sammen med resten af GBG Social.
+Du kan altid finde information om eventet på eventsiden.
+
+Hvis du bliver forhindret i at deltage, beder vi dig melde afbud hurtigst muligt.
+
+Vi ses!
+
+Venlig hilsen
+GBG Social"
+    );
+}
+
+//  Send mail når man afmelder sig et event
+function sendEventRemoveMail(string $toEmail, string $firstName, string $eventTitle): bool
+{
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Du er nu afmeldt event hos GBG Social',
+        "Hej {$firstName}
+
+Du er nu blevet afmeldt eventet {$eventTitle}.
+
+Vi er kede af, at du ikke længere kan deltage, men håber at se dig til et andet event hos GBG Social snart.
+Du kan altid finde kommende events på eventsiden.
+
+Venlig hilsen
+GBG Social"
+    );
+}
+
+//  Send mail når event opdateres af admin
+function sendEventUpdatedMail(string $toEmail, string $firstName, string $eventTitle): bool
+{
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Et event du er tilmeldt er blevet opdateret',
+        "Hej {$firstName}
+
+Eventet {$eventTitle}, som du er tilmeldt, er blevet opdateret.
+Der kan være ændringer i fx tidspunkt, lokation eller beskrivelse.
+
+Du kan se de opdaterede informationer under Mine Events på hjemmesiden.
+Link:
+http://localhost/mine_events
+
+Venlig hilsen
+GBG Social"
+    );
+}
+
+//  Send mail når event slettes af admin
+function sendEventDeletedMail(string $toEmail, string $firstName, string $eventTitle): bool
+{
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Eventet er blevet aflyst hos GBG Social',
+        "Hej {$firstName}
+
+Vi er desværre nødt til at aflyse eventet {$eventTitle}.
+
+Vi beklager ulejligheden og håber at se dig til et andet event hos GBG Social snart.
+Du kan altid holde øje med kommende events på eventsiden.
+
+Venlig hilsen
+GBG Social"
+    );
+}
+
+// Send mail 24 timer før eventet finder sted
+function sendEventReminderMail(string $toEmail, string $firstName, string $eventTitle): bool
+{
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Reminder: Dit event starter i morgen',
+        "Hej {$firstName}
+
+Dette er en venlig reminder om, at eventet {$eventTitle} starter i morgen.
+
+Vi glæder os til at se dig!
+
+Du kan finde mere information under Mine events på hjemmesiden.
+
+Venlig hilsen
+GBG Social"
+    );
 }

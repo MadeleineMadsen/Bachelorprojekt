@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../Models/UserModel.php';
-require_once __DIR__ . '/../../private/helpers.php';
+require_once __DIR__ . '/../../private/mailhelpers.php';
 
 class AuthController
 {

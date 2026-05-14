@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../Models/EventModel.php';
+require_once __DIR__ . '/../../private/mailhelpers.php';
 
 class EventController {
 
@@ -13,11 +14,27 @@ class EventController {
     }
 
     public static function register(string $eventId, int $userId): void {
-        EventModel::registerUser($eventId, $userId);
+    EventModel::registerUser($eventId, $userId);
+
+    $event = EventModel::getById($eventId);
+
+        sendEventConfirmMail(
+            $_SESSION['user']['user_email'],
+            $_SESSION['user']['user_name'],
+            $event['event_title']
+        );
     }
 
     public static function unregister(string $eventId, int $userId): void {
+        $event = EventModel::getById($eventId);
+
         EventModel::unregisterUser($eventId, $userId);
+
+        sendEventRemoveMail(
+            $_SESSION['user']['user_email'],
+            $_SESSION['user']['user_name'],
+            $event['event_title']
+        );
     }
 
     private static function groupByDate(array $events): array {
@@ -73,10 +90,22 @@ class EventController {
     }
 
     public static function delete(string $id): void {
+        $event = EventModel::getById($id);
+        $participants = EventModel::getParticipantsByEventId($id);
+
+        foreach ($participants as $participant) {
+            sendEventDeletedMail(
+                $participant['user_email'],
+                $participant['user_name'],
+                $event['event_title']
+            );
+        }
+
         EventModel::delete($id);
     }
 
     public static function update(): void {
+
         $id           = $_POST['event_pk'] ?? '';
         $title        = trim($_POST['titel'] ?? '');
         $subtitle     = trim($_POST['subtitel'] ?? '');
@@ -88,12 +117,18 @@ class EventController {
         $location     = trim($_POST['location'] ?? '');
         $category     = $_POST['category'] ?? '';
 
+        // Hent deltagere før update
+        $participants = EventModel::getParticipantsByEventId($id);
+
         $imagePath = null;
+
         if (!empty($_FILES['image']['name'])) {
             $uploadDir = __DIR__ . '/../../public/assets/img/events/';
+
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
+
             $ext      = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $filename = bin2hex(random_bytes(8)) . '.' . $ext;
             move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $filename);
@@ -113,6 +148,16 @@ class EventController {
             'category_fk'        => $category,
             'event_image'        => $imagePath,
         ]);
+
+        // Send mail til alle deltagere
+        foreach ($participants as $participant) {
+
+            sendEventUpdatedMail(
+                $participant['user_email'],
+                $participant['user_name'],
+                $title
+            );
+        }
 
         header('Location: /eventside?id=' . urlencode($id));
         exit;
