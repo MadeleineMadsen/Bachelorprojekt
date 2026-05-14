@@ -180,6 +180,53 @@ GBG Social";
 }
 
 
+// Send oplåsningsmail når konto er låst
+function sendAccountUnlockMail(string $toEmail, string $firstName, string $unlockKey): bool
+{
+    global $env;
+    $mail = new PHPMailer(true);
+
+    $unlockLink = "http://localhost:8000/laas_op?key=" . urlencode($unlockKey);
+
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+
+        $mail->Username = $env['SMTP_EMAIL'];
+        $mail->Password = $env['SMTP_PASSWORD'];
+
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
+        $mail->addAddress($toEmail, $firstName);
+
+        $mail->CharSet = 'UTF-8';
+        $mail->isHTML(false);
+
+        $mail->Subject = 'Lås din konto op hos GBG Social';
+        $mail->Body = "Hej {$firstName}
+
+Din konto hos GBG Social er blevet låst, da der er foretaget for mange fejlede loginforsøg.
+
+Klik på linket herunder for at låse din konto op igen:
+
+{$unlockLink}
+
+Hvis det ikke var dig, der forsøgte at logge ind, kan du ignorere denne mail.
+
+Venlig hilsen
+GBG Social";
+
+        return $mail->send();
+
+    } catch (Exception $e) {
+        error_log('Mailfejl: ' . $mail->ErrorInfo);
+        return false;
+    }
+}
+
 // Send verifikationsmail når bruger opretter sig
 function sendUserVerificationMail(string $toEmail, string $firstName, string $verificationKey): bool
 {
