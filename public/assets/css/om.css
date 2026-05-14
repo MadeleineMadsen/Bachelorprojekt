@@ -125,6 +125,11 @@
   margin: var(--gap-sm) var(--gap-sm);
 }
 
+/* Vis kun 8 medlemmer på denne side uanset hvor mange der findes. Både mobil & desktop */
+.desktop-hidden {
+  display: none;
+}
+
 /* ========== DESKTOP ========== */
 
 @media (min-width: 768px) {
@@ -277,10 +282,6 @@
     display: flex;
     justify-content: flex-end;
     padding-right: var(--gap-lg);
-  }
-
-  .desktop-hidden {
-    display: none;
   }
 
   .om-slide {
