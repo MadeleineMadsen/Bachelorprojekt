@@ -186,8 +186,7 @@ GBG Social"
 // Send oplåsningsmail når konto er låst
 function sendAccountUnlockMail(string $toEmail, string $firstName, string $unlockKey): bool
 {
-    $unlockLink = "http://localhost:8000/laas_op?key=" . urlencode($unlockKey);
-
+    $unlockLink = "http://localhost/laas_op?key=" . urlencode($unlockKey);
     return sendMail(
         $toEmail,
         $firstName,
