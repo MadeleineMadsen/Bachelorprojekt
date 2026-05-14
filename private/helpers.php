@@ -1,9 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
-$env = parse_ini_file(__DIR__ . '/.env');
-
-
 // Ret dato i ansøngninger til dansk
 function formatDanishDate(string $date): string
 {

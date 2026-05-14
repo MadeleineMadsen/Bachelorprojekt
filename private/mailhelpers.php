@@ -3,6 +3,8 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+require_once __DIR__ . '/../vendor/autoload.php';
+$env = parse_ini_file(__DIR__ . '/.env');
 
 // Send bekræftelsesmail efter ansøgning
 function sendMembershipConfirmationMail(string $toEmail, string $firstName): bool
