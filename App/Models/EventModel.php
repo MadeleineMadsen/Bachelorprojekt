@@ -93,8 +93,14 @@ class EventModel {
     }
 
     public static function delete(string $id): void {
-        $db   = getDB();
-        $stmt = $db->prepare('DELETE FROM events WHERE event_pk = ?');
+        $db = getDB();
+
+        $stmt = $db->prepare("
+            UPDATE events
+            SET deleted_at = NOW()
+            WHERE event_pk = ?
+        ");
+
         $stmt->execute([$id]);
     }
 
@@ -160,5 +166,38 @@ class EventModel {
         $stmt->bindValue(1, $limit, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    public static function getEventsNeedingReminder(): array
+    {
+        $db = getDB();
+
+        $stmt = $db->prepare("
+            SELECT *
+            FROM events
+            WHERE event_deleted_at IS NULL
+            AND reminder_sent_at IS NULL
+            AND TIMESTAMP(event_date, event_time) BETWEEN NOW() + INTERVAL 23 HOUR
+            AND NOW() + INTERVAL 25 HOUR
+        ");
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public static function markReminderAsSent(string $eventId): bool
+    {
+        $db = getDB();
+
+        $stmt = $db->prepare("
+            UPDATE events
+            SET reminder_sent_at = NOW()
+            WHERE event_pk = :event_pk
+        ");
+
+        return $stmt->execute([
+            ':event_pk' => $eventId
+        ]);
     }
 }
