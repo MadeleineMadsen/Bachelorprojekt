@@ -27,11 +27,13 @@
         </div>
         <div class="card-event-info-text">
             <span class="card-event-info-label">Deltagere</span>
-            <span class="card-event-info-value"><?= htmlspecialchars($event['participant_count'] ?? '0') ?> deltager</span>
+            <span class="card-event-info-value"><?= htmlspecialchars($event['participant_count'] ?? '0') ?>
+                deltager</span>
         </div>
     </div>
     <?php if (isset($_SESSION['user'])): ?>
         <form method="POST" action="/event_tilmeld">
+            <?php csrf_input(); ?>
             <input type="hidden" name="event_id" value="<?= htmlspecialchars($event['event_pk']) ?>">
             <?php if (($_SESSION['user']['role_fk'] ?? null) == 1): ?>
                 <button type="submit" class="btn btn-primary" disabled>Tilmeld dig eventet</button>

@@ -13,7 +13,7 @@ $formAction = $isEditing ? '/event_rediger' : '';
         <h1 class="form-title"><?= $isEditing ? 'REDIGER EVENT' : 'OPRET EVENT' ?></h1>
 
         <section class="form-container create-event-container">
-            <form method="POST" action="<?= $formAction ?>" enctype="multipart/form-data">
+            <form method="POST" action="<?= $formAction ?>" enctype="multipart/form-data"><?php csrf_input(); ?>
                 <?php if ($isEditing): ?>
                     <input type="hidden" name="event_pk" value="<?= htmlspecialchars($event['event_pk']) ?>">
                 <?php endif; ?>

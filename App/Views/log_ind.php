@@ -28,6 +28,7 @@
             <?php endif; ?>
 
             <form method="POST" action="">
+                <?php csrf_input(); ?>
                 <input type="email" name="user_email" placeholder="Studiemail" required>
 
                 <input type="password" name="user_password" placeholder="Adgangskode" required>

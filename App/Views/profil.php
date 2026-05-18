@@ -26,6 +26,7 @@ $showMemberFields = in_array($role, ['1', '2']);
             </div>
 
             <form id="profileImageForm" method="POST" action="/profil/update-image" enctype="multipart/form-data">
+                <?php csrf_input(); ?>
                 <div class="profile-image-wrapper">
                     <img id="profilePreview" src="<?= !empty($user['user_profile_image'])
                         ? '/assets/img/uploads/' . htmlspecialchars($user['user_profile_image'])
@@ -45,6 +46,7 @@ $showMemberFields = in_array($role, ['1', '2']);
         <h4>REDIGER PROFIL</h4>
 
         <form method="POST" action="/profil/update">
+            <?php csrf_input(); ?>
             <input type="text" name="user_name" value="<?= htmlspecialchars($user['user_name']) ?>"
                 placeholder="Fornavn" required>
 
@@ -89,6 +91,7 @@ $showMemberFields = in_array($role, ['1', '2']);
 
         <form id="deleteProfileForm" method="POST" action="/profil/delete"
             onsubmit="return confirm('Er du sikker på, at du vil slette din profil?');">
+            <?php csrf_input(); ?>
         </form>
     </section>
 </main>
