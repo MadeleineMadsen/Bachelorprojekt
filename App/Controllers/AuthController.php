@@ -152,6 +152,7 @@ class AuthController
         $verified = $this->userModel->verifyUser($key);
 
         if ($verified) {
+            $_SESSION['success'] = 'Din mail er bekræftet. Du kan nu logge ind.';
             header('Location: /log_ind');
             exit;
         }

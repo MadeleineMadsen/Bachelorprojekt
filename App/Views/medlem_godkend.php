@@ -85,16 +85,27 @@
                     <article class="member-slide" data-name="<?= strtolower($member['user_name']); ?>"
                         data-education="<?= $member['education_fk'] ?? ''; ?>">
 
-                        <form method="POST" action="/slet_medlem"
-                            onsubmit="return confirm('Er du sikker på, at du vil slette <?= htmlspecialchars($member['user_name']); ?> som medlem?');">
+                        <form id="deleteMemberForm-<?= htmlspecialchars($member['member_pk']) ?>" method="POST"
+                            action="/slet_medlem">
                             <?php csrf_input(); ?>
 
                             <input type="hidden" name="member_pk" value="<?= $member['member_pk']; ?>">
 
-                            <button type="submit" class="member-delete-btn" aria-label="Slet medlem">
-                                ×
+                            <button type="button" class="btn btn-delete"
+                                data-modal-open="deleteMemberModal-<?= htmlspecialchars($member['member_pk']) ?>">
+                                X
                             </button>
                         </form>
+
+                        <?php
+                        $modalId = 'deleteMemberModal-' . $member['member_pk'];
+                        $formId = 'deleteMemberForm-' . $member['member_pk'];
+                        $title = 'Slet medlem?';
+                        $text = 'Er du sikker på, at du vil slette ' . $member['user_name'] . ' som medlem?';
+                        $confirmText = 'Ja, slet medlem';
+
+                        include __DIR__ . '/micro/___confirm_modal.php';
+                        ?>
 
                         <img src="<?= !empty($member['user_profile_image'])
                             ? '/assets/img/uploads/' . htmlspecialchars($member['user_profile_image'])

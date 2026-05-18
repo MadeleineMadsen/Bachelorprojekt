@@ -142,6 +142,8 @@ switch ($uri) {
         $_SESSION['user']['user_last_name'] = $lastName;
         $_SESSION['user']['user_email'] = $email;
 
+        $_SESSION['success'] = 'Din profil er opdateret.';
+
         redirect('/profil');
 
     // PROFIL - OPDATER KUN PROFILBILLEDE
@@ -176,6 +178,10 @@ switch ($uri) {
                 if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadPath)) {
                     $userModel->updateProfileImage($userId, $fileName);
                     $_SESSION['user']['user_profile_image'] = $fileName;
+
+                    $_SESSION['success'] = 'Dit profilbillede er opdateret.';
+                } else {
+                    $_SESSION['error'] = 'Profilbilledet kunne ikke uploades.';
                 }
             }
         }
@@ -195,6 +201,10 @@ switch ($uri) {
         $userModel->softDelete($_SESSION['user']['user_pk']);
 
         session_destroy();
+        session_start();
+
+        $_SESSION['success'] = 'Din profil er blevet slettet.';
+
         redirect('/');
 
     // EVENTS

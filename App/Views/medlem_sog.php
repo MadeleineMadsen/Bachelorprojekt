@@ -120,19 +120,6 @@ include __DIR__ . '/micro/___banner.php';
 
         <!-- Højre side -->
         <div class="form-container membership-container">
-            <?php if (isset($_SESSION['success'])): ?>
-                <div class="form-message success">
-                    <?= htmlspecialchars($_SESSION['success']); ?>
-                </div>
-                <?php unset($_SESSION['success']); ?>
-            <?php endif; ?>
-
-            <?php if (isset($_SESSION['error'])): ?>
-                <div class="form-message error">
-                    <?= htmlspecialchars($_SESSION['error']); ?>
-                </div>
-                <?php unset($_SESSION['error']); ?>
-            <?php endif; ?>
             <form method="POST" action="/medlem_sog" enctype="multipart/form-data">
                 <?php csrf_input(); ?>
                 <div class="form-row">

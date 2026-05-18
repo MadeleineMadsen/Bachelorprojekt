@@ -15,6 +15,7 @@ class UserController
     public function profile(): void
     {
         if (!isset($_SESSION['user'])) {
+            $_SESSION['error'] = 'Du skal være logget ind for at se din profil.';
             header('Location: /log_ind');
             exit;
         }
@@ -31,6 +32,7 @@ class UserController
     public function updateProfile(): void
     {
         if (!isset($_SESSION['user'])) {
+            $_SESSION['error'] = 'Du skal være logget ind for at opdatere din profil.';
             header('Location: /log_ind');
             exit;
         }
@@ -59,6 +61,8 @@ class UserController
         $_SESSION['user']['user_last_name'] = $lastName;
         $_SESSION['user']['user_email'] = $email;
 
+        $_SESSION['success'] = 'Din profil er opdateret.';
+
         header('Location: /profil');
         exit;
     }
@@ -66,6 +70,7 @@ class UserController
     public function updateProfileImage(): void
     {
         if (!isset($_SESSION['user'])) {
+            $_SESSION['error'] = 'Du skal være logget ind for at opdatere dit profilbillede.';
             header('Location: /log_ind');
             exit;
         }
@@ -73,6 +78,7 @@ class UserController
         $userId = $_SESSION['user']['user_pk'];
 
         if (!isset($_FILES['profile_image']) || $_FILES['profile_image']['error'] !== UPLOAD_ERR_OK) {
+            $_SESSION['error'] = 'Vælg venligst et profilbillede.';
             header('Location: /profil');
             exit;
         }
@@ -86,6 +92,7 @@ class UserController
         $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
 
         if (!in_array($fileExt, $allowedExtensions)) {
+            $_SESSION['error'] = 'Profilbilledet skal være jpg, jpeg, png eller webp.';
             header('Location: /profil');
             exit;
         }
@@ -93,6 +100,7 @@ class UserController
         $profileImageName = uniqid('profile_', true) . '.' . $fileExt;
 
         if (!move_uploaded_file($fileTmp, $uploadDir . $profileImageName)) {
+            $_SESSION['error'] = 'Profilbilledet kunne ikke uploades. Prøv igen.';
             header('Location: /profil');
             exit;
         }
@@ -100,6 +108,8 @@ class UserController
         $this->userModel->updateProfileImage($userId, $profileImageName);
 
         $_SESSION['user']['user_profile_image'] = $profileImageName;
+
+        $_SESSION['success'] = 'Dit profilbillede er opdateret.';
 
         header('Location: /profil');
         exit;

@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <main class="container login-page">
 
     <div class="login-image">
@@ -12,20 +8,6 @@
         <h1 class="form-title">LOG IND</h1>
 
         <section class="form-container login-container">
-
-            <?php if (isset($_SESSION['success'])): ?>
-                <div class="form-message success">
-                    <?= $_SESSION['success']; ?>
-                </div>
-                <?php unset($_SESSION['success']); ?>
-            <?php endif; ?>
-
-            <?php if (isset($_SESSION['error'])): ?>
-                <div class="form-message error">
-                    <?= $_SESSION['error']; ?>
-                </div>
-                <?php unset($_SESSION['error']); ?>
-            <?php endif; ?>
 
             <form method="POST" action="">
                 <?php csrf_input(); ?>
