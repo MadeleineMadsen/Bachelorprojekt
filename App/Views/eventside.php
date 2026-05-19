@@ -64,7 +64,7 @@
                     <?php foreach (array_chunk($participants, 2) as $slide): ?>
                         <div class="deltager-slide member-slide">
                             <?php foreach ($slide as $p): ?>
-                                <?php $img = !empty($p['user_profile_image']) ? '/assets/img/' . $p['user_profile_image'] : '/assets/img/uploads/test_profile.png'; ?>
+                                <?php $img = !empty($p['user_profile_image']) ? '/assets/img/uploads/' . $p['user_profile_image'] : '/assets/img/uploads/default_profile_image.webp'; ?>
                                 <img src="<?= htmlspecialchars($img) ?>" alt="" class="profile-img profile-medium">
                             <?php endforeach; ?>
                         </div>

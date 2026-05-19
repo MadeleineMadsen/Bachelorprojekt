@@ -141,16 +141,9 @@ $monthNames = [
                     <div class="desktop-event-preview">
                         <?php foreach ($dayEvents as $event): ?>
                             <?php $isTilmeldt = in_array($event['pk'], $registeredIds); ?>
-                            <div class="calendar-img-wrap">
-                                <img
-                                    src="<?= htmlspecialchars($event['image'] ?? '') ?>"
-                                    alt="<?= htmlspecialchars($event['title'] ?? '') ?>"
-                                >
-                                <?php if ($isTilmeldt): ?>
-                                    <span class="calendar-tilmeldt-label">TILMELDT</span>
-                                <?php endif; ?>
-                            </div>
-                            <p><?= htmlspecialchars($event['title'] ?? 'Event uden titel') ?></p>
+                            <p class="<?= $isTilmeldt ? 'calendar-event-tilmeldt' : '' ?>">
+                                <?= htmlspecialchars($event['title'] ?? 'Event uden titel') ?>
+                            </p>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
@@ -183,11 +176,13 @@ $monthNames = [
                         <span><?= mb_substr($monthNames[$month], 0, 3) ?></span>
                     </div>
 
-                    <img src="<?= $event['image'] ?>" alt="">
+                    <div class="calendar-img-wrap">
+                        <img src="<?= $event['image'] ?>" alt="">
+                        <?php if ($isTilmeldt): ?>
+                            <span class="calendar-tilmeldt-label">TILMELDT</span>
+                        <?php endif; ?>
+                    </div>
                     <p><?= htmlspecialchars($event['title']) ?></p>
-                    <?php if ($isTilmeldt): ?>
-                        <span class="calendar-tilmeldt-label">TILMELDT</span>
-                    <?php endif; ?>
                 </article>
             <?php endforeach; ?>
         <?php endforeach; ?>

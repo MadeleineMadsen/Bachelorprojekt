@@ -159,6 +159,32 @@ Kalender
     font-size: var(--font-mobil-text);
 }
 
+.calendar-img-wrap {
+    position: relative;
+}
+
+.calendar-tilmeldt-label {
+    display: inline-block;
+    background-color: var(--color-black);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 5px;
+    letter-spacing: 0.08em;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+.mobile-event-card .calendar-img-wrap .calendar-tilmeldt-label {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+    padding: 4px 8px;
+    margin-right: 0;
+}
+
 .no-events {
     display: none;
     padding: var(--gap-sm) 0;
@@ -220,6 +246,29 @@ Desktop
         display: block;
         text-align: left;
         font-size: var(--font-desktop-small);
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+    }
+
+    .calendar-day:hover {
+        scrollbar-color: #ccc transparent;
+    }
+
+    .calendar-day::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .calendar-day::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .calendar-day::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius: 2px;
+    }
+
+    .calendar-day:hover::-webkit-scrollbar-thumb {
+        background: #ccc;
     }
 
     .calendar-date {
@@ -263,14 +312,7 @@ Desktop
     .desktop-event-preview {
         display: block;
         width: 100%;
-    }
-
-    .desktop-event-preview img {
-        width: calc(100% - var(--gap-md));
-        height: 5rem;
-        object-fit: cover;
-        display: block;
-        margin: var(--gap-xxs) 0;
+        padding-top: 1.2rem;
     }
 
     .desktop-event-preview p {
@@ -279,26 +321,37 @@ Desktop
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        line-height: 1.2;
+        line-height: 1.4;
+        margin-bottom: 0;
+        padding: 0.2rem 0 0.2rem 0.9rem;
+        position: relative;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .desktop-event-preview p:last-child {
+        border-bottom: none;
+    }
+
+    .desktop-event-preview p::before {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--color-light-blue);
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        flex-shrink: 0;
+    }
+
+    .desktop-event-preview p.calendar-event-tilmeldt::before {
+        background: var(--color-black);
     }
 
     .no-events {
         font-size: var(--font-desktop-text-small);
     }
 
-    .calendar-img-wrap {
-        position: relative;
-    }
-
-    .calendar-tilmeldt-label {
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: var(--color-black);
-        color: #fff;
-        font-size: 12px;
-        font-weight: 700;
-        padding: 4px 8px;
-        letter-spacing: 0.08em;
-    }
 }
