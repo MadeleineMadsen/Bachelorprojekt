@@ -107,8 +107,14 @@ class AuthController
     {
         $userName = trim($_POST['user_name'] ?? '');
         $lastName = trim($_POST['user_last_name'] ?? '');
-        $email = trim($_POST['user_email'] ?? '');
-        $password = $_POST['user_password'] ?? '';
+        $email = validate_email('user_email');
+
+        $password = validate_password('user_password');
+        $confirmPassword = validate_password('confirm_password');
+
+        if ($password !== $confirmPassword) {
+            throw new Exception('Adgangskoderne matcher ikke.');
+        }
 
         if ($this->userModel->findByEmail($email)) {
             $_SESSION['error'] = 'Email eksisterer allerede';

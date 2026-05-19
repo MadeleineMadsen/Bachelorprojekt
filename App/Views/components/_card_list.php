@@ -42,7 +42,7 @@
             </div>
             <div class="card-event-list-actions">
                 <a href="/eventside?id=<?= htmlspecialchars($event['event_pk']) ?>"
-                    class="btn btn-secondary card-event-list-link"><?= (isset($isAdmin) && $isAdmin) ? 'Se event' : 'Læs mere' ?></a>
+                    class="btn <?= (isset($isAdmin) && $isAdmin) ? 'btn-primary' : 'btn-secondary' ?> card-event-list-link"><?= (isset($isAdmin) && $isAdmin) ? 'Se event' : 'Læs mere' ?></a>
                 <?php if (isset($isAdmin) && $isAdmin): ?>
                     <a href="/event_rediger?id=<?= htmlspecialchars($event['event_pk']) ?>"
                         class="btn btn-secondary">Rediger</a>

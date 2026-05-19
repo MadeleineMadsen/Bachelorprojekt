@@ -26,6 +26,12 @@ function flash(string $key): ?string
     return $message;
 }
 
+// Gem gamle input hvis adgangskode er forkert, så man ikke skal skrive alt på ny igen
+function old(string $key, string $default = ''): string
+{
+    return $_SESSION['old'][$key] ?? $default;
+}
+
 // CSRF token
 function csrf_token(): string
 {

@@ -17,3 +17,26 @@ if (select && input && cards.length) {
     select.addEventListener('change', filterEvents);
     input.addEventListener('input', filterEvents);
 }
+
+// Validerings besked af glemt billede i event-oprettelse
+// Valideringsbesked af glemt billede i event-oprettelse
+const eventForm = document.getElementById('eventForm');
+
+if (eventForm) {
+    eventForm.addEventListener('submit', function (e) {
+        const imageInput = document.getElementById('profile_image');
+        const imageError = document.getElementById('imageError');
+
+        if (!imageInput.files || imageInput.files.length === 0) {
+            e.preventDefault();
+
+            imageError.style.display = 'block';
+            imageInput.closest('.upload-box').classList.add('input-error');
+
+            return false;
+        }
+
+        imageError.style.display = 'none';
+        imageInput.closest('.upload-box').classList.remove('input-error');
+    });
+}

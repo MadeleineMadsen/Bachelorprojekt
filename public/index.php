@@ -55,12 +55,26 @@ switch ($uri) {
     // OPRET DIG
     case '/opret_dig':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            require_csrf();
 
-            $authController->signup();
-            exit;
+            try {
+                require_csrf();
+
+                $authController->signup();
+                exit;
+
+            } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+
+            $_SESSION['old'] = [
+                'user_name' => $_POST['user_name'] ?? '',
+                'user_last_name' => $_POST['user_last_name'] ?? '',
+                'user_email' => $_POST['user_email'] ?? '',
+            ];
+
+            redirect('/opret_dig');
+            }
         }
-
+        
         $currentPage = 'opret_dig';
         $view = '/opret_dig.php';
         break;
@@ -103,14 +117,20 @@ switch ($uri) {
             redirect('/profil');
         }
 
-        require_csrf();
+        try {
+            require_csrf();
 
-        $userId = $_SESSION['user']['user_pk'];
+            $userId = $_SESSION['user']['user_pk'];
 
-        $userName = validate_text('user_name', 'Fornavn', 2, 50);
-        $lastName = validate_text('user_last_name', 'Efternavn', 2, 50);
-        $email = validate_email('user_email');
-        $password = validate_password('user_password', false);
+            $userName = validate_text('user_name', 'Fornavn', 2, 50);
+            $lastName = validate_text('user_last_name', 'Efternavn', 2, 50);
+            $email = validate_email('user_email');
+            $password = validate_password('user_password', false);
+
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            redirect('/profil');
+        }
 
         $education = (int) ($_POST['education_fk'] ?? 0);
         $semester = (int) ($_POST['semester_fk'] ?? 0);
@@ -390,13 +410,6 @@ switch ($uri) {
         $view = '/medlemmer.php';
         break;
 
-    // OM
-    case '/om':
-        $members = MedlemController::getVisibleMembers();
-
-        $currentPage = 'om';
-        $view = '/om.php';
-        break;
 
     // GODKEND, AFVIS OG SLET MEDLEMMER
     case '/godkend_medlem':
@@ -435,6 +448,20 @@ switch ($uri) {
         MedlemController::delete();
         exit;
 
+        // OM
+    case '/om':
+        $members = MedlemController::getVisibleMembers();
+
+        $currentPage = 'om';
+        $view = '/om.php';
+        break;
+
+        // VILKÅR OG BETINGELSER
+    case '/terms':
+        $currentPage = 'terms';
+        $view = '/terms.php';
+        break;
+    
     // DEFAULT
     default:
         http_response_code(404);
