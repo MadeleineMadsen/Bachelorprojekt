@@ -11,31 +11,31 @@
 }
 
 .card-event-list-actions {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: var(--gap-xs);
-    align-self: flex-end;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--gap-xs);
+  align-self: flex-end;
 }
 
 .card-event-list-actions > a,
 .card-event-list-actions > form {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .card-event-list .btn {
-    font-size: var(--btn-font-mobil);
-    height: var(--btn-height-mobil);
-    padding: 0 var(--gap-sm);
-    white-space: nowrap;
+  font-size: var(--btn-font-mobil);
+  height: var(--btn-height-mobil);
+  padding: 0 var(--gap-sm);
+  white-space: nowrap;
 }
 
 .card-event-list-link::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 .card-event-list-img-wrap {
@@ -74,7 +74,7 @@
 
 .card-event-list-img {
   width: 100%;
-  height: 100%;
+  height: 16rem;
   object-fit: cover;
   display: block;
 }
@@ -126,11 +126,11 @@
 }
 
 .card-event-list-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--gap-xs);
-    margin-top: var(--gap-xs);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-xs);
+  margin-top: var(--gap-xs);
 }
 
 .card-event-list-meta-items {
@@ -156,71 +156,70 @@
 
 /* ========== DESKTOP ========== */
 @media (min-width: 768px) {
+  .card-event-list {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    align-items: stretch;
+    gap: var(--gap-md);
+    padding: var(--gap-md) 0;
+  }
 
-    .card-event-list {
-        display: grid;
-        grid-template-columns: 240px 1fr;
-        align-items: stretch;
-        gap: var(--gap-md);
-        padding: var(--gap-md) 0;
-    }
+  .card-event-list-img-wrap {
+    width: 240px;
+    height: 100%;
+    aspect-ratio: unset;
+  }
 
-    .card-event-list-img-wrap {
-        width: 240px;
-        height: 100%;
-        aspect-ratio: unset;
-    }
+  .card-event-list-body {
+    padding-top: 0;
+    gap: var(--gap-xxs);
+    justify-content: space-between;
+  }
 
-    .card-event-list-body {
-        padding-top: 0;
-        gap: var(--gap-xxs);
-        justify-content: space-between;
-    }
+  .card-event-list-day {
+    font-size: var(--font-desktop-h3);
+  }
 
-    .card-event-list-day {
-        font-size: var(--font-desktop-h3);
-    }
+  .card-event-list-month {
+    font-size: var(--font-desktop-text-small);
+  }
 
-    .card-event-list-month {
-        font-size: var(--font-desktop-text-small);
-    }
+  .card-event-list-tag {
+    font-size: var(--font-desktop-text-small);
+  }
 
-    .card-event-list-tag {
-        font-size: var(--font-desktop-text-small);
-    }
+  .card-event-list-title {
+    font-size: var(--font-desktop-h3);
+  }
 
-    .card-event-list-title {
-        font-size: var(--font-desktop-h3);
-    }
+  .card-event-list-desc {
+    font-size: var(--font-desktop-text-small);
+  }
 
-    .card-event-list-desc {
-        font-size: var(--font-desktop-text-small);
-    }
+  .card-event-list-meta {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--gap-sm);
+  }
 
-    .card-event-list-meta {
-        flex-direction: row;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: var(--gap-sm);
-    }
+  .card-event-list-meta-items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--gap-xs);
+  }
 
-    .card-event-list-meta-items {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: var(--gap-xs);
-    }
+  .card-event-list-meta-item {
+    font-size: var(--font-desktop-text-small);
+  }
 
-    .card-event-list-meta-item {
-        font-size: var(--font-desktop-text-small);
-    }
+  .card-event-list-meta-icon {
+    width: 18px;
+    height: 18px;
+  }
 
-    .card-event-list-meta-icon {
-        width: 18px;
-        height: 18px;
-    }
-
-    .card-event-list .btn {
-        font-size: var(--btn-font-desktop);
-        height: var(--btn-height-desktop);
-    }
+  .card-event-list .btn {
+    font-size: var(--btn-font-desktop);
+    height: var(--btn-height-desktop);
+  }
 }
