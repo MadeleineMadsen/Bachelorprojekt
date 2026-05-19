@@ -32,6 +32,9 @@
         </div>
 
         <div class="events-list" id="events-list">
+            <?php if (empty($events)): ?>
+                <p class="events-empty">Ingen events endnu</p>
+            <?php endif; ?>
             <?php foreach ($events as $event): ?>
                 <?php include __DIR__ . '/components/_card_list.php'; ?>
             <?php endforeach; ?>

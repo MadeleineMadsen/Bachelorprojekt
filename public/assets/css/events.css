@@ -26,6 +26,15 @@
     padding: 0 var(--gap-sm);
 }
 
+.events-empty {
+    font-family: var(--font-text);
+    font-size: var(--font-mobil-text);
+    color: var(--font-color-black);
+    
+    margin-top: var(--gap-md);
+    margin-bottom: var(--gap-xxl);
+}
+
 .events-filter-title {
     font-family: var(--font-header);
     font-size: var(--font-mobil-h3);
@@ -100,6 +109,10 @@
 
     .events-list {
         padding: 0 var(--gap-md);
+    }
+
+    .events-empty {
+        font-size: var(--font-desktop-text-big);
     }
 
     .events-filter-title {
