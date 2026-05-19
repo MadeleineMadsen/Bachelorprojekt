@@ -61,7 +61,7 @@
                 <div class="search-field">
                     <input type="text" id="memberSearch" placeholder="SØG">
                     <button type="button" aria-label="Søg">
-                        <img src="/assets/img/icons/search.svg" alt="">
+                        <img src="/assets/img/icons/search.svg" alt="Søg ikon">
                     </button>
                 </div>
 

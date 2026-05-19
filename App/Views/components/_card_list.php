@@ -13,7 +13,7 @@
         </div>
         <?php if ($imgSrc): ?>
         <img src="<?= htmlspecialchars($imgSrc) ?>"
-            alt="" class="card-event-list-img"
+            alt="Billede af eventet" class="card-event-list-img"
             onerror="this.style.display='none'; this.parentElement.classList.add('card-event-list-img-wrap--no-img');">
         <?php endif; ?>
     </div>
@@ -26,17 +26,17 @@
         <div class="card-event-list-meta">
             <div class="card-event-list-meta-items">
                 <span class="card-event-list-meta-item">
-                    <img src="/assets/img/icons/ur_icon.png" alt="" class="card-event-list-meta-icon">
+                    <img src="/assets/img/icons/ur_icon.png" alt="Ur ikon" class="card-event-list-meta-icon">
                     <?= htmlspecialchars(substr($event['event_time'], 0, 5)) ?>
                     <?php if (!empty($event['event_end_time'])): ?>-
                         <?= htmlspecialchars(substr($event['event_end_time'], 0, 5)) ?><?php endif; ?>
                 </span>
                 <span class="card-event-list-meta-item">
-                    <img src="/assets/img/icons/placering_icon.png" alt="" class="card-event-list-meta-icon">
+                    <img src="/assets/img/icons/placering_icon.png" alt="Pin ikon" class="card-event-list-meta-icon">
                     <?= htmlspecialchars($event['event_location']) ?>
                 </span>
                 <span class="card-event-list-meta-item">
-                    <img src="/assets/img/icons/person_icon.png" alt="" class="card-event-list-meta-icon">
+                    <img src="/assets/img/icons/person_icon.png" alt="Person ikon" class="card-event-list-meta-icon">
                     <?= htmlspecialchars($event['participant_count'] ?? '0') ?> deltagere
                 </span>
             </div>

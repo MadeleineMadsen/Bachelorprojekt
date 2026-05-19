@@ -178,7 +178,7 @@ $monthNames = [
                     </div>
 
                     <div class="calendar-img-wrap">
-                        <img src="<?= $event['image'] ?>" alt="">
+                        <img src="<?= $event['image'] ?>" alt="Billede af eventet">
                         <?php if ($isTilmeldt): ?>
                             <span class="calendar-tilmeldt-label">TILMELDT</span>
                         <?php endif; ?>

@@ -76,7 +76,7 @@ include __DIR__ . '/micro/___banner.php';
     <section class="membership-stats">
 
         <div class="stat">
-            <img src="assets/img/icons/user_account.svg" alt="">
+            <img src="assets/img/icons/user_account.svg" alt="Medlemmer ikon">
             <div class="stat-text">
                 <h3><?= $memberStats['active_members']; ?></h3>
                 <p>AKTIVE MEDLEMMER</p>
@@ -84,7 +84,7 @@ include __DIR__ . '/micro/___banner.php';
         </div>
 
         <div class="stat">
-            <img src="assets/img/icons/calender.png" alt="">
+            <img src="assets/img/icons/calender.png" alt="Kalender ikon">
             <div class="stat-text">
                 <h3>+<?= $memberStats['events_this_year']; ?></h3>
                 <p>EVENTS OM ÅRET</p>
@@ -92,7 +92,7 @@ include __DIR__ . '/micro/___banner.php';
         </div>
 
         <div class="stat">
-            <img src="assets/img/icons/favorite.svg" alt="">
+            <img src="assets/img/icons/favorite.svg" alt="Hjerte ikon">
             <div class="stat-text">
                 <h3>100%</h3>
                 <p>FÆLLESSKAB</p>

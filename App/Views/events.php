@@ -25,7 +25,7 @@
                 <div class="events-filter-search">
                     <input type="text" placeholder="SØG" class="events-filter-input">
                     <button type="button" class="events-filter-btn">
-                        <img src="/assets/img/icons/search_icon.png" alt="Søg">
+                        <img src="/assets/img/icons/search_icon.png" alt="Søg ikon">
                     </button>
                 </div>
             </div>

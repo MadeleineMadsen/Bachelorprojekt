@@ -2,7 +2,7 @@
 
     <div class="eventside-hero">
         <?php $evtImg = $event['event_image'] ?? ''; $evtSrc = !empty($evtImg) ? (str_starts_with($evtImg, '/') ? $evtImg : '/assets/img/' . $evtImg) : '/assets/img/placeholder.webp'; ?>
-        <img src="<?= htmlspecialchars($evtSrc) ?>" alt="" class="eventside-hero-img">
+        <img src="<?= htmlspecialchars($evtSrc) ?>" alt="Billede af event" class="eventside-hero-img">
         <div class="eventside-hero-overlay">
             <span class="eventside-hero-presenter">GBG SOCIAL PRÆSENTERER</span>
             <h1 class="eventside-hero-title"><?= htmlspecialchars($event['event_title']) ?></h1>
@@ -49,10 +49,10 @@
             <a href="#" class="event-gallery-link">SE FLERE BILLEDER →</a>
         </div>
         <div class="event-gallery-grid">
-            <img src="/assets/img/fredagsbar-udenfor.webp" alt="" class="event-gallery-img">
-            <img src="/assets/img/guldbar-hygge.webp" alt="" class="event-gallery-img">
-            <img src="/assets/img/fredagsbar-udenfor2.webp" alt="" class="event-gallery-img">
-            <img src="/assets/img/tøser.webp" alt="" class="event-gallery-img">
+            <img src="/assets/img/fredagsbar-udenfor.webp" alt="Fredagsbar" class="event-gallery-img">
+            <img src="/assets/img/guldbar-hygge.webp" alt="Guldbar" class="event-gallery-img">
+            <img src="/assets/img/fredagsbar-udenfor2.webp" alt="Fredagsbar udenfor" class="event-gallery-img">
+            <img src="/assets/img/tøser.webp" alt="Vejledere" class="event-gallery-img">
         </div>
     </section>
 
@@ -66,7 +66,7 @@
                         <div class="deltager-slide member-slide">
                             <?php foreach ($slide as $p): ?>
                                 <?php $img = !empty($p['user_profile_image']) ? '/assets/img/uploads/' . $p['user_profile_image'] : '/assets/img/uploads/default_profile_image.webp'; ?>
-                                <img src="<?= htmlspecialchars($img) ?>" alt="" class="profile-img profile-medium">
+                                <img src="<?= htmlspecialchars($img) ?>" alt="Profilbillede" class="profile-img profile-medium">
                             <?php endforeach; ?>
                         </div>
                     <?php endforeach; ?>
