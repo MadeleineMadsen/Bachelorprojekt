@@ -1,12 +1,21 @@
 <article class="card-event-list" data-category="<?= htmlspecialchars($event['category_fk'] ?? '') ?>"
     data-title="<?= htmlspecialchars(strtolower($event['event_title'])) ?>">
-    <div class="card-event-list-img-wrap">
+    <?php
+    $imgRaw = $event['event_image'] ?? '';
+    $imgSrc = !empty($imgRaw)
+        ? (str_starts_with($imgRaw, '/') ? $imgRaw : '/assets/img/' . $imgRaw)
+        : null;
+    ?>
+    <div class="card-event-list-img-wrap <?= $imgSrc ? '' : 'card-event-list-img-wrap--no-img' ?>">
         <div class="card-event-list-date">
             <span class="card-event-list-day"><?= htmlspecialchars($event['date_day']) ?></span>
             <span class="card-event-list-month"><?= htmlspecialchars($event['date_month_da']) ?></span>
         </div>
-        <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>"
-            alt="<?= htmlspecialchars($event['event_title']) ?>" class="card-event-list-img">
+        <?php if ($imgSrc): ?>
+        <img src="<?= htmlspecialchars($imgSrc) ?>"
+            alt="" class="card-event-list-img"
+            onerror="this.style.display='none'; this.parentElement.classList.add('card-event-list-img-wrap--no-img');">
+        <?php endif; ?>
     </div>
     <div class="card-event-list-body">
         <div class="card-event-list-category">
@@ -39,6 +48,7 @@
                         class="btn btn-secondary">Rediger</a>
                     <form id="deleteEventForm-<?= htmlspecialchars($event['event_pk']) ?>" method="POST"
                         action="/event_slet">
+                        <?php csrf_input(); ?>
                         <input type="hidden" name="event_id" value="<?= htmlspecialchars($event['event_pk']) ?>">
                         <button type="button" class="btn btn-delete"
                             data-modal-open="deleteEventModal-<?= htmlspecialchars($event['event_pk']) ?>">

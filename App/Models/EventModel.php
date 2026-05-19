@@ -16,6 +16,7 @@ class EventModel {
             FROM events e
             LEFT JOIN event_categories c ON c.category_pk = e.category_fk
             LEFT JOIN event_registrations r ON r.event_fk = e.event_pk
+            WHERE e.deleted_at IS NULL
             GROUP BY e.event_pk
             ORDER BY e.event_date ASC
         ');
@@ -45,6 +46,7 @@ class EventModel {
             LEFT JOIN event_categories c ON c.category_pk = e.category_fk
             LEFT JOIN event_registrations r2 ON r2.event_fk = e.event_pk
             WHERE r.user_fk = ?
+            AND e.deleted_at IS NULL
             GROUP BY e.event_pk
             ORDER BY e.event_date ASC
         ');
@@ -159,6 +161,7 @@ class EventModel {
             SELECT e.*, COUNT(r.registration_pk) AS participant_count
             FROM events e
             LEFT JOIN event_registrations r ON r.event_fk = e.event_pk
+            WHERE e.deleted_at IS NULL
             GROUP BY e.event_pk
             ORDER BY e.event_date ASC
             LIMIT ?

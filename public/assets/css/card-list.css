@@ -45,6 +45,14 @@
   overflow: hidden;
 }
 
+.card-event-list-img-wrap--no-img {
+  aspect-ratio: unset;
+  width: fit-content;
+  height: fit-content;
+  overflow: visible;
+  background: none;
+}
+
 .card-event-list-date {
   position: absolute;
   top: 0;
@@ -121,6 +129,7 @@
   color: var(--font-color-black);
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

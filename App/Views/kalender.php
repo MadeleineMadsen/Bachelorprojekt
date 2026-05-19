@@ -167,6 +167,7 @@ $monthNames = [
 
             <?php foreach ($dayEvents as $event): ?>
                 <?php $isTilmeldt = in_array($event['pk'], $registeredIds); ?>
+                    <a href="/eventside?id=<?= urlencode($event['pk']) ?>" class="mobile-event-card-link">
                     <article
                         class="mobile-event-card <?= $eventDate === $selectedDate ? 'is-visible' : '' ?>"
                         data-event-date="<?= $eventDate ?>"
@@ -184,6 +185,7 @@ $monthNames = [
                     </div>
                     <p><?= htmlspecialchars($event['title']) ?></p>
                 </article>
+                </a>
             <?php endforeach; ?>
         <?php endforeach; ?>
 
