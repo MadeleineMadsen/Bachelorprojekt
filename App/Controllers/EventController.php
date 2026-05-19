@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../Models/EventModel.php';
 require_once __DIR__ . '/../../private/mailhelpers.php';
+require_once __DIR__ . '/../../private/helpers.php';
 
 class EventController
 {
@@ -46,6 +47,28 @@ class EventController
         $_SESSION['success'] = 'Du er nu afmeldt eventet.';
     }
 
+    public static function toggleRegistration(): void
+    {
+        require_login();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/events');
+        }
+
+        require_csrf();
+
+        $eventId = $_POST['event_id'] ?? '';
+        $action = $_POST['action'] ?? 'tilmeld';
+
+        if ($action === 'frameld') {
+            self::unregister($eventId, $_SESSION['user']['user_pk']);
+        } else {
+            self::register($eventId, $_SESSION['user']['user_pk']);
+        }
+
+        redirect('/eventside?id=' . urlencode($eventId));
+    }
+
     private static function groupByDate(array $events): array
     {
         $grouped = [];
@@ -76,9 +99,203 @@ class EventController
         return array_column($events, 'event_pk');
     }
 
+    public static function showCalendar(): void
+    {
+        require_login();
+
+        $isAdmin = is_admin();
+
+        $calendarEvents = self::getAllForCalendar();
+
+        $registeredEventIds = $isAdmin
+            ? []
+            : self::getRegisteredEventIds($_SESSION['user']['user_pk']);
+
+        $currentPage = 'kalender';
+        $view = '/kalender.php';
+        $isProfileSection = true;
+
+        load_view($view, [
+            'calendarEvents' => $calendarEvents,
+            'registeredEventIds' => $registeredEventIds,
+            'currentPage' => $currentPage,
+            'isProfileSection' => true,
+        ]);
+    }
+
     public static function getCategories(): array
     {
         return EventModel::getAllCategories();
+    }
+
+    public static function showAll(): void
+    {
+        $events = self::getAll();
+        $categories = self::getCategories();
+
+        $currentPage = 'events';
+        $view = '/events.php';
+
+        load_view($view, [
+            'events' => $events,
+            'categories' => $categories,
+            'currentPage' => $currentPage,
+        ]);
+    }
+
+    public static function showFrontpage(): void
+    {
+        $events = self::getLatest(3);
+
+        $currentPage = '';
+        $view = '/forside.php';
+
+        load_view($view, [
+            'events' => $events,
+            'currentPage' => $currentPage,
+        ]);
+    }
+
+    public static function showSingle(): void
+    {
+        $event = self::getById($_GET['id'] ?? '');
+
+        if (!$event) {
+            redirect('/events');
+        }
+
+        $dato = $event['dato'];
+
+        $participants = self::getParticipants($_GET['id'] ?? '');
+
+        $isLoggedIn = is_logged_in();
+
+        $isRegistered = false;
+
+        if ($isLoggedIn) {
+            $isRegistered = self::isRegistered(
+                $_GET['id'] ?? '',
+                $_SESSION['user']['user_pk']
+            );
+        }
+
+        $currentPage = 'events';
+        $view = '/eventside.php';
+
+        load_view($view, [
+            'event' => $event,
+            'dato' => $dato,
+            'participants' => $participants,
+            'isRegistered' => $isRegistered,
+            'currentPage' => $currentPage,
+        ]);
+    }
+
+    public static function showUserEvents(): void
+    {
+        require_login();
+
+        $events = self::getByUser($_SESSION['user']['user_pk']);
+
+        $currentPage = 'event_user';
+        $view = '/event_user.php';
+        $isProfileSection = true;
+
+        load_view($view, [
+            'events' => $events,
+            'currentPage' => $currentPage,
+            'isProfileSection' => true,
+        ]);
+    }
+
+    public static function showEdit(): void
+    {
+        require_role(1, '/events');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            self::updateEvent();
+            exit;
+        }
+
+        $event = self::getById($_GET['id'] ?? '');
+
+        if (!$event) {
+            redirect('/events');
+        }
+
+        $categories = self::getCategories();
+
+        $currentPage = 'events';
+        $view = '/event_opret.php';
+        $isProfileSection = true;
+
+        load_view($view, [
+            'event' => $event,
+            'categories' => $categories,
+            'currentPage' => $currentPage,
+            'isProfileSection' => true,
+        ]);
+    }
+
+    public static function showCreate(): void
+    {
+        require_admin();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            self::createEvent();
+            exit;
+        }
+
+        $categories = self::getCategories();
+
+        $currentPage = 'event_opret';
+        $view = '/event_opret.php';
+        $isProfileSection = true;
+
+        load_view($view, [
+            'categories' => $categories,
+            'currentPage' => $currentPage,
+            'isProfileSection' => true,
+        ]);
+    }
+
+    public static function updateEvent(): void
+    {
+        require_role(1, '/events');
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/events');
+        }
+
+        require_csrf();
+
+        self::update();
+    }
+
+    public static function deleteEvent(): void
+    {
+        require_role(1, '/events');
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/events');
+        }
+
+        require_csrf();
+
+        self::delete($_POST['event_id'] ?? '');
+    }
+
+    public static function createEvent(): void
+    {
+        require_admin();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/event_opret');
+        }
+
+        require_csrf();
+
+        self::create();
     }
 
     public static function getAll(): array
@@ -215,7 +432,7 @@ class EventController
             $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $filename = bin2hex(random_bytes(8)) . '.' . $ext;
             move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $filename);
-            $imagePath = '/assets/img/events/' . $filename;
+            $imagePath = 'events/' . $filename;
         }
 
         $uuid = sprintf(
