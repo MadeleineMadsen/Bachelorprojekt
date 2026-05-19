@@ -45,6 +45,12 @@ $showMemberFields = in_array($role, ['1', '2']);
     <section class="form-container <?= $containerClass ?>">
         <h4>REDIGER PROFIL</h4>
 
+        <?php if ($error = flash('error')): ?>
+            <div class="error-message">
+                <?= e($error) ?>
+            </div>
+        <?php endif; ?>
+
         <form method="POST" action="/profil/update">
             <?php csrf_input(); ?>
             <input type="text" name="user_name" value="<?= htmlspecialchars($user['user_name']) ?>"

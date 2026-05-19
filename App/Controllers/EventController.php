@@ -123,6 +123,8 @@ class EventController
         EventModel::delete($id);
 
         $_SESSION['success'] = 'Eventet er slettet.';
+        header('Location: /events');
+        exit;
     }
 
     public static function update(): void
@@ -197,6 +199,12 @@ class EventController
         $endTime = $_POST['end_time'] ?? null;
         $location = trim($_POST['location'] ?? '');
         $category = $_POST['category'] ?? '';
+
+        if (empty($_FILES['image']['name']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+            $_SESSION['error'] = 'Du skal uploade et billede.';
+            header('Location: /event_opret');
+            exit;
+        }
 
         $imagePath = null;
         if (!empty($_FILES['image']['name'])) {

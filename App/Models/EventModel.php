@@ -16,6 +16,7 @@ class EventModel {
             FROM events e
             LEFT JOIN event_categories c ON c.category_pk = e.category_fk
             LEFT JOIN event_registrations r ON r.event_fk = e.event_pk
+            WHERE e.deleted_at IS NULL
             GROUP BY e.event_pk
             ORDER BY e.event_date ASC
         ');
@@ -30,6 +31,7 @@ class EventModel {
             LEFT JOIN event_categories c ON c.category_pk = e.category_fk
             LEFT JOIN event_registrations r ON r.event_fk = e.event_pk
             WHERE e.event_pk = ?
+            AND e.deleted_at IS NULL
             GROUP BY e.event_pk
         ');
         $stmt->execute([$id]);
@@ -45,6 +47,7 @@ class EventModel {
             LEFT JOIN event_categories c ON c.category_pk = e.category_fk
             LEFT JOIN event_registrations r2 ON r2.event_fk = e.event_pk
             WHERE r.user_fk = ?
+            AND e.deleted_at IS NULL
             GROUP BY e.event_pk
             ORDER BY e.event_date ASC
         ');
@@ -159,6 +162,7 @@ class EventModel {
             SELECT e.*, COUNT(r.registration_pk) AS participant_count
             FROM events e
             LEFT JOIN event_registrations r ON r.event_fk = e.event_pk
+            WHERE e.deleted_at IS NULL
             GROUP BY e.event_pk
             ORDER BY e.event_date ASC
             LIMIT ?
@@ -175,7 +179,7 @@ class EventModel {
         $stmt = $db->prepare("
             SELECT *
             FROM events
-            WHERE event_deleted_at IS NULL
+            WHERE deleted_at IS NULL
             AND reminder_sent_at IS NULL
             AND TIMESTAMP(event_date, event_time) BETWEEN NOW() + INTERVAL 23 HOUR
             AND NOW() + INTERVAL 25 HOUR

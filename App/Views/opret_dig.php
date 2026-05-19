@@ -12,11 +12,24 @@
         <h1 class="form-title">OPRET DIG</h1>
 
         <section class="form-container signup-container">
+
+                <?php if ($error = flash('error')): ?>
+                    <div class="error-message">
+                        <?= e($error) ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($success = flash('success')): ?>
+                    <div class="success-message">
+                        <?= e($success) ?>
+                    </div>
+                <?php endif; ?>
+            
             <form method="POST" action="">
                 <?php csrf_input(); ?>
-                <input type="text" name="user_name" placeholder="Fornavn" required>
+                <input type="text" name="user_name" value="<?= e(old('user_name')) ?>" placeholder="Fornavn" required>
 
-                <input type="text" name="user_last_name" placeholder="Efternavn" required>
+                <input type="text" name="user_last_name" value="<?= e(old('user_name')) ?>" placeholder="Efternavn" required>
 
                 <input type="email" name="user_email" placeholder="Studiemail" required>
 

@@ -39,6 +39,7 @@
                         class="btn btn-secondary">Rediger</a>
                     <form id="deleteEventForm-<?= htmlspecialchars($event['event_pk']) ?>" method="POST"
                         action="/event_slet">
+                        <?php csrf_input(); ?>
                         <input type="hidden" name="event_id" value="<?= htmlspecialchars($event['event_pk']) ?>">
                         <button type="button" class="btn btn-delete"
                             data-modal-open="deleteEventModal-<?= htmlspecialchars($event['event_pk']) ?>">
