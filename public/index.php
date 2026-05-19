@@ -17,19 +17,6 @@ $userController = new UserController($db);
 // Henter kun path fra URL
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// Auth status (i header)
-$isLoggedIn = is_logged_in();
-$userRole = user_role();
-
-$isAdmin = is_admin();
-$isMember = is_member();
-$isUser = is_user();
-
-$isProfileSection = false;
-
-$currentPage = '';
-$view = null;
-
 // Router
 switch ($uri) {
 
@@ -61,7 +48,7 @@ switch ($uri) {
     // LOG UD
     case '/log_ud':
         $authController->logout();
-        break;
+        exit;
 
     // PROFIL
     case '/profil':
@@ -71,17 +58,17 @@ switch ($uri) {
     // PROFIL - OPDATERING AF OPLYSNINGER
     case '/profil/update':
         $userController->updateProfile();
-        break;
+        exit;
 
     // PROFIL - OPDATER KUN PROFILBILLEDE
     case '/profil/update-image':
         $userController->updateProfileImage();
-        break;
+        exit;
 
     // PROFIL - SLET PROFIL
     case '/profil/delete':
         $userController->deleteProfile();
-        break;
+        exit;
 
     // EVENTS
     case '/events':
@@ -152,16 +139,17 @@ switch ($uri) {
         exit;
 
 
-        // OM
+    // OM
     case '/om':
         MedlemController::showAbout();
         exit;
 
-        // VILKÅR OG BETINGELSER
+    // VILKÅR OG BETINGELSER
     case '/terms':
-        $currentPage = 'terms';
-        $view = '/terms.php';
-        break;
+        load_view('/terms.php', [
+            'currentPage' => 'terms',
+        ]);
+        exit;
     
     // DEFAULT
     default:
@@ -169,8 +157,3 @@ switch ($uri) {
         echo '404 - Not Found';
         exit;
 }
-
-// LOAD LAYOUT
-require __DIR__ . '/../App/Views/components/_header.php';
-require __DIR__ . '/../App/Views' . $view;
-require __DIR__ . '/../App/Views/components/_footer.php';
