@@ -138,7 +138,6 @@ switch ($uri) {
         MedlemController::deleteMember();
         exit;
 
-
     // OM
     case '/om':
         MedlemController::showAbout();
