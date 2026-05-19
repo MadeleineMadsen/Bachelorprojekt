@@ -25,8 +25,11 @@
                 <input type="password" name="confirm_password" placeholder="Bekræft adgangskode" required>
 
                 <label class="checkbox-wrapper">
-                    <input type="checkbox" name="terms" required>
-                    <span>Jeg accepterer vilkår og betingelser samt privatlivspolitik</span>
+                    <a class="terms" href="/terms">Vilkår & betingelser</a>
+                    <div class="term_check" >
+                        <input type="checkbox" name="terms" required>
+                        <span>Jeg accepterer privatlivspolitikken samt vilkår for brug af platformen.</span>
+                    </div>
                 </label>
 
                 <button class="btn btn-primary" type="submit">OPRET DIG</button>

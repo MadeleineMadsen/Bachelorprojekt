@@ -390,13 +390,6 @@ switch ($uri) {
         $view = '/medlemmer.php';
         break;
 
-    // OM
-    case '/om':
-        $members = MedlemController::getVisibleMembers();
-
-        $currentPage = 'om';
-        $view = '/om.php';
-        break;
 
     // GODKEND, AFVIS OG SLET MEDLEMMER
     case '/godkend_medlem':
@@ -435,6 +428,20 @@ switch ($uri) {
         MedlemController::delete();
         exit;
 
+        // OM
+    case '/om':
+        $members = MedlemController::getVisibleMembers();
+
+        $currentPage = 'om';
+        $view = '/om.php';
+        break;
+
+        // VILKÅR OG BETINGELSER
+    case '/terms':
+        $currentPage = 'terms';
+        $view = '/terms.php';
+        break;
+    
     // DEFAULT
     default:
         http_response_code(404);

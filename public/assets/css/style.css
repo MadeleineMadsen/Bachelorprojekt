@@ -1,11 +1,13 @@
-/* style.css */
-/* Hoved CSS fil (entry point) */
+/* Layout */
 
 /* Variabler */
 @import "./variables.css";
 
 /* Layout - mediaqueries */
 @import "./layout.css";
+
+
+/* Komponenter */
 
 /* Utilities - genbrugelige utility klasser */
 @import "./utilities.css";
@@ -20,6 +22,9 @@
 
 /* Formularer - styling af alle formularer */
 @import "./forms.css";
+
+
+/* Sider */
 
 /* Forsiden - styling af hele forsiden */
 @import "./front-page.css";
@@ -47,3 +52,6 @@
 
 /* Ansøgninger - styling af alle medlemsskaber til godkendelse */
 @import "./medlem_godkend.css";
+
+/* Terms - styling til Vilkår & Betingelser side */
+@import "./terms.css";
