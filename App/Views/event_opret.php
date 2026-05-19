@@ -70,7 +70,7 @@ $formAction = $isEditing ? '/event_rediger' : '';
                     </p>
                     <img
                         id="uploadPreview"
-                        src="<?= $isEditing && !empty($event['event_image']) ? '/assets/img/' . htmlspecialchars($event['event_image']) : '' ?>"
+                        src="<?= $isEditing && !empty($event['event_image']) ? '' . htmlspecialchars($event['event_image']) : '' ?>"
                         alt="Billede preview"
                         class="upload-preview"
                         <?= (!$isEditing || empty($event['event_image'])) ? 'style="display:none"' : '' ?>
