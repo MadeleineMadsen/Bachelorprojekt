@@ -76,24 +76,6 @@
   color: var(--color-light-blue);
 }
 
-.form-message {
-  font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
-  padding: var(--gap-sm);
-  margin-bottom: var(--gap-md);
-  border-radius: var(--gap-xxs);
-}
-
-.form-message.success {
-  background-color: var(--color-success);
-  color: var(--color-success-text);
-}
-
-.form-message.error {
-  background-color: var(--color-error);
-  color: var(--color-error-text);
-}
-
 /* ----------------------------------- */
 /* Log ind formular */
 /* ----------------------------------- */
@@ -264,11 +246,6 @@
     margin-top: var(--gap-md);
   }
 
-  .form-message {
-    font-size: var(--font-desktop-text-small);
-    padding: var(--gap-sm) var(--gap-md);
-  }
-
   /* ----------------------------------- */
   /* Log ind formular */
   /* ----------------------------------- */
@@ -304,10 +281,10 @@
     font-size: var(--font-desktop-text-small);
   }
 
-    .upload-preview {
-      width: 100px;
-      height: 100px;
-    }
+  .upload-preview {
+    width: 100px;
+    height: 100px;
+  }
 
   /* ----------------------------------- */
   /* Profil formular */

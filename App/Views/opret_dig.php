@@ -13,6 +13,7 @@
 
         <section class="form-container signup-container">
             <form method="POST" action="">
+                <?php csrf_input(); ?>
                 <input type="text" name="user_name" placeholder="Fornavn" required>
 
                 <input type="text" name="user_last_name" placeholder="Efternavn" required>

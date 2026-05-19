@@ -3,25 +3,29 @@
 require_once __DIR__ . '/../Models/MedlemModel.php';
 require_once __DIR__ . '/../../private/mailhelpers.php';
 
-class MedlemController {
-
-    public static function getVisibleMembers(): array {
+class MedlemController
+{
+    public static function getVisibleMembers(): array
+    {
         return MedlemModel::getVisibleMembers();
     }
 
-    public static function getPending(): array {
+    public static function getPending(): array
+    {
         return MedlemModel::getPending();
     }
 
-    public static function getStats(): array {
+    public static function getStats(): array
+    {
         return MedlemModel::getStats();
     }
 
-    public static function createApplication(): void {
-
+    public static function createApplication(): void
+    {
         $userId = $_SESSION['user']['user_pk'] ?? $_SESSION['user']['id'] ?? null;
 
         if (!$userId) {
+            $_SESSION['error'] = 'Du skal være logget ind for at sende en ansøgning.';
             header('Location: /log_ind');
             exit;
         }
@@ -29,7 +33,7 @@ class MedlemController {
         $educationFk = (int) ($_POST['education_fk'] ?? 0);
         $semesterFk = (int) ($_POST['semester_fk'] ?? 0);
         $applicationText = trim($_POST['description'] ?? '');
-        
+
         if ($educationFk <= 0 || $semesterFk <= 0 || $applicationText === '') {
             $_SESSION['error'] = 'Udfyld venligst alle felter i ansøgningen.';
             header('Location: /medlem_sog#membership-form');
@@ -90,7 +94,6 @@ class MedlemController {
         );
 
         if ($created) {
-
             sendMembershipConfirmationMail(
                 $_SESSION['user']['user_email'],
                 $_SESSION['user']['user_name']
@@ -106,20 +109,21 @@ class MedlemController {
         exit;
     }
 
-    public static function showApplicationForm(): void {
+    public static function showApplicationForm(): void
+    {
         $educations = MedlemModel::getEducations();
         $semesters = MedlemModel::getSemesters();
 
         require __DIR__ . '/../Views/medlem_sog.php';
     }
 
-    public static function approve(): void {
+    public static function approve(): void
+    {
         $memberId = $_POST['member_pk'] ?? null;
         $adminId = $_SESSION['user']['user_pk'] ?? $_SESSION['user']['id'] ?? null;
 
         if ($memberId && $adminId) {
             $application = MedlemModel::getApplicationById($memberId);
-
             $approved = MedlemModel::approve($memberId, $adminId);
 
             if ($approved && $application) {
@@ -127,29 +131,39 @@ class MedlemController {
                     $application['user_email'],
                     $application['user_name']
                 );
+
+                $_SESSION['success'] = 'Medlemsansøgningen er godkendt.';
+            } else {
+                $_SESSION['error'] = 'Medlemsansøgningen kunne ikke godkendes.';
             }
+        } else {
+            $_SESSION['error'] = 'Medlemsansøgningen kunne ikke godkendes.';
         }
 
         header('Location: /medlem_godkend');
         exit;
     }
 
-    public static function reject(): void {
+    public static function reject(): void
+    {
         $memberId = $_POST['member_pk'] ?? null;
 
         if ($memberId) {
-
             $application = MedlemModel::getApplicationById($memberId);
-
             $rejected = MedlemModel::reject($memberId);
 
             if ($rejected && $application) {
-
                 sendMembershipRejectedMail(
                     $application['user_email'],
                     $application['user_name']
                 );
+
+                $_SESSION['success'] = 'Medlemsansøgningen er afvist.';
+            } else {
+                $_SESSION['error'] = 'Medlemsansøgningen kunne ikke afvises.';
             }
+        } else {
+            $_SESSION['error'] = 'Medlemsansøgningen kunne ikke afvises.';
         }
 
         header('Location: /medlem_godkend');
@@ -161,12 +175,12 @@ class MedlemController {
         $memberId = $_POST['member_pk'] ?? null;
 
         if (!$memberId) {
+            $_SESSION['error'] = 'Medlemmet kunne ikke fjernes.';
             header('Location: /medlem_godkend');
             exit;
         }
 
         $member = MedlemModel::getMemberById($memberId);
-
         $deleted = MedlemModel::delete($memberId);
 
         if ($deleted && $member) {
@@ -174,6 +188,10 @@ class MedlemController {
                 $member['user_email'],
                 $member['user_name']
             );
+
+            $_SESSION['success'] = 'Medlemmet er fjernet.';
+        } else {
+            $_SESSION['error'] = 'Medlemmet kunne ikke fjernes.';
         }
 
         header('Location: /medlem_godkend');

@@ -2,6 +2,7 @@
 session_start();
 
 require_once __DIR__ . '/../private/db.php';
+require_once __DIR__ . '/../private/helpers.php';
 require_once __DIR__ . '/../private/mailhelpers.php';
 require_once __DIR__ . '/../App/Controllers/AuthController.php';
 require_once __DIR__ . '/../App/Controllers/MedlemController.php';
@@ -15,12 +16,12 @@ $userModel = new UserModel($db);
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // Auth status (i header)
-$isLoggedIn = isset($_SESSION['user']);
-$userRole = $_SESSION['user']['role_fk'] ?? null;
+$isLoggedIn = is_logged_in();
+$userRole = user_role();
 
-$isAdmin = $isLoggedIn && $userRole == 1;
-$isMember = $isLoggedIn && $userRole == 2;
-$isUser = $isLoggedIn && $userRole == 3;
+$isAdmin = is_admin();
+$isMember = is_member();
+$isUser = is_user();
 
 $isProfileSection = false;
 
@@ -41,6 +42,8 @@ switch ($uri) {
     // LOG IND
     case '/log_ind':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_csrf();
+
             $authController->login();
             exit;
         }
@@ -52,6 +55,8 @@ switch ($uri) {
     // OPRET DIG
     case '/opret_dig':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_csrf();
+
             $authController->signup();
             exit;
         }
@@ -73,15 +78,11 @@ switch ($uri) {
     // LOG UD
     case '/log_ud':
         session_destroy();
-        header('Location: /');
-        exit;
+        redirect('/');
 
     // PROFIL
     case '/profil':
-        if (!$isLoggedIn) {
-            header('Location: /log_ind');
-            exit;
-        }
+        require_login();
 
         $user = $userModel->findById($_SESSION['user']['user_pk']);
         $member = $userModel->findMemberByUserId($_SESSION['user']['user_pk']);
@@ -90,182 +91,182 @@ switch ($uri) {
         $semesters = MedlemModel::getSemesters();
 
         $currentPage = 'profil';
-
         $view = '/profil.php';
-
         $isProfileSection = true;
         break;
 
     // PROFIL - OPDATERING AF OPLYSNINGER
     case '/profil/update':
-        if (!$isLoggedIn) {
-            header('Location: /log_ind');
-            exit;
+        require_login();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/profil');
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        require_csrf();
 
-            $userId = $_SESSION['user']['user_pk'];
+        $userId = $_SESSION['user']['user_pk'];
 
-            $userName = trim($_POST['user_name'] ?? '');
-            $lastName = trim($_POST['user_last_name'] ?? '');
-            $email = trim($_POST['user_email'] ?? '');
-            $password = $_POST['user_password'] ?? '';
+        $userName = validate_text('user_name', 'Fornavn', 2, 50);
+        $lastName = validate_text('user_last_name', 'Efternavn', 2, 50);
+        $email = validate_email('user_email');
+        $password = validate_password('user_password', false);
 
-            $education = (int) ($_POST['education_fk'] ?? 0);
-            $semester = (int) ($_POST['semester_fk'] ?? 0);
+        $education = (int) ($_POST['education_fk'] ?? 0);
+        $semester = (int) ($_POST['semester_fk'] ?? 0);
 
-            // OPDATER BRUGERDATA
-            $userModel->updateProfile(
+        // OPDATER BRUGERDATA
+        $userModel->updateProfile(
+            $userId,
+            $userName,
+            $lastName,
+            $email
+        );
+
+        // OPDATER PASSWORD
+        if (!empty($password)) {
+            $userModel->updatePassword($userId, $password);
+        }
+
+        // OPDATER MEMBER DATA
+        if ($education > 0 && $semester > 0) {
+            $userModel->updateMemberProfile(
                 $userId,
-                $userName,
-                $lastName,
-                $email
+                $education,
+                $semester
             );
-
-            // OPDATER PASSWORD
-            if (!empty($password)) {
-                $userModel->updatePassword($userId, $password);
-            }
-
-            // OPDATER MEMBER DATA
-            if ($education > 0 && $semester > 0) {
-                $userModel->updateMemberProfile(
-                    $userId,
-                    $education,
-                    $semester
-                );
-            }
-
-            // OPDATER SESSION
-            $_SESSION['user']['user_name'] = $userName;
-            $_SESSION['user']['user_last_name'] = $lastName;
-            $_SESSION['user']['user_email'] = $email;
-
-            header('Location: /profil');
-            exit;
         }
 
-        header('Location: /profil');
-        exit;
+        // OPDATER SESSION
+        $_SESSION['user']['user_name'] = $userName;
+        $_SESSION['user']['user_last_name'] = $lastName;
+        $_SESSION['user']['user_email'] = $email;
+
+        $_SESSION['success'] = 'Din profil er opdateret.';
+
+        redirect('/profil');
 
     // PROFIL - OPDATER KUN PROFILBILLEDE
     case '/profil/update-image':
-        if (!$isLoggedIn) {
-            header('Location: /log_ind');
-            exit;
+        require_login();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/profil');
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $userId = $_SESSION['user']['user_pk'];
+        require_csrf();
 
-            if (
-                isset($_FILES['profile_image']) &&
-                $_FILES['profile_image']['error'] === UPLOAD_ERR_OK
-            ) {
-                $extension = strtolower(pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION));
-                $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+        $userId = $_SESSION['user']['user_pk'];
 
-                if (in_array($extension, $allowedExtensions)) {
-                    $fileName = 'profile_' . $userId . '_' . time() . '.' . $extension;
-                    $uploadDir = __DIR__ . '/assets/img/uploads/';
+        if (
+            isset($_FILES['profile_image']) &&
+            $_FILES['profile_image']['error'] === UPLOAD_ERR_OK
+        ) {
+            $extension = strtolower(pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION));
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
 
-                    if (!is_dir($uploadDir)) {
-                        mkdir($uploadDir, 0777, true);
-                    }
+            if (in_array($extension, $allowedExtensions, true)) {
+                $fileName = 'profile_' . $userId . '_' . time() . '.' . $extension;
+                $uploadDir = __DIR__ . '/assets/img/uploads/';
 
-                    $uploadPath = $uploadDir . $fileName;
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
 
-                    if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadPath)) {
-                        $userModel->updateProfileImage($userId, $fileName);
-                        $_SESSION['user']['user_profile_image'] = $fileName;
-                    }
+                $uploadPath = $uploadDir . $fileName;
+
+                if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadPath)) {
+                    $userModel->updateProfileImage($userId, $fileName);
+                    $_SESSION['user']['user_profile_image'] = $fileName;
+
+                    $_SESSION['success'] = 'Dit profilbillede er opdateret.';
+                } else {
+                    $_SESSION['error'] = 'Profilbilledet kunne ikke uploades.';
                 }
             }
         }
 
-        header('Location: /profil');
-        exit;
+        redirect('/profil');
 
     // PROFIL - SLET PROFIL
     case '/profil/delete':
-        if (!$isLoggedIn) {
-            header('Location: /log_ind');
-            exit;
+        require_login();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/profil');
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $userModel->softDelete($_SESSION['user']['user_pk']);
+        require_csrf();
 
-            session_destroy();
+        $userModel->softDelete($_SESSION['user']['user_pk']);
 
-            header('Location: /');
-            exit;
-        }
+        session_destroy();
+        session_start();
 
-        header('Location: /profil');
-        exit;
+        $_SESSION['success'] = 'Din profil er blevet slettet.';
+
+        redirect('/');
 
     // EVENTS
     case '/events':
-
         require_once __DIR__ . '/../App/Controllers/EventController.php';
+
         $events = EventController::getAll();
         $categories = EventController::getCategories();
+
         $currentPage = 'events';
         $view = '/events.php';
         break;
 
     // SINGLE EVENT
     case '/eventside':
-
         require_once __DIR__ . '/../App/Controllers/EventController.php';
+
         $event = EventController::getById($_GET['id'] ?? '');
 
         if (!$event) {
-            header('Location: /events');
-            exit;
+            redirect('/events');
         }
 
         $dato = $event['dato'];
         $participants = EventController::getParticipants($_GET['id'] ?? '');
         $isRegistered = $isLoggedIn && EventController::isRegistered($_GET['id'] ?? '', $_SESSION['user']['user_pk']);
+
         $currentPage = 'events';
         $view = '/eventside.php';
         break;
 
     // TILMELD EVENT
     case '/event_tilmeld':
-        if (!$isLoggedIn) {
-            header('Location: /log_ind');
-            exit;
+        require_login();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/events');
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            require_once __DIR__ . '/../App/Controllers/EventController.php';
-            $eventId = $_POST['event_id'] ?? '';
-            $action = $_POST['action'] ?? 'tilmeld';
+        require_csrf();
 
-            if ($action === 'frameld') {
-                EventController::unregister($eventId, $_SESSION['user']['user_pk']);
-            } else {
-                EventController::register($eventId, $_SESSION['user']['user_pk']);
-            }
+        require_once __DIR__ . '/../App/Controllers/EventController.php';
 
-            header('Location: /eventside?id=' . urlencode($eventId));
-            exit;
+        $eventId = $_POST['event_id'] ?? '';
+        $action = $_POST['action'] ?? 'tilmeld';
+
+        if ($action === 'frameld') {
+            EventController::unregister($eventId, $_SESSION['user']['user_pk']);
+        } else {
+            EventController::register($eventId, $_SESSION['user']['user_pk']);
         }
-        break;
+
+        redirect('/eventside?id=' . urlencode($eventId));
 
     // TILMELDTE EVENTS
     case '/event_user':
-        if (!$isLoggedIn) {
-            header('Location: /log_ind');
-            exit;
-        }
+        require_login();
 
         require_once __DIR__ . '/../App/Controllers/EventController.php';
+
         $events = EventController::getByUser($_SESSION['user']['user_pk']);
+
         $currentPage = 'event_user';
         $view = '/event_user.php';
         $isProfileSection = true;
@@ -273,25 +274,25 @@ switch ($uri) {
 
     // REDIGER EVENT (ADMIN)
     case '/event_rediger':
-        if (!$isAdmin) {
-            header('Location: /events');
-            exit;
-        }
+        require_role(1, '/events');
 
         require_once __DIR__ . '/../App/Controllers/EventController.php';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_csrf();
+
             EventController::update();
             exit;
         }
 
         $event = EventController::getById($_GET['id'] ?? '');
+
         if (!$event) {
-            header('Location: /events');
-            exit;
+            redirect('/events');
         }
 
         $categories = EventController::getCategories();
+
         $currentPage = 'events';
         $view = '/event_opret.php';
         $isProfileSection = true;
@@ -299,31 +300,35 @@ switch ($uri) {
 
     // SLET EVENT (ADMIN)
     case '/event_slet':
-        if (!$isAdmin || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: /events');
-            exit;
+        require_role(1, '/events');
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/events');
         }
 
+        require_csrf();
+
         require_once __DIR__ . '/../App/Controllers/EventController.php';
+
         EventController::delete($_POST['event_id'] ?? '');
-        header('Location: /events');
-        exit;
+
+        redirect('/events');
 
     // OPRET EVENT (ADMIN)
     case '/event_opret':
-        if (!$isAdmin) {
-            header('Location: /');
-            exit;
-        }
+        require_admin();
+
+        require_once __DIR__ . '/../App/Controllers/EventController.php';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            require_once __DIR__ . '/../App/Controllers/EventController.php';
+            require_csrf();
+
             EventController::create();
             exit;
         }
 
-        require_once __DIR__ . '/../App/Controllers/EventController.php';
         $categories = EventController::getCategories();
+
         $currentPage = 'event_opret';
         $view = '/event_opret.php';
         $isProfileSection = true;
@@ -331,12 +336,10 @@ switch ($uri) {
 
     // KALENDER
     case '/kalender':
-        if (!$isLoggedIn) {
-            header('Location: /log_ind');
-            exit;
-        }
+        require_login();
 
         require_once __DIR__ . '/../App/Controllers/EventController.php';
+
         $calendarEvents = EventController::getAllForCalendar();
         $registeredEventIds = $isAdmin ? [] : EventController::getRegisteredEventIds($_SESSION['user']['user_pk']);
 
@@ -347,17 +350,11 @@ switch ($uri) {
 
     // SØG OM MEDLEMSSKAB
     case '/medlem_sog':
-        if (!$isLoggedIn) {
-            header('Location: /log_ind');
-            exit;
-        }
-
-        if (!$isUser) {
-            header('Location: /profil');
-            exit;
-        }
+        require_user();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_csrf();
+
             MedlemController::createApplication();
             exit;
         }
@@ -372,10 +369,7 @@ switch ($uri) {
 
     // GODKEND MEDLEMSSKAB
     case '/medlem_godkend':
-        if (!$isAdmin) {
-            header('Location: /');
-            exit;
-        }
+        require_admin();
 
         $applications = MedlemController::getPending();
         $educations = MedlemModel::getEducations();
@@ -384,11 +378,6 @@ switch ($uri) {
         $currentPage = 'medlem_godkend';
         $view = '/medlem_godkend.php';
         $isProfileSection = true;
-        break;
-
-    // SLET MEDLEMSSKAB
-    case '/slet_medlem':
-        MedlemController::delete();
         break;
 
     // ALLE MEDLEMMER
@@ -404,34 +393,44 @@ switch ($uri) {
     // OM
     case '/om':
         $members = MedlemController::getVisibleMembers();
+
         $currentPage = 'om';
         $view = '/om.php';
         break;
 
     // GODKEND, AFVIS OG SLET MEDLEMMER
     case '/godkend_medlem':
-        if (!$isAdmin || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: /');
-            exit;
+        require_admin();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/');
         }
+
+        require_csrf();
 
         MedlemController::approve();
         exit;
 
     case '/afvis_medlem':
-        if (!$isAdmin || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: /');
-            exit;
+        require_admin();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/');
         }
+
+        require_csrf();
 
         MedlemController::reject();
         exit;
 
     case '/slet_medlem':
-        if (!$isAdmin || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: /');
-            exit;
+        require_admin();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/');
         }
+
+        require_csrf();
 
         MedlemController::delete();
         exit;

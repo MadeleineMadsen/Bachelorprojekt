@@ -1,14 +1,12 @@
-<article class="card-event-list" data-category="<?= htmlspecialchars($event['category_fk'] ?? '') ?>" data-title="<?= htmlspecialchars(strtolower($event['event_title'])) ?>">
+<article class="card-event-list" data-category="<?= htmlspecialchars($event['category_fk'] ?? '') ?>"
+    data-title="<?= htmlspecialchars(strtolower($event['event_title'])) ?>">
     <div class="card-event-list-img-wrap">
         <div class="card-event-list-date">
             <span class="card-event-list-day"><?= htmlspecialchars($event['date_day']) ?></span>
             <span class="card-event-list-month"><?= htmlspecialchars($event['date_month_da']) ?></span>
         </div>
-        <img
-            src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>"
-            alt="<?= htmlspecialchars($event['event_title']) ?>"
-            class="card-event-list-img"
-        >
+        <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>"
+            alt="<?= htmlspecialchars($event['event_title']) ?>" class="card-event-list-img">
     </div>
     <div class="card-event-list-body">
         <div class="card-event-list-category">
@@ -21,7 +19,8 @@
                 <span class="card-event-list-meta-item">
                     <img src="/assets/img/icons/ur_icon.png" alt="" class="card-event-list-meta-icon">
                     <?= htmlspecialchars(substr($event['event_time'], 0, 5)) ?>
-                    <?php if (!empty($event['event_end_time'])): ?>- <?= htmlspecialchars(substr($event['event_end_time'], 0, 5)) ?><?php endif; ?>
+                    <?php if (!empty($event['event_end_time'])): ?>-
+                        <?= htmlspecialchars(substr($event['event_end_time'], 0, 5)) ?><?php endif; ?>
                 </span>
                 <span class="card-event-list-meta-item">
                     <img src="/assets/img/icons/placering_icon.png" alt="" class="card-event-list-meta-icon">
@@ -33,13 +32,30 @@
                 </span>
             </div>
             <div class="card-event-list-actions">
-                <a href="/eventside?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-secondary card-event-list-link"><?= (isset($isAdmin) && $isAdmin) ? 'Se event' : 'Læs mere' ?></a>
+                <a href="/eventside?id=<?= htmlspecialchars($event['event_pk']) ?>"
+                    class="btn btn-secondary card-event-list-link"><?= (isset($isAdmin) && $isAdmin) ? 'Se event' : 'Læs mere' ?></a>
                 <?php if (isset($isAdmin) && $isAdmin): ?>
-                    <a href="/event_rediger?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-secondary">Rediger</a>
-                    <form method="POST" action="/event_slet" onsubmit="return confirm('Er du sikker på at du vil slette dette event?')">
+                    <a href="/event_rediger?id=<?= htmlspecialchars($event['event_pk']) ?>"
+                        class="btn btn-secondary">Rediger</a>
+                    <form id="deleteEventForm-<?= htmlspecialchars($event['event_pk']) ?>" method="POST"
+                        action="/event_slet">
                         <input type="hidden" name="event_id" value="<?= htmlspecialchars($event['event_pk']) ?>">
-                        <button type="submit" class="btn btn-delete">Slet</button>
+                        <button type="button" class="btn btn-delete"
+                            data-modal-open="deleteEventModal-<?= htmlspecialchars($event['event_pk']) ?>">
+                            Slet
+                        </button>
                     </form>
+
+                    <?php
+                    $modalId = 'deleteEventModal-' . $event['event_pk'];
+                    $formId = 'deleteEventForm-' . $event['event_pk'];
+                    $title = 'Slet event?';
+                    $text = 'Er du sikker på, at du vil slette dette event? Deltagere får besked på mail.';
+                    $confirmText = 'Ja, slet event';
+
+                    include __DIR__ . '/../micro/___confirm_modal.php';
+                    ?>
+
                 <?php endif; ?>
             </div>
         </div>

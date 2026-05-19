@@ -68,6 +68,142 @@
 }
 
 /* -----------------------------
+    TOASTS
+-------------------------------*/
+
+.toast-container {
+  position: fixed;
+  top: 80px;
+  left: var(--gap-sm);
+  right: var(--gap-sm);
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+}
+
+.toast {
+  width: 100%;
+  padding: 14px 42px 14px 16px;
+
+  font-family: var(--font-text);
+  font-size: var(--font-mobil-text);
+
+  position: relative;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  border-radius: 12px;
+
+  animation: toastSlideIn 0.3s ease;
+}
+
+.toast-success {
+  background: var(--color-success);
+  color: var(--color-success-text);
+}
+
+.toast-error {
+  background: var(--color-error);
+  color: var(--color-error-text);
+}
+
+.toast-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+
+  border: none;
+  background: transparent;
+
+  font-size: 22px;
+  color: inherit;
+
+  cursor: pointer;
+}
+
+.toast-close:hover {
+  opacity: 0.7;
+}
+
+.toast.hide {
+  animation: toastSlideOut 0.3s ease forwards;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastSlideOut {
+  to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+/* -----------------------------
+    MODALS
+-------------------------------*/
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  padding: var(--gap-sm);
+
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 360px;
+
+  padding: var(--gap-md);
+
+  background: var(--bg-color-white);
+  color: var(--font-color-black);
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modal-box h3 {
+  font-family: var(--font-header);
+  font-size: var(--font-mobil-h3);
+
+  margin-bottom: var(--gap-sm);
+}
+
+.modal-box p {
+  font-family: var(--font-text);
+  font-size: var(--font-mobil-text);
+
+  margin-bottom: var(--gap-md);
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+}
+
+/* -----------------------------
     PROFILBILLEDER
 -------------------------------*/
 
@@ -221,6 +357,45 @@
 
   .btn-nav::after {
     font-size: 1.4em;
+  }
+
+  /* -----------------------------
+    TOASTS
+-------------------------------*/
+
+  .toast-container {
+    top: 160px;
+    left: auto;
+    right: var(--gap-sm);
+  }
+
+  .toast {
+    width: auto;
+    min-width: 260px;
+    max-width: 360px;
+
+    font-size: var(--font-desktop-text-small);
+  }
+
+  /* -----------------------------
+    MODALS
+-------------------------------*/
+
+  .modal-box {
+    max-width: 460px;
+  }
+
+  .modal-box h3 {
+    font-size: var(--font-desktop-h3);
+  }
+
+  .modal-box p {
+    font-size: var(--font-desktop-text-small);
+  }
+
+  .modal-actions {
+    flex-direction: row;
+    justify-content: flex-end;
   }
 
   /* -----------------------------

@@ -120,20 +120,8 @@ include __DIR__ . '/micro/___banner.php';
 
         <!-- Højre side -->
         <div class="form-container membership-container">
-                <?php if (isset($_SESSION['success'])): ?>
-                    <div class="form-message success">
-                        <?= htmlspecialchars($_SESSION['success']); ?>
-                    </div>
-                    <?php unset($_SESSION['success']); ?>
-                <?php endif; ?>
-
-                <?php if (isset($_SESSION['error'])): ?>
-                    <div class="form-message error">
-                        <?= htmlspecialchars($_SESSION['error']); ?>
-                    </div>
-                    <?php unset($_SESSION['error']); ?>
-                <?php endif; ?>
             <form method="POST" action="/medlem_sog" enctype="multipart/form-data">
+                <?php csrf_input(); ?>
                 <div class="form-row">
                     <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" disabled>
                     <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>"
@@ -159,7 +147,8 @@ include __DIR__ . '/micro/___banner.php';
                 </select>
                 <input type="email" value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" disabled>
 
-                <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende aktiviteter vil du have ansvaret for?</label>
+                <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende
+                    aktiviteter vil du have ansvaret for?</label>
                 <textarea id="description" name="description" required></textarea>
 
                 <label class="form-label">Upload profilbillede</label>
@@ -179,14 +168,10 @@ include __DIR__ . '/micro/___banner.php';
                         <?php endif; ?>
                     </p>
 
-                    <img 
-                        id="uploadPreview"
-                        src="<?= $hasProfileImage
-                            ? '/assets/img/uploads/' . htmlspecialchars($profileImage)
-                            : '/assets/img/uploads/default_profile_image.webp' ?>"
-                        alt="Profil preview"
-                        class="upload-preview"
-                    >
+                    <img id="uploadPreview" src="<?= $hasProfileImage
+                        ? '/assets/img/uploads/' . htmlspecialchars($profileImage)
+                        : '/assets/img/uploads/default_profile_image.webp' ?>" alt="Profil preview"
+                        class="upload-preview">
                 </label>
 
                 <button class="btn btn-primary" type="submit">SEND ANSØGNING</button>

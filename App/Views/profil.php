@@ -26,6 +26,7 @@ $showMemberFields = in_array($role, ['1', '2']);
             </div>
 
             <form id="profileImageForm" method="POST" action="/profil/update-image" enctype="multipart/form-data">
+                <?php csrf_input(); ?>
                 <div class="profile-image-wrapper">
                     <img id="profilePreview" src="<?= !empty($user['user_profile_image'])
                         ? '/assets/img/uploads/' . htmlspecialchars($user['user_profile_image'])
@@ -45,6 +46,7 @@ $showMemberFields = in_array($role, ['1', '2']);
         <h4>REDIGER PROFIL</h4>
 
         <form method="POST" action="/profil/update">
+            <?php csrf_input(); ?>
             <input type="text" name="user_name" value="<?= htmlspecialchars($user['user_name']) ?>"
                 placeholder="Fornavn" required>
 
@@ -81,14 +83,24 @@ $showMemberFields = in_array($role, ['1', '2']);
             <div class="profile-button-row">
                 <button class="btn btn-primary" type="submit">GEM ÆNDRINGER</button>
 
-                <button class="btn btn-delete" type="submit" form="deleteProfileForm">
+                <button class="btn btn-delete" type="button" data-modal-open="deleteProfileModal">
                     SLET MIN PROFIL
                 </button>
             </div>
         </form>
 
-        <form id="deleteProfileForm" method="POST" action="/profil/delete"
-            onsubmit="return confirm('Er du sikker på, at du vil slette din profil?');">
+        <form id="deleteProfileForm" method="POST" action="/profil/delete">
+            <?php csrf_input(); ?>
         </form>
     </section>
 </main>
+
+<?php
+$modalId = 'deleteProfileModal';
+$formId = 'deleteProfileForm';
+$title = 'Slet profil?';
+$text = 'Er du sikker på, at du vil slette din profil? Denne handling kan ikke fortrydes.';
+$confirmText = 'Ja, slet min profil';
+
+include __DIR__ . '/micro/___confirm_modal.php';
+?>
