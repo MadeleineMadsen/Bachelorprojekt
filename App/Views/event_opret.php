@@ -50,7 +50,8 @@ $formAction = $isEditing ? '/event_rediger' : '';
                 <input id="event_subtitel" type="text" name="subtitel" placeholder="Undertitel" required
                     value="<?= $isEditing ? htmlspecialchars($event['event_subtitle'] ?? '') : '' ?>">
 
-                <select name="category" required>
+                <label for="category" class="hide_label">Kategori</label>
+                <select id="category" name="category" required>
                     <option value="" disabled <?= !$isEditing ? 'selected' : '' ?>>Vælg kategori</option>
                     <?php foreach ($categories as $cat): ?>
                         <option value="<?= htmlspecialchars($cat['category_pk']) ?>"
@@ -67,7 +68,7 @@ $formAction = $isEditing ? '/event_rediger' : '';
                 <small class="form-hint">Skriv ét punkt per linje, hver linje bliver et bullet point.</small>
                 <textarea id="description-bulletpoints" name="description-bulletpoints" required><?= $isEditing ? htmlspecialchars($event['event_expectations'] ?? '') : '' ?></textarea>
 
-                <label class="form-label" for="profile_image" required>Upload billede<?= $isEditing ? ' <small class="form-hint">(valgfrit – behold nuværende hvis tomt)</small>' : '' ?></label>
+                <label class="form-label" for="profile_image">Upload billede<?= $isEditing ? ' <small class="form-hint">(valgfrit – behold nuværende hvis tomt)</small>' : '' ?></label>
                 <label class="upload-box" for="profile_image">
                     <input id="profile_image" type="file" name="image" accept="image/*">
                     <div class="upload-icon">
