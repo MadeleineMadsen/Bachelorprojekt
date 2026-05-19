@@ -27,15 +27,20 @@
             
             <form method="POST" action="">
                 <?php csrf_input(); ?>
-                <input type="text" name="user_name" value="<?= e(old('user_name')) ?>" placeholder="Fornavn" required>
-
-                <input type="text" name="user_last_name" value="<?= e(old('user_name')) ?>" placeholder="Efternavn" required>
-
-                <input type="email" name="user_email" placeholder="Studiemail" required>
-
-                <input type="password" name="user_password" placeholder="Adgangskode" required>
-
-                <input type="password" name="confirm_password" placeholder="Bekræft adgangskode" required>
+                <label for="user_name" class="hide_label">Fornavn</label>
+                <input id="user_name" type="text" name="user_name" value="<?= e(old('user_name')) ?>" placeholder="Fornavn" required>
+                
+                <label for="user_last_name" class="hide_label">Efternavn</label>
+                <input id="user_last_name" type="text" name="user_last_name" value="<?= e(old('user_name')) ?>" placeholder="Efternavn" required>
+                
+                <label for="user_email" class="hide_label">Studiemail</label>
+                <input id="user_email" type="email" name="user_email" placeholder="Studiemail" required>
+                
+                <label for="user_password" class="hide_label">Adgangskode</label>
+                <input id="user_password" type="password" name="user_password" placeholder="Adgangskode" required>
+                
+                <label for="confirm_password" class="hide_label">Bekræft adgangskode</label>
+                <input id="confirm_password" type="password" name="confirm_password" placeholder="Bekræft adgangskode" required>
 
                 <label class="checkbox-wrapper">
                     <a class="terms" href="/terms">Vilkår & betingelser</a>

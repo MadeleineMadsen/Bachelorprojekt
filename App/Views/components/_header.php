@@ -136,7 +136,7 @@ if ($isLoggedIn) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 
 <head>
     <meta charset="UTF-8">
@@ -152,19 +152,19 @@ if ($isLoggedIn) {
     $errorMessage = flash('error');
     ?>
 
-    <div class="toast-container">
+    <div class="toast-container" aria-live="polite" aria-atomic="true">
 
         <?php if ($successMessage): ?>
             <div class="toast toast-success">
                 <?= e($successMessage) ?>
-                <button type="button" class="toast-close">×</button>
+                <button type="button" class="toast-close" aria-label="Luk besked">×</button>
             </div>
         <?php endif; ?>
 
         <?php if ($errorMessage): ?>
-            <div class="toast toast-error">
+            <div class="toast toast-error" role="alert">
                 <?= e($errorMessage) ?>
-                <button type="button" class="toast-close">×</button>
+                <button type="button" class="toast-close" aria-label="Luk besked">×</button>
             </div>
         <?php endif; ?>
 
@@ -185,7 +185,7 @@ if ($isLoggedIn) {
             <!-- Topnavigation -->
             <div class="header-left">
                 <a href="/" class="logo">
-                    <img src="/assets/img/icons/logo_header.png" alt="Logo">
+                    <img src="/assets/img/icons/logo_header.png" alt="GBG Social Logo">
                 </a>
 
                 <nav class="top-nav top-nav-left" aria-label="Hovednavigation venstre">

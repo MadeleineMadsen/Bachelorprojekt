@@ -18,30 +18,36 @@ $formAction = $isEditing ? '/event_rediger' : '';
                     <input type="hidden" name="event_pk" value="<?= htmlspecialchars($event['event_pk']) ?>">
                 <?php endif; ?>
 
-                <input type="text" name="titel" placeholder="Titel på event" required
+                <label for="event_titel" class="hide_label">Titel på event</label>
+                <input id="event_titel" type="text" name="titel" placeholder="Titel på event" required
                     value="<?= $isEditing ? htmlspecialchars($event['event_title']) : '' ?>">
 
-                <input type="date" name="date" required
+                <label for="event_dato" class="hide_label">Dato på event</label>
+                <input id="event_dato" type="date" name="date" required
                     value="<?= $isEditing ? htmlspecialchars($event['event_date']) : '' ?>">
 
                 <div class="form-row">
                     <div>
                         <small class="form-hint">Starttidspunkt</small>
-                        <input type="time" name="time" placeholder="Starttid" required
+                        <label for="event_start" class="hide_label">Starttid</label>
+                        <input id="event_start" type="time" name="time" placeholder="Starttid" required
                             value="<?= $isEditing ? htmlspecialchars(substr($event['event_time'], 0, 5)) : '' ?>">
                     </div>
 
                     <div>
                         <small class="form-hint">Sluttidspunkt</small>
-                        <input type="time" name="end_time" placeholder="Sluttid" required
+                        <label for="event_slut" class="hide_label">Sluttid</label>
+                        <input id="event_slut" type="time" name="end_time" placeholder="Sluttid" required
                             value="<?= $isEditing ? htmlspecialchars(substr($event['event_end_time'] ?? '', 0, 5)) : '' ?>">
                     </div>
                 </div>
 
-                <input type="text" name="location" placeholder="Lokation" required
+                <label for="event_lokation" class="hide_label">Lokation</label>
+                <input id="event_lokation" type="text" name="location" placeholder="Lokation" required
                     value="<?= $isEditing ? htmlspecialchars($event['event_location']) : '' ?>">
-
-                <input type="text" name="subtitel" placeholder="Undertitel" required
+                
+                <label for="event_subtitel" class="hide_label">Undertitel på event</label>
+                <input id="event_subtitel" type="text" name="subtitel" placeholder="Undertitel" required
                     value="<?= $isEditing ? htmlspecialchars($event['event_subtitle'] ?? '') : '' ?>">
 
                 <select name="category" required>
@@ -61,7 +67,7 @@ $formAction = $isEditing ? '/event_rediger' : '';
                 <small class="form-hint">Skriv ét punkt per linje, hver linje bliver et bullet point.</small>
                 <textarea id="description-bulletpoints" name="description-bulletpoints" required><?= $isEditing ? htmlspecialchars($event['event_expectations'] ?? '') : '' ?></textarea>
 
-                <label class="form-label required">Upload billede<?= $isEditing ? ' <small class="form-hint">(valgfrit – behold nuværende hvis tomt)</small>' : '' ?></label>
+                <label class="form-label" for="profile_image" required>Upload billede<?= $isEditing ? ' <small class="form-hint">(valgfrit – behold nuværende hvis tomt)</small>' : '' ?></label>
                 <label class="upload-box" for="profile_image">
                     <input id="profile_image" type="file" name="image" accept="image/*">
                     <div class="upload-icon">

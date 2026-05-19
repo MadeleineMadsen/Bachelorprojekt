@@ -123,8 +123,11 @@ include __DIR__ . '/micro/___banner.php';
             <form method="POST" action="/medlem_sog" enctype="multipart/form-data">
                 <?php csrf_input(); ?>
                 <div class="form-row">
-                    <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" disabled>
-                    <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>"
+                    <label for="user_name" class="hide_label">Fornavn</label>
+                    <input id=""user_name type="text" value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" disabled>
+
+                    <label for="user_last_name" class="hide_label">Efternavn</label>
+                    <input id="user_last_name" type="text" value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>"
                         disabled>
                 </div>
                 <select name="education_fk" required>
@@ -145,7 +148,8 @@ include __DIR__ . '/micro/___banner.php';
                         </option>
                     <?php endforeach; ?>
                 </select>
-                <input type="email" value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" disabled>
+                <label for="user_email" class="hide_label">Studiemail</label>
+                <input id="user_email" type="email" value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" disabled>
 
                 <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende
                     aktiviteter vil du have ansvaret for?</label>

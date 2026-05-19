@@ -50,7 +50,7 @@ $socials = [
 <footer class="site-footer">
     <div class="img-container">
         <a href="/" class="footer-logo">
-            <img src="/assets/img/icons/logo_footer_black.png" alt="Logo">
+            <img src="/assets/img/icons/logo_footer_black.png" alt="GBG Social Logo">
         </a>
     </div>
     <div class="footer-container">
