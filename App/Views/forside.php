@@ -23,7 +23,7 @@ include __DIR__ . '/micro/___banner.php';
             får mulighed for at lære hinanden at kende og føle sig som en del af studiemiljøet.
         </p>
 
-        <a href="#" class="btn btn-primary">BLIV MEDLEM</a>
+        <a href="/medlem_sog" class="btn btn-primary">BLIV MEDLEM</a>
     </section>
 
     <section class="events-section">
@@ -60,7 +60,7 @@ include __DIR__ . '/micro/___banner.php';
                     i dit studie.
                 </p>
 
-                <a href="#" class="btn btn-secondary">LÆS MERE</a>
+                <a href="/om" class="btn btn-secondary">LÆS MERE</a>
             </div>
         </div>
     </section>
@@ -69,7 +69,7 @@ include __DIR__ . '/micro/___banner.php';
         <h2 class="section-title">Feed</h2>
 
         <div class="feed-link-wrapper">
-            <a href="#" class="feed-link btn-nav">SE FLERE BILLEDER</a>
+            <a href="https://www.instagram.com/_ekdigital/" class="feed-link btn-nav">SE FLERE BILLEDER</a>
         </div>
 
         <div class="feed-grid">
