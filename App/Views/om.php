@@ -1,15 +1,23 @@
 <main class="main-om">
     <section class="om-hero">
-        <div class="img-hero">
+
+        <div class="om-left">
             <h1 class="om-header">OM OS</h1>
-            <img class="om-img" src="/assets/img/om.webp" alt="Billede af unge kvinder fra GBG Social">
-            <div class=" container sub-header">
-                <h2 class="sub">DEN SOCIALE STUDENTERFORENING</h2>
-                <p class="sub-text">GBG Social er for alle studerende på Guldbergsgade.</p>
-                <p class="sub-text">Vi skaber fællesskab gennem sjove events, gode vibes og uforglemmelige oplevelser
-                </p>
-            </div>
+
+            <div class="om-hero-line"></div>
+
+            <h2 class="hero-sub sub">DEN SOCIALE STUDENTERFORENING</h2>
+
+            <p class="sub-text">
+                GBG Social er for alle studerende på Guldbergsgade.
+                Vi skaber fællesskab gennem sjove events, gode vibes og uforglemmelige oplevelser.
+            </p>
         </div>
+
+        <div class="om-right">
+            <img class="om-img" src="/assets/img/om.webp" alt="Billede af unge kvinder fra GBG Social">
+        </div>
+
     </section>
 
 
@@ -24,13 +32,13 @@
             <img class="vil-du-img" src="/assets/img/vil-du.webp" alt="Billede af studerende der smiler til kameraet">
             <p class="sub-text vil-du-text">Har du lyst til at være en del af et socialt fællesskab, hvor du kan være
                 med til at planlægge og stå for de fedeste events?</p>
-            <button class="btn btn-primary">BLIV MEDLEM</button>
+            <a href="/medlem_sog" class="btn btn-primary">BLIV MEDLEM</a>
         </section>
     </section>
 
 
-    <section class="container" id="teamet">
-        <h2 class="sub mød-sub">MØD MEDLEMMERNE I GBG SOCIAL</h2>
+    <section id="teamet">
+        <h2 class="mød-sub sub">MØD MEDLEMMERNE I GBG SOCIAL</h2>
         <div class="team-members">
             <h1 class="om-header teamet">TEAMET</h1>
 
@@ -41,14 +49,12 @@
 
                 <div class="member-carousel om-carousel" id="memberCarousel" data-visible-slides="1">
                     <?php foreach ($members as $index => $member): ?>
-                        <article class="member-slide om-slide <?= $index >= 8 ? 'desktop-hidden' : ''; ?>">
-                            <img 
-                                src="<?= !empty($member['user_profile_image'])
-                                    ? '/assets/img/uploads/' . htmlspecialchars($member['user_profile_image'])
-                                    : '/assets/img/uploads/default_profile_image.webp' ?>"
+                        <article class="member-slide om-slide <?= $index >= 10 ? 'desktop-hidden' : ''; ?>">
+                            <img src="<?= !empty($member['user_profile_image'])
+                                ? '/assets/img/uploads/' . htmlspecialchars($member['user_profile_image'])
+                                : '/assets/img/uploads/default_profile_image.webp' ?>"
                                 alt="Portræt af <?= htmlspecialchars($member['user_name']); ?>"
-                                class="profile-img profile-medium"
-                            >
+                                class="profile-img profile-medium">
 
                             <h3>
                                 <?= htmlspecialchars($member['user_name']); ?>
@@ -73,26 +79,28 @@
     </section>
 
     <section id="værdi">
-        <h2 class="sub container">VORES VÆRDIER</h2>
+        <h2 class="værdi-sub sub">VORES VÆRDIER</h2>
         <div class="værdi-container">
             <img src="/assets/img/icons/fælles.svg" alt="Fællesskab icon">
             <div>
                 <h3>FÆLLESSKAB</h3>
-                <p class="sub-text">Et trygt fællesskab, hvor studerende mødes og lærer hinanden at kende på tværs.</p>
+                <p class="værdi-sub-text">Et trygt fællesskab, hvor studerende mødes og lærer hinanden at kende på
+                    tværs.</p>
             </div>
         </div>
         <div class="værdi-container">
             <img src="/assets/img/icons/oplev.svg" alt="Menneske med armene over hovedet icon">
             <div>
                 <h3>OPLEVELSER</h3>
-                <p class="sub-text">Vi skaber sociale events, der samler studerende og giver gode minder.</p>
+                <p class="værdi-sub-text">Vi skaber sociale events, der samler studerende og giver gode minder.</p>
             </div>
         </div>
         <div class="værdi-container">
             <img src="/assets/img/icons/inklusion.svg" alt="Hjerte icon">
             <div>
                 <h3>INKLUSION</h3>
-                <p class="sub-text">Et inkluderende miljø, der har plads til alle, og hvor du kan være dig selv.</p>
+                <p class="værdi-sub-text">Et inkluderende miljø, der har plads til alle, og hvor du kan være dig selv.
+                </p>
             </div>
         </div>
 
@@ -100,8 +108,8 @@
     </section>
 
     <!-- id´et bruges til at der scroller hertil når man klikker kontakt i footer -->
-    <section class="kontakt container" id="kontakt">
-        <h2 class="sub">KONTAKT OS</h2>
+    <section class="kontakt" id="kontakt">
+        <h2 class="kontakt-sub sub">KONTAKT OS</h2>
         <p class="sub-text">Har du spørgsmål, ideer til events eller lyst til at samarbejde? Så ræk endelig ud!</p>
 
         <div class="kontakt-container">

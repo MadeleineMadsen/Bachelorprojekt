@@ -1,7 +1,32 @@
+/* om.css */
+/* Bruges på Om os siden */
+
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
+
+/* ---------- Page ---------- */
+
 .main-om {
   margin: 0;
   padding: 0;
 }
+
+/* ---------- Shared text ---------- */
+
+.sub {
+  font-family: var(--font-header);
+  font-size: var(--font-mobil-h2);
+  font-weight: var(--poppins-font-bold);
+  margin: var(--gap-sm);
+}
+
+.sub-text {
+  font-size: var(--font-mobil-text);
+  margin: 0 var(--gap-sm) var(--gap-sm);
+}
+
+/* ---------- Hero ---------- */
 
 .om-header {
   font-family: var(--font-header);
@@ -15,36 +40,11 @@
   background-repeat: no-repeat;
 }
 
-.sub {
-  font-family: var(--font-header);
-  font-size: var(--font-mobil-h2);
-  font-weight: var(--poppins-font-bold);
-  margin-bottom: var(--gap-sm);
+.om-img {
+  display: none;
 }
 
-.sub-text {
-  font-size: var(--font-mobil-text);
-}
-
-.kontakt-img {
-  height: auto;
-  width: 100%;
-}
-
-.vil-du-img {
-  height: 14rem;
-  width: 100%;
-  object-fit: cover;
-  object-position: center 60%;
-}
-
-.mød-sub {
-  margin: 0 0 var(--gap-md);
-}
-
-.kontakt-img {
-  margin-top: var(--gap-sm);
-}
+/* ---------- Vil du være med ---------- */
 
 #vil-du {
   padding: var(--gap-md) var(--gap-sm) 0;
@@ -55,36 +55,37 @@
   border-bottom: 1px solid var(--bg-color-black);
 }
 
+.vil-du-sub {
+  margin: 0 0 var(--gap-sm);
+}
+
+.vil-du-img {
+  height: 14rem;
+  width: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+}
+
 .vil-du-text {
   margin: var(--gap-sm) 0;
+}
+
+/* ---------- Teamet ---------- */
+
+.mød-sub {
+  margin: var(--gap-md) var(--gap-sm) var(--gap-sm);
 }
 
 .team-members {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  margin-right: var(--gap-md);
+  margin: var(--gap-md) var(--gap-md) var(--gap-sm) 0;
   align-items: center;
-}
-
-.om-slide {
-  flex: 0 0 100%;
-}
-
-.om-img {
-  display: none;
-}
-
-.om-carousel {
-  margin-top: 0;
-}
-
-.om-carousel-section {
-  margin: 0;
 }
 
 .teamet {
   writing-mode: vertical-rl;
-  rotate: calc(180deg);
+  rotate: 180deg;
   width: fit-content;
   text-orientation: mixed;
   background-image: none;
@@ -92,11 +93,31 @@
   padding: 0;
 }
 
+.om-carousel-section {
+  margin: 0;
+}
+
+.om-carousel {
+  margin-top: 0;
+}
+
+.om-slide {
+  flex: 0 0 100%;
+}
+
 .team-btn-wrapper {
   display: flex;
   justify-content: flex-end;
   padding-right: var(--gap-md);
+  margin-bottom: var(--gap-md);
 }
+
+/* Vis kun 10 medlemmer på denne side */
+.desktop-hidden {
+  display: none;
+}
+
+/* ---------- Værdier ---------- */
 
 #værdi {
   background-color: var(--bg-color-black);
@@ -105,87 +126,123 @@
   margin: var(--gap-sm) 0;
 }
 
-.værdi-container,
-.kontakt-container {
+.værdi-sub {
+  margin: var(--gap-sm);
+}
+
+.værdi-container {
   display: grid;
   grid-template-columns: 1fr 3fr;
   margin: var(--gap-md) var(--gap-sm);
   align-items: center;
 }
 
+.værdi-sub-text {
+  margin-top: var(--gap-xs);
+}
+
 .værdi-img {
   display: none;
 }
 
+/* ---------- Kontakt ---------- */
+
 .kontakt {
-  margin: var(--gap-sm) 0;
+  margin: var(--gap-sm);
+}
+
+.kontakt-sub {
+  margin: var(--gap-md) var(--gap-sm) var(--gap-sm);
 }
 
 .kontakt-container {
-  margin: var(--gap-sm) var(--gap-sm);
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin: var(--gap-sm);
+  align-items: center;
 }
 
-/* Vis kun 8 medlemmer på denne side uanset hvor mange der findes. Både mobil & desktop */
-.desktop-hidden {
-  display: none;
+.kontakt-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: var(--gap-sm);
 }
 
-/* ========== DESKTOP ========== */
+/* ==================================================
+   DESKTOP
+================================================== */
 
 @media (min-width: 768px) {
-  .img-hero {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-between;
-  }
-
-  .om-header {
-    font-size: var(--font-desktop-h1);
-    background-image: none;
-    color: var(--font-color-black);
-    grid-column: 1;
-    grid-row: 1;
-    padding: 0 var(--gap-lg);
-    margin: 0;
-  }
-
-  .sub {
-    font-size: var(--font-desktop-h3);
-    max-width: var(--gap-xxl);
-  }
-
-  .sub-header {
-    grid-column: 1;
-    grid-row: 2;
-    justify-self: start;
-    align-self: start;
-    margin-left: 0;
-    padding-left: var(--gap-xl);
-  }
+  /* ---------- Shared text ---------- */
 
   .sub-text {
     font-size: var(--font-desktop-text-small);
   }
 
-  /* HERO */
+  /* ---------- Hero ---------- */
+
   .om-hero {
     display: grid;
-    align-items: center;
-    gap: var(--gap-lg);
+    grid-template-columns: 1fr 1.05fr;
+    height: auto;
+    align-items: start;
   }
 
-  .om-img {
+  .om-left {
+    position: static;
+    grid-column: 1;
+    grid-row: 1;
+    padding: 0 var(--gap-lg);
+    align-self: start;
+  }
+
+  .om-header {
+    color: var(--font-color-black);
+    font-size: var(--font-desktop-h1);
+    background-image: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .om-hero-line,
+  .om-left .sub,
+  .om-left .sub-text {
     display: block;
-    height: 40em;
-    width: 100%;
-    object-fit: cover;
-    grid-column: 2;
-    grid-row: span 2;
   }
 
-  .sub-header {
-    padding-right: var(--gap-lg);
+  .om-hero-line {
+    width: 380px;
+    height: 2px;
+    background: var(--font-color-black);
+    margin: var(--gap-md) 0;
   }
+
+  .om-left .sub {
+    font-size: var(--font-desktop-h3);
+    max-width: 40rem;
+    margin-bottom: var(--gap-sm);
+  }
+
+  .om-left .sub-text {
+    max-width: 40rem;
+  }
+
+  .om-right {
+    grid-column: 2;
+    grid-row: 1;
+    height: 40em;
+  }
+
+  .om-right img {
+    width: 100%;
+    height: 40em;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* ---------- Vil du være med ---------- */
 
   #vil-du {
     padding: var(--gap-lg) var(--gap-lg) 0;
@@ -197,17 +254,17 @@
     column-gap: var(--gap-md);
     align-items: center;
     padding-bottom: var(--gap-lg);
-    margin-bottom: var(--gap-md);
-  }
-
-  .vil-du-sub {
-    max-width: none;
+    margin-bottom: var(--gap-lg);
   }
 
   .vil-du-container .sub {
     grid-column: 2;
     grid-row: 1;
     margin-bottom: 0;
+  }
+
+  .vil-du-sub {
+    max-width: none;
   }
 
   .vil-du-img {
@@ -232,6 +289,8 @@
     justify-self: start;
   }
 
+  /* ---------- Teamet ---------- */
+
   #teamet {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -245,9 +304,8 @@
   #teamet .mød-sub {
     grid-column: 2;
     grid-row: 1;
-    margin: 0;
+    margin: 0 0 0 4rem;
     max-width: none;
-    padding-left: 0;
   }
 
   .team-members {
@@ -270,10 +328,14 @@
 
   .om-carousel {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--gap-md);
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--gap-lg);
     overflow: visible;
     width: 100%;
+  }
+
+  .om-slide {
+    flex: unset;
   }
 
   .team-btn-wrapper {
@@ -282,24 +344,22 @@
     display: flex;
     justify-content: flex-end;
     padding-right: var(--gap-lg);
-  }
-
-  .om-slide {
-    flex: unset;
+    margin-bottom: 0;
   }
 
   .-om {
     display: none;
   }
 
+  /* ---------- Værdier ---------- */
+
   #værdi {
     display: grid;
-    grid-template-columns: 1.6fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    height: 40rem;
     gap: 0;
     padding: 0;
     margin: var(--gap-lg) 0;
-    background-color: var(--bg-color-black);
-    color: var(--font-color-white);
     align-items: stretch;
   }
 
@@ -349,12 +409,14 @@
     object-fit: cover;
   }
 
+  /* ---------- Kontakt ---------- */
+
   .kontakt {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
     column-gap: var(--gap-lg);
     align-items: center;
-    margin: var(--gap-md) auto;
+    margin: var(--gap-md) var(--gap-lg);
   }
 
   .kontakt-img {
