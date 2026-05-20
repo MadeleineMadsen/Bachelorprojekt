@@ -1,21 +1,15 @@
 /* membership.css */
+/* Bruges på Bliv medlem siden */
 
-/* ========== MOBILE (FIRST) ========== */
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
+
+/* ---------- Hero ---------- */
 
 .membership-hero {
   position: relative;
   height: 200px;
-}
-
-.membership-right {
-  height: 100%;
-}
-
-.membership-right img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
 }
 
 .membership-left {
@@ -32,10 +26,23 @@
   margin: 0;
 }
 
-.hero-line,
+.membership-hero-line,
 .membership-left p {
   display: none;
 }
+
+.membership-right {
+  height: 100%;
+}
+
+.membership-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ---------- Banner ---------- */
 
 .membership-banner {
   background: var(--color-blue);
@@ -52,18 +59,18 @@
   margin: 0;
 }
 
+/* ---------- Page wrapper ---------- */
+
 .membership-page {
   margin: var(--gap-sm);
 }
 
-.membership-benefits {
-  padding: var(--gap-sm) 0;
-}
+/* ---------- Benefits ---------- */
 
 .membership-benefits h2 {
   font-family: var(--font-header);
   font-size: var(--font-mobil-h2);
-  margin-bottom: var(--gap-sm);
+  margin: var(--gap-md) 0 var(--gap-sm) 0;
 }
 
 .benefits-grid {
@@ -75,7 +82,7 @@
   display: grid;
   grid-template-columns: 70px 1fr;
   gap: var(--gap-xs);
-  padding: var(--gap-sm) 0;
+  padding: var(--gap-md) 0;
   border-bottom: 1px solid #222;
 }
 
@@ -100,12 +107,14 @@
   font-size: var(--font-mobil-text);
 }
 
+/* ---------- Stats ---------- */
+
 .membership-stats {
   background: var(--bg-color-black);
   color: var(--font-color-white);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: var(--gap-sm);
+  padding: var(--gap-md) var(--gap-sm);
   width: 100vw;
   margin-left: calc(50% - 50vw);
 }
@@ -140,18 +149,10 @@
   margin: 0;
 }
 
+/* ---------- Membership form section ---------- */
+
 .get-membership {
-  margin-top: var(--gap-md);
-}
-
-.membership-image {
-  order: -1;
-  margin-bottom: var(--gap-sm);
-}
-
-.membership-image img {
-  width: 100%;
-  display: block;
+  margin: var(--gap-md) 0;
 }
 
 .membership-info {
@@ -167,16 +168,29 @@
 
 .membership-info p {
   font-size: var(--font-mobil-text);
+}
+
+.membership-image {
+  order: -1;
   margin-bottom: var(--gap-sm);
+}
+
+.membership-image img {
+  width: 100%;
+  display: block;
 }
 
 .membership-container {
   width: 100%;
 }
 
-/* ========== DESKTOP ========== */
+/* ==================================================
+  DESKTOP
+================================================== */
 
 @media (min-width: 768px) {
+  /* ---------- Hero ---------- */
+
   .membership-hero {
     display: grid;
     grid-template-columns: 1fr 1.05fr;
@@ -198,12 +212,12 @@
     margin: 0;
   }
 
-  .hero-line,
+  .membership-hero-line,
   .membership-left p {
     display: block;
   }
 
-  .hero-line {
+  .membership-hero-line {
     width: 380px;
     height: 2px;
     background: var(--font-color-black);
@@ -229,17 +243,21 @@
     object-position: center;
   }
 
+  /* ---------- Page wrapper ---------- */
+
   .membership-page {
     margin: var(--gap-md);
   }
 
+  /* ---------- Benefits ---------- */
+
   .membership-benefits {
-    padding: 0 0 var(--gap-md) 0;
+    padding: 0 0 var(--gap-lg);
   }
 
   .membership-benefits h2 {
     font-size: var(--font-desktop-h3);
-    margin-bottom: var(--gap-md);
+    margin: var(--gap-lg) 0;
   }
 
   .benefits-grid {
@@ -270,17 +288,24 @@
     font-size: var(--font-desktop-text-small);
   }
 
+  /* ---------- Stats ---------- */
+
   .membership-stats {
-    padding: var(--gap-md);
+    padding: var(--gap-lg) var(--gap-md);
   }
 
   .stat {
-    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: var(--gap-md);
     text-align: left;
+  }
+
+  .stat img {
+    display: block;
+    width: 60px;
+    height: 60px;
   }
 
   .stat-text {
@@ -290,7 +315,6 @@
   }
 
   .stat h3 {
-    color: var(--font-color-white);
     font-size: var(--font-desktop-h3);
   }
 
@@ -298,17 +322,13 @@
     font-size: var(--font-desktop-text-small);
   }
 
-  .stat img {
-    display: block;
-    width: 60px;
-    height: 60px;
-  }
+  /* ---------- Membership form section ---------- */
 
   .get-membership {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--gap-lg);
-    margin: var(--gap-lg) 0 var(--gap-md) 0;
+    margin: var(--gap-lg) 0 var(--gap-lg);
   }
 
   .membership-image {
@@ -328,8 +348,8 @@
 
   .membership-image img {
     width: 100%;
+    height: 100%;
     max-width: none;
-    height: 22.1rem;
     object-fit: cover;
     object-position: center;
   }

@@ -9,7 +9,7 @@ $hasProfileImage = !empty($profileImage);
     <div class="membership-left">
         <h1>BLIV<br>MEDLEM</h1>
 
-        <div class="hero-line"></div>
+        <div class="membership-hero-line"></div>
 
         <p>
             Bliv en del af GBG Social og vær med til at skabe
