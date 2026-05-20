@@ -40,5 +40,7 @@
             <?php endforeach; ?>
         </div>
 
+        <div class="events-pagination" id="events-pagination"></div>
+
 </main>
 
