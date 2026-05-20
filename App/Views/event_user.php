@@ -1,11 +1,11 @@
 <main>
-    <div class="events-hero">
-        <h1 class="events-hero-title">MINE EVENTS</h1>
+    <div class="my-events-hero">
+        <h1 class="my-events-hero-title">MINE EVENTS</h1>
     </div>
 
 
 
-    <div class="events-filter">
+    <div class="my-events-filter">
         <h2 class="events-filter-title">TILMELDTE EVENTS</h2>
     </div>
 
