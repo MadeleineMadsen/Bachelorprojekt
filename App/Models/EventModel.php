@@ -63,14 +63,7 @@ class EventModel {
     }
 
     public static function registerUser(string $eventId, int $userId): void {
-        $uuid = sprintf(
-            '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff),
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0x0fff) | 0x4000,
-            mt_rand(0, 0x3fff) | 0x8000,
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
-        );
+        $uuid = bin2hex(random_bytes(16));
         $db   = getDB();
         $stmt = $db->prepare('INSERT IGNORE INTO event_registrations (registration_pk, event_fk, user_fk) VALUES (?, ?, ?)');
         $stmt->execute([$uuid, $eventId, $userId]);

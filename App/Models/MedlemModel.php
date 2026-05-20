@@ -126,14 +126,17 @@ class MedlemModel {
     ): bool {
         $db = getDB();
 
+        $memberPk = bin2hex(random_bytes(16));
+
         $stmt = $db->prepare("
             INSERT INTO members
                 (member_pk, user_fk, education_fk, semester_fk, application_text, status)
             VALUES
-                (UUID(), ?, ?, ?, ?, 'pending')
+                (?, ?, ?, ?, ?, 'pending')
         ");
 
         return $stmt->execute([
+            $memberPk,
             $userId,
             $educationFk,
             $semesterFk,
