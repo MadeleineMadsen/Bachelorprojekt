@@ -55,7 +55,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4px 6px;
+  padding: var(--gap-xs);
   line-height: 1.1;
   z-index: 1;
 }
@@ -104,7 +104,7 @@
   font-size: var(--font-mobil-small);
   font-weight: var(--poppins-font-bold);
   text-transform: uppercase;
-  color: var(--color-blue);
+  color: var(--color-light-blue);
   letter-spacing: 0.08em;
   white-space: nowrap;
 }
@@ -177,7 +177,7 @@
   }
 
   .card-event-list-day {
-    font-size: var(--font-desktop-h3);
+    font-size: 2rem;
   }
 
   .card-event-list-month {
