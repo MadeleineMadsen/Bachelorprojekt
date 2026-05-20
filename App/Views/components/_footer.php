@@ -26,9 +26,7 @@ $FooterNavItems = [
 
 // Adresse
 $address = [
-    'GBG SOCIAL',
-    'GULDBERGSGADE 29N',
-    '2200 KØBENHAVN N'
+    'GULDBERGSGADE 29N, 2200 KØBENHAVN N'
 ];
 
 // Sociale medier
