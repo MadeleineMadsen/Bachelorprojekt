@@ -12,9 +12,19 @@ include __DIR__ . '/micro/___banner.php';
 <main>
     <section class="events-filter">
         <h2 class="events-filter-title">KOMMENDE EVENTS</h2>
-        <div class="events-filter-controls">
-            <div class="events-filter-select-wrap">
-                <select class="events-filter-select">
+
+        <div class="filter-container">
+            <form class="search-form" action="" onsubmit="return false;">
+
+                <div class="search-field">
+                    <input type="text" placeholder="SØG">
+
+                    <button type="button" aria-label="Søg">
+                        <img src="/assets/img/icons/search_icon.png" alt="">
+                    </button>
+                </div>
+
+                <select class="filter-select">
                     <option value="" disabled selected hidden>KATEGORIER</option>
                     <option value="">ALLE</option>
 
@@ -23,16 +33,11 @@ include __DIR__ . '/micro/___banner.php';
                             <?= htmlspecialchars($cat['category_name']) ?>
                         </option>
                     <?php endforeach; ?>
+
+                    <img src="/assets/img/icons/arrow-down.svg" alt="" class="education-filter-arrow">
                 </select>
 
-                <img src="/assets/img/icons/arrow-down.svg" alt="" class="events-filter-arrow">
-            </div>
-            <div class="events-filter-search">
-                <input type="text" placeholder="SØG" class="events-filter-input">
-                <button type="button" class="events-filter-btn">
-                    <img src="/assets/img/icons/search_icon.png" alt="Søg">
-                </button>
-            </div>
+            </form>
         </div>
     </section>
 

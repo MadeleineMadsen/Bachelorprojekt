@@ -3,75 +3,112 @@
 /* ========== MOBILE FIRST ========== */
 
 .filter-container {
-    margin: var(--gap-md) 0;
+  margin: var(--gap-md) 0;
 }
 
 .search-form {
-    display: flex;
-    flex-direction: row;
-    gap: var(--gap-sm);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--gap-sm);
 }
 
 .search-field {
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--font-color-black);
-    height: var(--btn-height-desktop);
-    max-width: 32.5rem;
-    flex: 1;
-    min-width: 0;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--font-color-black);
+  height: var(--btn-height-mobil);
+  width: 150px;
+  flex: none;
 }
 
 .search-field input {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border: none;
-    outline: none;
-    padding: 0 var(--gap-xs);
-    font-family: var(--font-text);
-    font-size: var(--font-mobil-text);
-    background: transparent;
+  width: 100%;
+  min-width: 0;
+  border: none;
+  outline: none;
+  padding: 0 var(--gap-xs);
+  font-family: var(--font-text);
+  font-size: var(--font-mobil-small);
+  background: transparent;
 }
 
 .search-field input::placeholder {
-    color: var(--font-color-black);
+  color: var(--font-color-black);
 }
 
 .search-field button {
-    border: none;
-    background: transparent;
-    padding: 0 var(--gap-xs);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+  border: none;
+  background: transparent;
+  padding: 0 var(--gap-xs);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.search-field button img {
+  width: 18px;
+  height: 18px;
 }
 
 .filter-select {
-    border: 1px solid var(--font-color-black);
-    height: var(--btn-height-desktop);
-    padding: 0 var(--gap-xs);
-    font-family: var(--font-text);
-    font-size: var(--font-mobil-text);
-    background: var(--bg-color-white);
-    max-width: 35rem;
-    cursor: pointer;
-    flex: 1;
-    min-width: 0;
+  border: 1px solid var(--font-color-black);
+  height: var(--btn-height-mobil);
+  width: 150px;
+  flex: none;
+
+  padding: 0 35px 0 var(--gap-xs);
+  font-family: var(--font-text);
+  font-size: var(--font-mobil-small);
+  background-color: var(--bg-color-white);
+
+  background-image: url("/assets/img/icons/arrow-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  cursor: pointer;
+}
+
+.education-filter-arrow {
+  display: none;
 }
 
 /* ========== DESKTOP ========== */
 
 @media (min-width: 768px) {
-    .search-form {
-        justify-content: space-between;
-        align-items: center;
-    }
+  .search-form {
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .search-field input,
-    .filter-select {
-        font-size: var(--font-desktop-text-small);
-    }
+  .search-field {
+    height: var(--btn-height-desktop);
+    max-width: 32.5rem;
+    flex: 1;
+    width: auto;
+  }
+
+  .filter-select {
+    height: var(--btn-height-desktop);
+    max-width: 35rem;
+    flex: 1;
+    width: auto;
+    font-size: var(--font-desktop-text-small);
+    background-size: 16px;
+  }
+
+  .search-field input {
+    font-size: var(--font-desktop-text-small);
+  }
+
+  .search-field button img {
+    width: 20px;
+    height: 20px;
+  }
 }
