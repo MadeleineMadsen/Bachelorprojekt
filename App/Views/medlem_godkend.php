@@ -1,5 +1,5 @@
 <main class="godkend-main">
-    <section class="container">
+    <section class="accept-container">
         <div class="header-container">
             <h1 class="godkend-header">ANSØGNINGER</h1>
             <p class="godkend-p">Ansøgninger om medlemsskab til godkendelse</p>
@@ -91,7 +91,7 @@
 
                             <input type="hidden" name="member_pk" value="<?= $member['member_pk']; ?>">
 
-                            <button type="button" class="btn btn-delete"
+                            <button type="button" class="member-delete-btn" aria-label="Slet medlem"
                                 data-modal-open="deleteMemberModal-<?= htmlspecialchars($member['member_pk']) ?>">
                                 X
                             </button>
