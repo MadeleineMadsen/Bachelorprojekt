@@ -33,44 +33,45 @@ include __DIR__ . '/micro/___banner.php';
             </div>
         </div>
 
-<div class="filter-container">
-    <form class="search-form" action="" onsubmit="return false;">
+        <div class="members-filter-container">
+            <form class="search-form" action="" onsubmit="return false;">
 
-        <div class="search-field">
-            <input id="memberSearch" type="search" name="search" placeholder="SØG">
+                <div class="search-field">
+                    <input id="memberSearch" type="search" name="search" placeholder="SØG">
 
-            <button type="button" aria-label="Søg">
-                <img src="/assets/img/icons/search.svg" alt="">
-            </button>
+                    <button type="button" aria-label="Søg">
+                        <img src="/assets/img/icons/search.svg" alt="">
+                    </button>
+                </div>
+
+                <div class="members-filter-select-wrap">
+
+                    <select name="education" id="educationFilter" class="filter-select">
+                        <option value="">ALLE MEDLEMMER</option>
+
+                        <?php foreach ($educations as $education): ?>
+                            <option value="<?= $education['education_pk']; ?>">
+                                <?= htmlspecialchars($education['education_name']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <img src="/assets/img/icons/arrow-down.svg" alt="" class="education-filter-arrow">
+
+                </div>
+
+            </form>
         </div>
-
-        <select name="education" id="educationFilter" class="filter-select">
-            <option value="">ALLE MEDLEMMER</option>
-
-            <?php foreach ($educations as $education): ?>
-                <option value="<?= $education['education_pk']; ?>">
-                    <?= htmlspecialchars($education['education_name']); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-
-    </form>
-</div>
 
         <section class="members-grid" aria-label="Medlemmer">
             <?php foreach ($members as $member): ?>
-                <article 
-                    class="member-card"
-                    data-name="<?= strtolower(htmlspecialchars($member['user_name'])); ?>"
-                    data-education="<?= $member['education_fk'] ?? ''; ?>"                >
-                    <img 
-                        src="<?= !empty($member['user_profile_image'])
-                            ? '/assets/img/uploads/' . htmlspecialchars($member['user_profile_image'])
-                            : '/assets/img/uploads/default_profile_image.webp' ?>"
-                        alt="Portræt af <?= htmlspecialchars($member['user_name']); ?>"
-                        class="member-img"
-                    >
-                    
+                <article class="member-card" data-name="<?= strtolower(htmlspecialchars($member['user_name'])); ?>"
+                    data-education="<?= $member['education_fk'] ?? ''; ?>">
+                    <img src="<?= !empty($member['user_profile_image'])
+                        ? '/assets/img/uploads/' . htmlspecialchars($member['user_profile_image'])
+                        : '/assets/img/uploads/default_profile_image.webp' ?>"
+                        alt="Portræt af <?= htmlspecialchars($member['user_name']); ?>" class="member-img">
+
                     <h3><?= htmlspecialchars($member['user_name']); ?></h3>
                     <p>
                         <?= !empty($member['education_name'])

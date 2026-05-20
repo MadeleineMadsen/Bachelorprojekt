@@ -1,5 +1,5 @@
 /* members.css */
-@import '/medlem_godkend.css';
+@import "/medlem_godkend.css";
 
 /* ========== MOBILE (FIRST) ========== */
 
@@ -23,7 +23,7 @@
   font-family: var(--font-header);
   font-size: var(--font-mobil-h2);
   font-weight: var(--IBM-font-bold);
-  margin-bottom: var(--gap-sm);
+  margin: var(--gap-md) 0;
 }
 
 /* Stats */
@@ -31,7 +31,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border: 1px solid var(--font-color-black);
-  margin-bottom: var(--gap-sm);
+  margin-bottom: var(--gap-md);
 }
 
 .members-stat {
@@ -65,7 +65,8 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: var(--gap-sm);
-  row-gap: var(--gap-sm);
+  row-gap: var(--gap-md);
+  margin: var(--gap-md) 0;
 }
 
 .member-card {
@@ -142,7 +143,7 @@
   }
 
   .members-stats {
-    margin-bottom: var(--gap-md);
+    margin-bottom: var(--gap-lg);
   }
 
   .members-stat {
@@ -158,9 +159,9 @@
   }
 
   .members-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     column-gap: var(--gap-md);
-    row-gap: var(--gap-md);
+    row-gap: var(--gap-lg);
   }
 
   .member-card {
