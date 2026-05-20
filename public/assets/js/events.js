@@ -53,7 +53,7 @@ function renderPagination(totalPages) {
 
     let html = '';
 
-    html += `<button class="pagination-btn pagination-prev" ${currentPage === 1 ? 'disabled' : ''} aria-label="Forrige side">&#8249;</button>`;
+    html += `<button class="pagination-btn pagination-prev" ${currentPage === 1 ? 'disabled' : ''} aria-label="Forrige side"><img src="/assets/img/icons/arrow-left.png" alt="Forrige side"></button>`;
 
     getPageNumbers(currentPage, totalPages).forEach(p => {
         if (p === '...') {
@@ -63,7 +63,7 @@ function renderPagination(totalPages) {
         }
     });
 
-    html += `<button class="pagination-btn pagination-next" ${currentPage === totalPages ? 'disabled' : ''} aria-label="Næste side">&#8250;</button>`;
+    html += `<button class="pagination-btn pagination-next" ${currentPage === totalPages ? 'disabled' : ''} aria-label="Næste side"><img src="/assets/img/icons/arrow-right.png" alt="Næste side"></button>`;
 
     pagination.innerHTML = html;
 

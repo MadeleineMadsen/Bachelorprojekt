@@ -103,8 +103,8 @@
     font-family: var(--font-text);
     font-size: var(--font-mobil-small);
     font-weight: var(--poppins-font-bold);
-    border: 1px solid var(--font-color-black);
-    background: var(--bg-color-white);
+    border: none;
+    background: none;
     min-width: var(--btn-height-mobil);
     height: var(--btn-height-mobil);
     padding: 0 6px;
@@ -112,12 +112,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.15s, color 0.15s;
-}
-
-.pagination-btn:hover:not(:disabled):not(.active) {
-    background: var(--font-color-black);
-    color: var(--bg-color-white);
 }
 
 .pagination-btn:disabled {
@@ -126,8 +120,7 @@
 }
 
 .pagination-btn.active {
-    background: var(--font-color-black);
-    color: var(--bg-color-white);
+    text-decoration: underline;
 }
 
 .pagination-ellipsis {
