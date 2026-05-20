@@ -80,8 +80,8 @@ if ($isLoggedIn) {
                 'key' => 'profil',
                 'label' => 'PROFIL',
                 'url' => '/profil',
-                'icon' => '/assets/img/icons/profile.png',
-                'icon_active' => '/assets/img/icons/hover_profile.png'
+                'icon' => '/assets/img/icons/profile.svg',
+                'icon_active' => '/assets/img/icons/hover_profile.svg'
             ],
             [
                 'key' => 'event_opret',
@@ -94,8 +94,8 @@ if ($isLoggedIn) {
                 'key' => 'medlem_godkend',
                 'label' => 'ANSØGNINGER',
                 'url' => '/medlem_godkend',
-                'icon' => '/assets/img/icons/add_member.png',
-                'icon_active' => '/assets/img/icons/hover_add_member.png',
+                'icon' => '/assets/img/icons/add_member.svg',
+                'icon_active' => '/assets/img/icons/hover_add_member.svg',
                 'badge' => $pendingApplicationsCount
             ],
             [
