@@ -1,4 +1,4 @@
-<article class="card-event-sm">
+﻿<article class="card-event-sm">
 
     <div class="card-event-sm-img-wrap">
         <div class="card-event-sm-date">
@@ -40,7 +40,7 @@
                     <?= htmlspecialchars($event['participant_count'] ?? '0') ?> deltagere
                 </span>
             </div>
-            <a href="/eventside?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-secondary card-event-sm-link">Læs mere</a>
+            <a href="/event_page?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-secondary card-event-sm-link">Læs mere</a>
         </div>
 
     </div>

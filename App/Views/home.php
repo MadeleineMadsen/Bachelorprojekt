@@ -1,4 +1,4 @@
-<section class="front-page-hero">
+﻿<section class="front-page-hero">
     <h1>GBG Social</h1>
     <img src="/assets/img/forside-hero.webp" alt="Studerende til socialt arrangement">
 </section>
@@ -23,7 +23,7 @@ include __DIR__ . '/micro/___banner.php';
             får mulighed for at lære hinanden at kende og føle sig som en del af studiemiljøet.
         </p>
 
-        <a href="/medlem_sog" class="btn btn-primary">BLIV MEDLEM</a>
+        <a href="/membership_apply" class="btn btn-primary">BLIV MEDLEM</a>
     </section>
 
     <section class="events-section">
@@ -60,7 +60,7 @@ include __DIR__ . '/micro/___banner.php';
                     i dit studie.
                 </p>
 
-                <a href="/om" class="btn btn-secondary">LÆS MERE</a>
+                <a href="/about" class="btn btn-secondary">LÆS MERE</a>
             </div>
         </div>
     </section>

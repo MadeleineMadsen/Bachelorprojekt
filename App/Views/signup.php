@@ -57,7 +57,7 @@
             </form>
 
             <div>
-                <p class="form-link-text">Har du allerede en bruger? <a href="log_ind">Log ind her</a> </p>
+                <p class="form-link-text">Har du allerede en bruger? <a href="/login">Log ind her</a> </p>
             </div>
         </section>
     </div>

@@ -1,4 +1,4 @@
-<main class="godkend-main">
+﻿<main class="godkend-main">
     <section class="accept-container">
         <div class="header-container">
             <h1 class="godkend-header">ANSØGNINGER</h1>
@@ -45,13 +45,13 @@
 
                     <!-- Højre (knapper) -->
                     <div class="godkend-right">
-                        <form method="POST" action="/godkend_medlem">
+                        <form method="POST" action="/approve_member">
                             <?php csrf_input(); ?>
                             <input type="hidden" name="member_pk" value="<?= $app['member_pk']; ?>">
                             <button class="btn btn-primary">GODKEND</button>
                         </form>
 
-                        <form method="POST" action="/afvis_medlem">
+                        <form method="POST" action="/reject_member">
                             <?php csrf_input(); ?>
                             <input type="hidden" name="member_pk" value="<?= $app['member_pk']; ?>">
                             <button class="btn btn-secondary">AFVIS</button>
@@ -96,7 +96,7 @@
                         data-education="<?= $member['education_fk'] ?? ''; ?>">
 
                         <form id="deleteMemberForm-<?= htmlspecialchars($member['member_pk']) ?>" method="POST"
-                            action="/slet_medlem">
+                            action="/delete_member">
                             <?php csrf_input(); ?>
 
                             <input type="hidden" name="member_pk" value="<?= $member['member_pk']; ?>">

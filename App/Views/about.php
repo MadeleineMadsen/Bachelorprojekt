@@ -1,4 +1,4 @@
-<main class="main-om">
+﻿<main class="main-om">
     <section class="om-hero">
 
         <div class="om-left">
@@ -32,7 +32,7 @@
             <img class="vil-du-img" src="/assets/img/vil-du.webp" alt="Billede af studerende der smiler til kameraet">
             <p class="sub-text vil-du-text">Har du lyst til at være en del af et socialt fællesskab, hvor du kan være
                 med til at planlægge og stå for de fedeste events?</p>
-            <a href="/medlem_sog" class="btn btn-primary">BLIV MEDLEM</a>
+            <a href="/membership_apply" class="btn btn-primary">BLIV MEDLEM</a>
         </section>
     </section>
 
@@ -74,7 +74,7 @@
             </section>
         </div>
         <div class="team-btn-wrapper">
-            <a href="/medlemmer" class="btn btn-nav btn-om">SE ALLE MEDLEMMER</a>
+            <a href="/members" class="btn btn-nav btn-om">SE ALLE MEDLEMMER</a>
         </div>
     </section>
 

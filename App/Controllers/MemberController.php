@@ -1,24 +1,24 @@
-<?php
+﻿<?php
 
-require_once __DIR__ . '/../Models/MedlemModel.php';
+require_once __DIR__ . '/../Models/MemberModel.php';
 require_once __DIR__ . '/../../private/mailhelpers.php';
 require_once __DIR__ . '/../../private/helpers.php';
 
-class MedlemController
+class MemberController
 {
     public static function getVisibleMembers(): array
     {
-        return MedlemModel::getVisibleMembers();
+        return MemberModel::getVisibleMembers();
     }
 
     public static function getPending(): array
     {
-        return MedlemModel::getPending();
+        return MemberModel::getPending();
     }
 
     public static function getStats(): array
     {
-        return MedlemModel::getStats();
+        return MemberModel::getStats();
     }
 
     public static function applicationPage(): void
@@ -32,8 +32,8 @@ class MedlemController
             exit;
         }
 
-        $educations = MedlemModel::getEducations();
-        $semesters = MedlemModel::getSemesters();
+        $educations = MemberModel::getEducations();
+        $semesters = MemberModel::getSemesters();
         $memberStats = self::getStats();
 
         $currentPage = 'medlem_sog';
@@ -52,11 +52,11 @@ class MedlemController
         require_admin();
 
         $applications = self::getPending();
-        $educations = MedlemModel::getEducations();
+        $educations = MemberModel::getEducations();
         $members = self::getVisibleMembers();
 
-        $currentPage = 'medlem_godkend';
-        $view = '/medlem_godkend.php';
+        $currentPage = 'membership_approve';
+        $view = '/membership_approve.php';
         $isProfileSection = true;
 
         load_view($view, [
@@ -71,7 +71,7 @@ class MedlemController
     public static function showMembers(): void
     {
         $members = self::getVisibleMembers();
-        $educations = MedlemModel::getEducations();
+        $educations = MemberModel::getEducations();
         $memberStats = self::getStats();
 
         $currentPage = 'medlemmer';
@@ -90,7 +90,7 @@ class MedlemController
         $members = self::getVisibleMembers();
 
         $currentPage = 'om';
-        $view = '/om.php';
+        $view = '/about.php';
 
         load_view($view, [
             'members' => $members,
@@ -114,17 +114,17 @@ class MedlemController
 
         if ($educationFk <= 0 || $semesterFk <= 0 || $applicationText === '') {
             $_SESSION['error'] = 'Udfyld venligst alle felter i ansøgningen.';
-            header('Location: /medlem_sog#membership-form');
+            header('Location: /membership_apply#membership-form');
             exit;
         }
 
-        if (MedlemModel::hasApplication((int) $userId)) {
+        if (MemberModel::hasApplication((int) $userId)) {
             $_SESSION['error'] = 'Du har allerede sendt en medlemsansøgning.';
-            header('Location: /medlem_sog#membership-form');
+            header('Location: /membership_apply#membership-form');
             exit;
         }
 
-        $existingProfileImage = MedlemModel::getUserProfileImage($userId);
+        $existingProfileImage = MemberModel::getUserProfileImage($userId);
         $profileImageName = $existingProfileImage;
 
         if (
@@ -141,7 +141,7 @@ class MedlemController
 
             if (!in_array($fileExt, $allowedExtensions)) {
                 $_SESSION['error'] = 'Profilbilledet skal være jpg, jpeg, png eller webp.';
-                header('Location: /medlem_sog#membership-form');
+                header('Location: /membership_apply#membership-form');
                 exit;
             }
 
@@ -149,22 +149,22 @@ class MedlemController
 
             if (!move_uploaded_file($fileTmp, $uploadDir . $profileImageName)) {
                 $_SESSION['error'] = 'Profilbilledet kunne ikke uploades. Prøv igen.';
-                header('Location: /medlem_sog#membership-form');
+                header('Location: /membership_apply#membership-form');
                 exit;
             }
 
-            MedlemModel::updateUserProfileImage($userId, $profileImageName);
+            MemberModel::updateUserProfileImage($userId, $profileImageName);
 
             $_SESSION['user']['user_profile_image'] = $profileImageName;
         }
 
         if (empty($profileImageName)) {
             $_SESSION['error'] = 'Upload venligst et profilbillede.';
-            header('Location: /medlem_sog#membership-form');
+            header('Location: /membership_apply#membership-form');
             exit;
         }
 
-        $created = MedlemModel::createApplication(
+        $created = MemberModel::createApplication(
             $userId,
             $educationFk,
             $semesterFk,
@@ -178,12 +178,12 @@ class MedlemController
             );
 
             $_SESSION['success'] = 'Din ansøgning er afsendt. Du modtager en bekræftelsesmail.';
-            header('Location: /medlem_sog#membership-form');
+            header('Location: /membership_apply#membership-form');
             exit;
         }
 
         $_SESSION['error'] = 'Der skete en fejl. Din ansøgning blev ikke sendt.';
-        header('Location: /medlem_sog#membership-form');
+        header('Location: /membership_apply#membership-form');
         exit;
     }
 
@@ -193,8 +193,8 @@ class MedlemController
         $adminId = $_SESSION['user']['user_pk'] ?? $_SESSION['user']['id'] ?? null;
 
         if ($memberId && $adminId) {
-            $application = MedlemModel::getApplicationById($memberId);
-            $approved = MedlemModel::approve($memberId, $adminId);
+            $application = MemberModel::getApplicationById($memberId);
+            $approved = MemberModel::approve($memberId, $adminId);
 
             if ($approved && $application) {
                 sendMembershipApprovedMail(
@@ -210,7 +210,7 @@ class MedlemController
             $_SESSION['error'] = 'Medlemsansøgningen kunne ikke godkendes.';
         }
 
-        header('Location: /medlem_godkend');
+        header('Location: /membership_approve');
         exit;
     }
 
@@ -219,8 +219,8 @@ class MedlemController
         $memberId = $_POST['member_pk'] ?? null;
 
         if ($memberId) {
-            $application = MedlemModel::getApplicationById($memberId);
-            $rejected = MedlemModel::reject($memberId);
+            $application = MemberModel::getApplicationById($memberId);
+            $rejected = MemberModel::reject($memberId);
 
             if ($rejected && $application) {
                 sendMembershipRejectedMail(
@@ -236,7 +236,7 @@ class MedlemController
             $_SESSION['error'] = 'Medlemsansøgningen kunne ikke afvises.';
         }
 
-        header('Location: /medlem_godkend');
+        header('Location: /membership_approve');
         exit;
     }
 
@@ -246,12 +246,12 @@ class MedlemController
 
         if (!$memberId) {
             $_SESSION['error'] = 'Medlemmet kunne ikke fjernes.';
-            header('Location: /medlem_godkend');
+            header('Location: /membership_approve');
             exit;
         }
 
-        $member = MedlemModel::getMemberById($memberId);
-        $deleted = MedlemModel::delete($memberId);
+        $member = MemberModel::getMemberById($memberId);
+        $deleted = MemberModel::delete($memberId);
 
         if ($deleted && $member) {
             sendMembershipRemovedMail(
@@ -264,7 +264,7 @@ class MedlemController
             $_SESSION['error'] = 'Medlemmet kunne ikke fjernes.';
         }
 
-        header('Location: /medlem_godkend');
+        header('Location: /membership_approve');
         exit;
     }
 

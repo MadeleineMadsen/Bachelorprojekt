@@ -1,7 +1,7 @@
-<?php
+﻿<?php
 
 require_once __DIR__ . '/../Models/UserModel.php';
-require_once __DIR__ . '/../Models/MedlemModel.php';
+require_once __DIR__ . '/../Models/MemberModel.php';
 require_once __DIR__ . '/../../private/helpers.php';
 
 class UserController
@@ -20,12 +20,12 @@ class UserController
         $user = $this->userModel->findById($_SESSION['user']['user_pk']);
         $member = $this->userModel->findMemberByUserId($_SESSION['user']['user_pk']) ?? [];
 
-        $educations = MedlemModel::getEducations();
-        $semesters = MedlemModel::getSemesters();
+        $educations = MemberModel::getEducations();
+        $semesters = MemberModel::getSemesters();
 
-        $currentPage = 'profil';
+        $currentPage = 'profile';
 
-        load_view('/profil.php', [
+        load_view('/profile.php', [
             'user' => $user,
             'member' => $member,
             'educations' => $educations,
@@ -41,7 +41,7 @@ class UserController
         require_login();
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            redirect('/profil');
+            redirect('/profile');
         }
 
         try {
@@ -56,7 +56,7 @@ class UserController
 
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
-            redirect('/profil');
+            redirect('/profile');
         }
 
         $education = (int) ($_POST['education_fk'] ?? 0);
@@ -87,7 +87,7 @@ class UserController
 
         $_SESSION['success'] = 'Din profil er opdateret.';
 
-        redirect('/profil');
+        redirect('/profile');
     }
 
     public function updateProfileImage(): void
@@ -95,7 +95,7 @@ class UserController
         require_login();
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            redirect('/profil');
+            redirect('/profile');
         }
 
         require_csrf();
@@ -134,7 +134,7 @@ class UserController
             $_SESSION['error'] = 'Vælg venligst et profilbillede.';
         }
 
-        redirect('/profil');
+        redirect('/profile');
     }
 
     public function deleteProfile(): void
@@ -142,7 +142,7 @@ class UserController
         require_login();
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            redirect('/profil');
+            redirect('/profile');
         }
 
         require_csrf();

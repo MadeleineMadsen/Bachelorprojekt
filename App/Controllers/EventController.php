@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 require_once __DIR__ . '/../Models/EventModel.php';
 require_once __DIR__ . '/../../private/mailhelpers.php';
@@ -66,7 +66,7 @@ class EventController
             self::register($eventId, $_SESSION['user']['user_pk']);
         }
 
-        redirect('/eventside?id=' . urlencode($eventId));
+        redirect('/event_page?id=' . urlencode($eventId));
     }
 
     private static function groupByDate(array $events): array
@@ -111,8 +111,8 @@ class EventController
             ? []
             : self::getRegisteredEventIds($_SESSION['user']['user_pk']);
 
-        $currentPage = 'kalender';
-        $view = '/kalender.php';
+        $currentPage = 'calendar';
+        $view = '/calendar.php';
         $isProfileSection = true;
 
         load_view($view, [
@@ -148,7 +148,7 @@ class EventController
         $events = self::getLatest(3);
 
         $currentPage = '';
-        $view = '/forside.php';
+        $view = '/home.php';
 
         load_view($view, [
             'events' => $events,
@@ -180,7 +180,7 @@ class EventController
         }
 
         $currentPage = 'events';
-        $view = '/eventside.php';
+        $view = '/event_page.php';
 
         load_view($view, [
             'event' => $event,
@@ -197,8 +197,8 @@ class EventController
 
         $events = self::getByUser($_SESSION['user']['user_pk']);
 
-        $currentPage = 'event_user';
-        $view = '/event_user.php';
+        $currentPage = 'my_events';
+        $view = '/my_events.php';
         $isProfileSection = true;
 
         load_view($view, [
@@ -226,7 +226,7 @@ class EventController
         $categories = self::getCategories();
 
         $currentPage = 'events';
-        $view = '/event_opret.php';
+        $view = '/event_create.php';
         $isProfileSection = true;
 
         load_view($view, [
@@ -248,8 +248,8 @@ class EventController
 
         $categories = self::getCategories();
 
-        $currentPage = 'event_opret';
-        $view = '/event_opret.php';
+        $currentPage = 'event_create';
+        $view = '/event_create.php';
         $isProfileSection = true;
 
         load_view($view, [
@@ -290,7 +290,7 @@ class EventController
         require_admin();
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            redirect('/event_opret');
+            redirect('/event_create');
         }
 
         require_csrf();
@@ -401,7 +401,7 @@ class EventController
         }
 
         $_SESSION['success'] = 'Eventet er opdateret.';
-        header('Location: /eventside?id=' . urlencode($id));
+        header('Location: /event_page?id=' . urlencode($id));
         exit;
     }
 
@@ -419,7 +419,7 @@ class EventController
 
         if (empty($_FILES['image']['name']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
             $_SESSION['error'] = 'Du skal uploade et billede.';
-            header('Location: /event_opret');
+            header('Location: /event_create');
             exit;
         }
 

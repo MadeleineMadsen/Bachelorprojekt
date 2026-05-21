@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 date_default_timezone_set('Europe/Copenhagen');
 
 $todayDate = date('Y-m-d');
@@ -77,22 +77,22 @@ $monthNames = [
 
                 <div class="buttons">
                     <?php if ($isAdmin): ?>
-                        <a class="btn btn-primary" href="/event_opret">
+                        <a class="btn btn-primary" href="/event_create">
                             OPRET EVENT
                         </a>
                     <?php endif; ?>
-                    <a class="btn btn-secondary" href="/kalender?date=<?= $todayDate ?>">
+                    <a class="btn btn-secondary" href="/calendar?date=<?= $todayDate ?>">
                         I DAG
                     </a>
                 </div>
 
                 <div class="calendar-arrows">
                     <a class="calendar-arrow"
-                        href="/kalender?month=<?= $prev->format('n') ?>&year=<?= $prev->format('Y') ?>">
+                        href="/calendar?month=<?= $prev->format('n') ?>&year=<?= $prev->format('Y') ?>">
                         <img src="/assets/img/icons/arrow-left.png" alt="Forrige måned">
                     </a>
                     <a class="calendar-arrow"
-                        href="/kalender?month=<?= $next->format('n') ?>&year=<?= $next->format('Y') ?>">
+                        href="/calendar?month=<?= $next->format('n') ?>&year=<?= $next->format('Y') ?>">
                         <img src="/assets/img/icons/arrow-right.png" alt="Næste måned">
                     </a>
                 </div>
@@ -168,7 +168,7 @@ $monthNames = [
 
                 <?php foreach ($dayEvents as $event): ?>
                     <?php $isTilmeldt = in_array($event['pk'], $registeredIds); ?>
-                    <a href="/eventside?id=<?= urlencode($event['pk']) ?>" class="mobile-event-card-link">
+                    <a href="/event_page?id=<?= urlencode($event['pk']) ?>" class="mobile-event-card-link">
                     <article class="mobile-event-card <?= $eventDate === $selectedDate ? 'is-visible' : '' ?>"
                         data-event-date="<?= $eventDate ?>">
                         <div class="mobile-event-date">

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 // Topnavigation
 $leftNavItems = [
@@ -8,57 +8,57 @@ $leftNavItems = [
         'url' => '/events'
     ],
     [
-        'key' => 'om',
+        'key' => 'about',
         'label' => 'OM OS',
-        'url' => '/om'
+        'url' => '/about'
     ],
     [
         'key' => 'medlemmer',
         'label' => 'MEDLEMMER',
-        'url' => '/medlemmer'
+        'url' => '/members'
     ],
 ];
 
 // Kun almindelige users skal se "BLIV MEDLEM"
 if ($isLoggedIn && $isUser) {
     $leftNavItems[] = [
-        'key' => 'medlem_sog',
+        'key' => 'membership_apply',
         'label' => 'BLIV MEDLEM',
-        'url' => '/medlem_sog'
+        'url' => '/membership_apply'
     ];
 }
 
 if ($isLoggedIn) {
     $rightNavItems = [
         [
-            'key' => 'profil',
+            'key' => 'profile',
             'label' => 'PROFIL',
-            'url' => '/profil'
+            'url' => '/profile'
         ],
         [
-            'key' => 'log_ud',
+            'key' => 'logout',
             'label' => 'LOG UD',
-            'url' => '/log_ud'
+            'url' => '/logout'
         ],
     ];
 
 } else {
     $leftNavItems[] = [
-        'key' => 'medlem_sog',
+        'key' => 'membership_apply',
         'label' => 'BLIV MEDLEM',
-        'url' => '/medlem_sog'
+        'url' => '/membership_apply'
     ];
 
     $rightNavItems = [
         [
-            'key' => 'log_ind',
+            'key' => 'login',
             'label' => 'LOG IND',
-            'url' => '/log_ind'
+            'url' => '/login'
         ],
         [
-            'key' => 'opret_dig',
+            'key' => 'signup',
             'label' => 'OPRET DIG',
-            'url' => '/opret_dig'
+            'url' => '/signup'
         ],
     ];
 }
@@ -66,7 +66,7 @@ if ($isLoggedIn) {
 $pendingApplicationsCount = 0;
 
 if ($isLoggedIn && $isAdmin) {
-    $pendingApplicationsCount = count(MedlemController::getPending());
+    $pendingApplicationsCount = count(MemberController::getPending());
 }
 
 // Subnavigation
@@ -77,31 +77,31 @@ if ($isLoggedIn) {
 
         $subNavItems = [
             [
-                'key' => 'profil',
+                'key' => 'profile',
                 'label' => 'PROFIL',
-                'url' => '/profil',
+                'url' => '/profile',
                 'icon' => '/assets/img/icons/profile.svg',
                 'icon_active' => '/assets/img/icons/hover_profile.svg'
             ],
             [
-                'key' => 'event_opret',
+                'key' => 'event_create',
                 'label' => 'OPRET EVENT',
-                'url' => '/event_opret',
+                'url' => '/event_create',
                 'icon' => '/assets/img/icons/add_event.png',
                 'icon_active' => '/assets/img/icons/hover_add_event.png'
             ],
             [
-                'key' => 'medlem_godkend',
+                'key' => 'membership_approve',
                 'label' => 'ANSØGNINGER',
-                'url' => '/medlem_godkend',
+                'url' => '/membership_approve',
                 'icon' => '/assets/img/icons/add_member.png',
                 'icon_active' => '/assets/img/icons/hover_add_member.png',
                 'badge' => $pendingApplicationsCount
             ],
             [
-                'key' => 'kalender',
+                'key' => 'calendar',
                 'label' => 'KALENDER',
-                'url' => '/kalender',
+                'url' => '/calendar',
                 'icon' => '/assets/img/icons/calender.png',
                 'icon_active' => '/assets/img/icons/hover_calender.png'
             ],
@@ -111,23 +111,23 @@ if ($isLoggedIn) {
 
         $subNavItems = [
             [
-                'key' => 'profil',
+                'key' => 'profile',
                 'label' => 'PROFIL',
-                'url' => '/profil',
+                'url' => '/profile',
                 'icon' => '/assets/img/icons/profile.png',
                 'icon_active' => '/assets/img/icons/hover_profile.png'
             ],
             [
-                'key' => 'event_user',
+                'key' => 'my_events',
                 'label' => 'MINE EVENTS',
-                'url' => '/event_user',
+                'url' => '/my_events',
                 'icon' => '/assets/img/icons/events.png',
                 'icon_active' => '/assets/img/icons/hover_events.png'
             ],
             [
-                'key' => 'kalender',
+                'key' => 'calendar',
                 'label' => 'KALENDER',
-                'url' => '/kalender',
+                'url' => '/calendar',
                 'icon' => '/assets/img/icons/calender.png',
                 'icon_active' => '/assets/img/icons/hover_calender.png'
             ],

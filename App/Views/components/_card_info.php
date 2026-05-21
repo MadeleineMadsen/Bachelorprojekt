@@ -32,7 +32,7 @@
         </div>
     </div>
     <?php if (isset($_SESSION['user'])): ?>
-        <form method="POST" action="/event_tilmeld">
+        <form method="POST" action="/event_register">
             <?php csrf_input(); ?>
             <input type="hidden" name="event_id" value="<?= htmlspecialchars($event['event_pk']) ?>">
             <?php if (($_SESSION['user']['role_fk'] ?? null) == 1): ?>
@@ -46,6 +46,6 @@
             <?php endif; ?>
         </form>
     <?php else: ?>
-        <a href="/log_ind" class="btn btn-primary">Log ind for at tilmelde</a>
+        <a href="/login" class="btn btn-primary">Log ind for at tilmelde</a>
     <?php endif; ?>
 </div>

@@ -1,4 +1,4 @@
-<article class="card-event-list" data-category="<?= htmlspecialchars($event['category_fk'] ?? '') ?>"
+﻿<article class="card-event-list" data-category="<?= htmlspecialchars($event['category_fk'] ?? '') ?>"
     data-title="<?= htmlspecialchars(strtolower($event['event_title'])) ?>">
     <?php
     $imgRaw = $event['event_image'] ?? '';
@@ -41,13 +41,13 @@
                 </span>
             </div>
             <div class="card-event-list-actions">
-                <a href="/eventside?id=<?= htmlspecialchars($event['event_pk']) ?>"
+                <a href="/event_page?id=<?= htmlspecialchars($event['event_pk']) ?>"
                     class="btn <?= (isset($isAdmin) && $isAdmin) ? 'btn-primary' : 'btn-secondary' ?> card-event-list-link"><?= (isset($isAdmin) && $isAdmin) ? 'Se event' : 'Læs mere' ?></a>
                 <?php if (isset($isAdmin) && $isAdmin): ?>
-                    <a href="/event_rediger?id=<?= htmlspecialchars($event['event_pk']) ?>"
+                    <a href="/event_edit?id=<?= htmlspecialchars($event['event_pk']) ?>"
                         class="btn btn-secondary">Rediger</a>
                     <form id="deleteEventForm-<?= htmlspecialchars($event['event_pk']) ?>" method="POST"
-                        action="/event_slet">
+                        action="/event_delete">
                         <?php csrf_input(); ?>
                         <input type="hidden" name="event_id" value="<?= htmlspecialchars($event['event_pk']) ?>">
                         <button type="button" class="btn btn-delete"

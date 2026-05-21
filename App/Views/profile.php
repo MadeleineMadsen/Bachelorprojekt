@@ -25,7 +25,7 @@ $showMemberFields = in_array($role, ['1', '2']);
                 <p>Her kan du se og redigere dine personlige oplysninger</p>
             </div>
 
-            <form id="profileImageForm" method="POST" action="/profil/update-image" enctype="multipart/form-data">
+            <form id="profileImageForm" method="POST" action="/profile/update-image" enctype="multipart/form-data">
                 <?php csrf_input(); ?>
                 <div class="profile-image-wrapper">
                     <img id="profilePreview" src="<?= !empty($user['user_profile_image'])
@@ -51,7 +51,7 @@ $showMemberFields = in_array($role, ['1', '2']);
             </div>
         <?php endif; ?>
 
-        <form method="POST" action="/profil/update">
+        <form method="POST" action="/profile/update">
             <?php csrf_input(); ?>
             <input type="text" name="user_name" value="<?= htmlspecialchars($user['user_name']) ?>"
                 placeholder="Fornavn" required>
@@ -95,7 +95,7 @@ $showMemberFields = in_array($role, ['1', '2']);
             </div>
         </form>
 
-        <form id="deleteProfileForm" method="POST" action="/profil/delete">
+        <form id="deleteProfileForm" method="POST" action="/profile/delete">
             <?php csrf_input(); ?>
         </form>
     </section>

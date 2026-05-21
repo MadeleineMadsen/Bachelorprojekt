@@ -1,8 +1,8 @@
-<?php
+﻿<?php
 
 require_once __DIR__ . '/../../private/db.php';
 
-class MedlemModel {
+class MemberModel {
     public static function getVisibleMembers(): array {
         $db = getDB();
 

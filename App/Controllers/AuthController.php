@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 require_once __DIR__ . '/../Models/UserModel.php';
 require_once __DIR__ . '/../../private/helpers.php';
@@ -22,8 +22,8 @@ class AuthController
             exit;
         }
 
-        $currentPage = 'log_ind';
-        $view = '/log_ind.php';
+        $currentPage = 'login';
+        $view = '/login.php';
 
         load_view($view, [
             'currentPage' => $currentPage,
@@ -39,13 +39,13 @@ class AuthController
 
         if (!$user) {
             $_SESSION['error'] = 'Forkert email eller adgangskode';
-            header('Location: /log_ind');
+            header('Location: /login');
             exit;
         }
 
         if ($user['locked_at'] !== null) {
             $_SESSION['error'] = 'Din konto er låst. Tjek din mail for et oplåsningslink.';
-            header('Location: /log_ind');
+            header('Location: /login');
             exit;
         }
 
@@ -62,13 +62,13 @@ class AuthController
                 $_SESSION['error'] = 'Forkert email eller adgangskode. ' . $remaining . ' forsøg tilbage.';
             }
 
-            header('Location: /log_ind');
+            header('Location: /login');
             exit;
         }
 
         if ($user['user_verified_at'] === null) {
             $_SESSION['error'] = 'Du skal bekræfte din mail, før du kan logge ind';
-            header('Location: /log_ind');
+            header('Location: /login');
             exit;
         }
 
@@ -84,7 +84,7 @@ class AuthController
             'user_profile_image' => $user['user_profile_image']
         ];
 
-        header('Location: /profil');
+        header('Location: /profile');
         exit;
     }
 
@@ -94,7 +94,7 @@ class AuthController
 
         if (!$key) {
             $_SESSION['error'] = 'Ugyldigt oplåsningslink';
-            header('Location: /log_ind');
+            header('Location: /login');
             exit;
         }
 
@@ -102,12 +102,12 @@ class AuthController
 
         if ($unlocked) {
             $_SESSION['success'] = 'Din konto er nu låst op. Du kan logge ind igen.';
-            header('Location: /log_ind');
+            header('Location: /login');
             exit;
         }
 
         $_SESSION['error'] = 'Linket er ugyldigt eller allerede brugt';
-        header('Location: /log_ind');
+        header('Location: /login');
         exit;
     }
 
@@ -129,12 +129,12 @@ class AuthController
                     'user_email' => $_POST['user_email'] ?? '',
                 ];
 
-                redirect('/opret_dig');
+                redirect('/signup');
             }
         }
 
-        $currentPage = 'opret_dig';
-        $view = '/opret_dig.php';
+        $currentPage = 'signup';
+        $view = '/signup.php';
 
         load_view($view, [
             'currentPage' => $currentPage,
@@ -156,7 +156,7 @@ class AuthController
 
         if ($this->userModel->findByEmail($email)) {
             $_SESSION['error'] = 'Email eksisterer allerede';
-            header('Location: /opret_dig');
+            header('Location: /signup');
             exit;
         }
 
@@ -174,12 +174,12 @@ class AuthController
             sendUserVerificationMail($email, $userName, $verificationKey);
 
             $_SESSION['success'] = 'Din bruger er oprettet. Tjek din mail for at bekræfte din konto.';
-            header('Location: /log_ind');
+            header('Location: /login');
             exit;
         }
 
         $_SESSION['error'] = 'Der skete en fejl. Prøv igen.';
-        header('Location: /opret_dig');
+        header('Location: /signup');
         exit;
     }
 
@@ -189,7 +189,7 @@ class AuthController
 
         if (!$key) {
             $_SESSION['error'] = 'Ugyldigt bekræftelseslink';
-            header('Location: /log_ind');
+            header('Location: /login');
             exit;
         }
 
@@ -197,12 +197,12 @@ class AuthController
 
         if ($verified) {
             $_SESSION['success'] = 'Din mail er bekræftet. Du kan nu logge ind.';
-            header('Location: /log_ind');
+            header('Location: /login');
             exit;
         }
 
         $_SESSION['error'] = 'Linket er ugyldigt eller allerede brugt';
-        header('Location: /log_ind');
+        header('Location: /login');
         exit;
     }
 

@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 $isEditing = isset($event);
-$formAction = $isEditing ? '/event_rediger' : '';
+$formAction = $isEditing ? '/event_edit' : '';
 ?>
 
 <main class="container create-event-page">
@@ -97,7 +97,7 @@ $formAction = $isEditing ? '/event_rediger' : '';
                 <div class="button-row">
                     <button class="btn btn-primary" type="submit"><?= $isEditing ? 'GEM ÆNDRINGER' : 'OPRET EVENT' ?></button>
                     <?php if ($isEditing): ?>
-                        <a href="/eventside?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-secondary">ANNULLER</a>
+                        <a href="/event_page?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-secondary">ANNULLER</a>
                     <?php else: ?>
                         <a href="/events" class="btn btn-secondary">ANNULLER</a>
                     <?php endif; ?>

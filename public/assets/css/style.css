@@ -33,10 +33,10 @@
 @import "./events.css";
 
 /* Single event - styling af det enkelte event */
-@import "./eventside.css";
+@import "./event_page.css";
 
 /* Om os - styling af om os siden */
-@import "./om.css";
+@import "./about.css";
 
 /* Medlemmer side - styling af hele medlemmer side */
 @import "./members.css";
@@ -47,11 +47,11 @@
 /* Profil sider - styling af profil siderne */
 @import "./profile.css";
 
-/* Kalender - styling af alle kalendere */
-@import "./kalender.css";
+/* Calendar - styling af alle kalendere */
+@import "./calendar.css";
 
 /* Ansøgninger - styling af alle medlemsskaber til godkendelse */
-@import "./medlem_godkend.css";
+@import "./membership_approve.css";
 
 /* Terms - styling til Vilkår & Betingelser side */
 @import "./terms.css";

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 // Footer navigation
 $FooterNavItems = [
@@ -8,9 +8,9 @@ $FooterNavItems = [
         'url' => '/events'
     ],
     [
-        'key' => 'om',
+        'key' => 'about',
         'label' => 'OM OS',
-        'url' => '/om'
+        'url' => '/about'
     ],
     [
         'key' => 'medlemmer',
@@ -18,9 +18,9 @@ $FooterNavItems = [
         'url' => '/medlemmer'
     ],
     [
-        'key' => 'om',
+        'key' => 'about',
         'label' => 'KONTAKT',
-        'url' => '/om#kontakt'
+        'url' => '/about#kontakt'
     ],
 ];
 
@@ -83,7 +83,7 @@ $socials = [
 
 <script src="/assets/js/app.js"></script>
 <script src="/assets/js/utilities.js"></script>
-<script src="/assets/js/kalender.js"></script>
+<script src="/assets/js/calendar.js"></script>
 <script src="/assets/js/profile.js"></script>
 <script src="/assets/js/events.js"></script>
 </body>

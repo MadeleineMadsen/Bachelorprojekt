@@ -23,7 +23,7 @@
             <div>
                 <p class="form-link-text">
                     Ikke medlem endnu?
-                    <a href="opret_dig">Opret dig her</a>
+                    <a href="/signup">Opret dig her</a>
                 </p>
             </div>
 

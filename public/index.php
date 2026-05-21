@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 
 require_once __DIR__ . '/../private/db.php';
@@ -7,7 +7,7 @@ require_once __DIR__ . '/../private/mailhelpers.php';
 require_once __DIR__ . '/../App/Controllers/AuthController.php';
 require_once __DIR__ . '/../App/Controllers/EventController.php';
 require_once __DIR__ . '/../App/Controllers/UserController.php';
-require_once __DIR__ . '/../App/Controllers/MedlemController.php';
+require_once __DIR__ . '/../App/Controllers/MemberController.php';
 
 $db = getDB();
 
@@ -26,47 +26,47 @@ switch ($uri) {
         exit;
 
     // LOG IND
-    case '/log_ind':
+    case '/login':
         $authController->showLogin();
         exit;
 
     // OPRET DIG
-    case '/opret_dig':
+    case '/signup':
         $authController->showSignup();
         exit;
 
     // VERIFICER BRUGER
-    case '/verificer_bruger':
+    case '/verify_user':
         $authController->verifyUser();
         exit;
 
     // LÅS OP
-    case '/laas_op':
+    case '/unlock_account':
         $authController->unlockAccount();
         exit;
 
     // LOG UD
-    case '/log_ud':
+    case '/logout':
         $authController->logout();
         exit;
 
     // PROFIL
-    case '/profil':
+    case '/profile':
         $userController->profile();
         exit;
 
     // PROFIL - OPDATERING AF OPLYSNINGER
-    case '/profil/update':
+    case '/profile/update':
         $userController->updateProfile();
         exit;
 
     // PROFIL - OPDATER KUN PROFILBILLEDE
-    case '/profil/update-image':
+    case '/profile/update-image':
         $userController->updateProfileImage();
         exit;
 
     // PROFIL - SLET PROFIL
-    case '/profil/delete':
+    case '/profile/delete':
         $userController->deleteProfile();
         exit;
 
@@ -76,71 +76,71 @@ switch ($uri) {
         exit;
 
     // SINGLE EVENT
-    case '/eventside':
+    case '/event_page':
         EventController::showSingle();
         exit;
 
     // TILMELD EVENT
-    case '/event_tilmeld':
+    case '/event_register':
         EventController::toggleRegistration();
         exit;
 
     // TILMELDTE EVENTS
-    case '/event_user':
+    case '/my_events':
         EventController::showUserEvents();
         exit;
 
     // REDIGER EVENT (ADMIN)
-    case '/event_rediger':
+    case '/event_edit':
         EventController::showEdit();
         exit;
 
     // SLET EVENT (ADMIN)
-    case '/event_slet':
+    case '/event_delete':
         EventController::deleteEvent();
         exit;
 
     // OPRET EVENT (ADMIN)
-    case '/event_opret':
+    case '/event_create':
         EventController::showCreate();
         exit;
 
-    // KALENDER
-    case '/kalender':
+    // CALENDAR
+    case '/calendar':
         EventController::showCalendar();
         exit;
 
     // SØG OM MEDLEMSSKAB
-    case '/medlem_sog':
-        MedlemController::applicationPage();
+    case '/membership_apply':
+        MemberController::applicationPage();
         exit;
 
     // GODKEND MEDLEMSSKAB
-    case '/medlem_godkend':
-        MedlemController::showApprovalPage();
+    case '/membership_approve':
+        MemberController::showApprovalPage();
         exit;
 
     // ALLE MEDLEMMER
     case '/medlemmer':
-        MedlemController::showMembers();
+        MemberController::showMembers();
         exit;
 
     // GODKEND, AFVIS OG SLET MEDLEMMER
-    case '/godkend_medlem':
-        MedlemController::approveMember();
+    case '/approve_member':
+        MemberController::approveMember();
         exit;
 
-    case '/afvis_medlem':
-        MedlemController::rejectMember();
+    case '/reject_member':
+        MemberController::rejectMember();
         exit;
 
-    case '/slet_medlem':
-        MedlemController::deleteMember();
+    case '/delete_member':
+        MemberController::deleteMember();
         exit;
 
     // OM
-    case '/om':
-        MedlemController::showAbout();
+    case '/about':
+        MemberController::showAbout();
         exit;
 
     // VILKÅR OG BETINGELSER

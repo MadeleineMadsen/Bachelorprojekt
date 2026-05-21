@@ -19,7 +19,7 @@ $hasProfileImage = !empty($profileImage);
     </div>
 
     <div class="membership-right">
-        <img src="assets/img/solnedgang.webp" alt="GBG Social medlemmer">
+        <img src="/assets/img/solnedgang.webp" alt="GBG Social medlemmer">
     </div>
 
 </section>
@@ -40,7 +40,7 @@ include __DIR__ . '/micro/___banner.php';
         <div class="benefits-grid">
 
             <article class="benefit-card">
-                <img src="assets/img/icons/fællesskab.png" alt="Fællesskab logo">
+                <img src="/assets/img/icons/fællesskab.png" alt="Fællesskab logo">
                 <h3>FÆLLESSKAB</h3>
                 <p>
                     Bliv en del af et socialt og inkluderende studiemiljø, hvor du kan møde nye mennesker på tværs af
@@ -50,7 +50,7 @@ include __DIR__ . '/micro/___banner.php';
             </article>
 
             <article class="benefit-card">
-                <img src="assets/img/icons/events2.png" alt="Events logo">
+                <img src="/assets/img/icons/events2.png" alt="Events logo">
                 <h3>EVENTS</h3>
                 <p>
                     Som medlem får du adgang til sociale arrangementer, aktiviteter og events gennem hele studieåret.
@@ -59,7 +59,7 @@ include __DIR__ . '/micro/___banner.php';
             </article>
 
             <article class="benefit-card">
-                <img src="assets/img/icons/netværk.png" alt="Netværk logo">
+                <img src="/assets/img/icons/netværk.png" alt="Netværk logo">
                 <h3>NETVÆRK</h3>
                 <p>
                     Udvid dit netværk og lær studerende fra andre uddannelser at kende.
@@ -76,7 +76,7 @@ include __DIR__ . '/micro/___banner.php';
     <section class="membership-stats">
 
         <div class="stat">
-            <img src="assets/img/icons/user_account.svg" alt="Medlemmer ikon">
+            <img src="/assets/img/icons/user_account.svg" alt="Medlemmer ikon">
             <div class="stat-text">
                 <h3><?= $memberStats['active_members']; ?></h3>
                 <p>AKTIVE MEDLEMMER</p>
@@ -84,7 +84,7 @@ include __DIR__ . '/micro/___banner.php';
         </div>
 
         <div class="stat">
-            <img src="assets/img/icons/calender.png" alt="Kalender ikon">
+            <img src="/assets/img/icons/calender.png" alt="Kalender ikon">
             <div class="stat-text">
                 <h3>+<?= $memberStats['events_this_year']; ?></h3>
                 <p>EVENTS OM ÅRET</p>
@@ -92,7 +92,7 @@ include __DIR__ . '/micro/___banner.php';
         </div>
 
         <div class="stat">
-            <img src="assets/img/icons/favorite.svg" alt="Hjerte ikon">
+            <img src="/assets/img/icons/favorite.svg" alt="Hjerte ikon">
             <div class="stat-text">
                 <h3>100%</h3>
                 <p>FÆLLESSKAB</p>
@@ -114,13 +114,13 @@ include __DIR__ . '/micro/___banner.php';
             </p>
 
             <div class="membership-image">
-                <img src="assets/img/fredagsbar-udenfor2.webp" alt="GBG Social medlemmer">
+                <img src="/assets/img/fredagsbar-udenfor2.webp" alt="GBG Social medlemmer">
             </div>
         </div>
 
         <!-- Højre side -->
         <div class="form-container membership-container">
-            <form method="POST" action="/medlem_sog" enctype="multipart/form-data">
+            <form method="POST" action="/membership_apply" enctype="multipart/form-data">
                 <?php csrf_input(); ?>
                 <div class="form-row">
                     <label for="user_name" class="hide_label">Fornavn</label>
