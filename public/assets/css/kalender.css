@@ -22,7 +22,7 @@ Kalender
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--gap-md);
+  margin: var(--gap-sm) 0 var(--gap-md) 0;
 }
 
 .calendar-arrows {
@@ -109,7 +109,7 @@ Kalender
 /* mobil event-liste */
 .mobile-event-list {
   display: none;
-  margin: var(--gap-sm) 0 var(--gap-md) 0;
+  margin: var(--gap-md) 0;
 }
 
 .mobile-event-list.is-open {
@@ -127,9 +127,9 @@ Kalender
 }
 
 .mobile-event-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: contents;
+  text-decoration: none;
+  color: inherit;
+  display: contents;
 }
 
 .mobile-event-card {
@@ -292,7 +292,7 @@ Desktop
   }
 
   .mobile-event-list {
-    margin: var(--gap-md) 0 var(--gap-lg) 0;
+    margin: var(--gap-lg) 0 var(--gap-lg) 0;
   }
 
   .mobile-event-list h2 {
@@ -307,7 +307,7 @@ Desktop
   .mobile-event-card {
     grid-template-columns: 5rem 10rem 1fr;
     gap: var(--gap-sm);
-    padding: var(--gap-sm) 0;
+    padding: var(--gap-md) 0;
   }
 
   .mobile-event-date strong {

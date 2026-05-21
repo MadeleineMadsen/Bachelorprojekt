@@ -3,7 +3,7 @@
 /* ========== MOBILE FIRST ========== */
 
 .filter-container {
-  margin: var(--gap-md) 0;
+  margin: var(--gap-sm) 0;
 }
 
 .search-form {
