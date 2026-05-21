@@ -94,8 +94,8 @@ if ($isLoggedIn) {
                 'key' => 'medlem_godkend',
                 'label' => 'ANSØGNINGER',
                 'url' => '/medlem_godkend',
-                'icon' => '/assets/img/icons/add_member.svg',
-                'icon_active' => '/assets/img/icons/hover_add_member.svg',
+                'icon' => '/assets/img/icons/add_member.png',
+                'icon_active' => '/assets/img/icons/hover_add_member.png',
                 'badge' => $pendingApplicationsCount
             ],
             [

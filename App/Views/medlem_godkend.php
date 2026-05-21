@@ -5,7 +5,14 @@
             <p class="godkend-p">Ansøgninger om medlemsskab til godkendelse</p>
         </div>
 
-        <h3 class="godkend-sub">Afventer godkendelse</h3>
+        <h3 class="godkend-sub">
+            Afventer godkendelse
+            <?php if (!empty($applications)): ?>
+                <span class="godkend-count">
+                    <?= count($applications); ?>
+                </span>
+            <?php endif; ?>
+        </h3>
 
         <div class="godkend-container">
             <?php if (empty($applications)): ?>

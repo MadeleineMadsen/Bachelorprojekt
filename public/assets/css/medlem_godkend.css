@@ -36,6 +36,26 @@ Mobilefirst
   font-size: var(--font-mobil-h3);
   font-weight: var(--poppins-font-bold);
   margin-bottom: var(--gap-sm);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.godkend-count {
+  font-family: var(--font-text);
+  font-size: 0.8rem;
+  font-weight: var(--poppins-font-bold);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 1.6rem;
+  height: 1.6rem;
+
+  border-radius: 999px;
+  background: var(--color-yellow);
+  color: var(--font-color-black);
 }
 
 .godkend-empty {
@@ -164,6 +184,12 @@ Desktop
 
   .godkend-sub {
     font-size: var(--font-desktop-text-big);
+  }
+
+  .godkend-count {
+    font-size: 1rem;
+    min-width: 2rem;
+    height: 2rem;
   }
 
   .godkend-container {
