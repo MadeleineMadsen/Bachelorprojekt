@@ -63,6 +63,18 @@ Kalender
   border-left: 1px solid var(--font-color-black);
 }
 
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-weekday {
+  font-family: var(--font-text);
+  font-size: var(--font-mobil-small);
+  font-weight: var(--poppins-font-bold);
+  padding: var(--gap-xxs) 0 var(--gap-xxs) 0.25rem;
+}
+
 .calendar-day {
   aspect-ratio: 1 / 1;
   border: 0;
@@ -289,6 +301,11 @@ Desktop
   .calendar-date {
     top: var(--gap-xs);
     right: var(--gap-xs);
+  }
+
+  .calendar-weekday {
+    font-size: var(--font-desktop-text-small);
+    padding: var(--gap-xxs) 0 var(--gap-xxs) var(--gap-xs);
   }
 
   .mobile-event-list {
