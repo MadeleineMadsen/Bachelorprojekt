@@ -51,8 +51,15 @@
 }
 
 .vil-du-container {
+  position: relative;
   padding-bottom: var(--gap-md);
   border-bottom: 1px solid var(--bg-color-black);
+}
+
+.vil-du-container .btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
 }
 
 .vil-du-sub {

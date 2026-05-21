@@ -24,6 +24,7 @@ $formAction = $isEditing ? '/event_rediger' : '';
 
                 <label for="event_dato" class="hide_label">Dato på event</label>
                 <input id="event_dato" type="date" name="date" required
+                    min="<?= $isEditing ? '' : date('Y-m-d') ?>"
                     value="<?= $isEditing ? htmlspecialchars($event['event_date']) : '' ?>">
 
                 <div class="form-row">

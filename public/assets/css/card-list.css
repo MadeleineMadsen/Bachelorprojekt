@@ -18,10 +18,10 @@
   align-self: flex-end;
 }
 
-.card-event-list-actions > a,
+.card-event-list-actions > a:not(.card-event-list-link),
 .card-event-list-actions > form {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .card-event-list .btn {
@@ -35,7 +35,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
 }
 
 .card-event-list-img-wrap {

@@ -107,6 +107,12 @@ $monthNames = [
 
         <!-- Kalender grid -->
 
+        <div class="calendar-weekdays">
+            <?php foreach (['MAN', 'TIR', 'ONS', 'TOR', 'FRE', 'LØR', 'SØN'] as $day): ?>
+                <div class="calendar-weekday"><?= $day ?></div>
+            <?php endforeach; ?>
+        </div>
+
         <div class="calendar-grid">
             <?php for ($cell = 0; $cell < $totalCells; $cell++): ?>
                 <?php

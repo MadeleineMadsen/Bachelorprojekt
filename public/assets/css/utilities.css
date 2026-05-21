@@ -277,7 +277,7 @@
 .carousel-arrow {
   border: none;
   background: transparent;
-  color: var(--color-light-blue);
+  color: var(--font-color-black);
   font-size: 2rem;
   cursor: pointer;
   line-height: 1;
