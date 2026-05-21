@@ -11,10 +11,12 @@
 
             <form method="POST" action="">
                 <?php csrf_input(); ?>
-                <input type="email" name="user_email" placeholder="Studiemail" required>
-
-                <input type="password" name="user_password" placeholder="Adgangskode" required>
-
+                <label for="user_email" class="hide_label">Studiemail</label>
+                <input id="user_email" type="email" name="user_email" placeholder="Studiemail" required>
+                
+                <label for="user_password" class="hide_label">Adgangskode</label>
+                <input id="user_password" type="password" name="user_password" placeholder="Adgangskode" required>
+                
                 <button class="btn btn-primary" type="submit">LOG IND</button>
             </form>
 

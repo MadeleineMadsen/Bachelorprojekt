@@ -36,15 +36,25 @@ include __DIR__ . '/micro/___banner.php';
 
                     <img src="/assets/img/icons/arrow-down.svg" alt="" class="education-filter-arrow">
                 </select>
-
-            </form>
+                <div class="events-filter-search">
+                    <input type="text" placeholder="SØG" class="events-filter-input">
+                    <button type="button" class="events-filter-btn">
+                        <img src="/assets/img/icons/search_icon.png" alt="Søg ikon">
+                    </button>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="events-list" id="events-list">
-        <?php foreach ($events as $event): ?>
-            <?php include __DIR__ . '/components/_card_list.php'; ?>
-        <?php endforeach; ?>
-    </section>
+        <div class="events-list" id="events-list">
+            <?php if (empty($events)): ?>
+                <p class="events-empty">Ingen events endnu</p>
+            <?php endif; ?>
+            <?php foreach ($events as $event): ?>
+                <?php include __DIR__ . '/components/_card_list.php'; ?>
+            <?php endforeach; ?>
+        </div>
+
+        <div class="events-pagination" id="events-pagination"></div>
 
 </main>

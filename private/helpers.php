@@ -26,6 +26,12 @@ function flash(string $key): ?string
     return $message;
 }
 
+// Gem gamle input hvis adgangskode er forkert, så man ikke skal skrive alt på ny igen
+function old(string $key, string $default = ''): string
+{
+    return $_SESSION['old'][$key] ?? $default;
+}
+
 // CSRF token
 function csrf_token(): string
 {
@@ -185,6 +191,26 @@ function validate_post_id(string $field): int
     }
 
     return $id;
+}
+
+// Header helper
+function load_view(string $view, array $data = []): void
+{
+    $isLoggedIn = is_logged_in();
+    $userRole = user_role();
+
+    $isAdmin = is_admin();
+    $isMember = is_member();
+    $isUser = is_user();
+
+    $isProfileSection = $data['isProfileSection'] ?? false;
+    $currentPage = $data['currentPage'] ?? '';
+
+    extract($data);
+
+    require __DIR__ . '/../App/Views/components/_header.php';
+    require __DIR__ . '/../App/Views' . $view;
+    require __DIR__ . '/../App/Views/components/_footer.php';
 }
 
 // Ret dato i ansøngninger til dansk

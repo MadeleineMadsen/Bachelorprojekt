@@ -126,6 +126,12 @@ Kalender
   margin-bottom: 0;
 }
 
+.mobile-event-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: contents;
+}
+
 .mobile-event-card {
   display: none;
   grid-template-columns: var(--gap-lg) var(--gap-xxl) 1fr;

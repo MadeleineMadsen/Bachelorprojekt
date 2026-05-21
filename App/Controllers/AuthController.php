@@ -15,7 +15,19 @@ class AuthController
 
     public function showLogin(): void
     {
-        require __DIR__ . '/../views/log_ind.php';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_csrf();
+
+            $this->login();
+            exit;
+        }
+
+        $currentPage = 'log_ind';
+        $view = '/log_ind.php';
+
+        load_view($view, [
+            'currentPage' => $currentPage,
+        ]);
     }
 
     public function login(): void
@@ -62,6 +74,7 @@ class AuthController
 
         $this->userModel->resetLoginAttempts($user['user_pk']);
 
+        session_regenerate_id(true);
         $_SESSION['user'] = [
             'user_pk' => $user['user_pk'],
             'user_name' => $user['user_name'],
@@ -100,15 +113,46 @@ class AuthController
 
     public function showSignup(): void
     {
-        require __DIR__ . '/../views/auth/signup.php';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                require_csrf();
+
+                $this->signup();
+                exit;
+
+            } catch (Exception $e) {
+                $_SESSION['error'] = $e->getMessage();
+
+                $_SESSION['old'] = [
+                    'user_name' => $_POST['user_name'] ?? '',
+                    'user_last_name' => $_POST['user_last_name'] ?? '',
+                    'user_email' => $_POST['user_email'] ?? '',
+                ];
+
+                redirect('/opret_dig');
+            }
+        }
+
+        $currentPage = 'opret_dig';
+        $view = '/opret_dig.php';
+
+        load_view($view, [
+            'currentPage' => $currentPage,
+        ]);
     }
 
     public function signup(): void
     {
         $userName = trim($_POST['user_name'] ?? '');
         $lastName = trim($_POST['user_last_name'] ?? '');
-        $email = trim($_POST['user_email'] ?? '');
-        $password = $_POST['user_password'] ?? '';
+        $email = validate_email('user_email');
+
+        $password = validate_password('user_password');
+        $confirmPassword = validate_password('confirm_password');
+
+        if ($password !== $confirmPassword) {
+            throw new Exception('Adgangskoderne matcher ikke.');
+        }
 
         if ($this->userModel->findByEmail($email)) {
             $_SESSION['error'] = 'Email eksisterer allerede';
@@ -164,9 +208,25 @@ class AuthController
 
     public function logout(): void
     {
+        $_SESSION = [];
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
+            );
+        }
+
         session_destroy();
 
-        header('Location: /log_ind');
+        header('Location: /');
         exit;
     }
 }

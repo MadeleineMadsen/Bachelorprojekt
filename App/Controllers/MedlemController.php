@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../Models/MedlemModel.php';
 require_once __DIR__ . '/../../private/mailhelpers.php';
+require_once __DIR__ . '/../../private/helpers.php';
 
 class MedlemController
 {
@@ -18,6 +19,83 @@ class MedlemController
     public static function getStats(): array
     {
         return MedlemModel::getStats();
+    }
+
+    public static function applicationPage(): void
+    {
+        require_user();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_csrf();
+
+            self::createApplication();
+            exit;
+        }
+
+        $educations = MedlemModel::getEducations();
+        $semesters = MedlemModel::getSemesters();
+        $memberStats = self::getStats();
+
+        $currentPage = 'medlem_sog';
+        $view = '/medlem_sog.php';
+
+        load_view($view, [
+            'educations' => $educations,
+            'semesters' => $semesters,
+            'memberStats' => $memberStats,
+            'currentPage' => $currentPage,
+        ]);
+    }
+
+    public static function showApprovalPage(): void
+    {
+        require_admin();
+
+        $applications = self::getPending();
+        $educations = MedlemModel::getEducations();
+        $members = self::getVisibleMembers();
+
+        $currentPage = 'medlem_godkend';
+        $view = '/medlem_godkend.php';
+        $isProfileSection = true;
+
+        load_view($view, [
+            'applications' => $applications,
+            'educations' => $educations,
+            'members' => $members,
+            'currentPage' => $currentPage,
+            'isProfileSection' => true,
+        ]);
+    }
+
+    public static function showMembers(): void
+    {
+        $members = self::getVisibleMembers();
+        $educations = MedlemModel::getEducations();
+        $memberStats = self::getStats();
+
+        $currentPage = 'medlemmer';
+        $view = '/medlemmer.php';
+
+        load_view($view, [
+            'members' => $members,
+            'educations' => $educations,
+            'memberStats' => $memberStats,
+            'currentPage' => $currentPage,
+        ]);
+    }
+
+    public static function showAbout(): void
+    {
+        $members = self::getVisibleMembers();
+
+        $currentPage = 'om';
+        $view = '/om.php';
+
+        load_view($view, [
+            'members' => $members,
+            'currentPage' => $currentPage,
+        ]);
     }
 
     public static function createApplication(): void
@@ -109,14 +187,6 @@ class MedlemController
         exit;
     }
 
-    public static function showApplicationForm(): void
-    {
-        $educations = MedlemModel::getEducations();
-        $semesters = MedlemModel::getSemesters();
-
-        require __DIR__ . '/../Views/medlem_sog.php';
-    }
-
     public static function approve(): void
     {
         $memberId = $_POST['member_pk'] ?? null;
@@ -196,5 +266,44 @@ class MedlemController
 
         header('Location: /medlem_godkend');
         exit;
+    }
+
+    public static function approveMember(): void
+    {
+        require_admin();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/');
+        }
+
+        require_csrf();
+
+        self::approve();
+    }
+
+    public static function rejectMember(): void
+    {
+        require_admin();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/');
+        }
+
+        require_csrf();
+
+        self::reject();
+    }
+
+    public static function deleteMember(): void
+    {
+        require_admin();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/');
+        }
+
+        require_csrf();
+
+        self::delete();
     }
 }

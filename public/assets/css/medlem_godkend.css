@@ -32,10 +32,18 @@ Mobilefirst
 }
 
 .godkend-sub {
-  font-family: var(--font-header);
-  font-size: var(--font-mobil-h3);
-  font-weight: var(--poppins-font-bold);
-  margin-bottom: var(--gap-sm);
+    font-family: var(--font-header);
+    font-size: var(--font-mobil-h3);
+    font-weight: var(--poppins-font-bold);
+    margin-bottom: var(--gap-sm);
+}
+
+.godkend-empty {
+    font-family: var(--font-text);
+    font-size: var(--font-desktop-text-small);
+    color: var(--font-color-black);
+    margin-top: var(--gap-xxs);
+    margin-bottom: var(--gap-sm);
 }
 
 .godkend-container {

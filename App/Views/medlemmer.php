@@ -40,7 +40,7 @@ include __DIR__ . '/micro/___banner.php';
                     <input id="memberSearch" type="search" name="search" placeholder="SØG">
 
                     <button type="button" aria-label="Søg">
-                        <img src="/assets/img/icons/search.svg" alt="">
+                        <img src="/assets/img/icons/search.svg" alt="Søg ikon">
                     </button>
                 </div>
 

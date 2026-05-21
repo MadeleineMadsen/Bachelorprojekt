@@ -8,6 +8,9 @@
         <h3 class="godkend-sub">Afventer godkendelse</h3>
 
         <div class="godkend-container">
+            <?php if (empty($applications)): ?>
+                <p class="godkend-empty">Ingen ansøgninger afventer godkendelse</p>
+            <?php endif; ?>
             <?php foreach ($applications as $app): ?>
                 <div class="godkend-card">
 
@@ -58,7 +61,7 @@
                 <div class="search-field">
                     <input type="text" id="memberSearch" placeholder="SØG">
                     <button type="button" aria-label="Søg">
-                        <img src="/assets/img/icons/search.svg" alt="">
+                        <img src="/assets/img/icons/search.svg" alt="Søg ikon">
                     </button>
                 </div>
 

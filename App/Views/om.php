@@ -131,7 +131,7 @@
             </div>
         </div>
         <div class="kontakt-container">
-            <img src="/assets/img/icons/pin.svg" alt="Pin icon">
+            <img src="/assets/img/icons/placering_icon.png" alt="Pin icon">
             <div>
                 <p class="sub-text">GULDBERGSGADE 29N, 2200 KØBENHAVN N</p>
             </div>

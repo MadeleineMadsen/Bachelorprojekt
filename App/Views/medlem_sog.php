@@ -76,7 +76,7 @@ include __DIR__ . '/micro/___banner.php';
     <section class="membership-stats">
 
         <div class="stat">
-            <img src="assets/img/icons/user_account.svg" alt="">
+            <img src="assets/img/icons/user_account.svg" alt="Medlemmer ikon">
             <div class="stat-text">
                 <h3><?= $memberStats['active_members']; ?></h3>
                 <p>AKTIVE MEDLEMMER</p>
@@ -84,7 +84,7 @@ include __DIR__ . '/micro/___banner.php';
         </div>
 
         <div class="stat">
-            <img src="assets/img/icons/calender.png" alt="">
+            <img src="assets/img/icons/calender.png" alt="Kalender ikon">
             <div class="stat-text">
                 <h3>+<?= $memberStats['events_this_year']; ?></h3>
                 <p>EVENTS OM ÅRET</p>
@@ -92,7 +92,7 @@ include __DIR__ . '/micro/___banner.php';
         </div>
 
         <div class="stat">
-            <img src="assets/img/icons/favorite.svg" alt="">
+            <img src="assets/img/icons/favorite.svg" alt="Hjerte ikon">
             <div class="stat-text">
                 <h3>100%</h3>
                 <p>FÆLLESSKAB</p>
@@ -123,11 +123,15 @@ include __DIR__ . '/micro/___banner.php';
             <form method="POST" action="/medlem_sog" enctype="multipart/form-data">
                 <?php csrf_input(); ?>
                 <div class="form-row">
-                    <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" disabled>
-                    <input type="text" value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>"
+                    <label for="user_name" class="hide_label">Fornavn</label>
+                    <input id="user_name" type="text" value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" disabled>
+
+                    <label for="user_last_name" class="hide_label">Efternavn</label>
+                    <input id="user_last_name" type="text" value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>"
                         disabled>
                 </div>
-                <select name="education_fk" required>
+                <label for="education_fk" class="hide_label">Studieretning</label>
+                <select id="education_fk" name="education_fk" required>
                     <option value="">Vælg studieretning</option>
 
                     <?php foreach ($educations as $education): ?>
@@ -137,7 +141,8 @@ include __DIR__ . '/micro/___banner.php';
                     <?php endforeach; ?>
                 </select>
 
-                <select name="semester_fk" required>
+                <label for="semester_fk" class="hide_label">Semester</label>
+                <select id="semester_fk" name="semester_fk" required>
                     <option value="">Vælg semester</option>
                     <?php foreach ($semesters as $semester): ?>
                         <option value="<?= $semester['semester_pk'] ?>">
@@ -145,13 +150,14 @@ include __DIR__ . '/micro/___banner.php';
                         </option>
                     <?php endforeach; ?>
                 </select>
-                <input type="email" value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" disabled>
+                <label for="user_email" class="hide_label">Studiemail</label>
+                <input id="user_email" type="email" value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" disabled>
 
                 <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende
                     aktiviteter vil du have ansvaret for?</label>
                 <textarea id="description" name="description" required></textarea>
 
-                <label class="form-label">Upload profilbillede</label>
+                <label class="form-label" for="profile_image">Upload profilbillede</label>
 
                 <label class="upload-box" for="profile_image">
                     <input id="profile_image" type="file" name="profile_image" accept="image/*">
