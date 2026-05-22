@@ -13,9 +13,9 @@ $FooterNavItems = [
         'url' => '/about'
     ],
     [
-        'key' => 'medlemmer',
+        'key' => 'members',
         'label' => 'MEDLEMMER',
-        'url' => '/medlemmer'
+        'url' => '/members'
     ],
     [
         'key' => 'about',

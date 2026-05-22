@@ -95,7 +95,7 @@ function is_user(): bool
 function require_login(): void
 {
     if (!is_logged_in()) {
-        redirect('/log_ind');
+        redirect('/login');
     }
 }
 
@@ -118,7 +118,7 @@ function require_admin(): void
 // Kræv almindelig bruger
 function require_user(): void
 {
-    require_role(3, '/profil');
+    require_role(3, '/profile');
 }
 
 // Valider tekstfelt

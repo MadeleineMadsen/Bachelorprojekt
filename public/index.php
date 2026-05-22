@@ -121,7 +121,7 @@ switch ($uri) {
         exit;
 
     // ALLE MEDLEMMER
-    case '/medlemmer':
+    case '/members':
         MemberController::showMembers();
         exit;
 

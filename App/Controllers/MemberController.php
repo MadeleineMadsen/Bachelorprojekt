@@ -36,8 +36,8 @@ class MemberController
         $semesters = MemberModel::getSemesters();
         $memberStats = self::getStats();
 
-        $currentPage = 'medlem_sog';
-        $view = '/medlem_sog.php';
+        $currentPage = 'membership_apply';
+        $view = '/membership_apply.php';
 
         load_view($view, [
             'educations' => $educations,
@@ -74,8 +74,8 @@ class MemberController
         $educations = MemberModel::getEducations();
         $memberStats = self::getStats();
 
-        $currentPage = 'medlemmer';
-        $view = '/medlemmer.php';
+        $currentPage = 'members';
+        $view = '/members.php';
 
         load_view($view, [
             'members' => $members,
@@ -89,7 +89,7 @@ class MemberController
     {
         $members = self::getVisibleMembers();
 
-        $currentPage = 'om';
+        $currentPage = 'about';
         $view = '/about.php';
 
         load_view($view, [
@@ -104,7 +104,7 @@ class MemberController
 
         if (!$userId) {
             $_SESSION['error'] = 'Du skal være logget ind for at sende en ansøgning.';
-            header('Location: /log_ind');
+            header('Location: /login');
             exit;
         }
 

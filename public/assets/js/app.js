@@ -27,19 +27,19 @@ document.addEventListener('DOMContentLoaded', () => {
 // ------------------------------------------------
 
 function updateActiveNav() {
-    if (window.location.pathname !== '/om') return;
+    if (window.location.pathname !== '/about') return;
 
     const navLinks = document.querySelectorAll('.bottom-nav-link');
 
     navLinks.forEach(link => {
         link.classList.remove('active');
 
-        if (window.location.hash === '#kontakt') {
-            if (link.getAttribute('href') === '/om#kontakt') {
+        if (window.location.hash === '#contact') {
+            if (link.getAttribute('href') === '/about#contact') {
                 link.classList.add('active');
             }
         } else {
-            if (link.getAttribute('href') === '/om') {
+            if (link.getAttribute('href') === '/about') {
                 link.classList.add('active');
             }
         }
