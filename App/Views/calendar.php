@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 date_default_timezone_set('Europe/Copenhagen');
 
 $todayDate = date('Y-m-d');
@@ -70,7 +70,7 @@ $monthNames = [
 <main>
     <section class="calendar-container">
         <div class="calendar-header">
-            <h1 class="kalender_header">KALENDER</h1>
+            <h1 class="calendar-header">KALENDER</h1>
 
             <!-- Knapper & pile -->
             <div class="calendar-actions">
@@ -141,8 +141,8 @@ $monthNames = [
 
                         <div class="desktop-event-preview">
                             <?php foreach ($dayEvents as $event): ?>
-                                <?php $isTilmeldt = in_array($event['pk'], $registeredIds); ?>
-                                <p class="<?= $isTilmeldt ? 'calendar-event-tilmeldt' : '' ?>">
+                                <?php $isRegistered = in_array($event['pk'], $registeredIds); ?>
+                                <p class="<?= $isRegistered ? 'calendar-event-registered' : '' ?>">
                                     <?= htmlspecialchars($event['title'] ?? 'Event uden titel') ?>
                                 </p>
                             <?php endforeach; ?>
@@ -167,7 +167,7 @@ $monthNames = [
                 ?>
 
                 <?php foreach ($dayEvents as $event): ?>
-                    <?php $isTilmeldt = in_array($event['pk'], $registeredIds); ?>
+                    <?php $isRegistered = in_array($event['pk'], $registeredIds); ?>
                     <a href="/event_page?id=<?= urlencode($event['pk']) ?>" class="mobile-event-card-link">
                     <article class="mobile-event-card <?= $eventDate === $selectedDate ? 'is-visible' : '' ?>"
                         data-event-date="<?= $eventDate ?>">
@@ -178,8 +178,8 @@ $monthNames = [
 
                         <div class="calendar-img-wrap">
                             <img src="<?= $event['image'] ?>" alt="Billede af eventet">
-                            <?php if ($isTilmeldt): ?>
-                                <span class="calendar-tilmeldt-label">TILMELDT</span>
+                            <?php if ($isRegistered): ?>
+                                <span class="calendar-registered-label">TILMELDT</span>
                             <?php endif; ?>
                         </div>
                         <p><?= htmlspecialchars($event['title']) ?></p>

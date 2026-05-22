@@ -38,10 +38,10 @@
             <?php if (($_SESSION['user']['role_fk'] ?? null) == 1): ?>
                 <button type="submit" class="btn btn-primary" disabled>Tilmeld dig eventet</button>
             <?php elseif (!empty($isRegistered)): ?>
-                <input type="hidden" name="action" value="frameld">
+                <input type="hidden" name="action" value="unregister">
                 <button type="submit" class="btn btn-secondary">Frameld dig eventet</button>
             <?php else: ?>
-                <input type="hidden" name="action" value="tilmeld">
+                <input type="hidden" name="action" value="register">
                 <button type="submit" class="btn btn-primary">Tilmeld dig eventet</button>
             <?php endif; ?>
         </form>

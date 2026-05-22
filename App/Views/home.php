@@ -1,4 +1,4 @@
-﻿<section class="front-page-hero">
+<section class="front-page-hero">
     <h1>GBG Social</h1>
     <img src="/assets/img/forside-hero.webp" alt="Studerende til socialt arrangement">
 </section>

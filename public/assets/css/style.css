@@ -16,9 +16,9 @@
 @import "./filter.css";
 
 /* Cards */
-@import "./card-info.css";
-@import "./card-list.css";
-@import "./card-sm.css";
+@import "./card_info.css";
+@import "./card_list.css";
+@import "./card_sm.css";
 
 /* Formularer - styling af alle formularer */
 @import "./forms.css";
@@ -27,7 +27,7 @@
 /* Sider */
 
 /* Forsiden - styling af hele forsiden */
-@import "./front-page.css";
+@import "./front_page.css";
 
 /* Events - Alle events med cardopsætning */
 @import "./events.css";

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once __DIR__ . '/../Models/MemberModel.php';
 require_once __DIR__ . '/../../private/mailhelpers.php';

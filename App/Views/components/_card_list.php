@@ -1,4 +1,4 @@
-﻿<article class="card-event-list" data-category="<?= htmlspecialchars($event['category_fk'] ?? '') ?>"
+<article class="card-event-list" data-category="<?= htmlspecialchars($event['category_fk'] ?? '') ?>"
     data-title="<?= htmlspecialchars(strtolower($event['event_title'])) ?>">
     <?php
     $imgRaw = $event['event_image'] ?? '';

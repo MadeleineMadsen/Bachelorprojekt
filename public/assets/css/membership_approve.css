@@ -1,7 +1,7 @@
 /* =========================
 Mobilefirst
 ========================= */
-.godkend-main {
+.approve-main {
   margin: 0;
   padding: 0;
 }
@@ -14,24 +14,24 @@ Mobilefirst
   margin-bottom: var(--gap-lg);
 }
 
-.godkend-header {
+.approve-header {
   font-family: var(--font-header);
   font-size: var(--font-mobil-h2);
   font-weight: var(--IBM-font-bold);
 }
 
-.godkend-p {
+.approve-p {
   font-family: var(--font-text);
   font-size: var(--font-mobil-text);
   margin-top: var(--gap-sm);
 }
 
-.godkend-name {
+.approve-name {
   font-family: var(--font-text);
   font-size: var(--font-mobil-text);
 }
 
-.godkend-sub {
+.approve-sub {
   font-family: var(--font-header);
   font-size: var(--font-mobil-h3);
   font-weight: var(--poppins-font-bold);
@@ -41,7 +41,7 @@ Mobilefirst
   gap: 1rem;
 }
 
-.godkend-count {
+.approve-count {
   font-family: var(--font-text);
   font-size: 0.8rem;
   font-weight: var(--poppins-font-bold);
@@ -58,7 +58,7 @@ Mobilefirst
   color: var(--font-color-black);
 }
 
-.godkend-empty {
+.approve-empty {
   font-family: var(--font-text);
   font-size: var(--font-desktop-text-small);
   color: var(--font-color-black);
@@ -66,50 +66,50 @@ Mobilefirst
   margin-bottom: var(--gap-sm);
 }
 
-.godkend-container {
+.approve-container {
   display: grid;
   gap: var(--gap-sm);
 }
 
-.godkend-card {
+.approve-card {
   border: 1px solid var(--font-color-black);
   display: grid;
   grid-template-columns: 1fr;
 }
 
-.godkend-left,
-.godkend-middle,
-.godkend-right {
+.approve-left,
+.approve-middle,
+.approve-right {
   padding: var(--gap-sm);
 }
 
-.godkend-left {
+.approve-left {
   display: flex;
   gap: var(--gap-sm);
   align-items: center;
 }
 
-.godkend-name {
+.approve-name {
   font-weight: var(--font-regular);
 }
 
-.godkend-info p,
-.godkend-middle p {
+.approve-info p,
+.approve-middle p {
   font-family: var(--font-text);
   font-size: var(--font-mobil-text);
 }
 
-.godkend-info {
+.approve-info {
   display: block;
 }
 
-.godkend-left,
-.godkend-middle {
+.approve-left,
+.approve-middle {
   position: relative;
 }
 
-.godkend-left::after,
-.godkend-middle::after {
+.approve-left::after,
+.approve-middle::after {
   content: "";
   position: absolute;
   left: var(--gap-sm);
@@ -119,22 +119,22 @@ Mobilefirst
   background: var(--font-color-black);
 }
 
-.godkend-date {
+.approve-date {
   font-weight: var(--poppins-font-bold);
   margin: 0 0 var(--gap-xs) 0;
 }
 
-.godkend-right {
+.approve-right {
   display: flex;
   gap: var(--gap-xs);
 }
 
-.godkend-right .btn {
+.approve-right .btn {
   flex: 1;
 }
 
 /* Godkendte medlemmer */
-.allerede-medlem {
+.existing-members {
   margin: var(--gap-md) 0 var(--gap-sm) 0;
   font-family: var(--font-header);
   font-size: var(--font-desktop-text-big);
@@ -173,50 +173,50 @@ Desktop
     margin-bottom: var(--gap-xl);
   }
 
-  .godkend-header {
+  .approve-header {
     font-size: var(--font-desktop-h2);
   }
 
-  .godkend-p {
+  .approve-p {
     font-size: var(--font-desktop-text-small);
     margin-bottom: var(--gap-lg);
   }
 
-  .godkend-sub {
+  .approve-sub {
     font-size: var(--font-desktop-text-big);
   }
 
-  .godkend-count {
+  .approve-count {
     font-size: 1rem;
     min-width: 2rem;
     height: 2rem;
   }
 
-  .godkend-container {
+  .approve-container {
     gap: var(--gap-md);
   }
 
-  .godkend-card {
+  .approve-card {
     grid-template-columns: 2fr 1.8fr 1fr;
   }
 
-  .godkend-info {
+  .approve-info {
     display: grid;
     gap: var(--gap-xs);
   }
 
-  .godkend-date {
+  .approve-date {
     margin: 1rem 0 var(--gap-xs) 0;
   }
 
-  .godkend-left,
-  .godkend-middle,
-  .godkend-right {
+  .approve-left,
+  .approve-middle,
+  .approve-right {
     padding: var(--gap-md);
   }
 
-  .godkend-left::after,
-  .godkend-middle::after {
+  .approve-left::after,
+  .approve-middle::after {
     left: auto;
     right: 0;
     top: var(--gap-sm);
@@ -225,28 +225,28 @@ Desktop
     height: auto;
   }
 
-  .godkend-left {
+  .approve-left {
     gap: var(--gap-md);
   }
 
-  .godkend-info p,
-  .godkend-middle p,
-  .godkend-name {
+  .approve-info p,
+  .approve-middle p,
+  .approve-name {
     font-size: var(--font-desktop-text-small);
   }
 
-  .godkend-right {
+  .approve-right {
     flex-direction: column;
     justify-content: center;
     gap: var(--gap-sm);
   }
 
-  .godkend-right .btn {
+  .approve-right .btn {
     width: 100%;
     flex: unset;
   }
 
-  .allerede-medlem {
+  .existing-members {
     margin-top: var(--gap-lg);
   }
 

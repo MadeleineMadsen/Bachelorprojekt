@@ -7,7 +7,7 @@
 
 /* ---------- Page ---------- */
 
-.main-om {
+.main-about {
   margin: 0;
   padding: 0;
 }
@@ -28,7 +28,7 @@
 
 /* ---------- Hero ---------- */
 
-.om-header {
+.about-header {
   font-family: var(--font-header);
   font-size: var(--font-mobil-h1);
   font-weight: var(--IBM-font-bold);
@@ -40,46 +40,46 @@
   background-repeat: no-repeat;
 }
 
-.om-img {
+.about-img {
   display: none;
 }
 
 /* ---------- Vil du være med ---------- */
 
-#vil-du {
+#join-us {
   padding: var(--gap-md) var(--gap-sm) 0;
 }
 
-.vil-du-container {
+.join-us-container {
   position: relative;
   padding-bottom: var(--gap-md);
   border-bottom: 1px solid var(--bg-color-black);
 }
 
-.vil-du-container .btn::after {
+.join-us-container .btn::after {
   content: '';
   position: absolute;
   inset: 0;
 }
 
-.vil-du-sub {
+.join-us-sub {
   margin: 0 0 var(--gap-sm);
 }
 
-.vil-du-img {
+.join-us-img {
   height: 14rem;
   width: 100%;
   object-fit: cover;
   object-position: center 60%;
 }
 
-.vil-du-text {
+.join-us-text {
   margin: var(--gap-sm) 0;
 }
 
 /* ---------- Teamet ---------- */
 
-.mød-sub {
+.meet-sub {
   margin: var(--gap-md) var(--gap-sm) var(--gap-sm);
 }
 
@@ -90,7 +90,7 @@
   align-items: center;
 }
 
-.teamet {
+.team {
   writing-mode: vertical-rl;
   rotate: 180deg;
   width: fit-content;
@@ -100,15 +100,15 @@
   padding: 0;
 }
 
-.om-carousel-section {
+.about-carousel-section {
   margin: 0;
 }
 
-.om-carousel {
+.about-carousel {
   margin-top: 0;
 }
 
-.om-slide {
+.about-slide {
   flex: 0 0 100%;
 }
 
@@ -126,50 +126,50 @@
 
 /* ---------- Værdier ---------- */
 
-#værdi {
+#values {
   background-color: var(--bg-color-black);
   color: var(--font-color-white);
   padding: var(--gap-sm) 0;
   margin: var(--gap-sm) 0;
 }
 
-.værdi-sub {
+.values-sub {
   margin: var(--gap-sm);
 }
 
-.værdi-container {
+.values-container {
   display: grid;
   grid-template-columns: 1fr 3fr;
   margin: var(--gap-md) var(--gap-sm);
   align-items: center;
 }
 
-.værdi-sub-text {
+.values-sub-text {
   margin-top: var(--gap-xs);
 }
 
-.værdi-img {
+.values-img {
   display: none;
 }
 
 /* ---------- Kontakt ---------- */
 
-.kontakt {
+.contact {
   margin: var(--gap-sm);
 }
 
-.kontakt-sub {
+.contact-sub {
   margin: var(--gap-md) var(--gap-sm) var(--gap-sm);
 }
 
-.kontakt-container {
+.contact-container {
   display: grid;
   grid-template-columns: 1fr 3fr;
   margin: var(--gap-sm);
   align-items: center;
 }
 
-.kontakt-img {
+.contact-img {
   width: 100%;
   height: auto;
   display: block;
@@ -189,14 +189,14 @@
 
   /* ---------- Hero ---------- */
 
-  .om-hero {
+  .about-hero {
     display: grid;
     grid-template-columns: 1fr 1.05fr;
     height: auto;
     align-items: start;
   }
 
-  .om-left {
+  .about-left {
     position: static;
     grid-column: 1;
     grid-row: 1;
@@ -204,7 +204,7 @@
     align-self: start;
   }
 
-  .om-header {
+  .about-header {
     color: var(--font-color-black);
     font-size: var(--font-desktop-h1);
     background-image: none;
@@ -212,36 +212,36 @@
     margin: 0;
   }
 
-  .om-hero-line,
-  .om-left .sub,
-  .om-left .sub-text {
+  .about-hero-line,
+  .about-left .sub,
+  .about-left .sub-text {
     display: block;
   }
 
-  .om-hero-line {
+  .about-hero-line {
     width: 380px;
     height: 2px;
     background: var(--font-color-black);
     margin: var(--gap-md) 0;
   }
 
-  .om-left .sub {
+  .about-left .sub {
     font-size: var(--font-desktop-h3);
     max-width: 40rem;
     margin-bottom: var(--gap-sm);
   }
 
-  .om-left .sub-text {
+  .about-left .sub-text {
     max-width: 40rem;
   }
 
-  .om-right {
+  .about-right {
     grid-column: 2;
     grid-row: 1;
     height: 40em;
   }
 
-  .om-right img {
+  .about-right img {
     width: 100%;
     height: 40em;
     display: block;
@@ -251,11 +251,11 @@
 
   /* ---------- Vil du være med ---------- */
 
-  #vil-du {
+  #join-us {
     padding: var(--gap-lg) var(--gap-lg) 0;
   }
 
-  .vil-du-container {
+  .join-us-container {
     display: grid;
     grid-template-columns: 1fr 1.6fr;
     column-gap: var(--gap-md);
@@ -264,17 +264,17 @@
     margin-bottom: var(--gap-lg);
   }
 
-  .vil-du-container .sub {
+  .join-us-container .sub {
     grid-column: 2;
     grid-row: 1;
     margin-bottom: 0;
   }
 
-  .vil-du-sub {
+  .join-us-sub {
     max-width: none;
   }
 
-  .vil-du-img {
+  .join-us-img {
     grid-column: 1;
     grid-row: 1 / 4;
     height: 20rem;
@@ -283,14 +283,14 @@
     object-position: center 60%;
   }
 
-  .vil-du-text {
+  .join-us-text {
     grid-column: 2;
     grid-row: 2;
     margin: var(--gap-sm) 0;
     max-width: 40rem;
   }
 
-  .vil-du-container .btn {
+  .join-us-container .btn {
     grid-column: 2;
     grid-row: 3;
     justify-self: start;
@@ -298,17 +298,17 @@
 
   /* ---------- Teamet ---------- */
 
-  #teamet {
+  #team {
     display: grid;
     grid-template-columns: auto 1fr;
     column-gap: var(--gap-lg);
   }
 
-  #teamet h1 {
+  #team h1 {
     padding: 0;
   }
 
-  #teamet .mød-sub {
+  #team .meet-sub {
     grid-column: 2;
     grid-row: 1;
     margin: 0 0 0 4rem;
@@ -319,21 +319,21 @@
     display: contents;
   }
 
-  .teamet {
+  .team {
     grid-column: 1;
     grid-row: 2;
     align-self: start;
     font-size: var(--font-desktop-h1-special);
   }
 
-  .om-carousel-section {
+  .about-carousel-section {
     grid-column: 2;
     grid-row: 2;
     overflow: visible;
     width: 100%;
   }
 
-  .om-carousel {
+  .about-carousel {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: var(--gap-lg);
@@ -341,7 +341,7 @@
     width: 100%;
   }
 
-  .om-slide {
+  .about-slide {
     flex: unset;
   }
 
@@ -360,7 +360,7 @@
 
   /* ---------- Værdier ---------- */
 
-  #værdi {
+  #values {
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 40rem;
@@ -370,7 +370,7 @@
     align-items: stretch;
   }
 
-  #værdi .sub {
+  #values .sub {
     grid-column: 1;
     grid-row: 1;
     margin: 0;
@@ -378,7 +378,7 @@
     max-width: none;
   }
 
-  #værdi .værdi-container {
+  #values .values-container {
     grid-column: 1;
     display: grid;
     grid-template-columns: 4rem 1fr;
@@ -388,25 +388,25 @@
     padding: 0 var(--gap-lg) var(--gap-md);
   }
 
-  #værdi .værdi-container:nth-of-type(1) {
+  #values .values-container:nth-of-type(1) {
     grid-row: 2;
   }
 
-  #værdi .værdi-container:nth-of-type(2) {
+  #values .values-container:nth-of-type(2) {
     grid-row: 3;
   }
 
-  #værdi .værdi-container:nth-of-type(3) {
+  #values .values-container:nth-of-type(3) {
     grid-row: 4;
     padding-bottom: var(--gap-lg);
   }
 
-  #værdi .værdi-container img {
+  #values .values-container img {
     width: 3.5rem;
     height: auto;
   }
 
-  .værdi-img {
+  .values-img {
     display: block;
     grid-column: 2;
     grid-row: 1 / 5;
@@ -418,7 +418,7 @@
 
   /* ---------- Kontakt ---------- */
 
-  .kontakt {
+  .contact {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
     column-gap: var(--gap-lg);
@@ -426,7 +426,7 @@
     margin: var(--gap-md) var(--gap-lg);
   }
 
-  .kontakt-img {
+  .contact-img {
     grid-column: 1;
     grid-row: 1 / 7;
     width: 100%;
@@ -434,31 +434,31 @@
     margin-top: 0;
   }
 
-  .kontakt .sub,
-  .kontakt > .sub-text,
-  .kontakt-container {
+  .contact .sub,
+  .contact > .sub-text,
+  .contact-container {
     grid-column: 2;
   }
 
-  .kontakt .sub {
+  .contact .sub {
     grid-row: 1;
     margin-bottom: var(--gap-sm);
     max-width: none;
   }
 
-  .kontakt > .sub-text {
+  .contact > .sub-text {
     grid-row: 2;
     margin-bottom: var(--gap-sm);
     max-width: 32rem;
   }
 
-  .kontakt-container {
+  .contact-container {
     grid-template-columns: 2.5rem 1fr;
     gap: var(--gap-sm);
     margin: var(--gap-sm) 0;
   }
 
-  .kontakt-container img {
+  .contact-container img {
     width: 2rem;
     height: 2rem;
     object-fit: contain;

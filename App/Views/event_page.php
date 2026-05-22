@@ -1,29 +1,29 @@
-<main class="eventside-page">
+<main class="event-page">
 
-    <div class="eventside-hero">
+    <div class="event-page-hero">
         <?php $evtImg = $event['event_image'] ?? ''; $evtSrc = !empty($evtImg) ? (str_starts_with($evtImg, '/') ? $evtImg : '/assets/img/' . $evtImg) : '/assets/img/placeholder.webp'; ?>
-        <img src="<?= htmlspecialchars($evtSrc) ?>" alt="Billede af event" class="eventside-hero-img">
-        <div class="eventside-hero-overlay">
-            <span class="eventside-hero-presenter">GBG SOCIAL PRÆSENTERER</span>
-            <h1 class="eventside-hero-title"><?= htmlspecialchars($event['event_title']) ?></h1>
-            <span class="eventside-hero-date"><?= htmlspecialchars(strtoupper($dato)) ?></span>
+        <img src="<?= htmlspecialchars($evtSrc) ?>" alt="Billede af event" class="event-page-hero-img">
+        <div class="event-page-hero-overlay">
+            <span class="event-page-hero-presenter">GBG SOCIAL PRÆSENTERER</span>
+            <h1 class="event-page-hero-title"><?= htmlspecialchars($event['event_title']) ?></h1>
+            <span class="event-page-hero-date"><?= htmlspecialchars(strtoupper($dato)) ?></span>
         </div>
     </div>
 
-    <div class="eventside-layout">
-        <div class="eventside-layout-content">
+    <div class="event-page-layout">
+        <div class="event-page-layout-content">
             <?php if (!empty($event['event_subtitle'])): ?>
-                <h2 class="eventside-layout-heading"><?= htmlspecialchars($event['event_subtitle']) ?></h2>
+                <h2 class="event-page-layout-heading"><?= htmlspecialchars($event['event_subtitle']) ?></h2>
             <?php else: ?>
-                <h2 class="eventside-layout-heading"><?= htmlspecialchars($event['event_title']) ?></h2>
+                <h2 class="event-page-layout-heading"><?= htmlspecialchars($event['event_title']) ?></h2>
             <?php endif; ?>
 
-            <p class="eventside-layout-desc"><?= nl2br(htmlspecialchars($event['event_description'])) ?></p>
+            <p class="event-page-layout-desc"><?= nl2br(htmlspecialchars($event['event_description'])) ?></p>
 
             <?php if (!empty($event['event_expectations'])): ?>
-                <div class="eventside-layout-expectations">
-                    <p class="eventside-layout-expectations-label">Det kan du forvente:</p>
-                    <ul class="eventside-layout-list">
+                <div class="event-page-layout-expectations">
+                    <p class="event-page-layout-expectations-label">Det kan du forvente:</p>
+                    <ul class="event-page-layout-list">
                         <?php foreach (explode("\n", trim($event['event_expectations'])) as $punkt): ?>
                             <?php if (trim($punkt)): ?>
                                 <li><?= htmlspecialchars(trim($punkt)) ?></li>
@@ -34,15 +34,15 @@
             <?php endif; ?>
         </div>
 
-        <aside class="eventside-layout-sidebar">
+        <aside class="event-page-layout-sidebar">
             <?php include __DIR__ . '/components/_card_info.php'; ?>
         </aside>
     </div>
 
-    <section class="eventside-om">
+    <section class="event-page-about">
         <div class="container">
-            <h2 class="eventside-om-heading">Om eventet</h2>
-            <p class="eventside-om-text"><?= nl2br(htmlspecialchars($event['event_description'])) ?></p>
+            <h2 class="event-page-about-heading">Om eventet</h2>
+            <p class="event-page-about-text"><?= nl2br(htmlspecialchars($event['event_description'])) ?></p>
         </div>
     </section>
 
@@ -72,10 +72,10 @@
         $desktopRemaining = $participantCount - $desktopLimit;
         ?>
 
-        <section class="event-deltagere">
-            <h2 class="deltagere-heading">DELTAGERE</h2>
+        <section class="event-participants">
+            <h2 class="participants-heading">DELTAGERE</h2>
 
-            <div class="deltagere-grid deltagere-mobile">
+            <div class="participants-grid participants-mobile">
                 <?php foreach (array_slice($participants, 0, $mobileLimit) as $p): ?>
                     <?php
                     $img = !empty($p['user_profile_image'])
@@ -83,15 +83,15 @@
                         : '/assets/img/uploads/default_profile_image.webp';
                     ?>
 
-                    <img src="<?= htmlspecialchars($img) ?>" alt="" class="profile-img profile-medium deltagere-profile">
+                    <img src="<?= htmlspecialchars($img) ?>" alt="" class="profile-img profile-medium participants-profile">
                 <?php endforeach; ?>
 
                 <?php if ($mobileRemaining > 0): ?>
-                    <div class="deltagere-more">+<?= $mobileRemaining ?></div>
+                    <div class="participants-more">+<?= $mobileRemaining ?></div>
                 <?php endif; ?>
             </div>
 
-            <div class="deltagere-grid deltagere-desktop">
+            <div class="participants-grid participants-desktop">
                 <?php foreach (array_slice($participants, 0, $desktopLimit) as $p): ?>
                     <?php
                     $img = !empty($p['user_profile_image'])
@@ -99,11 +99,11 @@
                         : '/assets/img/uploads/default_profile_image.webp';
                     ?>
 
-                    <img src="<?= htmlspecialchars($img) ?>" alt="" class="profile-img profile-medium deltagere-profile">
+                    <img src="<?= htmlspecialchars($img) ?>" alt="" class="profile-img profile-medium participants-profile">
                 <?php endforeach; ?>
 
                 <?php if ($desktopRemaining > 0): ?>
-                    <div class="deltagere-more">+<?= $desktopRemaining ?></div>
+                    <div class="participants-more">+<?= $desktopRemaining ?></div>
                 <?php endif; ?>
             </div>
         </section>

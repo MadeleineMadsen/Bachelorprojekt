@@ -1,4 +1,4 @@
-﻿<article class="card-event-sm">
+<article class="card-event-sm">
 
     <div class="card-event-sm-img-wrap">
         <div class="card-event-sm-date">

@@ -6,7 +6,7 @@ Kalender
   margin: var(--gap-sm);
 }
 
-.kalender_header h1 {
+.calendar-header h1 {
   font-family: var(--font-header);
   font-weight: var(--IBM-font-bold);
   font-size: var(--font-mobil-h1);
@@ -186,7 +186,7 @@ Kalender
   position: relative;
 }
 
-.calendar-tilmeldt-label {
+.calendar-registered-label {
   display: inline-block;
   background-color: var(--color-black);
   color: #fff;
@@ -198,7 +198,7 @@ Kalender
   margin-right: 4px;
 }
 
-.mobile-event-card .calendar-img-wrap .calendar-tilmeldt-label {
+.mobile-event-card .calendar-img-wrap .calendar-registered-label {
   display: block;
   position: absolute;
   top: 0;
@@ -382,7 +382,7 @@ Desktop
     flex-shrink: 0;
   }
 
-  .desktop-event-preview p.calendar-event-tilmeldt::before {
+  .desktop-event-preview p.calendar-event-registered::before {
     background: var(--color-black);
   }
 

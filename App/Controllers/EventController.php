@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once __DIR__ . '/../Models/EventModel.php';
 require_once __DIR__ . '/../../private/mailhelpers.php';
@@ -58,9 +58,9 @@ class EventController
         require_csrf();
 
         $eventId = $_POST['event_id'] ?? '';
-        $action = $_POST['action'] ?? 'tilmeld';
+        $action = $_POST['action'] ?? 'register';
 
-        if ($action === 'frameld') {
+        if ($action === 'unregister') {
             self::unregister($eventId, $_SESSION['user']['user_pk']);
         } else {
             self::register($eventId, $_SESSION['user']['user_pk']);

@@ -7,13 +7,13 @@
 
 /* ---------- Side wrapper ---------- */
 
-.eventside-page {
+.event-page {
   overflow: hidden;
 }
 
 /* ---------- Hero ---------- */
 
-.eventside-hero {
+.event-page-hero {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -22,14 +22,14 @@
   background: var(--bg-color-black);
 }
 
-.eventside-hero-img {
+.event-page-hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.eventside-hero-overlay {
+.event-page-hero-overlay {
   position: absolute;
   inset: 0;
   padding: var(--gap-sm);
@@ -40,7 +40,7 @@
   gap: 1rem;
 }
 
-.eventside-hero-presenter {
+.event-page-hero-presenter {
   font-family: var(--font-text);
   font-size: var(--font-mobil-small);
   font-weight: var(--poppins-font-bold);
@@ -51,7 +51,7 @@
   align-self: flex-start;
 }
 
-.eventside-hero-title {
+.event-page-hero-title {
   font-family: var(--font-header);
   font-size: var(--font-mobil-h2);
   font-weight: var(--IBM-font-bold);
@@ -59,7 +59,7 @@
   text-transform: uppercase;
 }
 
-.eventside-hero-date {
+.event-page-hero-date {
   font-family: var(--font-text);
   font-size: var(--font-mobil-small);
   font-weight: var(--poppins-font-bold);
@@ -68,20 +68,20 @@
 
 /* ---------- Layout / content ---------- */
 
-.eventside-layout {
+.event-page-layout {
   display: flex;
   flex-direction: column;
   gap: var(--gap-md);
   padding: var(--gap-md) var(--gap-sm);
 }
 
-.eventside-layout-content {
+.event-page-layout-content {
   display: flex;
   flex-direction: column;
   gap: var(--gap-sm);
 }
 
-.eventside-layout-heading {
+.event-page-layout-heading {
   font-family: var(--font-header);
   font-size: var(--font-mobil-h3);
   font-weight: var(--IBM-font-bold);
@@ -89,7 +89,7 @@
   line-height: 1.1;
 }
 
-.eventside-layout-subtitle {
+.event-page-layout-subtitle {
   font-size: var(--font-mobil-text);
   font-weight: var(--poppins-font-bold);
   color: var(--font-color-black);
@@ -97,20 +97,20 @@
   letter-spacing: 0.05em;
 }
 
-.eventside-layout-desc {
+.event-page-layout-desc {
   font-size: var(--font-mobil-text);
   color: var(--font-color-black);
   line-height: 1.7;
 }
 
-.eventside-layout-expectations-label {
+.event-page-layout-expectations-label {
   font-size: var(--font-mobil-text);
   font-weight: var(--poppins-font-bold);
   text-transform: uppercase;
   margin-bottom: var(--gap-xxs);
 }
 
-.eventside-layout-list {
+.event-page-layout-list {
   list-style: disc;
   padding-left: var(--gap-sm);
   display: flex;
@@ -123,11 +123,11 @@
 
 /* ---------- Om eventet ---------- */
 
-.eventside-om {
+.event-page-about {
   display: none;
 }
 
-.eventside-om-heading {
+.event-page-about-heading {
   font-family: var(--font-header);
   font-size: var(--font-mobil-h2);
   font-weight: var(--IBM-font-bold);
@@ -135,21 +135,21 @@
   margin-bottom: var(--gap-xs);
 }
 
-.eventside-om-text {
+.event-page-about-text {
   font-size: var(--font-mobil-text);
   line-height: 1.6;
 }
 
 /* ---------- Deltagere ---------- */
 
-.event-deltagere {
+.event-participants {
   background: var(--bg-color-black);
   color: var(--font-color-white);
   padding: var(--gap-lg) var(--gap-sm);
   border-bottom: 0.5px solid var(--font-color-white);
 }
 
-.deltagere-heading {
+.participants-heading {
   font-family: var(--font-header);
   font-size: var(--font-mobil-h3);
   font-weight: var(--IBM-font-bold);
@@ -157,26 +157,26 @@
   margin-bottom: var(--gap-sm);
 }
 
-.deltagere-grid {
+.participants-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: var(--gap-xs);
   align-items: center;
 }
 
-.deltagere-profile,
-.deltagere-more {
+.participants-profile,
+.participants-more {
   width: 100%;
   height: 4rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
 }
 
-.deltagere-profile {
+.participants-profile {
   object-fit: cover;
 }
 
-.deltagere-more {
+.participants-more {
   border: 2px solid var(--font-color-white);
   display: flex;
   align-items: center;
@@ -187,22 +187,22 @@
   color: var(--font-color-white);
 }
 
-.deltagere-mobile {
+.participants-mobile {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
 
-.deltagere-desktop {
+.participants-desktop {
   display: none;
 }
 
 @media (min-width: 768px) {
-  .deltagere-grid {
+  .participants-grid {
     grid-template-columns: repeat(11, 6rem);
   }
 
-  .event-deltagere .profile-img,
-  .deltagere-more {
+  .event-participants .profile-img,
+  .participants-more {
     width: 6rem;
     height: 6rem;
   }
@@ -261,7 +261,7 @@
 @media (min-width: 768px) {
   /* ---------- Container ---------- */
 
-  .eventside-page .container {
+  .event-page .container {
     max-width: 1400px;
     padding: 0 var(--gap-md);
     margin: 0;
@@ -269,22 +269,22 @@
 
   /* ---------- Hero ---------- */
 
-  .eventside-hero {
+  .event-page-hero {
     aspect-ratio: 4 / 1;
   }
 
-  .eventside-hero-title {
+  .event-page-hero-title {
     font-size: var(--font-desktop-h2);
   }
 
-  .eventside-hero-presenter,
-  .eventside-hero-date {
+  .event-page-hero-presenter,
+  .event-page-hero-date {
     font-size: var(--font-desktop-text-small);
   }
 
   /* ---------- Layout / content ---------- */
 
-  .eventside-layout {
+  .event-page-layout {
     display: grid;
     grid-template-columns: 1fr 360px;
     gap: var(--gap-md);
@@ -292,22 +292,22 @@
     padding: var(--gap-lg) var(--gap-md);
   }
 
-  .eventside-layout-content,
-  .eventside-layout-sidebar {
+  .event-page-layout-content,
+  .event-page-layout-sidebar {
     min-width: 0;
   }
 
-  .eventside-layout-heading {
+  .event-page-layout-heading {
     font-size: var(--font-desktop-h3);
   }
 
-  .eventside-layout-desc {
+  .event-page-layout-desc {
     font-size: var(--font-desktop-text-small);
   }
 
   /* ---------- Om eventet ---------- */
 
-  .eventside-om {
+  .event-page-about {
     display: block;
     background: var(--bg-color-black);
     color: var(--font-color-white);
@@ -315,39 +315,39 @@
     border-bottom: 1px solid var(--font-color-black);
   }
 
-  .eventside-om-heading {
+  .event-page-about-heading {
     font-size: var(--font-desktop-h3);
   }
 
-  .eventside-om-text {
+  .event-page-about-text {
     font-size: var(--font-desktop-text-small);
   }
 
   /* ---------- Deltagere ---------- */
 
-  .event-deltagere {
+  .event-participants {
     padding: var(--gap-lg) var(--gap-md);
   }
 
-  .deltagere-heading {
+  .participants-heading {
     font-size: var(--font-desktop-h3);
   }
 
-  .deltagere-grid {
+  .participants-grid {
     display: flex;
     align-items: center;
     gap: var(--gap-sm);
     flex-wrap: nowrap;
   }
 
-  .event-deltagere .profile-img,
-  .deltagere-more {
+  .event-participants .profile-img,
+  .participants-more {
     width: 6rem;
     height: 6rem;
     flex-shrink: 0;
   }
 
-  .deltagere-more {
+  .participants-more {
     border: 3px solid var(--font-color-white);
     border-radius: 50%;
     display: flex;
@@ -359,11 +359,11 @@
     color: var(--font-color-white);
   }
 
-  .deltagere-mobile {
+  .participants-mobile {
     display: none;
   }
 
-  .deltagere-desktop {
+  .participants-desktop {
     display: flex;
     align-items: center;
     gap: var(--gap-sm);

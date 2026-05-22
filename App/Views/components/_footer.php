@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 // Footer navigation
 $FooterNavItems = [
@@ -20,7 +20,7 @@ $FooterNavItems = [
     [
         'key' => 'about',
         'label' => 'KONTAKT',
-        'url' => '/about#kontakt'
+        'url' => '/about#contact'
     ],
 ];
 

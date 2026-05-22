@@ -1,34 +1,34 @@
-﻿<main class="godkend-main">
+<main class="approve-main">
     <section class="accept-container">
         <div class="header-container">
-            <h1 class="godkend-header">ANSØGNINGER</h1>
-            <p class="godkend-p">Ansøgninger om medlemsskab til godkendelse</p>
+            <h1 class="approve-header">ANSØGNINGER</h1>
+            <p class="approve-p">Ansøgninger om medlemsskab til godkendelse</p>
         </div>
 
-        <h3 class="godkend-sub">
+        <h3 class="approve-sub">
             Afventer godkendelse
             <?php if (!empty($applications)): ?>
-                <span class="godkend-count">
+                <span class="approve-count">
                     <?= count($applications); ?>
                 </span>
             <?php endif; ?>
         </h3>
 
-        <div class="godkend-container">
+        <div class="approve-container">
             <?php if (empty($applications)): ?>
-                <p class="godkend-empty">Ingen ansøgninger afventer godkendelse</p>
+                <p class="approve-empty">Ingen ansøgninger afventer godkendelse</p>
             <?php endif; ?>
             <?php foreach ($applications as $app): ?>
-                <div class="godkend-card">
+                <div class="approve-card">
 
                     <!-- Venstre (profil) -->
-                    <div class="godkend-left inner">
+                    <div class="approve-left inner">
                         <img src="<?= !empty($app['user_profile_image'])
                             ? '/assets/img/uploads/' . htmlspecialchars($app['user_profile_image'])
                             : '/assets/img/uploads/default_profile_image.webp' ?>" alt="Profilbillede"
                             class="profile-img profile-medium">
-                        <div class="godkend-info">
-                            <h2 class="godkend-name"><strong><?= $app['user_name']; ?>
+                        <div class="approve-info">
+                            <h2 class="approve-name"><strong><?= $app['user_name']; ?>
                                     <?= $app['user_last_name']; ?></strong></h2>
                             <p><?= htmlspecialchars($app['education_name']); ?></p>
                             <p><?= $app['user_email']; ?></p>
@@ -36,15 +36,15 @@
                     </div>
 
                     <!-- Midte -->
-                    <div class="godkend-middle inner">
-                        <p class="godkend-date">Ansøgt d. <?= formatDanishDate($app['applied_at']); ?></p>
+                    <div class="approve-middle inner">
+                        <p class="approve-date">Ansøgt d. <?= formatDanishDate($app['applied_at']); ?></p>
                         <p class="motivation">
                             <?= $app['application_text']; ?>
                         </p>
                     </div>
 
                     <!-- Højre (knapper) -->
-                    <div class="godkend-right">
+                    <div class="approve-right">
                         <form method="POST" action="/approve_member">
                             <?php csrf_input(); ?>
                             <input type="hidden" name="member_pk" value="<?= $app['member_pk']; ?>">
@@ -62,7 +62,7 @@
             <?php endforeach; ?>
         </div>
 
-        <h3 class="allerede-medlem">Eksisterende medlemmer</h3>
+        <h3 class="existing-members">Eksisterende medlemmer</h3>
         <div class="filter-container">
             <form class="search-form" action="" onsubmit="return false;">
                 <div class="search-field">

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $isEditing = isset($event);
 $formAction = $isEditing ? '/event_edit' : '';
 ?>
