@@ -1,12 +1,12 @@
 <main class="main-terms">
-    <h1 class="terms-header">Privatlivspolitik</h1>
+
+    <section class="terms-section">
+        <h1 class="terms-header">Privatlivspolitik</h1>
 
         <p class="terms-text">
             GBG Social behandler personoplysninger med henblik på at kunne administrere
             brugerprofiler, medlemsansøgninger, eventtilmeldinger og platformens sociale funktioner.
         </p>
-
-        <br>
 
         <p class="terms-text">
             <strong>
@@ -22,31 +22,29 @@
             <li>Eventtilmeldinger</li>
         </ul>
 
-        <br>
-        
         <p class="terms-text">
             Ved upload af profilbillede eller ansøgning om medlemskab accepterer brugeren,
             at oplysninger som navn, profilbillede, uddannelse og semester i relevante tilfælde
             kan være synlige for andre brugere på platformen som en del af funktionaliteten.
         </p>
-        
-        <br>
+
         <p class="terms-text">
             Oplysningerne deles ikke med tredjeparter og anvendes alene internt på platformen.
         </p>
+
         <p class="terms-text">
             Brugeren kan til enhver tid kontakte administrator med henblik på indsigt,
             ændring eller sletning af egne oplysninger.
         </p>
+    </section>
 
-    <h1 class="terms-header">Vilkår og betingelser</h1>
+    <section class="terms-section">
+        <h2 class="terms-header">Vilkår og betingelser</h2>
 
         <p class="terms-text">
             Ved oprettelse af en bruger på GBG Social accepterer brugeren platformens
             vilkår og retningslinjer.
         </p>
-
-        <br>
 
         <p class="terms-text">
             GBG Social er en social platform tilknyttet studiemiljøet, hvor brugere kan
@@ -58,8 +56,6 @@
             platformen, er passende og relevant for fællesskabet.
         </p>
 
-        <br>
-
         <p class="terms-text">
             Det er ikke tilladt at dele stødende, krænkende eller misvisende indhold
             på platformen.
@@ -70,11 +66,10 @@
             eller deaktivere brugere ved misbrug af platformen eller overtrædelse af vilkårene.
         </p>
 
-        <br>
-
         <p class="terms-text">
             Ved brug af platformen accepterer brugeren samtidig, at funktioner som events,
             medlemsprofiler og profilbilleder kan være synlige for andre brugere som en del
             af platformens sociale funktionalitet.
         </p>
+    </section>
 </main>

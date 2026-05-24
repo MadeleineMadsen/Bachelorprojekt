@@ -11,22 +11,26 @@ $showMemberFields = in_array($role, ['1', '2']);
 ?>
 
 <main class="profile-page container">
+
     <section class="profile-hero">
         <div class="hello-text">
             <h1>HEJ IGEN</h1>
+
             <h2>
                 <?= htmlspecialchars($user['user_name']) ?>
             </h2>
         </div>
 
-        <div class="profile-intro">
+        <section class="profile-intro">
             <div>
                 <h3>MIN PROFIL</h3>
+
                 <p>Her kan du se og redigere dine personlige oplysninger</p>
             </div>
 
             <form id="profileImageForm" method="POST" action="/profile/update-image" enctype="multipart/form-data">
                 <?php csrf_input(); ?>
+
                 <div class="profile-image-wrapper">
                     <img id="profilePreview" src="<?= !empty($user['user_profile_image'])
                         ? '/assets/img/uploads/' . htmlspecialchars($user['user_profile_image'])
@@ -35,11 +39,12 @@ $showMemberFields = in_array($role, ['1', '2']);
 
                     <label class="camera-btn">
                         <img src="/assets/img/icons/camera_icon.png" alt="Kamera ikon">
+
                         <input id="profileImageInput" type="file" name="profile_image" accept="image/*" hidden>
                     </label>
                 </div>
             </form>
-        </div>
+        </section>
     </section>
 
     <section class="form-container <?= $containerClass ?>">

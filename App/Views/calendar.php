@@ -26,14 +26,8 @@ if ($hasSelectedDate) {
     $year = (int) date('Y');
 }
 
-
 $events = $calendarEvents;
 $registeredIds = $registeredEventIds ?? [];
-
-
-
-
-
 
 $date = DateTime::createFromFormat('!Y-n-j', "$year-$month-1");
 
@@ -65,11 +59,13 @@ $monthNames = [
     11 => 'NOVEMBER',
     12 => 'DECEMBER',
 ];
-
 ?>
-<main>
+
+<main class="calendar-page">
+    
     <section class="calendar-container">
-        <div class="calendar-header">
+
+        <section class="calendar-header">
             <h1 class="calendar-header">KALENDER</h1>
 
             <!-- Knapper & pile -->
@@ -81,6 +77,7 @@ $monthNames = [
                             OPRET EVENT
                         </a>
                     <?php endif; ?>
+
                     <a class="btn btn-secondary" href="/calendar?date=<?= $todayDate ?>">
                         I DAG
                     </a>
@@ -91,22 +88,21 @@ $monthNames = [
                         href="/calendar?month=<?= $prev->format('n') ?>&year=<?= $prev->format('Y') ?>">
                         <img src="/assets/img/icons/arrow-left.png" alt="Forrige måned">
                     </a>
+
                     <a class="calendar-arrow"
                         href="/calendar?month=<?= $next->format('n') ?>&year=<?= $next->format('Y') ?>">
                         <img src="/assets/img/icons/arrow-right.png" alt="Næste måned">
                     </a>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Månedstitel -->
-
         <h2 class="calendar-month">
             <strong><?= $monthNames[$month] ?></strong> <?= $year ?>
         </h2>
 
         <!-- Kalender grid -->
-
         <div class="calendar-weekdays">
             <?php foreach (['MAN', 'TIR', 'ONS', 'TOR', 'FRE', 'LØR', 'SØN'] as $day): ?>
                 <div class="calendar-weekday"><?= $day ?></div>
@@ -115,6 +111,7 @@ $monthNames = [
 
         <div class="calendar-grid">
             <?php for ($cell = 0; $cell < $totalCells; $cell++): ?>
+
                 <?php
                 $day = $cell - $startOffset + 1;
                 $isCurrentMonth = $day >= 1 && $day <= $daysInMonth;
@@ -132,6 +129,7 @@ $monthNames = [
                 <?= $dateKey && $dateKey === $selectedDate ? 'is-selected' : '' ?>
                 <?= $dateKey && $dateKey === $todayDate ? 'is-today' : '' ?>" type="button"
                     data-date="<?= $dateKey ?>">
+
                     <span class="calendar-date">
                         <?= $isCurrentMonth ? $day : '' ?>
                     </span>
@@ -153,7 +151,6 @@ $monthNames = [
         </div>
 
         <!-- Mobil listevisning -->
-
         <section class="mobile-event-list">
             <h2>EVENT</h2>
 
@@ -168,23 +165,28 @@ $monthNames = [
 
                 <?php foreach ($dayEvents as $event): ?>
                     <?php $isRegistered = in_array($event['pk'], $registeredIds); ?>
-                    <a href="/event_page?id=<?= urlencode($event['pk']) ?>" class="mobile-event-card-link">
-                    <article class="mobile-event-card <?= $eventDate === $selectedDate ? 'is-visible' : '' ?>"
-                        data-event-date="<?= $eventDate ?>">
-                        <div class="mobile-event-date">
-                            <strong><?= $eventDateObj->format('j') ?></strong>
-                            <span><?= mb_substr($monthNames[$month], 0, 3) ?></span>
-                        </div>
 
-                        <div class="calendar-img-wrap">
-                            <img src="<?= $event['image'] ?>" alt="Billede af eventet">
-                            <?php if ($isRegistered): ?>
-                                <span class="calendar-registered-label">TILMELDT</span>
-                            <?php endif; ?>
-                        </div>
-                        <p><?= htmlspecialchars($event['title']) ?></p>
-                    </article>
-                </a>
+                    <a href="/event_page?id=<?= urlencode($event['pk']) ?>" class="mobile-event-card-link">
+                        <article class="mobile-event-card <?= $eventDate === $selectedDate ? 'is-visible' : '' ?>"
+                            data-event-date="<?= $eventDate ?>">
+
+                            <div class="mobile-event-date">
+                                <strong><?= $eventDateObj->format('j') ?></strong>
+
+                                <span><?= mb_substr($monthNames[$month], 0, 3) ?></span>
+                            </div>
+
+                            <div class="calendar-img-wrap">
+                                <img src="<?= $event['image'] ?>" alt="Billede af eventet">
+
+                                <?php if ($isRegistered): ?>
+                                    <span class="calendar-registered-label">TILMELDT</span>
+                                <?php endif; ?>
+                            </div>
+
+                            <p><?= htmlspecialchars($event['title']) ?></p>
+                        </article>
+                    </a>
                 <?php endforeach; ?>
             <?php endforeach; ?>
 

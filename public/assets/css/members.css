@@ -15,7 +15,7 @@
   margin: 0;
 }
 
-.members-page {
+.members-overview {
   margin: var(--gap-sm);
 }
 
@@ -133,7 +133,7 @@
     font-size: var(--font-desktop-h1);
   }
 
-  .members-page {
+  .members-overview {
     margin: var(--gap-lg) var(--gap-md);
   }
 

@@ -9,7 +9,7 @@ $formAction = $isEditing ? '/event_edit' : '';
         <img src="/assets/img/left-layout-picture.webp" alt="Studerende til socialt event">
     </div>
 
-    <div class="create-event-content">
+    <section class="create-event-content">
         <h1 class="form-title"><?= $isEditing ? 'REDIGER EVENT' : 'OPRET EVENT' ?></h1>
 
         <section class="form-container create-event-container">
@@ -90,6 +90,7 @@ $formAction = $isEditing ? '/event_edit' : '';
                         <?= (!$isEditing || empty($event['event_image'])) ? 'style="display:none"' : '' ?>
                     >
                 </label>
+                
                 <p class="field-error" id="imageError" style="display:none;">
                     Du skal uploade et billede
                 </p>
@@ -104,5 +105,5 @@ $formAction = $isEditing ? '/event_edit' : '';
                 </div>
             </form>
         </section>
-    </div>
+    </section>
 </main>

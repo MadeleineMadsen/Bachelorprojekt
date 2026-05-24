@@ -111,7 +111,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .pagination-btn:hover:not(:disabled):not(.active) {
@@ -158,7 +160,7 @@
   }
 
   .events-list {
-    padding: 0 var(--gap-md);
+    padding: 0 var(--gap-md) var(--gap-lg) var(--gap-md);
   }
 
   .events-filter-title {

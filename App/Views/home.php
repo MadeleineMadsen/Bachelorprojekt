@@ -1,14 +1,15 @@
-<section class="front-page-hero">
-    <h1>GBG Social</h1>
-    <img src="/assets/img/forside-hero.webp" alt="Studerende til socialt arrangement">
-</section>
-
-<?php
-$bannerText = 'BLIV MEDLEM AF FORENINGEN';
-include __DIR__ . '/micro/___banner.php';
-?>
-
 <main class="front-page">
+
+    <section class="front-page-hero">
+        <h1>GBG Social</h1>
+        <img src="/assets/img/forside-hero.webp" alt="Studerende til socialt arrangement">
+    </section>
+
+    <?php
+    $bannerText = 'BLIV MEDLEM AF FORENINGEN';
+    include __DIR__ . '/micro/___banner.php';
+    ?>
+
     <section class="intro">
         <h2>Den sociale studenterforening</h2>
 
@@ -74,8 +75,11 @@ include __DIR__ . '/micro/___banner.php';
 
         <div class="feed-grid">
             <img src="/assets/img/guldbar-billede.webp" alt="Studerende i Guldbar">
+
             <img src="/assets/img/om.webp" alt="Studerende til fest">
+
             <img src="/assets/img/kontakt.webp" alt="Grillaften med studerende">
+
             <img src="/assets/img/udklædningsfest.webp" alt="Studerende til udklædningsfest">
         </div>
     </section>

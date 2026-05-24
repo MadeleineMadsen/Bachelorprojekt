@@ -1,13 +1,11 @@
-<main>
-    <div class="my-events-hero">
+<main class="my-events-page">
+    <section class="my-events-hero">
         <h1 class="my-events-hero-title">MINE EVENTS</h1>
-    </div>
+    </section>
 
-
-
-    <div class="my-events-filter">
+    <section class="my-events-filter">
         <h2 class="events-filter-title">TILMELDTE EVENTS</h2>
-    </div>
+    </section>
 
     <section class="events-list">
         <?php if (empty($events)): ?>

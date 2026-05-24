@@ -1,15 +1,16 @@
-<!-- Hero section -->
-<section class="events-hero">
-    <h1 class="events-hero-title">EVENTS</h1>
-</section>
+<main class="events-page">
 
-<!-- Banner -->
-<?php
-$bannerText = 'KOMMENDE EVENTS';
-include __DIR__ . '/micro/___banner.php';
-?>
+    <!-- Hero section -->
+    <section class="events-hero">
+        <h1 class="events-hero-title">EVENTS</h1>
+    </section>
 
-<main>
+    <!-- Banner -->
+    <?php
+    $bannerText = 'KOMMENDE EVENTS';
+    include __DIR__ . '/micro/___banner.php';
+    ?>
+
     <section class="events-filter">
         <h2 class="events-filter-title">KOMMENDE EVENTS</h2>
 
@@ -36,19 +37,18 @@ include __DIR__ . '/micro/___banner.php';
 
                     <img src="/assets/img/icons/arrow-down.svg" alt="" class="education-filter-arrow">
                 </select>
-        </div>
+            </form>
         </div>
     </section>
 
-    <div class="events-list" id="events-list">
+    <section class="events-list" id="events-list">
         <?php if (empty($events)): ?>
             <p class="events-empty">Ingen events endnu</p>
         <?php endif; ?>
         <?php foreach ($events as $event): ?>
             <?php include __DIR__ . '/components/_card_list.php'; ?>
         <?php endforeach; ?>
-    </div>
+    </section>
 
     <div class="events-pagination" id="events-pagination"></div>
-
 </main>

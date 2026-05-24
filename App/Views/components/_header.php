@@ -135,6 +135,7 @@ if ($isLoggedIn) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="da">
 
@@ -158,6 +159,7 @@ if ($isLoggedIn) {
         <?php if ($successMessage): ?>
             <div class="toast toast-success">
                 <?= e($successMessage) ?>
+
                 <button type="button" class="toast-close" aria-label="Luk besked">×</button>
             </div>
         <?php endif; ?>
@@ -165,6 +167,7 @@ if ($isLoggedIn) {
         <?php if ($errorMessage): ?>
             <div class="toast toast-error" role="alert">
                 <?= e($errorMessage) ?>
+
                 <button type="button" class="toast-close" aria-label="Luk besked">×</button>
             </div>
         <?php endif; ?>
@@ -246,11 +249,9 @@ if ($isLoggedIn) {
                         </a>
                     <?php endforeach; ?>
                 </div>
-
             </nav>
         </div>
     </header>
-
 
     <!-- Subnavigation - Mobil -->
     <?php if ($isLoggedIn && !empty($subNavItems) && $isProfileSection): ?>
@@ -258,8 +259,10 @@ if ($isLoggedIn) {
             <?php foreach ($subNavItems as $item): ?>
                 <a href="<?= htmlspecialchars($item['url']) ?>"
                     class="mobile-bottom-link <?= ($currentPage === $item['key']) ? 'active' : '' ?>">
+
                     <img src="<?= ($currentPage === $item['key']) ? $item['icon_active'] : $item['icon']; ?>"
                         alt="<?= htmlspecialchars($item['label']) ?>" class="mobile-bottom-icon">
+
                     <?php if (!empty($item['badge'])): ?>
                         <span class="mobile-nav-badge"><?= htmlspecialchars($item['badge']) ?></span>
                     <?php endif; ?>

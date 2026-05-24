@@ -3,34 +3,34 @@ $profileImage = $_SESSION['user']['user_profile_image'] ?? null;
 $hasProfileImage = !empty($profileImage);
 ?>
 
-<!-- Hero section -->
-<section class="membership-hero">
-
-    <div class="membership-left">
-        <h1>BLIV<br>MEDLEM</h1>
-
-        <div class="membership-hero-line"></div>
-
-        <p>
-            Bliv en del af GBG Social og vær med til at skabe
-            uforglemmelige events, stærke fællesskaber og
-            oplevelser, du ikke finder andre steder.
-        </p>
-    </div>
-
-    <div class="membership-right">
-        <img src="/assets/img/solnedgang.webp" alt="GBG Social medlemmer">
-    </div>
-
-</section>
-
-<!-- Banner -->
-<?php
-$bannerText = 'BLIV EN DEL AF FÆLLESSKABET';
-include __DIR__ . '/micro/___banner.php';
-?>
-
 <main class="membership-page">
+
+    <!-- Hero section -->
+    <section class="membership-hero">
+
+        <div class="membership-left">
+            <h1>BLIV<br>MEDLEM</h1>
+
+            <div class="membership-hero-line"></div>
+
+            <p>
+                Bliv en del af GBG Social og vær med til at skabe
+                uforglemmelige events, stærke fællesskaber og
+                oplevelser, du ikke finder andre steder.
+            </p>
+        </div>
+
+        <div class="membership-right">
+            <img src="/assets/img/solnedgang.webp" alt="GBG Social medlemmer">
+        </div>
+
+    </section>
+
+    <!-- Banner -->
+    <?php
+    $bannerText = 'BLIV EN DEL AF FÆLLESSKABET';
+    include __DIR__ . '/micro/___banner.php';
+    ?>
 
     <!-- Hvorfor blive medlem -->
     <section class="membership-benefits">
@@ -41,7 +41,9 @@ include __DIR__ . '/micro/___banner.php';
 
             <article class="benefit-card">
                 <img src="/assets/img/icons/fællesskab.png" alt="Fællesskab logo">
+
                 <h3>FÆLLESSKAB</h3>
+
                 <p>
                     Bliv en del af et socialt og inkluderende studiemiljø, hvor du kan møde nye mennesker på tværs af
                     uddannelser og årgange.
@@ -51,7 +53,9 @@ include __DIR__ . '/micro/___banner.php';
 
             <article class="benefit-card">
                 <img src="/assets/img/icons/events2.png" alt="Events logo">
+
                 <h3>EVENTS</h3>
+
                 <p>
                     Som medlem får du adgang til sociale arrangementer, aktiviteter og events gennem hele studieåret.
                     Vi arrangerer alt fra fredagsbarer og fester til hyggelige fællesaktiviteter for alle studerende.
@@ -60,16 +64,16 @@ include __DIR__ . '/micro/___banner.php';
 
             <article class="benefit-card">
                 <img src="/assets/img/icons/netværk.png" alt="Netværk logo">
+
                 <h3>NETVÆRK</h3>
+
                 <p>
                     Udvid dit netværk og lær studerende fra andre uddannelser at kende.
                     Foreningen giver mulighed for at skabe relationer, dele erfaringer og blive en del af et stærkt
                     fællesskab.
                 </p>
             </article>
-
         </div>
-
     </section>
 
     <!-- Stats section -->
@@ -77,28 +81,33 @@ include __DIR__ . '/micro/___banner.php';
 
         <div class="stat">
             <img src="/assets/img/icons/user_account.svg" alt="Medlemmer ikon">
+
             <div class="stat-text">
                 <h3><?= $memberStats['active_members']; ?></h3>
+
                 <p>AKTIVE MEDLEMMER</p>
             </div>
         </div>
 
         <div class="stat">
             <img src="/assets/img/icons/calender.png" alt="Kalender ikon">
+
             <div class="stat-text">
                 <h3>+<?= $memberStats['events_this_year']; ?></h3>
+
                 <p>EVENTS OM ÅRET</p>
             </div>
         </div>
 
         <div class="stat">
             <img src="/assets/img/icons/favorite.svg" alt="Hjerte ikon">
+
             <div class="stat-text">
                 <h3>100%</h3>
+
                 <p>FÆLLESSKAB</p>
             </div>
         </div>
-
     </section>
 
     <!-- Bliv en del af holdet -->
@@ -122,14 +131,17 @@ include __DIR__ . '/micro/___banner.php';
         <div class="form-container membership-container">
             <form method="POST" action="/membership_apply" enctype="multipart/form-data">
                 <?php csrf_input(); ?>
+
                 <div class="form-row">
                     <label for="user_name" class="hide_label">Fornavn</label>
-                    <input id="user_name" type="text" value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" disabled>
+                    <input id="user_name" type="text"
+                        value="<?= htmlspecialchars($_SESSION['user']['user_name'] ?? '') ?>" disabled>
 
                     <label for="user_last_name" class="hide_label">Efternavn</label>
-                    <input id="user_last_name" type="text" value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>"
-                        disabled>
+                    <input id="user_last_name" type="text"
+                        value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>" disabled>
                 </div>
+
                 <label for="education_fk" class="hide_label">Studieretning</label>
                 <select id="education_fk" name="education_fk" required>
                     <option value="">Vælg studieretning</option>
@@ -150,8 +162,10 @@ include __DIR__ . '/micro/___banner.php';
                         </option>
                     <?php endforeach; ?>
                 </select>
+
                 <label for="user_email" class="hide_label">Studiemail</label>
-                <input id="user_email" type="email" value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" disabled>
+                <input id="user_email" type="email"
+                    value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" disabled>
 
                 <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende
                     aktiviteter vil du have ansvaret for?</label>
@@ -184,6 +198,4 @@ include __DIR__ . '/micro/___banner.php';
             </form>
         </div>
     </section>
-
-
 </main>

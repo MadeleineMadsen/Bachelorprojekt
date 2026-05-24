@@ -101,7 +101,7 @@
   accent-color: var(--color-light-blue);
 }
 
-.checkbox-wrapper span {
+.checkbox-wrapper label {
   font-family: var(--font-text);
   font-size: var(--font-mobil-text);
   color: var(--font-color-black);
@@ -109,11 +109,11 @@
 
 .term_check {
   display: flex;
-  align-items: center;
   gap: var(--gap-xs);
 }
 
 .terms {
+  font-family: var(--font-text);
   font-size: var(--font-mobil-text);
   color: var(--color-blue);
 }
@@ -275,9 +275,13 @@
     height: 34px;
   }
 
-  .checkbox-wrapper span {
+  .checkbox-wrapper label {
     font-size: var(--font-desktop-text-small);
     color: var(--font-color-black);
+  }
+
+  .term_check {
+    align-items: center;
   }
 
   .terms {

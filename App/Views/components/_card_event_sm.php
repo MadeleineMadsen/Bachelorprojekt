@@ -3,13 +3,12 @@
     <div class="card-event-sm-img-wrap">
         <div class="card-event-sm-date">
             <span class="card-event-sm-day"><?= htmlspecialchars($event['date_day']) ?></span>
+
             <span class="card-event-sm-month"><?= htmlspecialchars($event['date_month_da']) ?></span>
         </div>
-        <img
-            src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>"
-            alt="<?= htmlspecialchars($event['event_title']) ?>"
-            class="card-event-sm-img"
-        >
+
+        <img src="/assets/img/<?= htmlspecialchars($event['event_image']) ?>"
+            alt="<?= htmlspecialchars($event['event_title']) ?>" class="card-event-sm-img">
     </div>
 
     <div class="card-event-sm-body">
@@ -28,21 +27,28 @@
             <div class="card-event-sm-meta-items">
                 <span class="card-event-sm-meta-item">
                     <img src="/assets/img/icons/ur_icon.png" alt="Ur ikon" class="card-event-sm-meta-icon">
+
                     <?= htmlspecialchars(substr($event['event_time'], 0, 5)) ?>
-                    <?php if (!empty($event['event_end_time'])): ?>- <?= htmlspecialchars(substr($event['event_end_time'], 0, 5)) ?><?php endif; ?>
+
+                    <?php if (!empty($event['event_end_time'])): ?>-
+                        <?= htmlspecialchars(substr($event['event_end_time'], 0, 5)) ?><?php endif; ?>
                 </span>
+
                 <span class="card-event-sm-meta-item">
                     <img src="/assets/img/icons/placering_icon.png" alt="Pin ikon" class="card-event-sm-meta-icon">
+
                     <?= htmlspecialchars($event['event_location']) ?>
                 </span>
+
                 <span class="card-event-sm-meta-item">
                     <img src="/assets/img/icons/person_icon.png" alt="Person ikon" class="card-event-sm-meta-icon">
+
                     <?= htmlspecialchars($event['participant_count'] ?? '0') ?> deltagere
                 </span>
             </div>
-            <a href="/event_page?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-secondary card-event-sm-link">Læs mere</a>
+
+            <a href="/event_page?id=<?= htmlspecialchars($event['event_pk']) ?>"
+                class="btn btn-secondary card-event-sm-link">Læs mere</a>
         </div>
-
     </div>
-
 </article>

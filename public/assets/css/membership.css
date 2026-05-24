@@ -59,13 +59,11 @@
   margin: 0;
 }
 
-/* ---------- Page wrapper ---------- */
+/* ---------- Benefits ---------- */
 
-.membership-page {
+.membership-benefits {
   margin: var(--gap-sm);
 }
-
-/* ---------- Benefits ---------- */
 
 .membership-benefits h2 {
   font-family: var(--font-header);
@@ -152,7 +150,7 @@
 /* ---------- Membership form section ---------- */
 
 .get-membership {
-  margin: var(--gap-md) 0;
+  margin: var(--gap-md) var(--gap-sm);
 }
 
 .membership-info {
@@ -243,15 +241,10 @@
     object-position: center;
   }
 
-  /* ---------- Page wrapper ---------- */
-
-  .membership-page {
-    margin: var(--gap-md);
-  }
-
   /* ---------- Benefits ---------- */
 
   .membership-benefits {
+    margin: var(--gap-md);
     padding: 0 0 var(--gap-lg);
   }
 
@@ -328,7 +321,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--gap-lg);
-    margin: var(--gap-lg) 0 var(--gap-lg);
+    margin: var(--gap-lg) var(--gap-md);
   }
 
   .membership-image {

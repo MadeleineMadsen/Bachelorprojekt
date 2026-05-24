@@ -1,9 +1,11 @@
 <main class="approve-main">
+
     <section class="accept-container">
-        <div class="header-container">
+        <section class="header-container">
             <h1 class="approve-header">ANSØGNINGER</h1>
+
             <p class="approve-p">Ansøgninger om medlemsskab til godkendelse</p>
-        </div>
+        </section>
 
         <h3 class="approve-sub">
             Afventer godkendelse
@@ -14,12 +16,13 @@
             <?php endif; ?>
         </h3>
 
-        <div class="approve-container">
+        <section class="approve-container">
             <?php if (empty($applications)): ?>
                 <p class="approve-empty">Ingen ansøgninger afventer godkendelse</p>
             <?php endif; ?>
             <?php foreach ($applications as $app): ?>
-                <div class="approve-card">
+
+                <article class="approve-card">
 
                     <!-- Venstre (profil) -->
                     <div class="approve-left inner">
@@ -27,10 +30,13 @@
                             ? '/assets/img/uploads/' . htmlspecialchars($app['user_profile_image'])
                             : '/assets/img/uploads/default_profile_image.webp' ?>" alt="Profilbillede"
                             class="profile-img profile-medium">
+
                         <div class="approve-info">
                             <h2 class="approve-name"><strong><?= $app['user_name']; ?>
                                     <?= $app['user_last_name']; ?></strong></h2>
+
                             <p><?= htmlspecialchars($app['education_name']); ?></p>
+
                             <p><?= $app['user_email']; ?></p>
                         </div>
                     </div>
@@ -38,6 +44,7 @@
                     <!-- Midte -->
                     <div class="approve-middle inner">
                         <p class="approve-date">Ansøgt d. <?= formatDanishDate($app['applied_at']); ?></p>
+
                         <p class="motivation">
                             <?= $app['application_text']; ?>
                         </p>
@@ -47,26 +54,31 @@
                     <div class="approve-right">
                         <form method="POST" action="/approve_member">
                             <?php csrf_input(); ?>
+
                             <input type="hidden" name="member_pk" value="<?= $app['member_pk']; ?>">
+
                             <button class="btn btn-primary">GODKEND</button>
                         </form>
 
                         <form method="POST" action="/reject_member">
                             <?php csrf_input(); ?>
+
                             <input type="hidden" name="member_pk" value="<?= $app['member_pk']; ?>">
+
                             <button class="btn btn-secondary">AFVIS</button>
                         </form>
                     </div>
-
-                </div>
+                </article>
             <?php endforeach; ?>
-        </div>
+        </section>
 
         <h3 class="existing-members">Eksisterende medlemmer</h3>
+
         <div class="filter-container">
             <form class="search-form" action="" onsubmit="return false;">
                 <div class="search-field">
                     <input type="text" id="memberSearch" placeholder="SØG">
+
                     <button type="button" aria-label="Søg">
                         <img src="/assets/img/icons/search.svg" alt="Søg ikon">
                     </button>
@@ -83,7 +95,6 @@
                 </select>
             </form>
         </div>
-
 
         <section class="member-carousel-section">
             <button class="carousel-arrow carousel-prev" type="button" aria-label="Forrige">
@@ -121,6 +132,7 @@
                             ? '/assets/img/uploads/' . htmlspecialchars($member['user_profile_image'])
                             : '/assets/img/uploads/default_profile_image.webp' ?>" alt="Profilbillede"
                             class="profile-img profile-medium">
+
                         <h3>
                             <?= $member['user_name']; ?>
                         </h3>

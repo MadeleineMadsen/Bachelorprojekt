@@ -42,7 +42,6 @@ $socials = [
         'url' => 'https://www.facebook.com'
     ],
 ];
-
 ?>
 
 <footer class="site-footer">
@@ -51,6 +50,7 @@ $socials = [
             <img src="/assets/img/icons/logo_footer_black.png" alt="GBG Social Logo">
         </a>
     </div>
+
     <div class="footer-container">
         <div class="footer-inner">
             <?php foreach ($FooterNavItems as $item): ?>
@@ -67,8 +67,10 @@ $socials = [
             <?php endforeach; ?>
         </div>
     </div>
+
     <div class="some-container">
         <p>FØLG OS</p>
+
         <div>
             <?php foreach ($socials as $social): ?>
                 <a href="<?= $social['url'] ?>">
@@ -78,8 +80,6 @@ $socials = [
         </div>
     </div>
 </footer>
-
-
 
 <script src="/assets/js/app.js"></script>
 <script src="/assets/js/utilities.js"></script>

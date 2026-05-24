@@ -1,15 +1,15 @@
-<!-- Hero section -->
-<section class="members-hero">
-    <h1>MEDLEMMER</h1>
-</section>
-
-<!-- Banner -->
-<?php
-$bannerText = 'SE ALLE MEDLEMMER';
-include __DIR__ . '/micro/___banner.php';
-?>
-
 <main class="members-page">
+
+    <!-- Hero section -->
+    <section class="members-hero">
+        <h1>MEDLEMMER</h1>
+    </section>
+
+    <!-- Banner -->
+    <?php
+    $bannerText = 'SE ALLE MEDLEMMER';
+    include __DIR__ . '/micro/___banner.php';
+    ?>
 
     <!-- Medlemmer overview -->
     <section class="members-overview">
@@ -45,7 +45,6 @@ include __DIR__ . '/micro/___banner.php';
                 </div>
 
                 <div class="members-filter-select-wrap">
-
                     <select name="education" id="educationFilter" class="filter-select">
                         <option value="">ALLE MEDLEMMER</option>
 
@@ -57,14 +56,13 @@ include __DIR__ . '/micro/___banner.php';
                     </select>
 
                     <img src="/assets/img/icons/arrow-down.svg" alt="" class="education-filter-arrow">
-
                 </div>
-
             </form>
         </div>
 
         <section class="members-grid" aria-label="Medlemmer">
             <?php foreach ($members as $member): ?>
+
                 <article class="member-card" data-name="<?= strtolower(htmlspecialchars($member['user_name'])); ?>"
                     data-education="<?= $member['education_fk'] ?? ''; ?>">
                     <img src="<?= !empty($member['user_profile_image'])
@@ -73,6 +71,7 @@ include __DIR__ . '/micro/___banner.php';
                         alt="Portræt af <?= htmlspecialchars($member['user_name']); ?>" class="member-img">
 
                     <h3><?= htmlspecialchars($member['user_name']); ?></h3>
+
                     <p>
                         <?= !empty($member['education_name'])
                             ? htmlspecialchars($member['education_name'])
@@ -86,8 +85,5 @@ include __DIR__ . '/micro/___banner.php';
                 </article>
             <?php endforeach; ?>
         </section>
-
-
     </section>
-
 </main>

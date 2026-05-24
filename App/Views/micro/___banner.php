@@ -5,7 +5,7 @@ $textLength = mb_strlen($bannerText);
 $repeat = max(12, ceil(120 / max($textLength, 1)));
 ?>
 
-<div class="text-banner">
+<section class="text-banner">
     <div class="text-banner-track">
         <?php for ($group = 0; $group < 2; $group++): ?>
             <div class="text-banner-group">
@@ -15,4 +15,4 @@ $repeat = max(12, ceil(120 / max($textLength, 1)));
             </div>
         <?php endfor; ?>
     </div>
-</div>
+</section>
