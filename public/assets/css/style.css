@@ -6,8 +6,7 @@
 /* Layout - mediaqueries */
 @import "./layout.css";
 
-
-/* Komponenter */
+/* ---------- Komponenter ---------- */
 
 /* Utilities - genbrugelige utility klasser */
 @import "./utilities.css";
@@ -23,8 +22,7 @@
 /* Formularer - styling af alle formularer */
 @import "./forms.css";
 
-
-/* Sider */
+/* ---------- Sider ---------- */
 
 /* Forsiden - styling af hele forsiden */
 @import "./front_page.css";

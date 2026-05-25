@@ -1,13 +1,17 @@
 /* profile.css */
 
-/* ========== MOBILE (FIRST) ========== */
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
 
 .profile-page {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 6.25rem 1fr;
   column-gap: var(--gap-xs);
   margin: 0;
 }
+
+/* ---------- Hero ---------- */
 
 .profile-hero {
   display: contents;
@@ -24,7 +28,7 @@
   font-size: var(--font-mobil-h1);
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  margin-left: -20px;
+  margin-left: -1.25rem;
 }
 
 .hello-text h2 {
@@ -33,6 +37,8 @@
   writing-mode: vertical-rl;
   transform: rotate(180deg);
 }
+
+/* ---------- Intro ---------- */
 
 .profile-intro {
   grid-column: 2;
@@ -51,13 +57,15 @@
 .profile-intro p {
   font-family: var(--font-text);
   font-size: var(--font-mobil-text);
-  max-width: 150px;
+  max-width: 9.375rem;
 }
+
+/* ---------- Profile image ---------- */
 
 .profile-image-wrapper {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
   flex-shrink: 0;
 }
 
@@ -73,8 +81,8 @@
   right: 0;
   bottom: 0;
 
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
 
   border: none;
   border-radius: 50%;
@@ -89,11 +97,11 @@
 }
 
 .camera-btn img {
-  width: 30px;
-  height: 30px;
+  width: 1.875rem;
+  height: 1.875rem;
 }
 
-/* Mine events */
+/* ---------- My events ---------- */
 
 .my-events-hero-title {
   font-size: var(--font-mobil-h2);
@@ -108,17 +116,21 @@
   margin-bottom: var(--gap-md);
 }
 
-/* ========== DESKTOP ========== */
+/* ==================================================
+  DESKTOP
+================================================== */
 
 @media (min-width: 768px) {
   .profile-page {
-    grid-template-columns: 450px 1fr;
+    grid-template-columns: 28.125rem 1fr;
     column-gap: var(--gap-lg);
     margin-top: var(--gap-md);
-    max-width: 1450px;
+    max-width: 90.625rem;
     margin-left: auto;
     margin-right: auto;
   }
+
+  /* ---------- Hero ---------- */
 
   .hello-text h1 {
     font-size: var(--font-desktop-h1-special);
@@ -129,9 +141,11 @@
     font-size: var(--font-desktop-h2);
   }
 
+  /* ---------- Intro ---------- */
+
   .profile-intro {
     gap: var(--gap-md);
-    max-width: 800px;
+    max-width: 50rem;
   }
 
   .profile-intro h3 {
@@ -144,25 +158,27 @@
     max-width: 90%;
   }
 
+  /* ---------- Profile image ---------- */
+
   .profile-image-wrapper {
-    width: 200px;
-    height: 200px;
+    width: 12.5rem;
+    height: 12.5rem;
     margin-left: auto;
     margin-right: 0;
     flex-shrink: 0;
   }
 
   .camera-btn {
-    width: 58px;
-    height: 58px;
+    width: 3.625rem;
+    height: 3.625rem;
   }
 
   .camera-btn img {
-    width: 45px;
-    height: 45px;
+    width: 2.8125rem;
+    height: 2.8125rem;
   }
 
-  /* Mine events */
+  /* ---------- My events ---------- */
 
   .my-events-hero-title {
     font-size: var(--font-desktop-h2);

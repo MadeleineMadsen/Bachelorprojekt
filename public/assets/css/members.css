@@ -1,7 +1,11 @@
 /* members.css */
 @import "/membership_approve.css";
 
-/* ========== MOBILE (FIRST) ========== */
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
+
+/* ---------- Hero ---------- */
 
 .members-hero {
   padding: var(--gap-sm) var(--gap-xs);
@@ -15,6 +19,8 @@
   margin: 0;
 }
 
+/* ---------- Overview ---------- */
+
 .members-overview {
   margin: var(--gap-sm);
 }
@@ -26,16 +32,17 @@
   margin: var(--gap-md) 0;
 }
 
-/* Stats */
+/* ---------- Stats ---------- */
+
 .members-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border: 1px solid var(--font-color-black);
+  border: 0.0625rem solid var(--color-black);
   margin-bottom: var(--gap-md);
 }
 
 .members-stat {
-  min-height: 80px;
+  min-height: 5rem;
   padding: var(--gap-xs);
   text-align: center;
   display: flex;
@@ -44,14 +51,14 @@
 }
 
 .members-stat:not(:last-child) {
-  border-right: 1px solid var(--font-color-black);
+  border-right: 0.0625rem solid var(--color-black);
 }
 
 .members-stat h3 {
   color: var(--color-light-blue);
   font-size: var(--font-mobil-h3);
   font-weight: var(--IBM-font-bold);
-  margin: 0 0 4px;
+  margin: 0 0 0.25rem;
 }
 
 .members-stat p {
@@ -60,7 +67,8 @@
   margin: 0;
 }
 
-/* Grid */
+/* ---------- Members grid ---------- */
+
 .members-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -74,13 +82,12 @@
 }
 
 .member-img {
-  width: 116px;
-  height: 116px;
+  width: 7.25rem;
+  height: 7.25rem;
   border-radius: 50%;
   object-fit: cover;
   display: block;
   margin: 0 auto var(--gap-sm);
-  background-color: beige;
 }
 
 .member-card h3 {
@@ -96,7 +103,8 @@
   text-transform: uppercase;
 }
 
-/* Link */
+/* ---------- Link ---------- */
+
 .members-link-wrapper {
   display: flex;
   justify-content: flex-end;
@@ -113,18 +121,22 @@
   gap: var(--gap-xs);
 }
 
-/* Screen reader only */
+/* ---------- Screen reader only ---------- */
+
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
 }
 
-/* ========== DESKTOP ========== */
+/* ==================================================
+  DESKTOP
+================================================== */
 
 @media (min-width: 768px) {
+  /* ---------- Hero ---------- */
   .members-hero {
     padding: var(--gap-lg) var(--gap-md);
   }
@@ -132,6 +144,8 @@
   .members-hero h1 {
     font-size: var(--font-desktop-h1);
   }
+
+  /* ---------- Overview ---------- */
 
   .members-overview {
     margin: var(--gap-lg) var(--gap-md);
@@ -142,12 +156,14 @@
     margin-bottom: var(--gap-md);
   }
 
+  /* ---------- Stats ---------- */
+
   .members-stats {
     margin-bottom: var(--gap-lg);
   }
 
   .members-stat {
-    min-height: 150px;
+    min-height: 9.375rem;
   }
 
   .members-stat h3 {
@@ -157,6 +173,8 @@
   .members-stat p {
     font-size: var(--font-desktop-text-small);
   }
+
+  /* ---------- Members grid ---------- */
 
   .members-grid {
     grid-template-columns: repeat(5, 1fr);
@@ -169,8 +187,8 @@
   }
 
   .member-img {
-    width: 235px;
-    height: 235px;
+    width: 14.6875rem;
+    height: 14.6875rem;
     margin: 0 auto var(--gap-md);
   }
 
@@ -178,6 +196,8 @@
   .member-card p {
     font-size: var(--font-desktop-text-small);
   }
+
+  /* ---------- Link ---------- */
 
   .members-link-wrapper {
     margin-top: var(--gap-md);

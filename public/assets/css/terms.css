@@ -1,6 +1,16 @@
+/* terms.css */
+
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
+
+/* ---------- Layout ---------- */
+
 .main-terms {
   margin: var(--gap-sm);
 }
+
+/* ---------- Content ---------- */
 
 .terms-header {
   margin: var(--gap-sm);
@@ -28,7 +38,12 @@
   margin-bottom: var(--gap-sm);
 }
 
+/* ==================================================
+  DESKTOP
+================================================== */
+
 @media (min-width: 768px) {
+  /* ---------- Layout ---------- */
   .main-terms {
     margin: var(--gap-md) var(--gap-xxl) var(--gap-lg) var(--gap-xxl);
   }
@@ -38,6 +53,8 @@
     margin: 0 var(--gap-xxl);
     margin-bottom: var(--gap-md);
   }
+
+  /* ---------- Content ---------- */
 
   .terms-header {
     font-size: var(--font-desktop-h2);

@@ -1,8 +1,10 @@
 /* front-page.css */
 
-/* ========== MOBILE (FIRST) ========== */
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
 
-/* Hero section */
+/* ---------- Hero ---------- */
 
 .front-page-hero {
   margin: 0;
@@ -34,7 +36,7 @@
   object-position: center 100%;
 }
 
-/* Intro section */
+/* ---------- Intro ---------- */
 
 .intro {
   position: relative;
@@ -42,7 +44,7 @@
 }
 
 .intro .btn::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
 }
@@ -62,7 +64,7 @@
   margin-bottom: var(--gap-sm);
 }
 
-/* Events */
+/* ---------- Events ---------- */
 
 .events-section {
   margin: 0;
@@ -82,7 +84,7 @@
   padding: var(--gap-md) var(--gap-sm);
 }
 
-/* Om os */
+/* ---------- About us ---------- */
 
 .about-section {
   display: grid;
@@ -132,7 +134,7 @@
   padding: var(--gap-md) var(--gap-sm);
 }
 
-/* Feed - Billeder */
+/* ---------- Feed ---------- */
 
 .feed-section {
   margin: 0;
@@ -167,10 +169,12 @@
   object-fit: cover;
 }
 
-/* ========== DESKTOP ========== */
+/* ==================================================
+  DESKTOP
+================================================== */
 
 @media (min-width: 768px) {
-  /* Hero section */
+  /* ---------- Hero ---------- */
 
   .front-page-hero h1 {
     font-size: var(--font-desktop-h1);
@@ -184,13 +188,13 @@
     object-position: center 58%;
   }
 
-  /* Main */
+  /* ---------- Main ---------- */
 
   .front-page {
     margin: 0;
   }
 
-  /* Intro section */
+  /* ---------- Intro ---------- */
 
   .intro {
     padding: var(--gap-lg) var(--gap-md);
@@ -207,7 +211,7 @@
     max-width: 40rem;
   }
 
-  /* Events */
+  /* ---------- Events ---------- */
 
   .section-title {
     padding: var(--gap-md) var(--gap-md);
@@ -219,7 +223,7 @@
     padding: var(--gap-lg) var(--gap-md);
   }
 
-  /* Om os */
+  /* ---------- About us ---------- */
 
   .about-section {
     grid-template-columns: auto 1fr;
@@ -246,7 +250,7 @@
     padding: var(--gap-lg) var(--gap-md);
   }
 
-  /* Feed */
+  /* ---------- Feed ---------- */
 
   .feed-link-wrapper {
     margin: var(--gap-lg) var(--gap-md) var(--gap-md) var(--gap-md);

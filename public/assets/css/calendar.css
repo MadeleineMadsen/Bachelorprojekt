@@ -1,10 +1,15 @@
-/* =========================
-Kalender
-========================= */
+/* calendar.css */
+/* Bruges på kalender siden */
+
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
 
 .calendar-container {
   margin: var(--gap-sm);
 }
+
+/* ---------- Header ---------- */
 
 .calendar-header h1 {
   font-family: var(--font-header);
@@ -56,11 +61,13 @@ Kalender
   font-weight: var(--poppins-font-bold);
 }
 
+/* ---------- Calendar grid ---------- */
+
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  border-top: 1px solid var(--font-color-black);
-  border-left: 1px solid var(--font-color-black);
+  border-top: 0.0625rem solid var(--color-black);
+  border-left: 0.0625rem solid var(--color-black);
 }
 
 .calendar-weekdays {
@@ -78,8 +85,8 @@ Kalender
 .calendar-day {
   aspect-ratio: 1 / 1;
   border: 0;
-  border-right: 1px solid var(--font-color-black);
-  border-bottom: 1px solid var(--font-color-black);
+  border-right: 0.0625rem solid var(--color-black);
+  border-bottom: 0.0625rem solid var(--color-black);
   background: var(--bg-color-white);
   color: var(--font-color-black);
   font-family: var(--font-text);
@@ -118,7 +125,7 @@ Kalender
   background: var(--color-light-yellow);
 }
 
-/* mobil event-liste */
+/* ---------- Mobile event list ---------- */
 .mobile-event-list {
   display: none;
   margin: var(--gap-md) 0;
@@ -133,7 +140,7 @@ Kalender
   font-size: var(--font-mobil-h2);
   font-weight: var(--poppins-font-semi-bold);
   text-transform: uppercase;
-  border-bottom: 1px solid var(--font-color-black);
+  border-bottom: 0.0625rem solid var(--font-color-black);
   padding-bottom: var(--gap-xs);
   margin-bottom: 0;
 }
@@ -150,7 +157,7 @@ Kalender
   align-items: center;
   gap: var(--gap-xxs);
   padding: var(--gap-xs);
-  border-bottom: 1px solid var(--font-color-black);
+  border-bottom: 0.0625rem solid var(--font-color-black);
 }
 
 .mobile-event-card.is-visible {
@@ -188,14 +195,14 @@ Kalender
 
 .calendar-registered-label {
   display: inline-block;
-  background-color: var(--color-black);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 5px;
+  background-color: var(--bg-color-black);
+  color: var(--color-white);
+  font-size: 0.625rem;
+  font-weight: var(--poppins-font-bold);
+  padding: 0.125rem 0.3125rem;
   letter-spacing: 0.08em;
   vertical-align: middle;
-  margin-right: 4px;
+  margin-right: 0.25rem;
 }
 
 .mobile-event-card .calendar-img-wrap .calendar-registered-label {
@@ -203,15 +210,15 @@ Kalender
   position: absolute;
   top: 0;
   left: 0;
-  font-size: 12px;
-  padding: 4px 8px;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
   margin-right: 0;
 }
 
 .no-events {
   display: none;
   padding: var(--gap-sm) 0;
-  border-bottom: 1px solid var(--font-color-black);
+  border-bottom: 0.0625rem solid var(--color-black);
   font-family: var(--font-text);
   font-size: var(--font-mobil-text);
 }
@@ -220,9 +227,10 @@ Kalender
   color: var(--color-blue);
 }
 
-/* =========================
-Desktop
-========================= */
+/* ==================================================
+  DESKTOP
+================================================== */
+
 @media (min-width: 768px) {
   .calendar-container {
     margin: var(--gap-lg);
@@ -232,6 +240,8 @@ Desktop
     font-size: var(--font-desktop-h2);
     margin: var(--gap-sm) 0;
   }
+
+  /* ---------- Header ---------- */
 
   .calendar-header {
     display: flex;
@@ -243,7 +253,6 @@ Desktop
   .calendar-actions {
     display: flex;
     align-items: center;
-    gap: var(--gap-md);
     justify-content: flex-end;
     gap: var(--gap-lg);
     margin-top: var(--gap-sm);
@@ -259,6 +268,8 @@ Desktop
     font-size: var(--font-desktop-h3);
     margin-bottom: var(--gap-md);
   }
+
+  /* ---------- Calendar grid ---------- */
 
   .calendar-grid {
     grid-template-columns: repeat(7, 1fr);
@@ -278,11 +289,11 @@ Desktop
   }
 
   .calendar-day:hover {
-    scrollbar-color: #ccc transparent;
+    scrollbar-color: var(--color-grey) transparent;
   }
 
   .calendar-day::-webkit-scrollbar {
-    width: 4px;
+    width: 0.25rem;
   }
 
   .calendar-day::-webkit-scrollbar-track {
@@ -291,11 +302,11 @@ Desktop
 
   .calendar-day::-webkit-scrollbar-thumb {
     background: transparent;
-    border-radius: 2px;
+    border-radius: 0.125rem;
   }
 
   .calendar-day:hover::-webkit-scrollbar-thumb {
-    background: #ccc;
+    background: var(--color-grey);
   }
 
   .calendar-date {
@@ -307,6 +318,8 @@ Desktop
     font-size: var(--font-desktop-text-small);
     padding: var(--gap-xxs) 0 var(--gap-xxs) var(--gap-xs);
   }
+
+  /* ---------- Mobile event list ---------- */
 
   .mobile-event-list {
     margin: var(--gap-lg) 0 var(--gap-lg) 0;
@@ -345,6 +358,8 @@ Desktop
     font-size: var(--font-desktop-text-small);
   }
 
+  /* ---------- Desktop event preview ---------- */
+
   .desktop-event-preview {
     display: block;
     width: 100%;
@@ -359,9 +374,9 @@ Desktop
     text-overflow: ellipsis;
     line-height: 1.4;
     margin-bottom: 0;
-    padding: 0.2rem 0 0.2rem 0.9rem;
+    padding: 0.6rem 0 0.6rem 0.9rem;
     position: relative;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 0.0625rem solid var(--color-black);
   }
 
   .desktop-event-preview p:last-child {
@@ -371,8 +386,8 @@ Desktop
   .desktop-event-preview p::before {
     content: "";
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: 0.375rem;
+    height: 0.375rem;
     border-radius: 50%;
     background: var(--color-light-blue);
     position: absolute;
@@ -383,7 +398,7 @@ Desktop
   }
 
   .desktop-event-preview p.calendar-event-registered::before {
-    background: var(--color-black);
+    background: var(--bg-color-black);
   }
 
   .no-events {

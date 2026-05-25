@@ -1,14 +1,14 @@
 /* forms.css */
 
-/* ========== MOBILE (FIRST) ========== */
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
 
-/* ----------------------------------- */
-/* Generel styling af alle formularer */
-/* ----------------------------------- */
+/* ---------- General form styling ---------- */
 
 .form-container {
-  width: 300px;
-  margin: 30px auto;
+  width: 18.75rem;
+  margin: 1.875rem auto;
 }
 
 .form-title {
@@ -24,7 +24,7 @@
   color: var(--font-color-black);
   width: 100%;
   border: none;
-  border-bottom: 1px solid var(--font-color-black);
+  border-bottom: 0.0625rem solid var(--color-black);
   padding: var(--gap-sm) 0 var(--gap-xxs);
   margin-bottom: var(--gap-sm);
   outline: none;
@@ -54,9 +54,9 @@
 
 .form-container textarea {
   width: 100%;
-  height: 170px;
+  height: 10.625rem;
   resize: none;
-  border: 1px solid var(--font-color-black);
+  border: 0.0625rem solid var(--color-black);
   margin-bottom: var(--gap-sm);
   font-family: var(--font-text);
   font-size: var(--font-mobil-text);
@@ -76,13 +76,7 @@
   color: var(--color-light-blue);
 }
 
-/* ----------------------------------- */
-/* Log ind formular */
-/* ----------------------------------- */
-
-/* ----------------------------------- */
-/* Opret dig formular */
-/* ----------------------------------- */
+/* ---------- Signup form ---------- */
 
 .checkbox-wrapper {
   display: flex;
@@ -93,8 +87,8 @@
 }
 
 .checkbox-wrapper input[type="checkbox"] {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   margin-bottom: 0;
   border-bottom: none;
   flex-shrink: 0;
@@ -118,9 +112,7 @@
   color: var(--color-blue);
 }
 
-/* ----------------------------------- */
-/* Ansøg om medlemskab formular */
-/* ----------------------------------- */
+/* ---------- Membership form ---------- */
 
 .membership-container input,
 .membership-container select,
@@ -130,24 +122,22 @@
 }
 
 .upload-preview {
-  width: 80px;
-  height: 80px;
+  width: 5rem;
+  height: 5rem;
   object-fit: cover;
   border-radius: 50%;
   margin-bottom: var(--gap-sm);
-  border: 1px solid var(--font-color-black);
+  border: 0.0625rem solid var(--color-black);
 }
 
-/* ----------------------------------- */
-/* Profil formular */
-/* ----------------------------------- */
+/* ---------- Profile form ---------- */
 
 .profile-admin-container,
 .profile-member-container,
 .profile-user-container {
   grid-column: 2;
-  width: 240px;
-  margin: 30px auto;
+  width: 15rem;
+  margin: 1.875rem auto;
 }
 
 .profile-admin-container h4,
@@ -166,14 +156,12 @@
   margin-top: var(--gap-sm);
 }
 
-/* ----------------------------------- */
-/* Opret event formular */
-/* ----------------------------------- */
+/* ---------- Event form ---------- */
 
 .upload-box {
   width: 100%;
-  min-height: 130px;
-  border: 2px dotted var(--font-color-black);
+  min-height: 8.125rem;
+  border: 0.125rem dotted var(--color-black);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -198,31 +186,31 @@
 }
 
 .upload-icon img {
-  width: 48px;
+  width: 3rem;
   height: auto;
   margin-top: var(--gap-xs);
 }
 
 .button-row {
   display: flex;
-  gap: 20px;
+  gap: var(--gap-sm);
   align-items: center;
 }
 
 .button-row .btn {
-  padding: 0 12px;
+  padding: 0 var(--gap-xs);
 }
 
-/* ========== DESKTOP ========== */
+/* ==================================================
+  DESKTOP
+================================================== */
 
 @media (min-width: 768px) {
-  /* ----------------------------------- */
-  /* Generel styling af alle formularer */
-  /* ----------------------------------- */
+  /* ---------- General form styling ---------- */
 
   .form-container {
-    width: 720px;
-    margin: 70px auto;
+    width: 45rem;
+    margin: 4.375rem auto;
   }
 
   .form-title {
@@ -234,7 +222,7 @@
   .form-container input,
   .form-container select {
     font-size: var(--font-desktop-text-small);
-    border-bottom: 2px solid var(--font-color-black);
+    border-bottom: 0.125rem solid var(--color-black);
     margin-bottom: var(--gap-md);
   }
 
@@ -247,7 +235,7 @@
   }
 
   .form-container textarea {
-    height: 200px;
+    height: 12.5rem;
     margin-bottom: var(--gap-md);
     font-size: var(--font-desktop-text-small);
   }
@@ -257,13 +245,7 @@
     margin-top: var(--gap-md);
   }
 
-  /* ----------------------------------- */
-  /* Log ind formular */
-  /* ----------------------------------- */
-
-  /* ----------------------------------- */
-  /* Opret dig formular */
-  /* ----------------------------------- */
+  /* ---------- Signup form ---------- */
 
   .checkbox-wrapper {
     gap: var(--gap-md);
@@ -271,8 +253,8 @@
   }
 
   .checkbox-wrapper input[type="checkbox"] {
-    width: 34px;
-    height: 34px;
+    width: 2.125rem;
+    height: 2.125rem;
   }
 
   .checkbox-wrapper label {
@@ -288,9 +270,7 @@
     font-size: var(--font-desktop-text-small);
   }
 
-  /* ----------------------------------- */
-  /* Ansøg om medlemskab formular */
-  /* ----------------------------------- */
+  /* ---------- Membership form ---------- */
 
   .membership-container input,
   .membership-container select,
@@ -300,20 +280,18 @@
   }
 
   .upload-preview {
-    width: 100px;
-    height: 100px;
+    width: 6.25rem;
+    height: 6.25rem;
   }
 
-  /* ----------------------------------- */
-  /* Profil formular */
-  /* ----------------------------------- */
+  /* ---------- Profile form ---------- */
 
   .profile-admin-container,
   .profile-member-container,
   .profile-user-container {
     grid-column: 2;
-    width: 420px;
-    margin: 50px 0 0 0;
+    width: 26.25rem;
+    margin: 3.125rem 0 0 0;
     margin-bottom: var(--gap-md);
   }
 
@@ -332,12 +310,10 @@
     width: 100%;
   }
 
-  /* ----------------------------------- */
-  /* Opret event formular */
-  /* ----------------------------------- */
+  /* ---------- Event form ---------- */
 
   .upload-box {
-    min-height: 180px;
+    min-height: 11.25rem;
     font-size: var(--font-desktop-text-small);
     margin-bottom: var(--gap-md);
   }
@@ -348,13 +324,13 @@
   }
 
   .upload-icon img {
-    width: 70px;
+    width: 4.375rem;
     margin-top: var(--gap-md);
   }
 
   .button-row {
     display: flex;
-    gap: 55px;
+    gap: 3.4375rem;
     align-items: center;
   }
 

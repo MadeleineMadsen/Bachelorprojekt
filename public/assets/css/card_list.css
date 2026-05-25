@@ -1,7 +1,9 @@
 /* card-list.css */
 /* Bruges på events oversigt siden */
 
-/* ========== MOBILE ========== */
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
 
 .card-event-list {
   position: relative;
@@ -37,6 +39,8 @@
   inset: 0;
   z-index: 1;
 }
+
+/* ---------- Card image ---------- */
 
 .card-event-list-img-wrap {
   position: relative;
@@ -87,13 +91,15 @@
   display: block;
 }
 
+/* ---------- Card body ---------- */
+
 .card-event-list-body {
   display: flex;
   flex-direction: column;
   gap: var(--gap-xs);
   padding-top: var(--gap-xs);
   padding-bottom: var(--gap-sm);
-  border-bottom: 1px solid var(--font-color-black);
+  border-bottom: 0.0625rem solid var(--color-black);
 }
 
 .card-event-list-category {
@@ -104,8 +110,8 @@
 
 .card-event-list-category::before {
   content: "";
-  width: 150px;
-  border-top: 1px solid var(--font-color-black);
+  width: 9.375rem;
+  border-top: 0.0625rem solid var(--color-black);
 }
 
 .card-event-list-tag {
@@ -134,6 +140,8 @@
   overflow: hidden;
 }
 
+/* ---------- Meta info ---------- */
+
 .card-event-list-meta {
   display: flex;
   flex-direction: column;
@@ -145,39 +153,46 @@
 .card-event-list-meta-items {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 .card-event-list-meta-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.375rem;
   font-size: var(--font-mobil-small);
   color: var(--font-color-black);
 }
 
 .card-event-list-meta-icon {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
   object-fit: contain;
   flex-shrink: 0;
 }
 
-/* ========== DESKTOP ========== */
+/* ==================================================
+  DESKTOP
+================================================== */
+
 @media (min-width: 768px) {
   .card-event-list {
     display: grid;
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 15rem 1fr;
     align-items: stretch;
     gap: var(--gap-md);
     padding: var(--gap-md) 0;
   }
 
+  /* ---------- Card image ---------- */
+
   .card-event-list-img-wrap {
-    width: 240px;
+    width: 15rem;
     height: 100%;
     aspect-ratio: unset;
   }
+
+  /* ---------- Card body ---------- */
 
   .card-event-list-body {
     padding-top: 0;
@@ -205,6 +220,8 @@
     font-size: var(--font-desktop-text-small);
   }
 
+  /* ---------- Meta info ---------- */
+
   .card-event-list-meta {
     flex-direction: row;
     align-items: flex-end;
@@ -223,8 +240,8 @@
   }
 
   .card-event-list-meta-icon {
-    width: 18px;
-    height: 18px;
+    width: 1.125rem;
+    height: 1.125rem;
   }
 
   .card-event-list .btn {

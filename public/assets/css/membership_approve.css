@@ -1,6 +1,11 @@
-/* =========================
-Mobilefirst
-========================= */
+/* membership_approve.css */
+
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
+
+/* ---------- Page ---------- */
+
 .approve-main {
   margin: 0;
   padding: 0;
@@ -9,6 +14,8 @@ Mobilefirst
 .accept-container {
   margin: var(--gap-sm);
 }
+
+/* ---------- Header ---------- */
 
 .header-container {
   margin-bottom: var(--gap-lg);
@@ -38,7 +45,7 @@ Mobilefirst
   margin-bottom: var(--gap-sm);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--gap-sm);
 }
 
 .approve-count {
@@ -53,7 +60,7 @@ Mobilefirst
   min-width: 1.6rem;
   height: 1.6rem;
 
-  border-radius: 999px;
+  border-radius: 62.4375rem;
   background: var(--color-yellow);
   color: var(--font-color-black);
 }
@@ -66,13 +73,15 @@ Mobilefirst
   margin-bottom: var(--gap-sm);
 }
 
+/* ---------- Applications ---------- */
+
 .approve-container {
   display: grid;
   gap: var(--gap-sm);
 }
 
 .approve-card {
-  border: 1px solid var(--font-color-black);
+  border: 0.0625rem solid var(--color-black);
   display: grid;
   grid-template-columns: 1fr;
 }
@@ -115,7 +124,7 @@ Mobilefirst
   left: var(--gap-sm);
   right: var(--gap-sm);
   bottom: 0;
-  height: 1px;
+  height: 0.0625rem;
   background: var(--font-color-black);
 }
 
@@ -133,7 +142,8 @@ Mobilefirst
   flex: 1;
 }
 
-/* Godkendte medlemmer */
+/* ---------- Existing members ---------- */
+
 .existing-members {
   margin: var(--gap-md) 0 var(--gap-sm) 0;
   font-family: var(--font-header);
@@ -144,7 +154,8 @@ Mobilefirst
   margin: var(--gap-lg) 0;
 }
 
-/* Slet medlemmer */
+/* ---------- Delete members ---------- */
+
 .member-slide {
   position: relative;
 }
@@ -161,13 +172,16 @@ Mobilefirst
   line-height: 1;
 }
 
-/* =========================
-Desktop
-========================= */
+/* ==================================================
+  DESKTOP
+================================================== */
+
 @media (min-width: 768px) {
   .accept-container {
     margin: var(--gap-lg);
   }
+
+  /* ---------- Header ---------- */
 
   .header-container {
     margin-bottom: var(--gap-xl);
@@ -191,6 +205,8 @@ Desktop
     min-width: 2rem;
     height: 2rem;
   }
+
+  /* ---------- Applications ---------- */
 
   .approve-container {
     gap: var(--gap-md);
@@ -221,7 +237,7 @@ Desktop
     right: 0;
     top: var(--gap-sm);
     bottom: var(--gap-sm);
-    width: 1px;
+    width: 0.0625rem;
     height: auto;
   }
 
@@ -246,9 +262,13 @@ Desktop
     flex: unset;
   }
 
+  /* ---------- Existing members ---------- */
+
   .existing-members {
     margin-top: var(--gap-lg);
   }
+
+  /* ---------- Delete members ---------- */
 
   .member-delete-btn {
     right: 3rem;

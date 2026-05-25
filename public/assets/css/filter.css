@@ -1,10 +1,14 @@
 /* filter.css */
 
-/* ========== MOBILE FIRST ========== */
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
 
 .filter-container {
   margin: var(--gap-sm) 0;
 }
+
+/* ---------- Search ---------- */
 
 .search-form {
   display: flex;
@@ -17,9 +21,9 @@
 .search-field {
   display: flex;
   align-items: center;
-  border: 1px solid var(--font-color-black);
+  border: 0.0625rem solid var(--color-black);
   height: var(--btn-height-mobil);
-  width: 150px;
+  width: 9.375rem;
   flex: none;
 }
 
@@ -48,25 +52,27 @@
 }
 
 .search-field button img {
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
+/* ---------- Select ---------- */
+
 .filter-select {
-  border: 1px solid var(--font-color-black);
+  border: 0.0625rem solid var(--color-black);
   height: var(--btn-height-mobil);
-  width: 150px;
+  width: 9.375rem;
   flex: none;
 
-  padding: 0 35px 0 var(--gap-xs);
+  padding: 0 2.1875rem 0 var(--gap-xs);
   font-family: var(--font-text);
   font-size: var(--font-mobil-small);
   background-color: var(--bg-color-white);
 
   background-image: url("/assets/img/icons/arrow-down.svg");
   background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 14px;
+  background-position: right 0.75rem center;
+  background-size: 0.875rem;
 
   appearance: none;
   -webkit-appearance: none;
@@ -79,9 +85,12 @@
   display: none;
 }
 
-/* ========== DESKTOP ========== */
+/* ==================================================
+  DESKTOP
+================================================== */
 
 @media (min-width: 768px) {
+  /* ---------- Search ---------- */
   .search-form {
     justify-content: space-between;
     align-items: center;
@@ -94,13 +103,15 @@
     width: auto;
   }
 
+  /* ---------- Select ---------- */
+
   .filter-select {
     height: var(--btn-height-desktop);
     max-width: 35rem;
     flex: 1;
     width: auto;
     font-size: var(--font-desktop-text-small);
-    background-size: 16px;
+    background-size: 1rem;
   }
 
   .search-field input {
@@ -108,7 +119,7 @@
   }
 
   .search-field button img {
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }

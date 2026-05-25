@@ -2,7 +2,7 @@
 /* Bruges på single event siden */
 
 /* ==================================================
-   MOBILE / DEFAULT
+  MOBILE / DEFAULT
 ================================================== */
 
 /* ---------- Side wrapper ---------- */
@@ -17,7 +17,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  min-height: 200px;
+  min-height: 12.5rem;
   overflow: hidden;
   background: var(--bg-color-black);
 }
@@ -47,7 +47,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   background: var(--bg-color-black);
-  padding: 4px var(--gap-xs);
+  padding: 0.25rem var(--gap-xs);
   align-self: flex-start;
 }
 
@@ -146,7 +146,7 @@
   background: var(--bg-color-black);
   color: var(--font-color-white);
   padding: var(--gap-lg) var(--gap-sm);
-  border-bottom: 0.5px solid var(--font-color-white);
+  border-bottom: 0.0625rem solid var(--color-white);
 }
 
 .participants-heading {
@@ -177,7 +177,7 @@
 }
 
 .participants-more {
-  border: 2px solid var(--font-color-white);
+  border: 0.125rem solid var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,18 +194,6 @@
 
 .participants-desktop {
   display: none;
-}
-
-@media (min-width: 768px) {
-  .participants-grid {
-    grid-template-columns: repeat(11, 6rem);
-  }
-
-  .event-participants .profile-img,
-  .participants-more {
-    width: 6rem;
-    height: 6rem;
-  }
 }
 
 /* ---------- Gallery ---------- */
@@ -255,14 +243,14 @@
 }
 
 /* ==================================================
-   DESKTOP
+  DESKTOP
 ================================================== */
 
 @media (min-width: 768px) {
   /* ---------- Container ---------- */
 
   .event-page .container {
-    max-width: 1400px;
+    max-width: 87.5rem;
     padding: 0 var(--gap-md);
     margin: 0;
   }
@@ -286,7 +274,7 @@
 
   .event-page-layout {
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr 22.5rem;
     gap: var(--gap-md);
     align-items: start;
     padding: var(--gap-lg) var(--gap-md);
@@ -312,7 +300,7 @@
     background: var(--bg-color-black);
     color: var(--font-color-white);
     padding: var(--gap-lg) 0;
-    border-bottom: 1px solid var(--font-color-black);
+    border-bottom: 0.0625rem solid var(--color-black);
   }
 
   .event-page-about-heading {
@@ -348,7 +336,7 @@
   }
 
   .participants-more {
-    border: 3px solid var(--font-color-white);
+    border: 0.1875rem solid var(--color-white);
     border-radius: 50%;
     display: flex;
     align-items: center;

@@ -53,11 +53,11 @@
 .join-us-container {
   position: relative;
   padding-bottom: var(--gap-md);
-  border-bottom: 1px solid var(--bg-color-black);
+  border-bottom: 0.0625rem solid var(--color-black);
 }
 
 .join-us-container .btn::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
 }
@@ -177,7 +177,7 @@
 }
 
 /* ==================================================
-   DESKTOP
+  DESKTOP
 ================================================== */
 
 @media (min-width: 768px) {
@@ -219,8 +219,8 @@
   }
 
   .about-hero-line {
-    width: 380px;
-    height: 2px;
+    width: 23.75rem;
+    height: 0.125rem;
     background: var(--font-color-black);
     margin: var(--gap-md) 0;
   }
@@ -238,12 +238,12 @@
   .about-right {
     grid-column: 2;
     grid-row: 1;
-    height: 40em;
+    height: 40rem;
   }
 
   .about-right img {
     width: 100%;
-    height: 40em;
+    height: 40rem;
     display: block;
     object-fit: cover;
     object-position: center;

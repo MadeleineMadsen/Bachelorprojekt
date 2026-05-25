@@ -1,7 +1,9 @@
 /* card-info.css */
 /* Bruges på single event siden (sidebar) */
 
-/* ========== MOBILE (default) ========== */
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
 
 .card-event-info {
   background: var(--bg-color-black);
@@ -10,7 +12,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  border: 1px solid var(--font-color-black);
+  border: 0.0625rem solid var(--color-black);
 }
 
 .card-event-info-row {
@@ -18,7 +20,7 @@
   align-items: center;
   gap: var(--gap-xs);
   padding: var(--gap-sm) 0;
-  border-bottom: 1px solid var(--font-color-white);
+  border-bottom: 0.0625rem solid var(--color-white);
 }
 
 .card-event-info-row:first-of-type {
@@ -31,8 +33,8 @@
 }
 
 .card-event-info-icon {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   background: var(--bg-color-black);
   display: flex;
   align-items: center;
@@ -41,8 +43,8 @@
 }
 
 .card-event-info-icon-img {
-  width: 22px;
-  height: 22px;
+  width: 1.375rem;
+  height: 1.375rem;
   object-fit: contain;
   filter: invert(1);
 }
@@ -50,7 +52,7 @@
 .card-event-info-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0.125rem;
   min-width: 0;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -78,7 +80,10 @@
   letter-spacing: 0.05em;
 }
 
-/* ========== DESKTOP ========== */
+/* ==================================================
+  DESKTOP
+================================================== */
+
 @media (min-width: 768px) {
   .card-event-info {
     padding: var(--gap-md);
@@ -86,13 +91,13 @@
   }
 
   .card-event-info-icon {
-    width: 56px;
-    height: 56px;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 
   .card-event-info-icon-img {
-    width: 28px;
-    height: 28px;
+    width: 1.75rem;
+    height: 1.75rem;
   }
 
   .card-event-info-label,

@@ -1,24 +1,25 @@
 /* utilities.css */
 /* Indeholder genbrugelige utility-klasser der bruges på alle sider (fx scroll to top, toasts, visibility helpers) */
 
-/* ========== MOBILE (default) ========== */
-/* -----------------------------
-    IMAGES
--------------------------------*/
+/* ==================================================
+  MOBILE / DEFAULT
+================================================== */
+
+/* ---------- Images ---------- */
+
 /* Logo */
 .logo img {
-  height: 60px;
+  height: 3.75rem;
   width: auto;
 }
 
 .footer-logo img {
-  height: 100px;
+  height: 6.25rem;
   width: auto;
 }
 
-/* -----------------------------
-    KNAPPER
--------------------------------*/
+/* ---------- Buttons ---------- */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -27,7 +28,6 @@
   font-weight: var(--poppins-font-bold);
   font-size: var(--btn-font-mobil);
   height: var(--btn-height-mobil);
-  /* min-width: var(--btn-min-width-mobil); */
   padding: 0 var(--gap-sm);
   border: none;
   cursor: pointer;
@@ -67,13 +67,11 @@
   font-size: 1.3em;
 }
 
-/* -----------------------------
-    TOASTS
--------------------------------*/
+/* ---------- Toasts ---------- */
 
 .toast-container {
   position: fixed;
-  top: 80px;
+  top: 5rem;
   left: var(--gap-sm);
   right: var(--gap-sm);
   z-index: 9999;
@@ -85,15 +83,15 @@
 
 .toast {
   width: 100%;
-  padding: 14px 42px 14px 16px;
+  padding: 0.875rem 2.625rem 0.875rem 1rem;
 
   font-family: var(--font-text);
   font-size: var(--font-mobil-text);
 
   position: relative;
 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-  border-radius: 12px;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.18);
+  border-radius: 0.75rem;
 
   animation: toastSlideIn 0.3s ease;
 }
@@ -110,13 +108,13 @@
 
 .toast-close {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 0.5rem;
+  right: 0.75rem;
 
   border: none;
   background: transparent;
 
-  font-size: 22px;
+  font-size: 1.375rem;
   color: inherit;
 
   cursor: pointer;
@@ -133,7 +131,7 @@
 @keyframes toastSlideIn {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(1.875rem);
   }
 
   to {
@@ -145,13 +143,11 @@
 @keyframes toastSlideOut {
   to {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(1.875rem);
   }
 }
 
-/* -----------------------------
-    MODALS
--------------------------------*/
+/* ---------- Modals ---------- */
 
 .modal-overlay {
   position: fixed;
@@ -173,14 +169,14 @@
 
 .modal-box {
   width: 100%;
-  max-width: 360px;
+  max-width: 22.5rem;
 
   padding: var(--gap-md);
 
   background: var(--bg-color-white);
   color: var(--font-color-black);
 
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .modal-box h3 {
@@ -203,9 +199,7 @@
   gap: var(--gap-xs);
 }
 
-/* -----------------------------
-    PROFILBILLEDER
--------------------------------*/
+/* ---------- Profile images ---------- */
 
 /* Class der bruges på alle profilbilleder - herefter vælges også en størrelse af de nedenstående */
 .profile-img {
@@ -233,9 +227,8 @@
   height: 8rem;
 }
 
-/* -----------------------------
-    SLIDE MED MEDLEMMER
--------------------------------*/
+/* ---------- Member carousel ---------- */
+
 .member-carousel-section {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -283,9 +276,7 @@
   line-height: 1;
 }
 
-/* -----------------------------
-  BANNER
--------------------------------*/
+/* ---------- Banner ---------- */
 
 .text-banner {
   width: 100vw;
@@ -327,40 +318,38 @@
   }
 }
 
-/* -----------------------------
-  SKJUL VISIBILITY HELPER
--------------------------------*/
+/* ---------- Visibility helpers ---------- */
 
 .hide_label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
-    white-space: nowrap;
+  position: absolute;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  padding: 0;
+  margin: -0.0625rem;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
 }
 
-/* ========== DESKTOP ========== */
+/* ==================================================
+  DESKTOP
+================================================== */
+
 @media (min-width: 768px) {
-  /* -----------------------------
-    IMAGES
-    -------------------------------*/
+  /* ---------- Images ---------- */
 
   /* Logo */
   .logo img {
-    height: 70px;
+    height: 4.375rem;
     margin: var(--gap-xs) 0;
   }
 
   .footer-logo img {
-    height: 120px;
+    height: 7.5rem;
   }
-  /* -----------------------------
-    KNAPPER
-  -------------------------------*/
+
+  /* ---------- Buttons ---------- */
 
   .btn {
     font-size: var(--btn-font-desktop);
@@ -375,30 +364,26 @@
     font-size: 1.4em;
   }
 
-  /* -----------------------------
-    TOASTS
--------------------------------*/
+  /* ---------- Toasts ---------- */
 
   .toast-container {
-    top: 160px;
+    top: 10rem;
     left: auto;
     right: var(--gap-sm);
   }
 
   .toast {
     width: auto;
-    min-width: 260px;
-    max-width: 360px;
+    min-width: 16.25rem;
+    max-width: 22.5rem;
 
     font-size: var(--font-desktop-text-small);
   }
 
-  /* -----------------------------
-    MODALS
--------------------------------*/
+  /* ---------- Modals ---------- */
 
   .modal-box {
-    max-width: 460px;
+    max-width: 28.75rem;
   }
 
   .modal-box h3 {
@@ -414,9 +399,7 @@
     justify-content: flex-end;
   }
 
-  /* -----------------------------
-    PROFILBILLEDER
-  -------------------------------*/
+  /* ---------- Profile images ---------- */
 
   /* Til de små billede-karuseller */
   .profile-small {
@@ -438,9 +421,8 @@
     height: 12.5rem;
   }
 
-  /* -----------------------------
-    SLIDE MED MEDLEMMER
-  -------------------------------*/
+  /* ---------- Member carousel ---------- */
+
   .member-carousel {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--gap-md);
@@ -458,9 +440,8 @@
     font-size: var(--font-desktop-text-small);
   }
 
-  /* -----------------------------
-  BANNER
-  -------------------------------*/
+  /* ---------- Banner ---------- */
+
   .text-banner span {
     font-size: var(--btn-font-desktop);
     height: var(--btn-height-desktop);
