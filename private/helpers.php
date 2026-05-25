@@ -1,19 +1,19 @@
 <?php
 
-// Sikkert output i HTML
+// Sikrer output mod XSS
 function e($value): string
 {
     return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
 }
 
-// Redirect helper
+// Redirecter brugeren til en ny side
 function redirect(string $path): void
 {
     header('Location: ' . $path);
     exit;
 }
 
-// Flash beskeder
+// Henter og sletter flash beskeder
 function flash(string $key): ?string
 {
     if (!isset($_SESSION[$key])) {
@@ -32,7 +32,7 @@ function old(string $key, string $default = ''): string
     return $_SESSION['old'][$key] ?? $default;
 }
 
-// CSRF token
+// Opretter eller henter CSRF token
 function csrf_token(): string
 {
     if (empty($_SESSION['csrf_token'])) {
@@ -42,20 +42,20 @@ function csrf_token(): string
     return $_SESSION['csrf_token'];
 }
 
-// CSRF hidden input
+// Udskriver hidden input med CSRF token
 function csrf_input(): void
 {
     echo '<input type="hidden" name="csrf_token" value="' . e(csrf_token()) . '">';
 }
 
-// CSRF validering
+// Validerer CSRF token fra POST request
 function csrf_verify(): bool
 {
     return isset($_POST['csrf_token'], $_SESSION['csrf_token'])
         && hash_equals($_SESSION['csrf_token'], $_POST['csrf_token']);
 }
 
-// Skal bruges på POST routes
+// Kræver gyldigt CSRF token på POST routes
 function require_csrf(): void
 {
     if (!csrf_verify()) {
@@ -64,18 +64,19 @@ function require_csrf(): void
     }
 }
 
-// Login check
+// Tjekker om brugeren er logget ind
 function is_logged_in(): bool
 {
     return isset($_SESSION['user']);
 }
 
-// Rolle check
+// Henter brugerens rolle
 function user_role(): ?int
 {
     return $_SESSION['user']['role_fk'] ?? null;
 }
 
+// Rolle checks
 function is_admin(): bool
 {
     return is_logged_in() && user_role() === 1;
@@ -91,7 +92,7 @@ function is_user(): bool
     return is_logged_in() && user_role() === 3;
 }
 
-// Kræv login
+// Kræver at brugeren er logget ind
 function require_login(): void
 {
     if (!is_logged_in()) {
@@ -99,7 +100,7 @@ function require_login(): void
     }
 }
 
-// Kræv specifik rolle
+// Kræver en bestemt rolle
 function require_role(int $role, string $redirectTo = '/'): void
 {
     require_login();
@@ -108,6 +109,8 @@ function require_role(int $role, string $redirectTo = '/'): void
         redirect($redirectTo);
     }
 }
+
+// Rollebeskyttelse
 
 // Kræv admin
 function require_admin(): void
@@ -121,7 +124,7 @@ function require_user(): void
     require_role(3, '/profile');
 }
 
-// Valider tekstfelt
+// Validerer almindelige tekstfelter
 function validate_text(
     string $field,
     string $label,
@@ -143,7 +146,7 @@ function validate_text(
     return $value;
 }
 
-// Valider email
+// Validerer email
 function validate_email(string $field = 'user_email'): string
 {
     $email = trim($_POST[$field] ?? '');
@@ -159,7 +162,7 @@ function validate_email(string $field = 'user_email'): string
     return strtolower($email);
 }
 
-// Valider password
+// Validerer adgangskode
 function validate_password(
     string $field = 'user_password',
     bool $required = true
@@ -181,7 +184,7 @@ function validate_password(
     return $password;
 }
 
-// Valider ID fra POST
+// Valider ID fra POST data
 function validate_post_id(string $field): int
 {
     $id = (int) ($_POST[$field] ?? 0);
@@ -193,7 +196,7 @@ function validate_post_id(string $field): int
     return $id;
 }
 
-// Header helper
+// Loader view med header og footer
 function load_view(string $view, array $data = []): void
 {
     $isLoggedIn = is_logged_in();
@@ -213,7 +216,7 @@ function load_view(string $view, array $data = []): void
     require __DIR__ . '/../App/Views/components/_footer.php';
 }
 
-// Ret dato i ansøngninger til dansk
+// Formaterer dato til dansk visning
 function formatDanishDate(string $date): string
 {
     $months = [

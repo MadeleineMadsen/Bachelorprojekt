@@ -1,9 +1,17 @@
 <?php
 
+// Importerer databaseforbindelsen
 require_once __DIR__ . '/../../private/db.php';
 
-class MemberModel {
-    public static function getVisibleMembers(): array {
+class MemberModel
+{
+    /* ==================================================
+    HENT MEDLEMMER
+    ================================================== */
+
+    // Henter alle synlige medlemmer samt bestyrelsesmedlemmer
+    public static function getVisibleMembers(): array
+    {
         $db = getDB();
 
         $stmt = $db->query("
@@ -36,7 +44,9 @@ class MemberModel {
         return $stmt->fetchAll();
     }
 
-    public static function getMemberById(string $memberId): ?array {
+    // Henter ét medlem ud fra member-id
+    public static function getMemberById(string $memberId): ?array
+    {
         $db = getDB();
 
         $stmt = $db->prepare("
@@ -58,7 +68,13 @@ class MemberModel {
         return $member ?: null;
     }
 
-    public static function getStats(): array {
+    /* ==================================================
+    STATISTIK
+    ================================================== */
+
+    // Henter statistik til medlemssiderne
+    public static function getStats(): array
+    {
         $db = getDB();
 
         $stmt = $db->query("
@@ -89,7 +105,13 @@ class MemberModel {
         return $stmt->fetch();
     }
 
-    public static function getPending(): array {
+    /* ==================================================
+    ANSØGNINGER
+    ================================================== */
+
+    // Henter alle afventende medlemsansøgninger
+    public static function getPending(): array
+    {
         $db = getDB();
 
         $stmt = $db->query("
@@ -118,6 +140,7 @@ class MemberModel {
         return $stmt->fetchAll();
     }
 
+    // Opretter en ny medlemsansøgning
     public static function createApplication(
         int $userId,
         int $educationFk,
@@ -126,6 +149,7 @@ class MemberModel {
     ): bool {
         $db = getDB();
 
+        // Opretter unikt id til medlemsansøgningen
         $memberPk = bin2hex(random_bytes(16));
 
         $stmt = $db->prepare("
@@ -144,6 +168,7 @@ class MemberModel {
         ]);
     }
 
+    // Tjekker om brugeren allerede har sendt en ansøgning
     public static function hasApplication(int $userId): bool
     {
         $db = getDB();
@@ -160,33 +185,7 @@ class MemberModel {
         return (bool) $stmt->fetch();
     }
 
-    public static function getEducations(): array
-    {
-        $db = getDB();
-
-        $stmt = $db->query("
-            SELECT *
-            FROM educations
-            ORDER BY education_name ASC
-        ");
-
-        return $stmt->fetchAll();
-    }
-
-    public static function getSemesters(): array
-    {
-        $db = getDB();
-
-        $stmt = $db->query("
-            SELECT *
-            FROM semesters
-            ORDER BY semester_number ASC
-        ");
-
-        return $stmt->fetchAll();
-    }
-
-    // Til at sende godkendelses-mail
+    // Henter én specifik ansøgning ud fra member-id
     public static function getApplicationById(string $memberId): ?array
     {
         $db = getDB();
@@ -210,6 +209,43 @@ class MemberModel {
         return $application ?: null;
     }
 
+    /* ==================================================
+    UDDANNELSER & SEMESTRE
+    ================================================== */
+
+    // Henter alle uddannelser
+    public static function getEducations(): array
+    {
+        $db = getDB();
+
+        $stmt = $db->query("
+            SELECT *
+            FROM educations
+            ORDER BY education_name ASC
+        ");
+
+        return $stmt->fetchAll();
+    }
+
+    // Henter alle semestre
+    public static function getSemesters(): array
+    {
+        $db = getDB();
+
+        $stmt = $db->query("
+            SELECT *
+            FROM semesters
+            ORDER BY semester_number ASC
+        ");
+
+        return $stmt->fetchAll();
+    }
+
+    /* ==================================================
+    PROFILBILLEDE
+    ================================================== */
+
+    // Henter brugerens nuværende profilbillede
     public static function getUserProfileImage(int $userId): ?string
     {
         $db = getDB();
@@ -228,23 +264,31 @@ class MemberModel {
         return $image ?: null;
     }
 
+    // Opdaterer brugerens profilbillede
     public static function updateUserProfileImage(int $userId, string $imageName): bool
-        {
-            $db = getDB();
+    {
+        $db = getDB();
 
-            $stmt = $db->prepare("
+        $stmt = $db->prepare("
                 UPDATE users
                 SET user_profile_image = :image
                 WHERE user_pk = :user_id
             ");
 
-            return $stmt->execute([
-                ':image' => $imageName,
-                ':user_id' => $userId
-            ]);
-        }
+        return $stmt->execute([
+            ':image' => $imageName,
+            ':user_id' => $userId
+        ]);
+    }
 
-    public static function approve(string $memberId, string $adminId): bool {
+    /* ==================================================
+    ADMIN: GODKEND / AFVIS / SLET
+    ================================================== */
+
+    // Godkender en medlemsansøgning
+
+    public static function approve(string $memberId, string $adminId): bool
+    {
         $db = getDB();
 
         $stmt = $db->prepare("
@@ -259,7 +303,9 @@ class MemberModel {
         return $stmt->execute([$adminId, $memberId]);
     }
 
-    public static function reject(string $memberId): bool {
+    // Afviser en medlemsansøgning
+    public static function reject(string $memberId): bool
+    {
         $db = getDB();
 
         $stmt = $db->prepare("
@@ -272,9 +318,12 @@ class MemberModel {
         return $stmt->execute([$memberId]);
     }
 
-    public static function delete(string $memberId): bool {
+    // Soft-deleter et medlem og nedgraderer brugerens rolle
+    public static function delete(string $memberId): bool
+    {
         $db = getDB();
 
+        // Ændrer brugerens rolle tilbage til almindelig bruger
         $stmtUser = $db->prepare("
             UPDATE users
             SET role_fk = 3
@@ -288,6 +337,7 @@ class MemberModel {
 
         $userUpdated = $stmtUser->execute([$memberId]);
 
+        // Soft-deleter medlemskabet
         $stmtMember = $db->prepare("
             UPDATE members
             SET deleted_at = NOW()

@@ -83,7 +83,7 @@ GBG Social"
 
 // Send mail når ansøgning er godkendt
 function sendMembershipApprovedMail(string $toEmail, string $firstName): bool
-{  
+{
     return sendMail(
         $toEmail,
         $firstName,

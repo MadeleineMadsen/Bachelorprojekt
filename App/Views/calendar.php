@@ -1,11 +1,16 @@
 <?php
+
+// Sætter tidszonen til dansk tid
 date_default_timezone_set('Europe/Copenhagen');
 
+// Dags dato
 $todayDate = date('Y-m-d');
 
+// Tjekker om der er valgt en specifik dato eller måned/år i URL'en
 $hasSelectedDate = isset($_GET['date']);
 $hasMonthYear = isset($_GET['month']) && isset($_GET['year']);
 
+// Finder hvilken dato, måned og år kalenderen skal vise
 if ($hasSelectedDate) {
     $selectedDate = $_GET['date'];
 
@@ -26,25 +31,32 @@ if ($hasSelectedDate) {
     $year = (int) date('Y');
 }
 
+// Events og brugerens tilmeldte events
 $events = $calendarEvents;
 $registeredIds = $registeredEventIds ?? [];
 
+// Opretter datoobjekt for den viste måned
 $date = DateTime::createFromFormat('!Y-n-j', "$year-$month-1");
 
+// Fallback hvis datoen ikke kan oprettes
 if (!$date) {
     $date = new DateTime('first day of this month');
 }
 
+// Sikrer at måned og år kommer fra det gyldige datoobjekt
 $month = (int) $date->format('n');
 $year = (int) $date->format('Y');
 
+// Forrige og næste måned
 $prev = (clone $date)->modify('-1 month');
 $next = (clone $date)->modify('+1 month');
 
+// Kalenderberegninger
 $daysInMonth = (int) $date->format('t');
 $startOffset = (int) $date->format('N') - 1; // mandag - 0, tirsdag - 1 osv.
 $totalCells = ceil(($startOffset + $daysInMonth) / 7) * 7;
 
+// Danske månedsnavne
 $monthNames = [
     1 => 'JANUAR',
     2 => 'FEBRUAR',
@@ -61,16 +73,19 @@ $monthNames = [
 ];
 ?>
 
+<!-- Kalender side -->
 <main class="calendar-page">
-    
+
+    <!-- Kalender container -->
     <section class="calendar-container">
 
+        <!-- Kalender header -->
         <section class="calendar-header">
             <h1 class="calendar-header">KALENDER</h1>
 
-            <!-- Knapper & pile -->
             <div class="calendar-actions">
 
+                <!-- Knapper -->
                 <div class="buttons">
                     <?php if ($isAdmin): ?>
                         <a class="btn btn-primary" href="/event_create">
@@ -83,6 +98,7 @@ $monthNames = [
                     </a>
                 </div>
 
+                <!-- Pile til forrige/næste måned -->
                 <div class="calendar-arrows">
                     <a class="calendar-arrow"
                         href="/calendar?month=<?= $prev->format('n') ?>&year=<?= $prev->format('Y') ?>">
@@ -102,17 +118,19 @@ $monthNames = [
             <strong><?= $monthNames[$month] ?></strong> <?= $year ?>
         </h2>
 
-        <!-- Kalender grid -->
+        <!-- Ugedage -->
         <div class="calendar-weekdays">
             <?php foreach (['MAN', 'TIR', 'ONS', 'TOR', 'FRE', 'LØR', 'SØN'] as $day): ?>
                 <div class="calendar-weekday"><?= $day ?></div>
             <?php endforeach; ?>
         </div>
 
+        <!-- Kalender grid -->
         <div class="calendar-grid">
             <?php for ($cell = 0; $cell < $totalCells; $cell++): ?>
 
                 <?php
+                // Beregner dag og dato for hver celle
                 $day = $cell - $startOffset + 1;
                 $isCurrentMonth = $day >= 1 && $day <= $daysInMonth;
 
@@ -120,11 +138,13 @@ $monthNames = [
                     ? sprintf('%04d-%02d-%02d', $year, $month, $day)
                     : null;
 
+                // Finder events for den aktuelle dato
                 $dayEvents = $dateKey && isset($events[$dateKey])
                     ? $events[$dateKey]
                     : [];
                 ?>
 
+                <!-- Kalenderdag -->
                 <button class="calendar-day <?= !$isCurrentMonth ? 'calendar-day-muted' : '' ?>
                 <?= $dateKey && $dateKey === $selectedDate ? 'is-selected' : '' ?>
                 <?= $dateKey && $dateKey === $todayDate ? 'is-today' : '' ?>" type="button"
@@ -134,6 +154,7 @@ $monthNames = [
                         <?= $isCurrentMonth ? $day : '' ?>
                     </span>
 
+                    <!-- Events på dagen -->
                     <?php if (!empty($dayEvents)): ?>
                         <span class="mobile-event-marker"></span>
 
@@ -150,14 +171,16 @@ $monthNames = [
             <?php endfor; ?>
         </div>
 
-        <!-- Mobil listevisning -->
+        <!-- Mobil listevisning af events -->
         <section class="mobile-event-list">
             <h2>EVENT</h2>
 
+            <!-- Loop gennem events i den viste måned -->
             <?php foreach ($events as $eventDate => $dayEvents): ?>
                 <?php
                 $eventDateObj = new DateTime($eventDate);
 
+                // Springer events over, hvis de ikke ligger i den viste måned
                 if ((int) $eventDateObj->format('n') !== $month || (int) $eventDateObj->format('Y') !== $year) {
                     continue;
                 }
@@ -166,7 +189,10 @@ $monthNames = [
                 <?php foreach ($dayEvents as $event): ?>
                     <?php $isRegistered = in_array($event['pk'], $registeredIds); ?>
 
+                    <!-- Link til eventside -->
                     <a href="/event_page?id=<?= urlencode($event['pk']) ?>" class="mobile-event-card-link">
+
+                        <!-- Eventkort vises på mobil når datoen er valgt -->
                         <article class="mobile-event-card <?= $eventDate === $selectedDate ? 'is-visible' : '' ?>"
                             data-event-date="<?= $eventDate ?>">
 
@@ -190,7 +216,7 @@ $monthNames = [
                 <?php endforeach; ?>
             <?php endforeach; ?>
 
-            <!-- Hvis ingen events på valgte dag -->
+            <!-- Vises hvis der ikke er events på den valgte dag -->
             <p class="no-events" style="<?= $selectedDate && empty($events[$selectedDate]) ? 'display: block;' : '' ?>">
                 Ingen events
             </p>

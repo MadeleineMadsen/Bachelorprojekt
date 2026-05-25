@@ -1,15 +1,19 @@
+<!-- Forside -->
 <main class="front-page">
 
+    <!-- Hero sektion -->
     <section class="front-page-hero">
         <h1>GBG Social</h1>
         <img src="/assets/img/forside-hero.webp" alt="Studerende til socialt arrangement">
     </section>
 
+    <!-- Banner -->
     <?php
     $bannerText = 'BLIV MEDLEM AF FORENINGEN';
     include __DIR__ . '/micro/___banner.php';
     ?>
 
+    <!-- Intro sektion -->
     <section class="intro">
         <h2>Den sociale studenterforening</h2>
 
@@ -27,21 +31,28 @@
         <a href="/membership_apply" class="btn btn-primary">BLIV MEDLEM</a>
     </section>
 
+    <!-- Events sektion -->
     <section class="events-section">
         <h2 class="section-title">Events</h2>
 
         <div class="grid">
+
+            <!-- Loop gennem events -->
             <?php foreach ($events as $event): ?>
+
+                <!-- Eventkort -->
                 <?php include __DIR__ . '/components/_card_event_sm.php'; ?>
             <?php endforeach; ?>
         </div>
     </section>
 
+    <!-- Banner -->
     <?php
     $bannerText = 'SE EVENTS';
     include __DIR__ . '/micro/___banner.php';
     ?>
 
+    <!-- Om os sektion -->
     <section class="about-section">
         <div class="about-heading">
             <h2>Om os</h2>
@@ -66,13 +77,16 @@
         </div>
     </section>
 
+    <!-- Feed sektion -->
     <section class="feed-section">
         <h2 class="section-title">Feed</h2>
 
+        <!-- Link til flere billeder -->
         <div class="feed-link-wrapper">
             <a href="https://www.instagram.com/_ekdigital/" class="feed-link btn-nav">SE FLERE BILLEDER</a>
         </div>
 
+        <!-- Feed billeder -->
         <div class="feed-grid">
             <img src="/assets/img/guldbar-billede.webp" alt="Studerende i Guldbar">
 

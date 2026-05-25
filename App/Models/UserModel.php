@@ -2,6 +2,7 @@
 
 class UserModel
 {
+    // Databaseforbindelse til alle bruger-relaterede queries
     private PDO $db;
 
     public function __construct(PDO $db)
@@ -9,6 +10,11 @@ class UserModel
         $this->db = $db;
     }
 
+    /* ==================================================
+    OPRET / BEKRÆFT BRUGER
+    ================================================== */
+
+    // Opretter en ny bruger med hashed adgangskode og bekræftelsesnøgle
     public function create(
         string $userName,
         string $lastName,
@@ -46,6 +52,7 @@ class UserModel
         ]);
     }
 
+    // Bekræfter en bruger via mail-link
     public function verifyUser(string $key): bool
     {
         $stmt = $this->db->prepare("
@@ -62,6 +69,11 @@ class UserModel
         return $stmt->rowCount() > 0;
     }
 
+    /* ==================================================
+    HENT BRUGERDATA
+    ================================================== */
+
+    // Finder en aktiv bruger ud fra email
     public function findByEmail(string $email): ?array
     {
         $stmt = $this->db->prepare(
@@ -80,6 +92,7 @@ class UserModel
         return $user ?: null;
     }
 
+    // Finder en bruger ud fra bruger-id
     public function findById(int $id): ?array
     {
         $stmt = $this->db->prepare(
@@ -95,6 +108,7 @@ class UserModel
         return $user ?: null;
     }
 
+    // Finder medlemsoplysninger til en bestemt bruger
     public function findMemberByUserId(int $userId): ?array
     {
         $stmt = $this->db->prepare(
@@ -118,6 +132,25 @@ class UserModel
         return $member ?: null;
     }
 
+    // Henter alle brugere med rolle- og medlemsdata
+    public function getAll(): array
+    {
+        $stmt = $this->db->query(
+            "SELECT users.*, members.*, roles.role_name
+            FROM users
+            LEFT JOIN members ON users.user_pk = members.user_fk
+            LEFT JOIN roles ON users.role_fk = roles.role_pk
+            ORDER BY users.user_pk DESC"
+        );
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /* ==================================================
+    OPDATER PROFIL
+    ================================================== */
+
+    // Opdaterer brugerens basisoplysninger
     public function updateProfile(
         int $id,
         string $userName,
@@ -140,6 +173,7 @@ class UserModel
         ]);
     }
 
+    // Opdaterer brugerens adgangskode
     public function updatePassword(int $id, string $password): bool
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -156,6 +190,7 @@ class UserModel
         ]);
     }
 
+    // Opdaterer medlemsoplysninger som uddannelse og semester
     public function updateMemberProfile(
         int $userId,
         int $educationFk,
@@ -175,6 +210,7 @@ class UserModel
         ]);
     }
 
+    // Opdaterer brugerens profilbillede
     public function updateProfileImage(int $userId, string $fileName): bool
     {
         $stmt = $this->db->prepare(
@@ -189,19 +225,11 @@ class UserModel
         ]);
     }
 
-    public function getAll(): array
-    {
-        $stmt = $this->db->query(
-            "SELECT users.*, members.*, roles.role_name
-            FROM users
-            LEFT JOIN members ON users.user_pk = members.user_fk
-            LEFT JOIN roles ON users.role_fk = roles.role_pk
-            ORDER BY users.user_pk DESC"
-        );
+    /* ==================================================
+    SLET BRUGER
+    ================================================== */
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
+    // Soft-deleter en bruger ved at sætte user_deleted_at
     public function softDelete(int $userId): bool
     {
         $stmt = $this->db->prepare(
@@ -215,6 +243,11 @@ class UserModel
         ]);
     }
 
+    /* ==================================================
+    LOGIN-SIKKERHED
+    ================================================== */
+
+    // Registrerer et fejlet loginforsøg og returnerer samlet antal forsøg
     public function recordFailedAttempt(int $userId): int
     {
         $this->db->prepare(
@@ -231,6 +264,7 @@ class UserModel
         return (int) $stmt->fetchColumn();
     }
 
+    // Låser en bruger efter for mange fejlede loginforsøg
     public function lockAccount(int $userId, string $unlockKey): bool
     {
         $stmt = $this->db->prepare(
@@ -247,6 +281,7 @@ class UserModel
         ]);
     }
 
+    // Nulstiller antal fejlede loginforsøg
     public function resetLoginAttempts(int $userId): bool
     {
         $stmt = $this->db->prepare(
@@ -258,6 +293,7 @@ class UserModel
         return $stmt->execute([':user_pk' => $userId]);
     }
 
+    // Låser en konto op via oplåsningslink
     public function unlockAccount(string $key): bool
     {
         $stmt = $this->db->prepare(

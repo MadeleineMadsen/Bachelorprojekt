@@ -2,6 +2,10 @@
 // Genbrugelige JavaScript funktioner
 // Fx buttons, UI funktioner osv.
 
+// ------------------------------------------------
+// Medlemscarousel og filtrering
+// ------------------------------------------------
+
 const carousel = document.querySelector("#memberCarousel");
 const nextBtn = document.querySelector(".carousel-next");
 const prevBtn = document.querySelector(".carousel-prev");
@@ -9,6 +13,7 @@ const searchInput = document.querySelector("#memberSearch");
 const educationFilter = document.querySelector("#educationFilter");
 const memberSlides = document.querySelectorAll(".member-slide");
 
+// Opdaterer synlighed på carousel-pile
 function updateArrows() {
   if (!carousel || !prevBtn || !nextBtn) return;
 
@@ -30,6 +35,7 @@ function updateArrows() {
     carousel.scrollLeft >= maxScrollLeft - 1 ? "hidden" : "visible";
 }
 
+// Filtrerer medlemmer ud fra navn og uddannelse
 function filterMemberElements(elements, resetCarousel = false) {
   if (!searchInput || !educationFilter) return;
 
@@ -53,6 +59,7 @@ function filterMemberElements(elements, resetCarousel = false) {
   }
 }
 
+// Filtrerer både carousel slides og medlemskort
 function filterMembers() {
   const memberCards = document.querySelectorAll(".member-card");
 
@@ -65,6 +72,7 @@ function filterMembers() {
   }
 }
 
+// Finder bredden på et slide inkl. gap
 function getSlideWidth() {
   if (!carousel) return 0;
 
@@ -78,6 +86,7 @@ function getSlideWidth() {
   return slide.offsetWidth + gap;
 }
 
+// Næste slide
 if (nextBtn && carousel) {
   nextBtn.addEventListener("click", () => {
     carousel.scrollBy({
@@ -89,6 +98,7 @@ if (nextBtn && carousel) {
   });
 }
 
+// Forrige slide
 if (prevBtn && carousel) {
   prevBtn.addEventListener("click", () => {
     carousel.scrollBy({
@@ -100,6 +110,7 @@ if (prevBtn && carousel) {
   });
 }
 
+// Event listeners til søgning og filter
 if (searchInput) {
   searchInput.addEventListener("input", filterMembers);
 }
@@ -108,6 +119,7 @@ if (educationFilter) {
   educationFilter.addEventListener("change", filterMembers);
 }
 
+// Opdaterer pile ved scroll, load og resize
 if (carousel) {
   carousel.addEventListener("scroll", updateArrows);
   window.addEventListener("load", updateArrows);
@@ -117,11 +129,13 @@ if (carousel) {
 // ------------------------------------------------
 // Toasts
 // ------------------------------------------------
+
 const toasts = document.querySelectorAll(".toast");
 
 toasts.forEach((toast) => {
   const closeBtn = toast.querySelector(".toast-close");
 
+  // Lukker toast med animation
   const closeToast = () => {
     toast.classList.add("hide");
 
@@ -132,15 +146,18 @@ toasts.forEach((toast) => {
 
   closeBtn?.addEventListener("click", closeToast);
 
+  // Lukker automatisk efter 4 sekunder
   setTimeout(closeToast, 4000);
 });
 
 // ------------------------------------------------
 // Custom modals
 // ------------------------------------------------
+
 const openModalButtons = document.querySelectorAll("[data-modal-open]");
 const closeModalButtons = document.querySelectorAll("[data-modal-close]");
 
+// Åbner modal
 openModalButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const modalId = button.dataset.modalOpen;
@@ -150,6 +167,7 @@ openModalButtons.forEach((button) => {
   });
 });
 
+// Lukker modal via knap
 closeModalButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const modal = button.closest(".modal-overlay");
@@ -158,6 +176,7 @@ closeModalButtons.forEach((button) => {
   });
 });
 
+// Lukker modal ved klik på overlay
 document.addEventListener("click", (event) => {
   if (event.target.classList.contains("modal-overlay")) {
     event.target.classList.remove("show");

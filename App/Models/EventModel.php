@@ -1,16 +1,30 @@
 <?php
 
+// Importerer databaseforbindelsen
 require_once __DIR__ . '/../../private/db.php';
 
-class EventModel {
+class EventModel
+{
 
-    public static function getAllCategories(): array {
+    /* ==================================================
+    KATEGORIER
+    ================================================== */
+
+    // Henter alle event-kategorier alfabetisk
+    public static function getAllCategories(): array
+    {
         $db = getDB();
         return $db->query('SELECT * FROM event_categories ORDER BY category_name ASC')->fetchAll();
     }
 
-    public static function getAll(): array {
-        $db   = getDB();
+    /* ==================================================
+    HENT EVENTS
+    ================================================== */
+
+    // Henter alle aktive events inkl. kategori og antal deltagere
+    public static function getAll(): array
+    {
+        $db = getDB();
         $stmt = $db->query('
             SELECT e.*, c.category_name, COUNT(r.registration_pk) AS participant_count
             FROM events e
@@ -23,8 +37,10 @@ class EventModel {
         return $stmt->fetchAll();
     }
 
-    public static function getById(string $id): array|false {
-        $db   = getDB();
+    // Henter ét aktivt event ud fra event-id
+    public static function getById(string $id): array|false
+    {
+        $db = getDB();
         $stmt = $db->prepare('
             SELECT e.*, c.category_name, COUNT(r.registration_pk) AS participant_count
             FROM events e
@@ -38,8 +54,10 @@ class EventModel {
         return $stmt->fetch();
     }
 
-    public static function getByUserId(int $userId): array {
-        $db   = getDB();
+    // Henter alle events som en bestemt bruger er tilmeldt
+    public static function getByUserId(int $userId): array
+    {
+        $db = getDB();
         $stmt = $db->prepare('
             SELECT e.*, c.category_name, COUNT(r2.registration_pk) AS participant_count
             FROM event_registrations r
@@ -55,28 +73,58 @@ class EventModel {
         return $stmt->fetchAll();
     }
 
-    public static function isRegistered(string $eventId, int $userId): bool {
-        $db   = getDB();
+    // Henter de nyeste/kommende events til fx forsiden
+    public static function getLatest(int $limit = 3): array
+    {
+        $db = getDB();
+        $stmt = $db->prepare('
+            SELECT e.*, COUNT(r.registration_pk) AS participant_count
+            FROM events e
+            LEFT JOIN event_registrations r ON r.event_fk = e.event_pk
+            WHERE e.deleted_at IS NULL
+            GROUP BY e.event_pk
+            ORDER BY e.event_date ASC
+            LIMIT ?
+        ');
+        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    /* ==================================================
+    TILMELDING / AFMELDING
+    ================================================== */
+
+    // Tjekker om en bruger allerede er tilmeldt et event
+    public static function isRegistered(string $eventId, int $userId): bool
+    {
+        $db = getDB();
         $stmt = $db->prepare('SELECT 1 FROM event_registrations WHERE event_fk = ? AND user_fk = ?');
         $stmt->execute([$eventId, $userId]);
         return (bool) $stmt->fetch();
     }
 
-    public static function registerUser(string $eventId, int $userId): void {
+    // Tilmelder en bruger til et event
+    public static function registerUser(string $eventId, int $userId): void
+    {
         $uuid = bin2hex(random_bytes(16));
-        $db   = getDB();
+        $db = getDB();
         $stmt = $db->prepare('INSERT IGNORE INTO event_registrations (registration_pk, event_fk, user_fk) VALUES (?, ?, ?)');
         $stmt->execute([$uuid, $eventId, $userId]);
     }
 
-    public static function unregisterUser(string $eventId, int $userId): void {
-        $db   = getDB();
+    // Afmelder en bruger fra et event
+    public static function unregisterUser(string $eventId, int $userId): void
+    {
+        $db = getDB();
         $stmt = $db->prepare('DELETE FROM event_registrations WHERE event_fk = ? AND user_fk = ?');
         $stmt->execute([$eventId, $userId]);
     }
 
-    public static function getParticipantsByEventId(string $id): array {
-        $db   = getDB();
+    // Henter alle deltagere til et bestemt event
+    public static function getParticipantsByEventId(string $id): array
+    {
+        $db = getDB();
         $stmt = $db->prepare('
             SELECT u.user_pk, u.user_name, u.user_last_name, u.user_profile_image
             FROM event_registrations r
@@ -88,7 +136,13 @@ class EventModel {
         return $stmt->fetchAll();
     }
 
-    public static function delete(string $id): void {
+    /* ==================================================
+    OPRET / OPDATER / SLET
+    ================================================== */
+
+    // Soft-deleter et event ved at sætte deleted_at
+    public static function delete(string $id): void
+    {
         $db = getDB();
 
         $stmt = $db->prepare("
@@ -100,8 +154,10 @@ class EventModel {
         $stmt->execute([$id]);
     }
 
-    public static function create(array $data): void {
-        $db   = getDB();
+    // Opretter et nyt event
+    public static function create(array $data): void
+    {
+        $db = getDB();
         $stmt = $db->prepare('
             INSERT INTO events (event_pk, event_title, event_subtitle, event_description, event_expectations, event_date, event_time, event_end_time, event_location, category_fk, event_image, created_by_fk)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -122,8 +178,12 @@ class EventModel {
         ]);
     }
 
-    public static function update(array $data): void {
-        $db   = getDB();
+    // Opdaterer et eksisterende event
+    public static function update(array $data): void
+    {
+        $db = getDB();
+
+        // Tilføjer kun event_image til SQL'en hvis der er uploadet et nyt billede
         $stmt = $db->prepare('
             UPDATE events
             SET event_title = ?, event_subtitle = ?, event_description = ?, event_expectations = ?,
@@ -142,6 +202,8 @@ class EventModel {
             $data['event_location'],
             $data['category_fk'],
         ];
+
+        // Tilføjer billedsti til parameterlisten hvis billedet skal opdateres
         if ($data['event_image'] !== null) {
             $params[] = $data['event_image'];
         }
@@ -149,22 +211,11 @@ class EventModel {
         $stmt->execute($params);
     }
 
-    public static function getLatest(int $limit = 3): array {
-        $db   = getDB();
-        $stmt = $db->prepare('
-            SELECT e.*, COUNT(r.registration_pk) AS participant_count
-            FROM events e
-            LEFT JOIN event_registrations r ON r.event_fk = e.event_pk
-            WHERE e.deleted_at IS NULL
-            GROUP BY e.event_pk
-            ORDER BY e.event_date ASC
-            LIMIT ?
-        ');
-        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
+    /* ==================================================
+    REMINDERS
+    ================================================== */
 
+    // Henter events der starter om cirka 24 timer og endnu ikke har fået reminder sendt
     public static function getEventsNeedingReminder(): array
     {
         $db = getDB();
@@ -183,6 +234,7 @@ class EventModel {
         return $stmt->fetchAll();
     }
 
+    // Marker et event som reminder sendt
     public static function markReminderAsSent(string $eventId): bool
     {
         $db = getDB();

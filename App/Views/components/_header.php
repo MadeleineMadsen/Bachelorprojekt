@@ -1,6 +1,6 @@
 <?php
 
-// Topnavigation
+// Links til venstre side af topnavigationen
 $leftNavItems = [
     [
         'key' => 'events',
@@ -19,7 +19,7 @@ $leftNavItems = [
     ],
 ];
 
-// Kun almindelige users skal se "BLIV MEDLEM"
+// "Bliv medlem" vises kun i topnavigationen for almindelige brugere
 if ($isLoggedIn && $isUser) {
     $leftNavItems[] = [
         'key' => 'membership_apply',
@@ -28,6 +28,7 @@ if ($isLoggedIn && $isUser) {
     ];
 }
 
+// Links til højre side af topnavigationen afhænger af loginstatus
 if ($isLoggedIn) {
     $rightNavItems = [
         [
@@ -43,6 +44,7 @@ if ($isLoggedIn) {
     ];
 
 } else {
+    // Besøgende brugere får også vist "Bliv medlem"
     $leftNavItems[] = [
         'key' => 'membership_apply',
         'label' => 'BLIV MEDLEM',
@@ -63,18 +65,23 @@ if ($isLoggedIn) {
     ];
 }
 
+
+// Antal afventende medlemsansøgninger
 $pendingApplicationsCount = 0;
 
+// Admin får vist antal afventende ansøgninger i navigationen
 if ($isLoggedIn && $isAdmin) {
     $pendingApplicationsCount = count(MemberController::getPending());
 }
 
-// Subnavigation
+// Sekundær navigation bruges på profilsider
 $subNavItems = [];
 
+// Subnavigation oprettes kun for brugere der er logget ind
 if ($isLoggedIn) {
     if ($isAdmin) {
 
+        // Subnavigation for admin
         $subNavItems = [
             [
                 'key' => 'profile',
@@ -109,6 +116,7 @@ if ($isLoggedIn) {
 
     } else {
 
+        // Subnavigation for almindelige brugere
         $subNavItems = [
             [
                 'key' => 'profile',
@@ -150,12 +158,15 @@ if ($isLoggedIn) {
 <body>
 
     <?php
+    // Henter flash-beskeder fra sessionen
     $successMessage = flash('success');
     $errorMessage = flash('error');
     ?>
 
+    <!-- Container til succes- og fejlbeskeder -->
     <div class="toast-container" aria-live="polite" aria-atomic="true">
 
+        <!-- Succesbesked -->
         <?php if ($successMessage): ?>
             <div class="toast toast-success">
                 <?= e($successMessage) ?>
@@ -164,6 +175,7 @@ if ($isLoggedIn) {
             </div>
         <?php endif; ?>
 
+        <!-- Fejlbesked -->
         <?php if ($errorMessage): ?>
             <div class="toast toast-error" role="alert">
                 <?= e($errorMessage) ?>
@@ -174,10 +186,11 @@ if ($isLoggedIn) {
 
     </div>
 
+    <!-- Header med navigation -->
     <header class="site-header">
         <div class="header-inner">
 
-            <!-- Burgermenu lukket -->
+            <!-- Burgermenu til mobil -->
             <button class="burger" id="burgerBtn" aria-label="Åbn menu" aria-expanded="false" aria-controls="mobileMenu"
                 type="button">
 
@@ -186,12 +199,13 @@ if ($isLoggedIn) {
                 <span></span>
             </button>
 
-            <!-- Topnavigation -->
+            <!-- Venstre del af headeren med logo og navigation -->
             <div class="header-left">
                 <a href="/" class="logo">
                     <img src="/assets/img/icons/logo_header.png" alt="GBG Social Logo">
                 </a>
 
+                <!-- Venstre topnavigation -->
                 <nav class="top-nav top-nav-left" aria-label="Hovednavigation venstre">
                     <?php foreach ($leftNavItems as $item): ?>
                         <a href="<?= htmlspecialchars($item['url']) ?>"
@@ -202,6 +216,7 @@ if ($isLoggedIn) {
                 </nav>
             </div>
 
+            <!-- Højre topnavigation -->
             <nav class="top-nav top-nav-right" aria-label="Hovednavigation højre">
                 <?php foreach ($rightNavItems as $item): ?>
                     <a href="<?= htmlspecialchars($item['url']) ?>"
@@ -212,15 +227,18 @@ if ($isLoggedIn) {
             </nav>
         </div>
 
-        <!-- Subnavigation -->
+        <!-- Subnavigation på desktop -->
         <?php if ($isLoggedIn && !empty($subNavItems) && $isProfileSection): ?>
             <nav class="sub-nav" aria-label="Sekundær navigation">
                 <div class="sub-nav-inner">
+
+                    <!-- Loop gennem links i subnavigationen -->
                     <?php foreach ($subNavItems as $item): ?>
                         <a href="<?= htmlspecialchars($item['url']) ?>"
                             class="sub-nav-link <?= ($currentPage === $item['key']) ? 'active' : '' ?>">
                             <?= htmlspecialchars($item['label']) ?>
 
+                            <!-- Badge vises fx ved afventende ansøgninger -->
                             <?php if (!empty($item['badge'])): ?>
                                 <span class="sub-nav-badge"><?= htmlspecialchars($item['badge']) ?></span>
                             <?php endif; ?>
@@ -230,10 +248,11 @@ if ($isLoggedIn) {
             </nav>
         <?php endif; ?>
 
-        <!-- Topnavigation - Mobil -->
+        <!-- Mobil navigation -->
         <div class="mobile-nav" id="mobileMenu">
             <nav class="mobile-nav-group" aria-label="Mobil hovednavigation">
 
+                <!-- Primære links i mobilmenuen -->
                 <div class="mobile-nav-main">
                     <?php foreach ($leftNavItems as $item): ?>
                         <a href="<?= htmlspecialchars($item['url']) ?>" class="mobile-nav-link">
@@ -242,6 +261,7 @@ if ($isLoggedIn) {
                     <?php endforeach; ?>
                 </div>
 
+                <!-- Konto-links i mobilmenuen -->
                 <div class="mobile-nav-account">
                     <?php foreach ($rightNavItems as $item): ?>
                         <a href="<?= htmlspecialchars($item['url']) ?>" class="mobile-nav-link">
@@ -253,16 +273,20 @@ if ($isLoggedIn) {
         </div>
     </header>
 
-    <!-- Subnavigation - Mobil -->
+    <!-- Mobil subnavigation i bunden -->
     <?php if ($isLoggedIn && !empty($subNavItems) && $isProfileSection): ?>
         <nav class="mobile-bottom-nav" aria-label="Mobil subnavigation">
+
+            <!-- Loop gennem links i mobil subnavigationen -->
             <?php foreach ($subNavItems as $item): ?>
                 <a href="<?= htmlspecialchars($item['url']) ?>"
                     class="mobile-bottom-link <?= ($currentPage === $item['key']) ? 'active' : '' ?>">
 
+                    <!-- Aktivt ikon vises på den aktuelle side -->
                     <img src="<?= ($currentPage === $item['key']) ? $item['icon_active'] : $item['icon']; ?>"
                         alt="<?= htmlspecialchars($item['label']) ?>" class="mobile-bottom-icon">
 
+                    <!-- Badge vises fx ved afventende ansøgninger -->
                     <?php if (!empty($item['badge'])): ?>
                         <span class="mobile-nav-badge"><?= htmlspecialchars($item['badge']) ?></span>
                     <?php endif; ?>

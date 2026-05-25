@@ -1,5 +1,6 @@
 <?php
 
+// Importerer event-model samt helper-funktioner til mail, login, redirects osv.
 require_once __DIR__ . '/../Models/EventModel.php';
 require_once __DIR__ . '/../../private/mailhelpers.php';
 require_once __DIR__ . '/../../private/helpers.php';
@@ -7,16 +8,23 @@ require_once __DIR__ . '/../../private/helpers.php';
 class EventController
 {
 
+    /* ==================================================
+    TILMELDING / AFMELDING
+    ================================================== */
+
+    // Henter alle events en bestemt bruger er tilmeldt
     public static function getByUser(int $userId): array
     {
         return array_map([self::class, 'formatDates'], EventModel::getByUserId($userId));
     }
 
+    // Tjekker om en bruger allerede er tilmeldt et event
     public static function isRegistered(string $eventId, int $userId): bool
     {
         return EventModel::isRegistered($eventId, $userId);
     }
 
+    // Tilmelder en bruger til et event og sender bekræftelsesmail
     public static function register(string $eventId, int $userId): void
     {
         EventModel::registerUser($eventId, $userId);
@@ -32,6 +40,7 @@ class EventController
         $_SESSION['success'] = 'Du er nu tilmeldt eventet.';
     }
 
+    // Afmelder en bruger fra et event og sender mail
     public static function unregister(string $eventId, int $userId): void
     {
         $event = EventModel::getById($eventId);
@@ -47,10 +56,12 @@ class EventController
         $_SESSION['success'] = 'Du er nu afmeldt eventet.';
     }
 
+    // Håndterer klik på tilmeld eller afmeld-knappen
     public static function toggleRegistration(): void
     {
         require_login();
 
+        // Tilmelding/afmelding må kun ske via POST
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             redirect('/events');
         }
@@ -60,6 +71,7 @@ class EventController
         $eventId = $_POST['event_id'] ?? '';
         $action = $_POST['action'] ?? 'register';
 
+        // Vælger handling ud fra formularens action-værdi
         if ($action === 'unregister') {
             self::unregister($eventId, $_SESSION['user']['user_pk']);
         } else {
@@ -69,6 +81,11 @@ class EventController
         redirect('/event_page?id=' . urlencode($eventId));
     }
 
+    /* ==================================================
+    KALENDER
+    ================================================== */
+
+    // Grupperer events efter dato, så de kan vises i kalenderen
     private static function groupByDate(array $events): array
     {
         $grouped = [];
@@ -83,22 +100,26 @@ class EventController
         return $grouped;
     }
 
+    // Henter alle events formateret til kalenderen
     public static function getAllForCalendar(): array
     {
         return self::groupByDate(EventModel::getAll());
     }
 
+    // Henter brugerens egne events formateret til kalenderen
     public static function getByUserForCalendar(int $userId): array
     {
         return self::groupByDate(EventModel::getByUserId($userId));
     }
 
+    // Henter kun event-id'er for de events brugeren er tilmeldt
     public static function getRegisteredEventIds(int $userId): array
     {
         $events = EventModel::getByUserId($userId);
         return array_column($events, 'event_pk');
     }
 
+    // Viser kalendersiden
     public static function showCalendar(): void
     {
         require_login();
@@ -107,6 +128,7 @@ class EventController
 
         $calendarEvents = self::getAllForCalendar();
 
+        // Admin skal ikke markeres som tilmeldt events
         $registeredEventIds = $isAdmin
             ? []
             : self::getRegisteredEventIds($_SESSION['user']['user_pk']);
@@ -123,11 +145,17 @@ class EventController
         ]);
     }
 
+    /* ==================================================
+    VISNING AF EVENTS
+    ================================================== */
+
+    // Henter alle event-kategorier
     public static function getCategories(): array
     {
         return EventModel::getAllCategories();
     }
 
+    // Viser siden med alle events
     public static function showAll(): void
     {
         $events = self::getAll();
@@ -143,6 +171,7 @@ class EventController
         ]);
     }
 
+    // Viser forsiden med de nyeste events
     public static function showFrontpage(): void
     {
         $events = self::getLatest(3);
@@ -156,10 +185,12 @@ class EventController
         ]);
     }
 
+    // Viser en specifik eventside
     public static function showSingle(): void
     {
         $event = self::getById($_GET['id'] ?? '');
 
+        // Sender brugeren tilbage hvis eventet ikke findes
         if (!$event) {
             redirect('/events');
         }
@@ -172,6 +203,7 @@ class EventController
 
         $isRegistered = false;
 
+        // Tjekker kun tilmelding hvis brugeren er logget ind
         if ($isLoggedIn) {
             $isRegistered = self::isRegistered(
                 $_GET['id'] ?? '',
@@ -191,6 +223,7 @@ class EventController
         ]);
     }
 
+    // Viser brugerens egne tilmeldte events
     public static function showUserEvents(): void
     {
         require_login();
@@ -208,10 +241,16 @@ class EventController
         ]);
     }
 
+    /* ==================================================
+    ADMIN: OPRET / REDIGER / SLET EVENTS
+    ================================================== */
+
+    // Viser redigeringssiden for et event
     public static function showEdit(): void
     {
         require_role(1, '/events');
 
+        // Hvis formularen sendes, opdateres eventet
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             self::updateEvent();
             exit;
@@ -237,10 +276,12 @@ class EventController
         ]);
     }
 
+    // Viser siden til oprettelse af nyt event
     public static function showCreate(): void
     {
         require_admin();
 
+        // Hvis formularen sendes, oprettes eventet
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             self::createEvent();
             exit;
@@ -259,6 +300,7 @@ class EventController
         ]);
     }
 
+    // Validerer adgang og request før event opdateres
     public static function updateEvent(): void
     {
         require_role(1, '/events');
@@ -272,6 +314,7 @@ class EventController
         self::update();
     }
 
+    // Validerer adgang og request før event slettes
     public static function deleteEvent(): void
     {
         require_role(1, '/events');
@@ -285,6 +328,7 @@ class EventController
         self::delete($_POST['event_id'] ?? '');
     }
 
+    // Validerer adgang og request før event oprettes
     public static function createEvent(): void
     {
         require_admin();
@@ -298,21 +342,29 @@ class EventController
         self::create();
     }
 
+    /* ==================================================
+    DATAHENTNING
+    ================================================== */
+
+    // Henter alle events og formaterer datoer
     public static function getAll(): array
     {
         return array_map([self::class, 'formatDates'], EventModel::getAll());
     }
 
+    // Henter de nyeste events og formaterer datoer
     public static function getLatest(int $limit = 3): array
     {
         return array_map([self::class, 'formatDates'], EventModel::getLatest($limit));
     }
 
+    // Henter deltagere til et event
     public static function getParticipants(string $id): array
     {
         return EventModel::getParticipantsByEventId($id);
     }
 
+    // Henter ét event ud fra id og formaterer datoer
     public static function getById(string $id): array|false
     {
         $event = EventModel::getById($id);
@@ -324,6 +376,11 @@ class EventController
         return self::formatDates($event);
     }
 
+    /* ==================================================
+    CRUD-FUNKTIONER
+    ================================================== */
+
+    // Sletter et event og sender besked til alle tilmeldte deltagere
     public static function delete(string $id): void
     {
         $event = EventModel::getById($id);
@@ -344,9 +401,10 @@ class EventController
         exit;
     }
 
+    // Opdaterer et eksisterende event
     public static function update(): void
     {
-
+        // Henter input fra redigeringsformularen
         $id = $_POST['event_pk'] ?? '';
         $title = trim($_POST['titel'] ?? '');
         $subtitle = trim($_POST['subtitel'] ?? '');
@@ -358,11 +416,12 @@ class EventController
         $location = trim($_POST['location'] ?? '');
         $category = $_POST['category'] ?? '';
 
-        // Hent deltagere før update
+        // Henter deltagere før update, så de kan få besked efter ændringen
         $participants = EventModel::getParticipantsByEventId($id);
 
         $imagePath = null;
 
+        // Håndterer nyt billede hvis admin uploader et
         if (!empty($_FILES['image']['name'])) {
             $uploadDir = __DIR__ . '/../../public/assets/img/events/';
 
@@ -376,6 +435,7 @@ class EventController
             $imagePath = 'events/' . $filename;
         }
 
+        // Gemmer ændringerne i databasen
         EventModel::update([
             'event_pk' => $id,
             'event_title' => $title,
@@ -390,7 +450,7 @@ class EventController
             'event_image' => $imagePath,
         ]);
 
-        // Send mail til alle deltagere
+        // Sender opdateringsmail til alle deltagere
         foreach ($participants as $participant) {
 
             sendEventUpdatedMail(
@@ -405,8 +465,10 @@ class EventController
         exit;
     }
 
+    // Opretter et nyt event
     public static function create(): void
     {
+        // Henter input fra oprettelsesformularen
         $title = trim($_POST['titel'] ?? '');
         $subtitle = trim($_POST['subtitel'] ?? '');
         $description = trim($_POST['description'] ?? '');
@@ -417,6 +479,7 @@ class EventController
         $location = trim($_POST['location'] ?? '');
         $category = $_POST['category'] ?? '';
 
+        // Kræver at der uploades et billede ved oprettelse
         if (empty($_FILES['image']['name']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
             $_SESSION['error'] = 'Du skal uploade et billede.';
             header('Location: /event_create');
@@ -424,19 +487,27 @@ class EventController
         }
 
         $imagePath = null;
+
+        // Gemmer det uploadede billede i event-mappen
         if (!empty($_FILES['image']['name'])) {
             $uploadDir = __DIR__ . '/../../public/assets/img/events/';
+
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
+
             $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $filename = bin2hex(random_bytes(8)) . '.' . $ext;
+
             move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $filename);
+
             $imagePath = 'events/' . $filename;
         }
 
+        // Opretter unikt id til eventet
         $uuid = bin2hex(random_bytes(16));
 
+        // Gemmer eventet i databasen
         EventModel::create([
             'event_pk' => $uuid,
             'event_title' => $title,
@@ -457,6 +528,11 @@ class EventController
         exit;
     }
 
+    /* ==================================================
+    FORMATERING
+    ================================================== */
+
+    // Tilføjer danske datoformater til et event-array
     private static function formatDates(array $event): array
     {
         $dage = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
@@ -464,8 +540,11 @@ class EventController
         $måneder_kort = ['JAN', 'FEB', 'MAR', 'APR', 'MAJ', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEC'];
         $ts = strtotime($event['event_date']);
 
+        // Bruges fx til event cards
         $event['date_day'] = date('d', $ts);
         $event['date_month_da'] = $måneder_kort[(int) date('n', $ts) - 1];
+
+        // Bruges fx på single event-siden
         $event['dato'] = $dage[date('w', $ts)] . ' d. ' . date('j', $ts) . ' ' . $måneder[(int) date('n', $ts) - 1];
 
         return $event;

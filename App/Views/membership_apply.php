@@ -1,11 +1,14 @@
 <?php
+
+// Tjekker om brugeren allerede har et profilbillede
 $profileImage = $_SESSION['user']['user_profile_image'] ?? null;
 $hasProfileImage = !empty($profileImage);
 ?>
 
+<!-- Bliv medlem side -->
 <main class="membership-page">
 
-    <!-- Hero section -->
+    <!-- Hero sektion -->
     <section class="membership-hero">
 
         <div class="membership-left">
@@ -32,13 +35,14 @@ $hasProfileImage = !empty($profileImage);
     include __DIR__ . '/micro/___banner.php';
     ?>
 
-    <!-- Hvorfor blive medlem -->
+    <!-- Fordele ved medlemskab -->
     <section class="membership-benefits">
 
         <h2>HVORFOR BLIVE MEDLEM?</h2>
 
         <div class="benefits-grid">
 
+            <!-- Fællesskab -->
             <article class="benefit-card">
                 <img src="/assets/img/icons/fællesskab.png" alt="Fællesskab logo">
 
@@ -51,6 +55,7 @@ $hasProfileImage = !empty($profileImage);
                 </p>
             </article>
 
+            <!-- Events -->
             <article class="benefit-card">
                 <img src="/assets/img/icons/events2.png" alt="Events logo">
 
@@ -62,6 +67,7 @@ $hasProfileImage = !empty($profileImage);
                 </p>
             </article>
 
+            <!-- Netværk -->
             <article class="benefit-card">
                 <img src="/assets/img/icons/netværk.png" alt="Netværk logo">
 
@@ -76,7 +82,7 @@ $hasProfileImage = !empty($profileImage);
         </div>
     </section>
 
-    <!-- Stats section -->
+    <!-- Statistik -->
     <section class="membership-stats">
 
         <div class="stat">
@@ -110,7 +116,7 @@ $hasProfileImage = !empty($profileImage);
         </div>
     </section>
 
-    <!-- Bliv en del af holdet -->
+    <!-- Ansøgningssektion -->
     <section class="get-membership" id="membership-form">
 
         <!-- Venstre side -->
@@ -127,7 +133,7 @@ $hasProfileImage = !empty($profileImage);
             </div>
         </div>
 
-        <!-- Højre side -->
+        <!-- Formular -->
         <div class="form-container membership-container">
             <form method="POST" action="/membership_apply" enctype="multipart/form-data">
                 <?php csrf_input(); ?>
@@ -142,6 +148,7 @@ $hasProfileImage = !empty($profileImage);
                         value="<?= htmlspecialchars($_SESSION['user']['user_last_name'] ?? '') ?>" disabled>
                 </div>
 
+                <!-- Studieretning -->
                 <label for="education_fk" class="hide_label">Studieretning</label>
                 <select id="education_fk" name="education_fk" required>
                     <option value="">Vælg studieretning</option>
@@ -153,6 +160,7 @@ $hasProfileImage = !empty($profileImage);
                     <?php endforeach; ?>
                 </select>
 
+                <!-- Semester -->
                 <label for="semester_fk" class="hide_label">Semester</label>
                 <select id="semester_fk" name="semester_fk" required>
                     <option value="">Vælg semester</option>
@@ -163,14 +171,17 @@ $hasProfileImage = !empty($profileImage);
                     <?php endforeach; ?>
                 </select>
 
+                <!-- Email -->
                 <label for="user_email" class="hide_label">Studiemail</label>
                 <input id="user_email" type="email"
                     value="<?= htmlspecialchars($_SESSION['user']['user_email'] ?? '') ?>" disabled>
 
+                <!-- Motivation -->
                 <label class="form-label" for="description">Hvorfor vil du være medlem? Og hvilke af de kommende
                     aktiviteter vil du have ansvaret for?</label>
                 <textarea id="description" name="description" required></textarea>
 
+                <!-- Upload profilbillede -->
                 <label class="form-label" for="profile_image">Upload profilbillede</label>
 
                 <label class="upload-box" for="profile_image">
@@ -180,6 +191,7 @@ $hasProfileImage = !empty($profileImage);
                         <img src="/assets/img/icons/upload_picture.png" alt="Upload billede ikon">
                     </div>
 
+                    <!-- Upload tekst -->
                     <p id="uploadText">
                         <?php if ($hasProfileImage): ?>
                             Du har allerede et profilbillede<br>Upload kun hvis du vil skifte det
@@ -188,12 +200,14 @@ $hasProfileImage = !empty($profileImage);
                         <?php endif; ?>
                     </p>
 
+                    <!-- Preview billede -->
                     <img id="uploadPreview" src="<?= $hasProfileImage
                         ? '/assets/img/uploads/' . htmlspecialchars($profileImage)
                         : '/assets/img/uploads/default_profile_image.webp' ?>" alt="Profil preview"
                         class="upload-preview">
                 </label>
 
+                <!-- Submit knap -->
                 <button class="btn btn-primary" type="submit">SEND ANSØGNING</button>
             </form>
         </div>

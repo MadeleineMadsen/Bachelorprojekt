@@ -1,23 +1,33 @@
 <?php
+
+// Tjekker om formularen bruges til at redigere eller oprette et event
 $isEditing = isset($event);
 $formAction = $isEditing ? '/event_edit' : '';
 ?>
 
+<!-- Opret/rediger event side -->
 <main class="container create-event-page">
 
+    <!-- Venstre billede -->
     <div class="create-event-image">
         <img src="/assets/img/left-layout-picture.webp" alt="Studerende til socialt event">
     </div>
 
+    <!-- Formular sektion -->
     <section class="create-event-content">
         <h1 class="form-title"><?= $isEditing ? 'REDIGER EVENT' : 'OPRET EVENT' ?></h1>
 
         <section class="form-container create-event-container">
+            
+            <!-- Event formular -->
             <form id="eventForm" method="POST" action="<?= $formAction ?>" enctype="multipart/form-data"><?php csrf_input(); ?>
+                
+                <!-- Event id sendes med ved redigering -->
                 <?php if ($isEditing): ?>
                     <input type="hidden" name="event_pk" value="<?= htmlspecialchars($event['event_pk']) ?>">
                 <?php endif; ?>
 
+                <!-- Basisinformation -->
                 <label for="event_titel" class="hide_label">Titel på event</label>
                 <input id="event_titel" type="text" name="titel" placeholder="Titel på event" required
                     value="<?= $isEditing ? htmlspecialchars($event['event_title']) : '' ?>">
@@ -27,6 +37,7 @@ $formAction = $isEditing ? '/event_edit' : '';
                     min="<?= $isEditing ? '' : date('Y-m-d') ?>"
                     value="<?= $isEditing ? htmlspecialchars($event['event_date']) : '' ?>">
 
+                <!-- Tidspunkt -->
                 <div class="form-row">
                     <div>
                         <small class="form-hint">Starttidspunkt</small>
@@ -43,6 +54,7 @@ $formAction = $isEditing ? '/event_edit' : '';
                     </div>
                 </div>
 
+                <!-- Lokation og undertitel -->
                 <label for="event_lokation" class="hide_label">Lokation</label>
                 <input id="event_lokation" type="text" name="location" placeholder="Lokation" required
                     value="<?= $isEditing ? htmlspecialchars($event['event_location']) : '' ?>">
@@ -51,6 +63,7 @@ $formAction = $isEditing ? '/event_edit' : '';
                 <input id="event_subtitel" type="text" name="subtitel" placeholder="Undertitel" required
                     value="<?= $isEditing ? htmlspecialchars($event['event_subtitle'] ?? '') : '' ?>">
 
+                <!-- Kategori -->
                 <label for="category" class="hide_label">Kategori</label>
                 <select id="category" name="category" required>
                     <option value="" disabled <?= !$isEditing ? 'selected' : '' ?>>Vælg kategori</option>
@@ -62,13 +75,16 @@ $formAction = $isEditing ? '/event_edit' : '';
                     <?php endforeach; ?>
                 </select>
 
+                <!-- Beskrivelse -->
                 <label class="form-label" for="description">Beskrivelse</label>
                 <textarea id="description" name="description" required><?= $isEditing ? htmlspecialchars($event['event_description']) : '' ?></textarea>
 
+                <!-- Beskrivende punkter -->
                 <label class="form-label" for="description-bulletpoints">Beskrivende punkter</label>
                 <small class="form-hint">Skriv ét punkt per linje, hver linje bliver et bullet point.</small>
                 <textarea id="description-bulletpoints" name="description-bulletpoints" required><?= $isEditing ? htmlspecialchars($event['event_expectations'] ?? '') : '' ?></textarea>
 
+                <!-- Billede upload -->
                 <label class="form-label" for="profile_image">Upload billede<?= $isEditing ? ' <small class="form-hint">(valgfrit – behold nuværende hvis tomt)</small>' : '' ?></label>
                 <label class="upload-box" for="profile_image">
                     <input id="profile_image" type="file" name="image" accept="image/*">
@@ -91,10 +107,12 @@ $formAction = $isEditing ? '/event_edit' : '';
                     >
                 </label>
                 
+                <!-- Fejlbesked til billede -->
                 <p class="field-error" id="imageError" style="display:none;">
                     Du skal uploade et billede
                 </p>
 
+                <!-- Knapper -->
                 <div class="button-row">
                     <button class="btn btn-primary" type="submit"><?= $isEditing ? 'GEM ÆNDRINGER' : 'OPRET EVENT' ?></button>
                     <?php if ($isEditing): ?>

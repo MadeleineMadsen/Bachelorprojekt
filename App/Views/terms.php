@@ -1,5 +1,7 @@
+<!-- Vilkår og privatlivspolitik side -->
 <main class="main-terms">
 
+    <!-- Privatlivspolitik -->
     <section class="terms-section">
         <h1 class="terms-header">Privatlivspolitik</h1>
 
@@ -38,6 +40,7 @@
         </p>
     </section>
 
+    <!-- Vilkår og betingelser -->
     <section class="terms-section">
         <h2 class="terms-header">Vilkår og betingelser</h2>
 

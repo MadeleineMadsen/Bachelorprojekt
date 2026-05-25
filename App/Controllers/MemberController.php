@@ -1,30 +1,44 @@
 <?php
 
+// Importerer medlems-model samt helper-funktioner til mail, login, redirects osv.
 require_once __DIR__ . '/../Models/MemberModel.php';
 require_once __DIR__ . '/../../private/mailhelpers.php';
 require_once __DIR__ . '/../../private/helpers.php';
 
 class MemberController
 {
+    /* ==================================================
+    DATAHENTNING
+    ================================================== */
+
+    // Henter alle medlemmer der må vises offentligt
     public static function getVisibleMembers(): array
     {
         return MemberModel::getVisibleMembers();
     }
 
+    // Henter alle afventende medlemsansøgninger
     public static function getPending(): array
     {
         return MemberModel::getPending();
     }
 
+    // Henter statistik om medlemmer
     public static function getStats(): array
     {
         return MemberModel::getStats();
     }
 
+    /* ==================================================
+    VISNING AF SIDER
+    ================================================== */
+
+    // Viser siden hvor brugere kan ansøge om medlemskab
     public static function applicationPage(): void
     {
         require_user();
 
+        // Hvis formularen sendes, oprettes en ansøgning
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require_csrf();
 
@@ -47,6 +61,7 @@ class MemberController
         ]);
     }
 
+    // Viser admin-siden til godkendelse af medlemsansøgninger
     public static function showApprovalPage(): void
     {
         require_admin();
@@ -68,6 +83,7 @@ class MemberController
         ]);
     }
 
+    // Viser siden med alle aktive medlemmer
     public static function showMembers(): void
     {
         $members = self::getVisibleMembers();
@@ -85,6 +101,7 @@ class MemberController
         ]);
     }
 
+    // Viser om-siden med synlige medlemmer
     public static function showAbout(): void
     {
         $members = self::getVisibleMembers();
@@ -98,35 +115,47 @@ class MemberController
         ]);
     }
 
+    /* ==================================================
+    MEDLEMSANSØGNING
+    ================================================== */
+
+    // Opretter en ny medlemsansøgning
     public static function createApplication(): void
     {
+        // Finder den aktuelle bruger fra sessionen
         $userId = $_SESSION['user']['user_pk'] ?? $_SESSION['user']['id'] ?? null;
 
+        // Brugeren skal være logget ind for at ansøge
         if (!$userId) {
             $_SESSION['error'] = 'Du skal være logget ind for at sende en ansøgning.';
             header('Location: /login');
             exit;
         }
 
+        // Henter input fra ansøgningsformularen
         $educationFk = (int) ($_POST['education_fk'] ?? 0);
         $semesterFk = (int) ($_POST['semester_fk'] ?? 0);
         $applicationText = trim($_POST['description'] ?? '');
 
+        // Sikrer at alle felter er udfyldt
         if ($educationFk <= 0 || $semesterFk <= 0 || $applicationText === '') {
             $_SESSION['error'] = 'Udfyld venligst alle felter i ansøgningen.';
             header('Location: /membership_apply#membership-form');
             exit;
         }
 
+        // Forhindrer at brugeren sender flere ansøgninger
         if (MemberModel::hasApplication((int) $userId)) {
             $_SESSION['error'] = 'Du har allerede sendt en medlemsansøgning.';
             header('Location: /membership_apply#membership-form');
             exit;
         }
 
+        // Henter eksisterende profilbillede hvis brugeren allerede har et
         $existingProfileImage = MemberModel::getUserProfileImage($userId);
         $profileImageName = $existingProfileImage;
 
+        // Håndterer upload af nyt profilbillede
         if (
             isset($_FILES['profile_image']) &&
             $_FILES['profile_image']['error'] === UPLOAD_ERR_OK
@@ -139,31 +168,38 @@ class MemberController
 
             $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
 
+            // Tjekker at billedet har en tilladt filtype
             if (!in_array($fileExt, $allowedExtensions)) {
                 $_SESSION['error'] = 'Profilbilledet skal være jpg, jpeg, png eller webp.';
                 header('Location: /membership_apply#membership-form');
                 exit;
             }
 
+            // Opretter unikt filnavn til profilbilledet
             $profileImageName = uniqid('profile_', true) . '.' . $fileExt;
 
+            // Gemmer billedet i uploads-mappen
             if (!move_uploaded_file($fileTmp, $uploadDir . $profileImageName)) {
                 $_SESSION['error'] = 'Profilbilledet kunne ikke uploades. Prøv igen.';
                 header('Location: /membership_apply#membership-form');
                 exit;
             }
 
+            // Opdaterer brugerens profilbillede i databasen
             MemberModel::updateUserProfileImage($userId, $profileImageName);
 
+            // Opdaterer sessionen så det nye billede bruges med det samme
             $_SESSION['user']['user_profile_image'] = $profileImageName;
         }
 
+        // Kræver at brugeren har et profilbillede før ansøgningen sendes
         if (empty($profileImageName)) {
             $_SESSION['error'] = 'Upload venligst et profilbillede.';
             header('Location: /membership_apply#membership-form');
             exit;
         }
 
+        // Opretter medlemsansøgningen i databasen
         $created = MemberModel::createApplication(
             $userId,
             $educationFk,
@@ -171,6 +207,7 @@ class MemberController
             $applicationText
         );
 
+        // Sender bekræftelsesmail hvis ansøgningen blev oprettet
         if ($created) {
             sendMembershipConfirmationMail(
                 $_SESSION['user']['user_email'],
@@ -187,13 +224,21 @@ class MemberController
         exit;
     }
 
+    /* ==================================================
+    ADMIN: GODKEND / AFVIS / SLET
+    ================================================== */
+
+    // Godkender en medlemsansøgning
     public static function approve(): void
     {
         $memberId = $_POST['member_pk'] ?? null;
         $adminId = $_SESSION['user']['user_pk'] ?? $_SESSION['user']['id'] ?? null;
 
         if ($memberId && $adminId) {
+            // Henter ansøgningen før den godkendes, så maildata er tilgængelig
             $application = MemberModel::getApplicationById($memberId);
+
+            // Godkender ansøgningen i databasen
             $approved = MemberModel::approve($memberId, $adminId);
 
             if ($approved && $application) {
@@ -214,12 +259,16 @@ class MemberController
         exit;
     }
 
+    // Afviser en medlemsansøgning
     public static function reject(): void
     {
         $memberId = $_POST['member_pk'] ?? null;
 
         if ($memberId) {
+            // Henter ansøgningen før den afvises, så maildata er tilgængelig
             $application = MemberModel::getApplicationById($memberId);
+
+            // Afviser ansøgningen i databasen
             $rejected = MemberModel::reject($memberId);
 
             if ($rejected && $application) {
@@ -240,17 +289,22 @@ class MemberController
         exit;
     }
 
+    // Fjerner et eksisterende medlem
     public static function delete(): void
     {
         $memberId = $_POST['member_pk'] ?? null;
 
+        // Stopper hvis der ikke findes et medlems-id
         if (!$memberId) {
             $_SESSION['error'] = 'Medlemmet kunne ikke fjernes.';
             header('Location: /membership_approve');
             exit;
         }
 
+        // Henter medlemmet før sletning, så maildata er tilgængelig
         $member = MemberModel::getMemberById($memberId);
+
+        // Sletter eller skjuler medlemmet via modellen
         $deleted = MemberModel::delete($memberId);
 
         if ($deleted && $member) {
@@ -268,6 +322,11 @@ class MemberController
         exit;
     }
 
+    /* ==================================================
+    ADMIN: REQUEST-HÅNDTERING
+    ================================================== */
+
+    // Validerer admin, request method og CSRF før godkendelse
     public static function approveMember(): void
     {
         require_admin();
@@ -281,6 +340,7 @@ class MemberController
         self::approve();
     }
 
+    // Validerer admin, request method og CSRF før afvisning
     public static function rejectMember(): void
     {
         require_admin();
@@ -294,6 +354,7 @@ class MemberController
         self::reject();
     }
 
+    // Validerer admin, request method og CSRF før fjernelse af medlem
     public static function deleteMember(): void
     {
         require_admin();

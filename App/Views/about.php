@@ -1,4 +1,7 @@
+<!-- Main wrapper -->
 <main class="main-about">
+
+    <!-- Hero sektion -->
     <section class="about-hero">
 
         <div class="about-left">
@@ -20,12 +23,13 @@
 
     </section>
 
-
+    <!-- Banner -->
     <?php
     $bannerText = 'VI SKABER FÆLLESSKAB';
     include __DIR__ . '/micro/___banner.php';
     ?>
 
+    <!-- Bliv medlem sektion -->
     <section id="join-us">
 
         <section class="join-us-container">
@@ -40,7 +44,7 @@
 
     </section>
 
-
+    <!-- Team sektion -->
     <section id="team">
 
         <h2 class="meet-sub sub">MØD MEDLEMMERNE I GBG SOCIAL</h2>
@@ -48,12 +52,15 @@
         <div class="team-members">
             <h1 class="about-header team">TEAMET</h1>
 
+            <!-- Member carousel -->
             <section class="member-carousel-section about-carousel-section">
                 <button class="carousel-arrow carousel-prev" type="button" aria-label="Forrige">
                     &#8592;
                 </button>
 
                 <div class="member-carousel about-carousel" id="memberCarousel" data-visible-slides="1">
+
+                    <!-- Loop gennem medlemmer -->
                     <?php foreach ($members as $index => $member): ?>
 
                         <article class="member-slide about-slide <?= $index >= 10 ? 'desktop-hidden' : ''; ?>">
@@ -83,15 +90,18 @@
             </section>
         </div>
 
+        <!-- Knap til medlemsside -->
         <div class="team-btn-wrapper">
             <a href="/members" class="btn btn-nav btn-about">SE ALLE MEDLEMMER</a>
         </div>
     </section>
 
+    <!-- Værdier sektion -->
     <section id="values">
 
         <h2 class="values-sub sub">VORES VÆRDIER</h2>
 
+        <!-- Fællesskab -->
         <div class="values-container">
             <img src="/assets/img/icons/fælles.svg" alt="Fællesskab icon">
 
@@ -102,6 +112,7 @@
             </div>
         </div>
 
+        <!-- Oplevelser -->
         <div class="values-container">
             <img src="/assets/img/icons/oplev.svg" alt="Menneske med armene over hovedet icon">
 
@@ -111,6 +122,7 @@
             </div>
         </div>
 
+        <!-- Inklusion -->
         <div class="values-container">
             <img src="/assets/img/icons/inklusion.svg" alt="Hjerte icon">
 
@@ -124,6 +136,7 @@
         <img class="values-img" src="/assets/img/værdi.webp" alt="Studerende der kigger på solnedgangen sammen">
     </section>
 
+    <!-- Kontakt sektion -->
     <!-- id´et bruges til at der scroller hertil når man klikker kontakt i footer -->
     <section class="contact" id="contact">
 
@@ -131,6 +144,7 @@
 
         <p class="sub-text">Har du spørgsmål, ideer til events eller lyst til at samarbejde? Så ræk endelig ud!</p>
 
+        <!-- Mail -->
         <div class="contact-container">
             <img src="/assets/img/icons/mail.svg" alt="Mail icon">
 
@@ -139,6 +153,8 @@
             </div>
         </div>
 
+
+        <!-- Instagram -->
         <div class="contact-container">
             <img src="/assets/img/icons/insta-sort.svg" alt="Instagram icon">
 
@@ -147,6 +163,7 @@
             </div>
         </div>
 
+        <!-- Facebook -->
         <div class="contact-container">
             <img src="/assets/img/icons/face-sort.svg" alt="Facebook icon">
 
@@ -155,6 +172,7 @@
             </div>
         </div>
 
+        <!-- Adresse -->
         <div class="contact-container">
             <img src="/assets/img/icons/placering_icon.png" alt="Pin icon">
 

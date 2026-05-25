@@ -1,91 +1,121 @@
-const calendarDays  = document.querySelectorAll('.calendar-day');
-const eventCards    = document.querySelectorAll('.mobile-event-card');
-const eventList     = document.querySelector('.mobile-event-list');
-const noEvents      = document.querySelector('.no-events');
+// ------------------------------------------------
+// Kalender - mobil eventvisning
+// ------------------------------------------------
 
-calendarDays.forEach(day => {
-    day.addEventListener('click', () => {
-        const selectedDate = day.dataset.date;
+// Henter elementer
+const calendarDays = document.querySelectorAll(".calendar-day");
+const eventCards = document.querySelectorAll(".mobile-event-card");
+const eventList = document.querySelector(".mobile-event-list");
+const noEvents = document.querySelector(".no-events");
 
-        const isAlreadyOpen = document.querySelector(
-            `.mobile-event-card.is-visible[data-event-date="${selectedDate}"]`
-        );
+// Klik på kalenderdag
+calendarDays.forEach((day) => {
+  day.addEventListener("click", () => {
+    const selectedDate = day.dataset.date;
 
-        calendarDays.forEach(day => {
-            day.classList.remove('is-selected');
-        });
+    // Tjekker om dagens events allerede er åbne
+    const isAlreadyOpen = document.querySelector(
+      `.mobile-event-card.is-visible[data-event-date="${selectedDate}"]`,
+    );
 
-        eventCards.forEach(card => {
-            card.classList.remove('is-visible');
-        });
-
-        noEvents.style.display = 'none';
-        eventList.classList.remove('is-open');
-
-        if (isAlreadyOpen) {
-            return;
-        }
-
-        day.classList.add('is-selected');
-        eventList.classList.add('is-open');
-
-        let foundEvent = false;
-
-        eventCards.forEach(card => {
-            if (card.dataset.eventDate === selectedDate) {
-                card.classList.add('is-visible');
-                foundEvent = true;
-            }
-        });
-
-        if (!foundEvent && selectedDate) {
-            noEvents.style.display = 'block';
-        }
+    // Fjerner valgt styling fra alle dage
+    calendarDays.forEach((day) => {
+      day.classList.remove("is-selected");
     });
+
+    // Skjuler alle eventkort
+    eventCards.forEach((card) => {
+      card.classList.remove("is-visible");
+    });
+
+    // Skjuler "ingen events"
+    noEvents.style.display = "none";
+
+    // Lukker eventlisten
+    eventList.classList.remove("is-open");
+
+    // Stop hvis samme dag klikkes igen
+    if (isAlreadyOpen) {
+      return;
+    }
+
+    // Marker valgt dag
+    day.classList.add("is-selected");
+
+    // Åbn eventlisten
+    eventList.classList.add("is-open");
+
+    let foundEvent = false;
+
+    // Vis events for valgt dato
+    eventCards.forEach((card) => {
+      if (card.dataset.eventDate === selectedDate) {
+        card.classList.add("is-visible");
+        foundEvent = true;
+      }
+    });
+
+    // Vis besked hvis ingen events findes
+    if (!foundEvent && selectedDate) {
+      noEvents.style.display = "block";
+    }
+  });
 });
 
-const gridEventPreviews = document.querySelectorAll('.desktop-event-preview');
+// ------------------------------------------------
+// Desktop event preview slider
+// ------------------------------------------------
 
-gridEventPreviews.forEach(preview => {
-    const slides = preview.querySelectorAll('.grid-event-slide');
-    const prevBtn = preview.querySelector('.grid-event-arrow-left');
-    const nextBtn = preview.querySelector('.grid-event-arrow-right');
+// Henter previews i kalender grid
+const gridEventPreviews = document.querySelectorAll(".desktop-event-preview");
 
-    if (slides.length <= 1) {
-        return;
-    }
+// Loop gennem previews
+gridEventPreviews.forEach((preview) => {
+  const slides = preview.querySelectorAll(".grid-event-slide");
+  const prevBtn = preview.querySelector(".grid-event-arrow-left");
+  const nextBtn = preview.querySelector(".grid-event-arrow-right");
 
-    let activeIndex = 0;
+  // Stop hvis der kun er ét slide
+  if (slides.length <= 1) {
+    return;
+  }
 
-    function showSlide(index) {
-        slides.forEach(slide => {
-            slide.classList.remove('is-active');
-        });
+  let activeIndex = 0;
 
-        slides[index].classList.add('is-active');
-    }
-
-    nextBtn.addEventListener('click', event => {
-        event.stopPropagation();
-
-        activeIndex++;
-
-        if (activeIndex >= slides.length) {
-            activeIndex = 0;
-        }
-
-        showSlide(activeIndex);
+  // Vis aktivt slide
+  function showSlide(index) {
+    slides.forEach((slide) => {
+      slide.classList.remove("is-active");
     });
 
-    prevBtn.addEventListener('click', event => {
-        event.stopPropagation();
+    slides[index].classList.add("is-active");
+  }
 
-        activeIndex--;
+  // Næste slide
+  nextBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
 
-        if (activeIndex < 0) {
-            activeIndex = slides.length - 1;
-        }
+    activeIndex++;
 
-        showSlide(activeIndex);
-    });
+    // Start forfra ved sidste slide
+    if (activeIndex >= slides.length) {
+      activeIndex = 0;
+    }
+
+    showSlide(activeIndex);
+  });
+
+  // Forrige slide
+  prevBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    activeIndex--;
+
+    // Hop til sidste slide hvis index går under 0
+    if (activeIndex < 0) {
+      activeIndex = slides.length - 1;
+    }
+
+    showSlide(activeIndex);
+  });
 });
