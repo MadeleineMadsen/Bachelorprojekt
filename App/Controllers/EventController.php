@@ -419,21 +419,7 @@ class EventController
         // Henter deltagere før update, så de kan få besked efter ændringen
         $participants = EventModel::getParticipantsByEventId($id);
 
-        $imagePath = null;
-
-        // Håndterer nyt billede hvis admin uploader et
-        if (!empty($_FILES['image']['name'])) {
-            $uploadDir = __DIR__ . '/../../public/assets/img/events/';
-
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
-            }
-
-            $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-            $filename = bin2hex(random_bytes(8)) . '.' . $ext;
-            move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $filename);
-            $imagePath = 'events/' . $filename;
-        }
+        $imagePath = self::handleImageUpload();
 
         // Gemmer ændringerne i databasen
         EventModel::update([
@@ -465,6 +451,26 @@ class EventController
         exit;
     }
 
+    // Gemmer uploadet billede og returnerer stien, eller null hvis intet billede
+    private static function handleImageUpload(): ?string
+    {
+        if (empty($_FILES['image']['name'])) {
+            return null;
+        }
+
+        $uploadDir = __DIR__ . '/../../public/assets/img/events/';
+
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+
+        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        $filename = bin2hex(random_bytes(8)) . '.' . $ext;
+        move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $filename);
+
+        return 'events/' . $filename;
+    }
+
     // Opretter et nyt event
     public static function create(): void
     {
@@ -486,23 +492,7 @@ class EventController
             exit;
         }
 
-        $imagePath = null;
-
-        // Gemmer det uploadede billede i event-mappen
-        if (!empty($_FILES['image']['name'])) {
-            $uploadDir = __DIR__ . '/../../public/assets/img/events/';
-
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
-            }
-
-            $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-            $filename = bin2hex(random_bytes(8)) . '.' . $ext;
-
-            move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $filename);
-
-            $imagePath = 'events/' . $filename;
-        }
+        $imagePath = self::handleImageUpload();
 
         // Opretter unikt id til eventet
         $uuid = bin2hex(random_bytes(16));
