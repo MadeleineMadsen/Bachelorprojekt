@@ -6,6 +6,8 @@ require_once __DIR__ . '/../private/helpers.php';
 require_once __DIR__ . '/../private/mailhelpers.php';
 require_once __DIR__ . '/../App/Controllers/AuthController.php';
 require_once __DIR__ . '/../App/Controllers/EventController.php';
+require_once __DIR__ . '/../App/Controllers/AdminEventController.php';
+require_once __DIR__ . '/../App/Controllers/CalendarController.php';
 require_once __DIR__ . '/../App/Controllers/UserController.php';
 require_once __DIR__ . '/../App/Controllers/MemberController.php';
 
@@ -92,22 +94,22 @@ switch ($uri) {
 
     // REDIGER EVENT (ADMIN)
     case '/event_edit':
-        EventController::showEdit();
+        AdminEventController::showEdit();
         exit;
 
     // SLET EVENT (ADMIN)
     case '/event_delete':
-        EventController::deleteEvent();
+        AdminEventController::deleteEvent();
         exit;
 
     // OPRET EVENT (ADMIN)
     case '/event_create':
-        EventController::showCreate();
+        AdminEventController::showCreate();
         exit;
 
     // CALENDAR
     case '/calendar':
-        EventController::showCalendar();
+        CalendarController::showCalendar();
         exit;
 
     // SØG OM MEDLEMSSKAB
