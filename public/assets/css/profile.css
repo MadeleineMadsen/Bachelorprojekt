@@ -25,7 +25,7 @@
 
 .hello-text h1 {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h1);
+  font-size: var(--font-mobile-h1);
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   margin-left: -1.25rem;
@@ -33,7 +33,7 @@
 
 .hello-text h2 {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h2);
+  font-size: var(--font-mobile-h2);
   writing-mode: vertical-rl;
   transform: rotate(180deg);
 }
@@ -50,13 +50,13 @@
 
 .profile-intro h3 {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h3);
+  font-size: var(--font-mobile-h3);
   margin-bottom: var(--gap-sm);
 }
 
 .profile-intro p {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   max-width: 9.375rem;
 }
 
@@ -104,7 +104,7 @@
 /* ---------- My events ---------- */
 
 .my-events-hero-title {
-  font-size: var(--font-mobil-h2);
+  font-size: var(--font-mobile-h2);
   margin: var(--gap-sm) var(--gap-sm) var(--gap-md) var(--gap-sm);
 }
 

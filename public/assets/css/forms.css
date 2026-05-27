@@ -13,14 +13,14 @@
 
 .form-title {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h1);
+  font-size: var(--font-mobile-h1);
   width: 80%;
 }
 
 .form-container input,
 .form-container select {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   color: var(--font-color-black);
   width: 100%;
   border: none;
@@ -48,7 +48,7 @@
 .form-label {
   display: block;
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   margin-bottom: var(--gap-sm);
 }
 
@@ -59,14 +59,14 @@
   border: 0.0625rem solid var(--color-black);
   margin-bottom: var(--gap-sm);
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   padding: var(--gap-sm);
   outline: none;
 }
 
 .form-link-text {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   font-weight: var(--poppins-font-bold);
   margin-top: var(--gap-sm);
   color: var(--font-color-black);
@@ -97,7 +97,7 @@
 
 .checkbox-wrapper label {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   color: var(--font-color-black);
 }
 
@@ -108,7 +108,7 @@
 
 .terms {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   color: var(--color-blue);
 }
 
@@ -118,7 +118,7 @@
 .membership-container select,
 .membership-container textarea,
 .membership-container .form-label {
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
 }
 
 .upload-preview {
@@ -144,7 +144,7 @@
 .profile-member-container h4,
 .profile-user-container h4 {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   margin-bottom: var(--gap-xs);
 }
 
@@ -169,7 +169,7 @@
   gap: var(--gap-xs);
   text-align: center;
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   cursor: pointer;
   margin-bottom: var(--gap-md);
 }
@@ -180,7 +180,7 @@
 
 .upload-box p {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   color: var(--font-color-black);
   margin-bottom: var(--gap-sm);
 }

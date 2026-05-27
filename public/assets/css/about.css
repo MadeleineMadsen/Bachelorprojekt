@@ -16,13 +16,13 @@
 
 .sub {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h2);
+  font-size: var(--font-mobile-h2);
   font-weight: var(--poppins-font-bold);
   margin: var(--gap-sm);
 }
 
 .sub-text {
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   margin: 0 var(--gap-sm) var(--gap-sm);
 }
 
@@ -30,7 +30,7 @@
 
 .about-header {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h1);
+  font-size: var(--font-mobile-h1);
   font-weight: var(--IBM-font-bold);
   color: var(--font-color-white);
   padding: var(--gap-sm);

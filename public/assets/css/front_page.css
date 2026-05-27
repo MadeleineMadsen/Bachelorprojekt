@@ -13,7 +13,7 @@
 
 .front-page-hero h1 {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h1);
+  font-size: var(--font-mobile-h1);
   font-weight: var(--IBM-font-bold);
   text-transform: uppercase;
   text-align: center;
@@ -52,7 +52,7 @@
 .intro h2,
 .section-title {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h2);
+  font-size: var(--font-mobile-h2);
   font-weight: var(--IBM-font-bold);
   margin-bottom: var(--gap-sm);
   text-transform: uppercase;
@@ -60,7 +60,7 @@
 
 .intro p,
 .about-text p {
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   margin-bottom: var(--gap-sm);
 }
 
@@ -101,7 +101,7 @@
 
 .about-heading h2 {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h1);
+  font-size: var(--font-mobile-h1);
   font-weight: var(--IBM-font-bold);
   line-height: 0.8;
   writing-mode: vertical-rl;
@@ -148,7 +148,7 @@
 
 .feed-link {
   color: var(--color-light-blue);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   font-weight: var(--poppins-font-bold);
   text-decoration: none;
   display: inline-flex;

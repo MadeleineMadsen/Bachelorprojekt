@@ -23,24 +23,24 @@
 
 .approve-header {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h2);
+  font-size: var(--font-mobile-h2);
   font-weight: var(--IBM-font-bold);
 }
 
 .approve-p {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   margin-top: var(--gap-sm);
 }
 
 .approve-name {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
 }
 
 .approve-sub {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h3);
+  font-size: var(--font-mobile-h3);
   font-weight: var(--poppins-font-bold);
   margin-bottom: var(--gap-sm);
   display: flex;
@@ -105,7 +105,7 @@
 .approve-info p,
 .approve-middle p {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
 }
 
 .approve-info {

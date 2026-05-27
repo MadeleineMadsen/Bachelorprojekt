@@ -26,8 +26,8 @@
   justify-content: center;
   font-family: var(--font-text);
   font-weight: var(--poppins-font-bold);
-  font-size: var(--btn-font-mobil);
-  height: var(--btn-height-mobil);
+  font-size: var(--btn-font-mobile);
+  height: var(--btn-height-mobile);
   padding: 0 var(--gap-sm);
   border: none;
   cursor: pointer;
@@ -55,7 +55,7 @@
   min-width: unset;
   height: unset;
   padding: 0;
-  font-size: var(--btn-font-mobil);
+  font-size: var(--btn-font-mobile);
   font-weight: var(--poppins-font-semi-bold);
   display: inline-flex;
   align-items: center;
@@ -86,7 +86,7 @@
   padding: 0.875rem 2.625rem 0.875rem 1rem;
 
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
 
   position: relative;
 
@@ -181,14 +181,14 @@
 
 .modal-box h3 {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h3);
+  font-size: var(--font-mobile-h3);
 
   margin-bottom: var(--gap-sm);
 }
 
 .modal-box p {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
 
   margin-bottom: var(--gap-md);
 }
@@ -256,14 +256,14 @@
 
 .member-slide h3 {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-h3);
+  font-size: var(--font-mobile-h3);
   font-weight: var(--poppins-font-semi-bold);
   text-transform: uppercase;
 }
 
 .member-slide p {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   text-transform: uppercase;
 }
 
@@ -304,8 +304,8 @@
 
   font-family: var(--font-text);
   font-weight: var(--poppins-font-bold);
-  font-size: var(--btn-font-mobil);
-  height: var(--btn-height-mobil);
+  font-size: var(--btn-font-mobile);
+  height: var(--btn-height-mobile);
 }
 
 @keyframes banner-scroll {

@@ -14,7 +14,7 @@
 .calendar-header h1 {
   font-family: var(--font-header);
   font-weight: var(--IBM-font-bold);
-  font-size: var(--font-mobil-h1);
+  font-size: var(--font-mobile-h1);
   margin-bottom: var(--gap-sm);
 }
 
@@ -52,7 +52,7 @@
 
 .calendar-month {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h2);
+  font-size: var(--font-mobile-h2);
   font-weight: var(--font-regular);
   margin-bottom: var(--gap-sm);
 }
@@ -77,7 +77,7 @@
 
 .calendar-weekday {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-small);
+  font-size: var(--font-mobile-small);
   font-weight: var(--poppins-font-bold);
   padding: var(--gap-xxs) 0 var(--gap-xxs) 0.25rem;
 }
@@ -90,7 +90,7 @@
   background: var(--bg-color-white);
   color: var(--font-color-black);
   font-family: var(--font-text);
-  font-size: var(--font-mobil-h3);
+  font-size: var(--font-mobile-h3);
   font-weight: var(--poppins-font-bold);
   position: relative;
   cursor: pointer;
@@ -137,7 +137,7 @@
 
 .mobile-event-list h2 {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h2);
+  font-size: var(--font-mobile-h2);
   font-weight: var(--poppins-font-semi-bold);
   text-transform: uppercase;
   border-bottom: 0.0625rem solid var(--font-color-black);
@@ -167,14 +167,14 @@
 .mobile-event-date strong {
   display: block;
   font-family: var(--font-text);
-  font-size: var(--font-mobil-h2);
+  font-size: var(--font-mobile-h2);
   font-weight: var(--poppins-font-semi-bold);
   line-height: 1;
 }
 
 .mobile-event-date span {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-h3);
+  font-size: var(--font-mobile-h3);
   font-weight: var(--poppins-font-bold);
 }
 
@@ -186,7 +186,7 @@
 
 .mobile-event-card p {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
 }
 
 .calendar-img-wrap {
@@ -220,7 +220,7 @@
   padding: var(--gap-sm) 0;
   border-bottom: 0.0625rem solid var(--color-black);
   font-family: var(--font-text);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
 }
 
 .calendar-day.is-today .calendar-date {

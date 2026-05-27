@@ -59,14 +59,14 @@
 }
 
 .card-event-info-label {
-  font-size: var(--font-mobil-small);
+  font-size: var(--font-mobile-small);
   color: var(--font-color-white);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .card-event-info-value {
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   font-weight: var(--poppins-font-bold);
   text-transform: uppercase;
   letter-spacing: 0.03em;

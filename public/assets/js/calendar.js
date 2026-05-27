@@ -1,5 +1,5 @@
 // ------------------------------------------------
-// Kalender - mobil eventvisning
+// Kalender - mobile eventvisning
 // ------------------------------------------------
 
 // Henter elementer

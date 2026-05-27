@@ -43,7 +43,7 @@
 
 .event-page-hero-presenter {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-small);
+  font-size: var(--font-mobile-small);
   font-weight: var(--poppins-font-bold);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -54,7 +54,7 @@
 
 .event-page-hero-title {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h2);
+  font-size: var(--font-mobile-h2);
   font-weight: var(--IBM-font-bold);
   line-height: 1.1;
   text-transform: uppercase;
@@ -62,7 +62,7 @@
 
 .event-page-hero-date {
   font-family: var(--font-text);
-  font-size: var(--font-mobil-small);
+  font-size: var(--font-mobile-small);
   font-weight: var(--poppins-font-bold);
   letter-spacing: 0.05em;
 }
@@ -84,14 +84,14 @@
 
 .event-page-layout-heading {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h3);
+  font-size: var(--font-mobile-h3);
   font-weight: var(--IBM-font-bold);
   text-transform: uppercase;
   line-height: 1.1;
 }
 
 .event-page-layout-subtitle {
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   font-weight: var(--poppins-font-bold);
   color: var(--font-color-black);
   text-transform: uppercase;
@@ -99,13 +99,13 @@
 }
 
 .event-page-layout-desc {
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   color: var(--font-color-black);
   line-height: 1.7;
 }
 
 .event-page-layout-expectations-label {
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   font-weight: var(--poppins-font-bold);
   text-transform: uppercase;
   margin-bottom: var(--gap-xxs);
@@ -117,7 +117,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap-xxs);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   line-height: 1.5;
   color: var(--font-color-black);
 }
@@ -130,14 +130,14 @@
 
 .event-page-about-heading {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h2);
+  font-size: var(--font-mobile-h2);
   font-weight: var(--IBM-font-bold);
   text-transform: uppercase;
   margin-bottom: var(--gap-xs);
 }
 
 .event-page-about-text {
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   line-height: 1.6;
 }
 
@@ -152,7 +152,7 @@
 
 .participants-heading {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h3);
+  font-size: var(--font-mobile-h3);
   font-weight: var(--IBM-font-bold);
   text-transform: uppercase;
   margin-bottom: var(--gap-sm);
@@ -183,7 +183,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-header);
-  font-size: var(--font-mobil-h3);
+  font-size: var(--font-mobile-h3);
   font-weight: var(--IBM-font-bold);
   color: var(--font-color-white);
 }
@@ -209,7 +209,7 @@
 
 .event-gallery-title {
   font-family: var(--font-header);
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   font-weight: var(--IBM-font-bold);
   text-transform: uppercase;
 }
@@ -217,7 +217,7 @@
 .event-gallery-link,
 .event-gallery-link:link,
 .event-gallery-link:visited {
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   font-weight: var(--poppins-font-bold);
   color: var(--color-light-blue);
   text-decoration: none;

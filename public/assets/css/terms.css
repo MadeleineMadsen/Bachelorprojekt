@@ -14,7 +14,7 @@
 
 .terms-header {
   margin: var(--gap-sm);
-  font-size: var(--font-mobil-h2);
+  font-size: var(--font-mobile-h2);
   font-family: var(--font-header);
 }
 
@@ -29,11 +29,11 @@
 }
 
 .terms-list li {
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
 }
 
 .terms-text {
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   font-family: var(--font-text);
   margin-bottom: var(--gap-sm);
 }

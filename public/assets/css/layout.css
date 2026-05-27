@@ -116,7 +116,7 @@ html {
   transform: translateY(0) rotate(-45deg);
 }
 
-/* Mobil menu */
+/* Mobile menu */
 .mobile-nav {
   max-height: 0;
   overflow: hidden;
@@ -165,12 +165,12 @@ html {
   border-bottom: 0.0625rem solid var(--color-white);
 }
 
-/* Desktop subnav skjules på mobil */
+/* Desktop subnav skjules på mobile */
 .sub-nav {
   display: none;
 }
 
-/* Mobil bundnav */
+/* Mobile bundnav */
 .mobile-bottom-nav {
   display: flex;
   position: fixed;
@@ -187,7 +187,7 @@ html {
 
 .mobile-bottom-link {
   text-decoration: none;
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -230,7 +230,7 @@ html {
   background: var(--bg-color-black);
   padding: var(--gap-md) 0 var(--gap-md) 0;
   width: 100%;
-  font-size: var(--font-mobil-text);
+  font-size: var(--font-mobile-text);
 }
 .img-container {
   display: grid;

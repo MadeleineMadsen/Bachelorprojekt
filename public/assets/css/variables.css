@@ -31,7 +31,7 @@
   --color-delete: #d10000;
 
   /* --- Spacing --- */
-  /* Spacing til både mobil og desktop */
+  /* Spacing til både mobile og desktop */
 
   --gap-xxs: 6px;
   --gap-xs: 12px;
@@ -79,13 +79,13 @@
   /* Almindelig text størrelse - desktop */
   --font-desktop-text-small: 16px;
 
-  /* Mobil */
-  --font-mobil-h1: 60px;
-  --font-mobil-h2: 30px;
-  --font-mobil-h3: 20px;
-  /* Almindelig text størrelse - mobil */
-  --font-mobil-text: 14px;
-  --font-mobil-small: 12px;
+  /* Mobile */
+  --font-mobile-h1: 60px;
+  --font-mobile-h2: 30px;
+  --font-mobile-h3: 20px;
+  /* Almindelig text størrelse - mobile */
+  --font-mobile-text: 14px;
+  --font-mobile-small: 12px;
 
   /* --- Knapper --- */
 
@@ -93,7 +93,7 @@
   --btn-height-desktop: 40px;
   --btn-font-desktop: 16px;
 
-  /* Mobil */
-  --btn-height-mobil: 32px;
-  --btn-font-mobil: 14px;
+  /* Mobile */
+  --btn-height-mobile: 32px;
+  --btn-font-mobile: 14px;
 }
