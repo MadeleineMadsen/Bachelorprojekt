@@ -12,20 +12,6 @@
 
         <section class="form-container signup-container">
 
-            <!-- Fejlbesked -->
-            <?php if ($error = flash('error')): ?>
-                <div class="error-message">
-                    <?= e($error) ?>
-                </div>
-            <?php endif; ?>
-
-            <!-- Succesbesked -->
-            <?php if ($success = flash('success')): ?>
-                <div class="success-message">
-                    <?= e($success) ?>
-                </div>
-            <?php endif; ?>
-
             <form method="POST" action="">
                 <?php csrf_input(); ?>
 

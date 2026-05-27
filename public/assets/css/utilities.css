@@ -71,7 +71,7 @@
 
 .toast-container {
   position: fixed;
-  top: 5rem;
+  top: 6rem;
   left: var(--gap-sm);
   right: var(--gap-sm);
   z-index: 9999;
@@ -367,7 +367,7 @@
   /* ---------- Toasts ---------- */
 
   .toast-container {
-    top: 10rem;
+    top: 7rem;
     left: auto;
     right: var(--gap-sm);
   }

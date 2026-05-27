@@ -63,13 +63,6 @@ $showMemberFields = in_array($role, ['1', '2']);
     <section class="form-container <?= $containerClass ?>">
         <h4>REDIGER PROFIL</h4>
 
-        <!-- Fejlbesked -->
-        <?php if ($error = flash('error')): ?>
-            <div class="error-message">
-                <?= e($error) ?>
-            </div>
-        <?php endif; ?>
-
         <!-- Formular -->
         <form method="POST" action="/profile/update">
             <?php csrf_input(); ?>
