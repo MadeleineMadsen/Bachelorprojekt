@@ -50,7 +50,7 @@
 
                 <!-- Tidspunkt -->
                 <span class="card-event-list-meta-item">
-                    <img src="/assets/img/icons/ur_icon.png" alt="Ur ikon" class="card-event-list-meta-icon">
+                    <img src="/assets/img/icons/clock_icon.svg" alt="Ur ikon" class="card-event-list-meta-icon">
 
                     <!-- Starttid -->
                     <?= htmlspecialchars(substr($event['event_time'], 0, 5)) ?>
@@ -62,14 +62,14 @@
 
                 <!-- Lokation -->
                 <span class="card-event-list-meta-item">
-                    <img src="/assets/img/icons/placering_icon.png" alt="Pin ikon" class="card-event-list-meta-icon">
+                    <img src="/assets/img/icons/location.svg" alt="Pin ikon" class="card-event-list-meta-icon">
 
                     <?= htmlspecialchars($event['event_location']) ?>
                 </span>
 
                 <!-- Antal deltagere -->
                 <span class="card-event-list-meta-item">
-                    <img src="/assets/img/icons/person_icon.png" alt="Person ikon" class="card-event-list-meta-icon">
+                    <img src="/assets/img/icons/persons_icon.svg" alt="Person ikon" class="card-event-list-meta-icon">
 
                     <?= htmlspecialchars($event['participant_count'] ?? '0') ?> deltagere
                 </span>

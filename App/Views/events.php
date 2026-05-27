@@ -26,7 +26,7 @@
                     <input type="text" placeholder="SØG">
 
                     <button type="button" aria-label="Søg">
-                        <img src="/assets/img/icons/search_icon.png" alt="">
+                        <img src="/assets/img/icons/search.svg" alt="">
                     </button>
                 </div>
 

@@ -71,7 +71,7 @@ function renderPagination(totalPages) {
   let html = "";
 
   // Forrige side
-  html += `<button class="pagination-btn pagination-prev" ${currentPage === 1 ? "disabled" : ""} aria-label="Forrige side"><img src="/assets/img/icons/arrow-left.png" alt="Forrige side"></button>`;
+  html += `<button class="pagination-btn pagination-prev" ${currentPage === 1 ? "disabled" : ""} aria-label="Forrige side"><img src="/assets/img/icons/arrow-left.svg" alt="Forrige side"></button>`;
 
   // Sidetal
   getPageNumbers(currentPage, totalPages).forEach((p) => {
@@ -83,7 +83,7 @@ function renderPagination(totalPages) {
   });
 
   // Næste side
-  html += `<button class="pagination-btn pagination-next" ${currentPage === totalPages ? "disabled" : ""} aria-label="Næste side"><img src="/assets/img/icons/arrow-right.png" alt="Næste side"></button>`;
+  html += `<button class="pagination-btn pagination-next" ${currentPage === totalPages ? "disabled" : ""} aria-label="Næste side"><img src="/assets/img/icons/arrow-right.svg" alt="Næste side"></button>`;
 
   pagination.innerHTML = html;
 

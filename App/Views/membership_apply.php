@@ -44,7 +44,7 @@ $hasProfileImage = !empty($profileImage);
 
             <!-- Fællesskab -->
             <article class="benefit-card">
-                <img src="/assets/img/icons/fællesskab.png" alt="Fællesskab logo">
+                <img src="/assets/img/icons/community.svg" alt="Fællesskab logo">
 
                 <h3>FÆLLESSKAB</h3>
 
@@ -57,7 +57,7 @@ $hasProfileImage = !empty($profileImage);
 
             <!-- Events -->
             <article class="benefit-card">
-                <img src="/assets/img/icons/events2.png" alt="Events logo">
+                <img src="/assets/img/icons/events2.svg" alt="Events logo">
 
                 <h3>EVENTS</h3>
 
@@ -69,7 +69,7 @@ $hasProfileImage = !empty($profileImage);
 
             <!-- Netværk -->
             <article class="benefit-card">
-                <img src="/assets/img/icons/netværk.png" alt="Netværk logo">
+                <img src="/assets/img/icons/network.svg" alt="Netværk logo">
 
                 <h3>NETVÆRK</h3>
 
@@ -96,7 +96,7 @@ $hasProfileImage = !empty($profileImage);
         </div>
 
         <div class="stat">
-            <img src="/assets/img/icons/calender.png" alt="Kalender ikon">
+            <img src="/assets/img/icons/calendar.svg" alt="Kalender ikon">
 
             <div class="stat-text">
                 <h3>+<?= $memberStats['events_this_year']; ?></h3>
@@ -188,7 +188,7 @@ $hasProfileImage = !empty($profileImage);
                     <input id="profile_image" type="file" name="profile_image" accept="image/*">
 
                     <div class="upload-icon">
-                        <img src="/assets/img/icons/upload_picture.png" alt="Upload billede ikon">
+                        <img src="/assets/img/icons/upload_picture.svg" alt="Upload billede ikon">
                     </div>
 
                     <!-- Upload tekst -->

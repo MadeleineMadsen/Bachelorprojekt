@@ -89,7 +89,7 @@ $formAction = $isEditing ? '/event_edit' : '';
                 <label class="upload-box" for="profile_image">
                     <input id="profile_image" type="file" name="image" accept="image/*">
                     <div class="upload-icon">
-                        <img src="/assets/img/icons/upload_picture.png" alt="Upload billede ikon">
+                        <img src="/assets/img/icons/upload_picture.svg" alt="Upload billede ikon">
                     </div>
                     <p id="uploadText">
                         <?php if ($isEditing && !empty($event['event_image'])): ?>

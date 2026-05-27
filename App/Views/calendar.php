@@ -102,12 +102,12 @@ $monthNames = [
                 <div class="calendar-arrows">
                     <a class="calendar-arrow"
                         href="/calendar?month=<?= $prev->format('n') ?>&year=<?= $prev->format('Y') ?>">
-                        <img src="/assets/img/icons/arrow-left.png" alt="Forrige måned">
+                        <img src="/assets/img/icons/arrow-left.svg" alt="Forrige måned">
                     </a>
 
                     <a class="calendar-arrow"
                         href="/calendar?month=<?= $next->format('n') ?>&year=<?= $next->format('Y') ?>">
-                        <img src="/assets/img/icons/arrow-right.png" alt="Næste måned">
+                        <img src="/assets/img/icons/arrow-right.svg" alt="Næste måned">
                     </a>
                 </div>
             </div>

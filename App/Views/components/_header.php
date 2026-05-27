@@ -94,23 +94,23 @@ if ($isLoggedIn) {
                 'key' => 'event_create',
                 'label' => 'OPRET EVENT',
                 'url' => '/event_create',
-                'icon' => '/assets/img/icons/add_event.png',
-                'icon_active' => '/assets/img/icons/hover_add_event.png'
+                'icon' => '/assets/img/icons/add_event.svg',
+                'icon_active' => '/assets/img/icons/hover_add_event.svg'
             ],
             [
                 'key' => 'membership_approve',
                 'label' => 'ANSØGNINGER',
                 'url' => '/membership_approve',
-                'icon' => '/assets/img/icons/add_member.png',
-                'icon_active' => '/assets/img/icons/hover_add_member.png',
+                'icon' => '/assets/img/icons/add_member.svg',
+                'icon_active' => '/assets/img/icons/hover_add_member.svg',
                 'badge' => $pendingApplicationsCount
             ],
             [
                 'key' => 'calendar',
                 'label' => 'KALENDER',
                 'url' => '/calendar',
-                'icon' => '/assets/img/icons/calender.png',
-                'icon_active' => '/assets/img/icons/hover_calender.png'
+                'icon' => '/assets/img/icons/calendar.svg',
+                'icon_active' => '/assets/img/icons/hover_calendar.svg'
             ],
         ];
 
@@ -122,22 +122,22 @@ if ($isLoggedIn) {
                 'key' => 'profile',
                 'label' => 'PROFIL',
                 'url' => '/profile',
-                'icon' => '/assets/img/icons/profile.png',
-                'icon_active' => '/assets/img/icons/hover_profile.png'
+                'icon' => '/assets/img/icons/profile.svg',
+                'icon_active' => '/assets/img/icons/hover_profile.svg'
             ],
             [
                 'key' => 'my_events',
                 'label' => 'MINE EVENTS',
                 'url' => '/my_events',
-                'icon' => '/assets/img/icons/events.png',
-                'icon_active' => '/assets/img/icons/hover_events.png'
+                'icon' => '/assets/img/icons/events.svg',
+                'icon_active' => '/assets/img/icons/hover_events.svg'
             ],
             [
                 'key' => 'calendar',
                 'label' => 'KALENDER',
                 'url' => '/calendar',
-                'icon' => '/assets/img/icons/calender.png',
-                'icon_active' => '/assets/img/icons/hover_calender.png'
+                'icon' => '/assets/img/icons/calendar.svg',
+                'icon_active' => '/assets/img/icons/hover_calendar.svg'
             ],
         ];
     }
@@ -151,7 +151,7 @@ if ($isLoggedIn) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="icon" type="image/png" href="/assets/img/icons/logo_header.png">
+    <link rel="icon" type="image/svg" href="/assets/img/icons/logo_header.svg">
     <title>GBG Social</title>
 </head>
 
@@ -202,7 +202,7 @@ if ($isLoggedIn) {
             <!-- Venstre del af headeren med logo og navigation -->
             <div class="header-left">
                 <a href="/" class="logo">
-                    <img src="/assets/img/icons/logo_header.png" alt="GBG Social Logo">
+                    <img src="/assets/img/icons/logo_header.svg" alt="GBG Social Logo">
                 </a>
 
                 <!-- Venstre topnavigation -->

@@ -50,7 +50,7 @@ $showMemberFields = in_array($role, ['1', '2']);
 
                     <!-- Kamera ikon -->
                     <label class="camera-btn">
-                        <img src="/assets/img/icons/camera_icon.png" alt="Kamera ikon">
+                        <img src="/assets/img/icons/camera_icon.svg" alt="Kamera ikon">
 
                         <input id="profileImageInput" type="file" name="profile_image" accept="image/*" hidden>
                     </label>

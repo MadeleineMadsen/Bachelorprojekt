@@ -4,7 +4,7 @@
     <!-- Lokation -->
     <div class="card-event-info-row">
         <div class="card-event-info-icon">
-            <img src="/assets/img/icons/placering_icon.png" alt="Pin ikon" class="card-event-info-icon-img">
+            <img src="/assets/img/icons/location.svg" alt="Pin ikon" class="card-event-info-icon-img">
         </div>
 
         <div class="card-event-info-text">
@@ -18,7 +18,7 @@
     <!-- Dato og tidspunkt -->
     <div class="card-event-info-row">
         <div class="card-event-info-icon">
-            <img src="/assets/img/icons/ur_icon.png" alt="Ur ikon" class="card-event-info-icon-img">
+            <img src="/assets/img/icons/clock_icon.svg" alt="Ur ikon" class="card-event-info-icon-img">
         </div>
 
         <div class="card-event-info-text">
@@ -36,7 +36,7 @@
     <!-- Deltagerantal -->
     <div class="card-event-info-row">
         <div class="card-event-info-icon">
-            <img src="/assets/img/icons/person_icon.png" alt="Person ikon" class="card-event-info-icon-img">
+            <img src="/assets/img/icons/persons_icon.svg" alt="Person ikon" class="card-event-info-icon-img">
         </div>
 
         <div class="card-event-info-text">
