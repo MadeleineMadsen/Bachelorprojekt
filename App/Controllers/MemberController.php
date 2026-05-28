@@ -222,12 +222,14 @@ class MemberController
             $approved = MemberModel::approve($memberId, $adminId);
 
             if ($approved && $application) {
-                sendMembershipApprovedMail(
+                $mailSent = sendMembershipApprovedMail(
                     $application['user_email'],
                     $application['user_name']
                 );
 
-                $_SESSION['success'] = 'Medlemsansøgningen er godkendt.';
+                $_SESSION['success'] = $mailSent
+                    ? 'Medlemsansøgningen er godkendt.'
+                    : 'Medlemsansøgningen er godkendt, men mailen kunne ikke sendes.';
             } else {
                 $_SESSION['error'] = 'Medlemsansøgningen kunne ikke godkendes.';
             }
@@ -251,12 +253,14 @@ class MemberController
             $rejected = MemberModel::reject($memberId);
 
             if ($rejected && $application) {
-                sendMembershipRejectedMail(
+                $mailSent = sendMembershipRejectedMail(
                     $application['user_email'],
                     $application['user_name']
                 );
 
-                $_SESSION['success'] = 'Medlemsansøgningen er afvist.';
+                $_SESSION['success'] = $mailSent
+                    ? 'Medlemsansøgningen er afvist.'
+                    : 'Medlemsansøgningen er afvist, men mailen kunne ikke sendes.';
             } else {
                 $_SESSION['error'] = 'Medlemsansøgningen kunne ikke afvises.';
             }
@@ -285,12 +289,14 @@ class MemberController
         $deleted = MemberModel::delete($memberId);
 
         if ($deleted && $member) {
-            sendMembershipRemovedMail(
+            $mailSent = sendMembershipRemovedMail(
                 $member['user_email'],
                 $member['user_name']
             );
 
-            $_SESSION['success'] = 'Medlemmet er fjernet.';
+            $_SESSION['success'] = $mailSent
+                ? 'Medlemmet er fjernet.'
+                : 'Medlemmet er fjernet, men mailen kunne ikke sendes.';
         } else {
             $_SESSION['error'] = 'Medlemmet kunne ikke fjernes.';
         }

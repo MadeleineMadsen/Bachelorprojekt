@@ -69,8 +69,13 @@ class AuthController
             if ($attempts >= 5) {
                 $unlockKey = bin2hex(random_bytes(16));
                 $this->userModel->lockAccount($user['user_pk'], $unlockKey);
-                sendAccountUnlockMail($user['user_email'], $user['user_name'], $unlockKey);
-                $_SESSION['error'] = 'Din konto er låst pga. for mange fejlede forsøg. Vi har sendt et oplåsningslink til din mail.';
+                $mailSent = sendAccountUnlockMail($user['user_email'], $user['user_name'], $unlockKey);
+
+                if ($mailSent) {
+                    $_SESSION['error'] = 'Din konto er låst pga. for mange fejlede forsøg. Vi har sendt et oplåsningslink til din mail.';
+                } else {
+                    $_SESSION['error'] = 'Din konto er låst, men oplåsningsmailen kunne ikke sendes.';
+                }
             } else {
                 $remaining = 5 - $attempts;
                 $_SESSION['error'] = 'Forkert email eller adgangskode. ' . $remaining . ' forsøg tilbage.';
@@ -199,7 +204,12 @@ class AuthController
 
         // Sender bekræftelsesmail hvis brugeren blev oprettet
         if ($created) {
-            sendUserVerificationMail($email, $userName, $verificationKey);
+            $mailSent = sendUserVerificationMail($email, $userName, $verificationKey);
+
+            if (!$mailSent) {
+                $_SESSION['error'] = 'Din bruger blev oprettet, men bekræftelsesmailen kunne ikke sendes.';
+                redirect('/login');
+            }
 
             $_SESSION['success'] = 'Din bruger er oprettet. Tjek din mail for at bekræfte din konto.';
             redirect('/login');
