@@ -112,7 +112,7 @@ $showMemberFields = in_array($role, ['1', '2']);
                 <button class="btn btn-primary" type="submit">GEM ÆNDRINGER</button>
 
                 <button class="btn btn-delete" type="button" data-modal-open="deleteProfileModal">
-                    SLET MIN PROFIL
+                    SLET PROFIL
                 </button>
             </div>
         </form>
