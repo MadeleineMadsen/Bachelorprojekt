@@ -228,7 +228,7 @@ html {
 
 .site-footer {
   background: var(--bg-color-black);
-  padding: var(--gap-md) 0 var(--gap-md) 0;
+  padding: var(--gap-md) 0 var(--gap-xxl) 0;
   width: 100%;
   font-size: var(--font-mobile-text);
 }
