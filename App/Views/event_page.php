@@ -61,9 +61,9 @@
     <!-- Om eventet -->
     <section class="event-page-about">
         <div class="container">
-            <h2 class="event-page-about-heading">Om eventet</h2>
+            <h2 class="event-page-about-heading">Hvorfor skal du deltage</h2>
 
-            <p class="event-page-about-text"><?= nl2br(htmlspecialchars($event['event_description'])) ?></p>
+            <p class="event-page-about-text"><?= nl2br(htmlspecialchars($event['event_why_join'])) ?></p>
         </div>
     </section>
 
