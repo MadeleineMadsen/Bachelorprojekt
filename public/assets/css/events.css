@@ -90,8 +90,6 @@
 .events-empty {
   font-family: var(--font-text);
   font-size: var(--font-mobile-text);
-  color: var(--font-color-black);
-
   margin-top: var(--gap-md);
   margin-bottom: var(--gap-xxl);
 }
@@ -176,6 +174,7 @@
 
   .events-filter-title {
     font-size: var(--font-desktop-h3);
+    margin-left: var(--gap-sm);
   }
 
   .events-filter-select {
@@ -218,5 +217,15 @@
   .pagination-ellipsis {
     font-size: var(--font-desktop-text-small);
     line-height: var(--btn-height-desktop);
+  }
+}
+
+/* ==================================================
+  TABLET / LILLE DESKTOP
+================================================== */
+@media (min-width: 769px) and (max-width: 1500px) {
+
+  .events-hero-title {
+    font-size: var(--font-desktop-h1-special);
   }
 }

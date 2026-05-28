@@ -62,13 +62,11 @@
 
   border-radius: 62.4375rem;
   background: var(--color-yellow);
-  color: var(--font-color-black);
 }
 
 .approve-empty {
   font-family: var(--font-text);
   font-size: var(--font-desktop-text-small);
-  color: var(--font-color-black);
   margin-top: var(--gap-xxs);
   margin-bottom: var(--gap-sm);
 }
@@ -125,7 +123,7 @@
   right: var(--gap-sm);
   bottom: 0;
   height: 0.0625rem;
-  background: var(--font-color-black);
+  background: var(--bg-color-black);
 }
 
 .approve-date {
@@ -165,7 +163,6 @@
   right: 0.5rem;
   border: none;
   background: transparent;
-  color: var(--font-color-black);
   font-size: 2rem;
   font-weight: bold;
   cursor: pointer;

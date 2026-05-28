@@ -93,14 +93,12 @@
 .event-page-layout-subtitle {
   font-size: var(--font-mobile-text);
   font-weight: var(--poppins-font-bold);
-  color: var(--font-color-black);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .event-page-layout-desc {
   font-size: var(--font-mobile-text);
-  color: var(--font-color-black);
   line-height: 1.7;
 }
 
@@ -119,7 +117,6 @@
   gap: var(--gap-xxs);
   font-size: var(--font-mobile-text);
   line-height: 1.5;
-  color: var(--font-color-black);
 }
 
 /* ---------- Om eventet ---------- */

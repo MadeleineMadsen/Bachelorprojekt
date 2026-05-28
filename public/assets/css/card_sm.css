@@ -101,7 +101,6 @@
 
 .card-event-sm-desc {
   font-size: var(--font-mobile-text);
-  color: var(--font-color-black);
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -129,7 +128,6 @@
   align-items: center;
   gap: 0.375rem;
   font-size: var(--font-mobile-small);
-  color: var(--font-color-black);
 }
 
 .card-event-sm-meta-icon {
