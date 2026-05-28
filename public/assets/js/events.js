@@ -132,8 +132,11 @@ if (eventForm) {
     const imageInput = document.getElementById("profile_image");
     const imageError = document.getElementById("imageError");
 
-    // Stop formularen hvis der ikke er uploadet billede
-    if (!imageInput.files || imageInput.files.length === 0) {
+    const uploadPreview = document.getElementById("uploadPreview");
+    const hasExistingImage = uploadPreview && uploadPreview.style.display !== "none" && uploadPreview.src !== "";
+
+    // Stop formularen hvis der ikke er uploadet billede og der ikke er et eksisterende
+    if (!hasExistingImage && (!imageInput.files || imageInput.files.length === 0)) {
       e.preventDefault();
 
       imageError.style.display = "block";

@@ -263,13 +263,13 @@ class AdminEventController
             'event_image' => $imagePath,
         ]);
 
-        foreach ($participants as $participant) {
-            sendEventUpdatedMail(
-                $participant['user_email'],
-                $participant['user_name'],
-                $data['title']
-            );
-        }
+        // Send mails i baggrunden så admin ikke skal vente
+        $payload = base64_encode(json_encode([
+            'participants' => $participants,
+            'title'        => $data['title'],
+        ]));
+        $script = escapeshellarg(__DIR__ . '/../../private/send_event_emails.php');
+        exec("php $script " . escapeshellarg($payload) . " > /dev/null 2>&1 &");
 
         $_SESSION['success'] = 'Eventet er opdateret.';
         redirect('/event_page?id=' . urlencode($id));

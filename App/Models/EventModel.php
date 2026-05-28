@@ -126,7 +126,7 @@ class EventModel
     {
         $db = getDB();
         $stmt = $db->prepare('
-            SELECT u.user_pk, u.user_name, u.user_last_name, u.user_profile_image
+            SELECT u.user_pk, u.user_name, u.user_last_name, u.user_email, u.user_profile_image
             FROM event_registrations r
             JOIN users u ON u.user_pk = r.user_fk
             WHERE r.event_fk = ?
