@@ -353,13 +353,11 @@ html {
 
   /* ---------- Layout ---------- */
 
-  /* TODO: Width rettes efter færdigt UI */
   .container {
     max-width: 75rem;
     margin: 0 auto;
   }
 
-  /* TODO: Rettes efter grid opsætning på cards bestemmes */
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
