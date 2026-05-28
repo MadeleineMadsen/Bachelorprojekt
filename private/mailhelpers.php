@@ -42,7 +42,7 @@ function sendMail(string $toEmail, string $firstName, string $subject, string $b
 // Send verifikationsmail når bruger opretter sig
 function sendUserVerificationMail(string $toEmail, string $firstName, string $verificationKey): bool
 {
-    $verificationLink = "http://localhost/verificer_bruger?key=" . urlencode($verificationKey);
+    $verificationLink = "http://localhost/verify_user?key=" . urlencode($verificationKey);
 
     return sendMail(
         $toEmail,
