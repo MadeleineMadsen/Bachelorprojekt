@@ -246,6 +246,26 @@ GBG Social"
     );
 }
 
+// Send bekræftelsesmail når bruger sletter sin konto
+function sendAccountDeletedMail(string $toEmail, string $firstName): bool
+{
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Din konto hos GBG Social er blevet slettet',
+        "Hej {$firstName}
+
+Vi bekræfter hermed, at din konto hos GBG Social er blevet slettet.
+
+Dine data er fjernet fra vores system, og du kan ikke længere logge ind.
+
+Hvis du fortryder, eller mener dette er sket ved en fejl, er du velkommen til at kontakte os.
+
+Venlig hilsen
+GBG Social"
+    );
+}
+
 // Send mail 24 timer før eventet finder sted
 function sendEventReminderMail(string $toEmail, string $firstName, string $eventTitle): bool
 {

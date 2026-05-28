@@ -190,8 +190,14 @@ class UserController
 
         require_csrf();
 
+        // Gem brugerdata før session ødelægges
+        $email = $_SESSION['user']['user_email'];
+        $name  = $_SESSION['user']['user_name'];
+
         // Soft-deleter brugeren i databasen
         $this->userModel->softDelete($_SESSION['user']['user_pk']);
+
+        sendAccountDeletedMail($email, $name);
 
         // Logger brugeren ud efter sletning
         session_destroy();
