@@ -42,6 +42,78 @@ class AdminEventController
         return 'events/' . $image['file_name'];
     }
 
+    // Validerer input fra event-formularen
+    private static function validateEventInput(): array
+    {
+        // Validerer tekstfelter via helper-funktioner
+        $title = validate_text('titel', 'Titel', 2, 100);
+        $subtitle = validate_text('subtitel', 'Undertitel', 2, 150);
+
+        $description = validate_text(
+            'description',
+            'Beskrivelse',
+            10,
+            2000
+        );
+
+        $expectations = validate_text(
+            'description-bulletpoints',
+            'Hvorfor skal du deltage',
+            10,
+            2000
+        );
+
+        $location = validate_text(
+            'location',
+            'Lokation',
+            2,
+            150
+        );
+
+        // Henter dato og tidspunkt fra formularen
+        $date = $_POST['date'] ?? '';
+        $time = $_POST['time'] ?? '';
+        $endTime = $_POST['end_time'] ?: null;
+
+        // Henter kategori-id
+        $category = (int) ($_POST['category'] ?? 0);
+
+        // Validerer dato
+        if ($date === '' || strtotime($date) === false) {
+            throw new Exception('Dato skal udfyldes og være gyldig.');
+        }
+
+        // Validerer starttidspunkt
+        if ($time === '') {
+            throw new Exception('Tidspunkt skal udfyldes.');
+        }
+
+        // Validerer at sluttidspunkt ligger efter starttidspunkt
+        if ($endTime !== null && $endTime <= $time) {
+            throw new Exception(
+                'Sluttidspunkt skal være efter starttidspunkt.'
+            );
+        }
+
+        // Validerer kategori
+        if ($category <= 0) {
+            throw new Exception('Vælg venligst en kategori.');
+        }
+
+        // Returnerer validerede data
+        return [
+            'title' => $title,
+            'subtitle' => $subtitle,
+            'description' => $description,
+            'expectations' => $expectations,
+            'date' => $date,
+            'time' => $time,
+            'endTime' => $endTime,
+            'location' => $location,
+            'category' => $category,
+        ];
+    }
+
     // Viser redigeringssiden for et event
     public static function showEdit(): void
     {
@@ -146,23 +218,21 @@ class AdminEventController
         EventModel::delete($id);
 
         $_SESSION['success'] = 'Eventet er slettet.';
-        header('Location: /events');
-        exit;
+        redirect('/events');
     }
 
     // Opdaterer et eksisterende event
     public static function update(): void
     {
         $id = $_POST['event_pk'] ?? '';
-        $title = trim($_POST['titel'] ?? '');
-        $subtitle = trim($_POST['subtitel'] ?? '');
-        $description = trim($_POST['description'] ?? '');
-        $expectations = trim($_POST['description-bulletpoints'] ?? '');
-        $date = $_POST['date'] ?? '';
-        $time = $_POST['time'] ?? '';
-        $endTime = $_POST['end_time'] ?: null;
-        $location = trim($_POST['location'] ?? '');
-        $category = $_POST['category'] ?? '';
+
+        try {
+            // Validerer input fra event-formularen
+            $data = self::validateEventInput();
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            redirect('/event_create?id=' . urlencode($id));
+        }
 
         $participants = EventModel::getParticipantsByEventId($id);
 
@@ -170,8 +240,7 @@ class AdminEventController
             $imagePath = self::handleImageUpload();
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
-            header('Location: /event_create?id=' . urlencode($id));
-            exit;
+            redirect('/event_create?id=' . urlencode($id));
         }
 
         // Beholder eksisterende billede hvis der ikke uploades et nyt
@@ -182,15 +251,15 @@ class AdminEventController
 
         EventModel::update([
             'event_pk' => $id,
-            'event_title' => $title,
-            'event_subtitle' => $subtitle,
-            'event_description' => $description,
-            'event_expectations' => $expectations,
-            'event_date' => $date,
-            'event_time' => $time,
-            'event_end_time' => $endTime,
-            'event_location' => $location,
-            'category_fk' => $category,
+            'event_title' => $data['title'],
+            'event_subtitle' => $data['subtitle'],
+            'event_description' => $data['description'],
+            'event_expectations' => $data['expectations'],
+            'event_date' => $data['date'],
+            'event_time' => $data['time'],
+            'event_end_time' => $data['endTime'],
+            'event_location' => $data['location'],
+            'category_fk' => $data['category'],
             'event_image' => $imagePath,
         ]);
 
@@ -198,27 +267,24 @@ class AdminEventController
             sendEventUpdatedMail(
                 $participant['user_email'],
                 $participant['user_name'],
-                $title
+                $data['title']
             );
         }
 
         $_SESSION['success'] = 'Eventet er opdateret.';
-        header('Location: /event_page?id=' . urlencode($id));
-        exit;
+        redirect('/event_page?id=' . urlencode($id));
     }
 
     // Opretter et nyt event
     public static function create(): void
     {
-        $title = trim($_POST['titel'] ?? '');
-        $subtitle = trim($_POST['subtitel'] ?? '');
-        $description = trim($_POST['description'] ?? '');
-        $expectations = trim($_POST['description-bulletpoints'] ?? '');
-        $date = $_POST['date'] ?? '';
-        $time = $_POST['time'] ?? '';
-        $endTime = $_POST['end_time'] ?? null;
-        $location = trim($_POST['location'] ?? '');
-        $category = $_POST['category'] ?? '';
+        try {
+            // Validerer input fra event-formularen
+            $data = self::validateEventInput();
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            redirect('/event_create');
+        }
 
         try {
             $imagePath = self::handleImageUpload();
@@ -228,29 +294,27 @@ class AdminEventController
             }
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
-            header('Location: /event_create');
-            exit;
+            redirect('/event_create');
         }
 
         $uuid = bin2hex(random_bytes(16));
 
         EventModel::create([
             'event_pk' => $uuid,
-            'event_title' => $title,
-            'event_subtitle' => $subtitle,
-            'event_description' => $description,
-            'event_expectations' => $expectations,
-            'event_date' => $date,
-            'event_time' => $time,
-            'event_end_time' => $endTime ?: null,
-            'event_location' => $location,
-            'category_fk' => $category,
+            'event_title' => $data['title'],
+            'event_subtitle' => $data['subtitle'],
+            'event_description' => $data['description'],
+            'event_expectations' => $data['expectations'],
+            'event_date' => $data['date'],
+            'event_time' => $data['time'],
+            'event_end_time' => $data['endTime'],
+            'event_location' => $data['location'],
+            'category_fk' => $data['category'],
             'event_image' => $imagePath,
             'created_by_fk' => $_SESSION['user']['user_pk'],
         ]);
 
         $_SESSION['success'] = 'Eventet er oprettet.';
-        header('Location: /events');
-        exit;
+        redirect('/events');
     }
 }
