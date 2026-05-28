@@ -50,15 +50,13 @@ class AuthController
         // Stopper login hvis brugeren ikke findes
         if (!$user) {
             $_SESSION['error'] = 'Forkert email eller adgangskode';
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         // Stopper login hvis kontoen er låst
         if ($user['locked_at'] !== null) {
             $_SESSION['error'] = 'Din konto er låst. Tjek din mail for et oplåsningslink.';
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         // Kontrollerer om adgangskoden matcher
@@ -78,15 +76,13 @@ class AuthController
                 $_SESSION['error'] = 'Forkert email eller adgangskode. ' . $remaining . ' forsøg tilbage.';
             }
 
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         // Kræver at brugeren har bekræftet sin mail
         if ($user['user_verified_at'] === null) {
             $_SESSION['error'] = 'Du skal bekræfte din mail, før du kan logge ind';
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         // Nulstiller fejlede loginforsøg efter korrekt login
@@ -105,8 +101,7 @@ class AuthController
             'user_profile_image' => $user['user_profile_image']
         ];
 
-        header('Location: /profile');
-        exit;
+        redirect('/profile');
     }
 
     // Låser en konto op via link sendt på mail
@@ -117,8 +112,7 @@ class AuthController
         // Tjekker om der findes en oplåsningsnøgle i URL'en
         if (!$key) {
             $_SESSION['error'] = 'Ugyldigt oplåsningslink';
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         // Forsøger at låse kontoen op
@@ -126,13 +120,11 @@ class AuthController
 
         if ($unlocked) {
             $_SESSION['success'] = 'Din konto er nu låst op. Du kan logge ind igen.';
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         $_SESSION['error'] = 'Linket er ugyldigt eller allerede brugt';
-        header('Location: /login');
-        exit;
+        redirect('/login');
     }
 
     /* ==================================================
@@ -190,8 +182,7 @@ class AuthController
         // Tjekker om email allerede findes
         if ($this->userModel->findByEmail($email)) {
             $_SESSION['error'] = 'Email eksisterer allerede';
-            header('Location: /signup');
-            exit;
+            redirect('/signup');
         }
 
         // Opretter unik nøgle til mailbekræftelse
@@ -211,13 +202,11 @@ class AuthController
             sendUserVerificationMail($email, $userName, $verificationKey);
 
             $_SESSION['success'] = 'Din bruger er oprettet. Tjek din mail for at bekræfte din konto.';
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         $_SESSION['error'] = 'Der skete en fejl. Prøv igen.';
-        header('Location: /signup');
-        exit;
+        redirect('/signup');
     }
 
     // Bekræfter brugerens email via link sendt på mail
@@ -228,8 +217,7 @@ class AuthController
         // Tjekker om der findes en bekræftelsesnøgle i URL'en
         if (!$key) {
             $_SESSION['error'] = 'Ugyldigt bekræftelseslink';
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         // Forsøger at bekræfte brugeren
@@ -237,13 +225,11 @@ class AuthController
 
         if ($verified) {
             $_SESSION['success'] = 'Din mail er bekræftet. Du kan nu logge ind.';
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         $_SESSION['error'] = 'Linket er ugyldigt eller allerede brugt';
-        header('Location: /login');
-        exit;
+        redirect('/login');
     }
 
     /* ==================================================
@@ -274,7 +260,6 @@ class AuthController
         // Afslutter sessionen helt
         session_destroy();
 
-        header('Location: /');
-        exit;
+        redirect('/');
     }
 }

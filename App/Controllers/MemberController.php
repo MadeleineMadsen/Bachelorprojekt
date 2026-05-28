@@ -128,8 +128,7 @@ class MemberController
         // Brugeren skal være logget ind for at ansøge
         if (!$userId) {
             $_SESSION['error'] = 'Du skal være logget ind for at sende en ansøgning.';
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         // Henter input fra ansøgningsformularen
@@ -140,15 +139,13 @@ class MemberController
         // Sikrer at alle felter er udfyldt
         if ($educationFk <= 0 || $semesterFk <= 0 || $applicationText === '') {
             $_SESSION['error'] = 'Udfyld venligst alle felter i ansøgningen.';
-            header('Location: /membership_apply#membership-form');
-            exit;
+            redirect('/membership_apply#membership-form');
         }
 
         // Forhindrer at brugeren sender flere ansøgninger
         if (MemberModel::hasApplication((int) $userId)) {
             $_SESSION['error'] = 'Du har allerede sendt en medlemsansøgning.';
-            header('Location: /membership_apply#membership-form');
-            exit;
+            redirect('/membership_apply#membership-form');
         }
 
         // Henter eksisterende profilbillede hvis brugeren allerede har et
@@ -175,15 +172,13 @@ class MemberController
             }
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
-            header('Location: /membership_apply#membership-form');
-            exit;
+            redirect('/membership_apply#membership-form');
         }
 
         // Kræver at brugeren har et profilbillede før ansøgningen sendes
         if (empty($profileImageName)) {
             $_SESSION['error'] = 'Upload venligst et profilbillede.';
-            header('Location: /membership_apply#membership-form');
-            exit;
+            redirect('/membership_apply#membership-form');
         }
 
         // Opretter medlemsansøgningen i databasen
@@ -202,13 +197,11 @@ class MemberController
             );
 
             $_SESSION['success'] = 'Din ansøgning er afsendt. Du modtager en bekræftelsesmail.';
-            header('Location: /membership_apply#membership-form');
-            exit;
+            redirect('/membership_apply#membership-form');
         }
 
         $_SESSION['error'] = 'Der skete en fejl. Din ansøgning blev ikke sendt.';
-        header('Location: /membership_apply#membership-form');
-        exit;
+        redirect('/membership_apply#membership-form');
     }
 
     /* ==================================================
@@ -242,8 +235,7 @@ class MemberController
             $_SESSION['error'] = 'Medlemsansøgningen kunne ikke godkendes.';
         }
 
-        header('Location: /membership_approve');
-        exit;
+        redirect('/membership_approve');
     }
 
     // Afviser en medlemsansøgning
@@ -272,8 +264,7 @@ class MemberController
             $_SESSION['error'] = 'Medlemsansøgningen kunne ikke afvises.';
         }
 
-        header('Location: /membership_approve');
-        exit;
+        redirect('/membership_approve');
     }
 
     // Fjerner et eksisterende medlem
@@ -284,8 +275,7 @@ class MemberController
         // Stopper hvis der ikke findes et medlems-id
         if (!$memberId) {
             $_SESSION['error'] = 'Medlemmet kunne ikke fjernes.';
-            header('Location: /membership_approve');
-            exit;
+            redirect('/membership_approve');
         }
 
         // Henter medlemmet før sletning, så maildata er tilgængelig
@@ -305,8 +295,7 @@ class MemberController
             $_SESSION['error'] = 'Medlemmet kunne ikke fjernes.';
         }
 
-        header('Location: /membership_approve');
-        exit;
+        redirect('/membership_approve');
     }
 
     /* ==================================================
