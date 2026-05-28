@@ -328,3 +328,13 @@
     padding: 0 var(--gap-sm);
   }
 }
+
+/* ==================================================
+  TABLET / LILLE DESKTOP
+================================================== */
+@media (min-width: 769px) and (max-width: 1500px) {
+
+  .form-title {
+    font-size: var(--font-desktop-h1-special);
+  }
+}
