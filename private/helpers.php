@@ -240,7 +240,7 @@ function formatDanishDate(string $date): string
 // Validerer uploadet billede
 function validate_image_upload(
     string $field,
-    int $maxSize = 2097152
+    int $maxSize = 5 * 1024 * 1024
 ): ?array {
     if (
         !isset($_FILES[$field]) ||
@@ -254,7 +254,7 @@ function validate_image_upload(
     }
 
     if ($_FILES[$field]['size'] > $maxSize) {
-        throw new Exception('Billedet må maks være 2 MB.');
+        throw new Exception('Billedet må maks være 5 MB.');
     }
 
     $tmpName = $_FILES[$field]['tmp_name'];
