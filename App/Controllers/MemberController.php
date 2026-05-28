@@ -156,40 +156,27 @@ class MemberController
         $profileImageName = $existingProfileImage;
 
         // Håndterer upload af nyt profilbillede
-        if (
-            isset($_FILES['profile_image']) &&
-            $_FILES['profile_image']['error'] === UPLOAD_ERR_OK
-        ) {
-            $uploadDir = __DIR__ . '/../../public/assets/img/uploads/';
+        try {
+            $image = validate_image_upload('profile_image');
 
-            $fileTmp = $_FILES['profile_image']['tmp_name'];
-            $fileName = $_FILES['profile_image']['name'];
-            $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+            if ($image !== null) {
+                $uploadDir = __DIR__ . '/../../public/assets/img/uploads/';
+                $uploadPath = $uploadDir . $image['file_name'];
 
-            $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+                if (!move_uploaded_file($image['tmp_name'], $uploadPath)) {
+                    throw new Exception('Profilbilledet kunne ikke uploades. Prøv igen.');
+                }
 
-            // Tjekker at billedet har en tilladt filtype
-            if (!in_array($fileExt, $allowedExtensions)) {
-                $_SESSION['error'] = 'Profilbilledet skal være jpg, jpeg, png eller webp.';
-                header('Location: /membership_apply#membership-form');
-                exit;
+                $profileImageName = $image['file_name'];
+
+                MemberModel::updateUserProfileImage($userId, $profileImageName);
+
+                $_SESSION['user']['user_profile_image'] = $profileImageName;
             }
-
-            // Opretter unikt filnavn til profilbilledet
-            $profileImageName = uniqid('profile_', true) . '.' . $fileExt;
-
-            // Gemmer billedet i uploads-mappen
-            if (!move_uploaded_file($fileTmp, $uploadDir . $profileImageName)) {
-                $_SESSION['error'] = 'Profilbilledet kunne ikke uploades. Prøv igen.';
-                header('Location: /membership_apply#membership-form');
-                exit;
-            }
-
-            // Opdaterer brugerens profilbillede i databasen
-            MemberModel::updateUserProfileImage($userId, $profileImageName);
-
-            // Opdaterer sessionen så det nye billede bruges med det samme
-            $_SESSION['user']['user_profile_image'] = $profileImageName;
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            header('Location: /membership_apply#membership-form');
+            exit;
         }
 
         // Kræver at brugeren har et profilbillede før ansøgningen sendes

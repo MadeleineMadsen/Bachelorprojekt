@@ -6,29 +6,40 @@ require_once __DIR__ . '/../../private/mailhelpers.php';
 require_once __DIR__ . '/../../private/helpers.php';
 
 
-    /* ==================================================
-    ADMIN: OPRET / REDIGER / SLET EVENTS
-    ================================================== */
+/* ==================================================
+ADMIN: OPRET / REDIGER / SLET EVENTS
+================================================== */
 class AdminEventController
 {
-    // Gemmer uploadet billede og returnerer stien, eller null hvis intet billede
+    // Gemmer uploadet eventbillede og returnerer billedstien, eller null hvis intet billede
     private static function handleImageUpload(): ?string
     {
-        if (empty($_FILES['image']['name'])) {
+        // Validerer billedet via helper
+        $image = validate_image_upload('image');
+
+        // Returnerer null hvis der ikke er uploadet et nyt billede
+        if ($image === null) {
             return null;
         }
 
+        // Upload-mappe til eventbilleder
         $uploadDir = __DIR__ . '/../../public/assets/img/events/';
 
+        // Opretter upload-mappen hvis den ikke findes
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0755, true);
         }
 
-        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-        $filename = bin2hex(random_bytes(8)) . '.' . $ext;
-        move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $filename);
+        // Fuld sti til det nye billede
+        $uploadPath = $uploadDir . $image['file_name'];
 
-        return 'events/' . $filename;
+        // Gemmer billedet i uploads-mappen
+        if (!move_uploaded_file($image['tmp_name'], $uploadPath)) {
+            throw new Exception('Eventbilledet kunne ikke uploades.');
+        }
+
+        // Returnerer sti som kan gemmes i databasen
+        return 'events/' . $image['file_name'];
     }
 
     // Viser redigeringssiden for et event
@@ -155,7 +166,19 @@ class AdminEventController
 
         $participants = EventModel::getParticipantsByEventId($id);
 
-        $imagePath = self::handleImageUpload();
+        try {
+            $imagePath = self::handleImageUpload();
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            header('Location: /event_create?id=' . urlencode($id));
+            exit;
+        }
+
+        // Beholder eksisterende billede hvis der ikke uploades et nyt
+        if ($imagePath === null) {
+            $existingEvent = EventModel::getById($id);
+            $imagePath = $existingEvent['event_image'] ?? null;
+        }
 
         EventModel::update([
             'event_pk' => $id,
@@ -197,13 +220,17 @@ class AdminEventController
         $location = trim($_POST['location'] ?? '');
         $category = $_POST['category'] ?? '';
 
-        if (empty($_FILES['image']['name']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
-            $_SESSION['error'] = 'Du skal uploade et billede.';
+        try {
+            $imagePath = self::handleImageUpload();
+
+            if ($imagePath === null) {
+                throw new Exception('Du skal uploade et billede.');
+            }
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
             header('Location: /event_create');
             exit;
         }
-
-        $imagePath = self::handleImageUpload();
 
         $uuid = bin2hex(random_bytes(16));
 

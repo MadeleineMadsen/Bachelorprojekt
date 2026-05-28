@@ -236,3 +236,59 @@ function formatDanishDate(string $date): string
 
     return strtr(date('d M', strtotime($date)), $months);
 }
+
+// Validerer uploadet billede
+function validate_image_upload(
+    string $field,
+    int $maxSize = 2097152
+): ?array {
+    if (
+        !isset($_FILES[$field]) ||
+        $_FILES[$field]['error'] === UPLOAD_ERR_NO_FILE
+    ) {
+        return null;
+    }
+
+    if ($_FILES[$field]['error'] !== UPLOAD_ERR_OK) {
+        throw new Exception('Der opstod en fejl under upload af billedet.');
+    }
+
+    if ($_FILES[$field]['size'] > $maxSize) {
+        throw new Exception('Billedet må maks være 2 MB.');
+    }
+
+    $tmpName = $_FILES[$field]['tmp_name'];
+    $originalName = $_FILES[$field]['name'];
+
+    $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+    $extension = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
+
+    if (!in_array($extension, $allowedExtensions, true)) {
+        throw new Exception('Billedet skal være JPG, PNG eller WEBP.');
+    }
+
+    $allowedMimes = [
+        'image/jpeg',
+        'image/png',
+        'image/webp'
+    ];
+
+    $mimeType = mime_content_type($tmpName);
+
+    if (!in_array($mimeType, $allowedMimes, true)) {
+        throw new Exception('Filen skal være et gyldigt billede.');
+    }
+
+    if (getimagesize($tmpName) === false) {
+        throw new Exception('Filen kunne ikke genkendes som et billede.');
+    }
+
+    $newFileName = bin2hex(random_bytes(16)) . '.' . $extension;
+
+    return [
+        'tmp_name' => $tmpName,
+        'file_name' => $newFileName,
+        'extension' => $extension,
+        'mime_type' => $mimeType
+    ];
+}

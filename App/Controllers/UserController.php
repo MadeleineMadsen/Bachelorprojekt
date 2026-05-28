@@ -133,50 +133,42 @@ class UserController
 
         $userId = $_SESSION['user']['user_pk'];
 
-        // Tjekker om der er uploadet et billede uden fejl
-        if (
-            isset($_FILES['profile_image']) &&
-            $_FILES['profile_image']['error'] === UPLOAD_ERR_OK
-        ) {
-            // Finder filens extension
-            $extension = strtolower(pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION));
+        try {
 
-            // Tilladte billedformater
-            $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+            // Validerer uploadet billede via helper
+            $image = validate_image_upload('profile_image');
 
-            // Tjekker om filtypen er tilladt
-            if (in_array($extension, $allowedExtensions, true)) {
-
-                // Opretter unikt filnavn
-                $fileName = 'profile_' . $userId . '_' . time() . '.' . $extension;
-
-                $uploadDir = __DIR__ . '/../../public/assets/img/uploads/';
-
-                // Opretter upload-mappen hvis den ikke findes
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0777, true);
-                }
-
-                $uploadPath = $uploadDir . $fileName;
-
-                // Gemmer billedet på serveren
-                if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadPath)) {
-
-                    // Opdaterer profilbilledet i databasen
-                    $this->userModel->updateProfileImage($userId, $fileName);
-
-                    // Opdaterer sessionen så billedet ændres med det samme
-                    $_SESSION['user']['user_profile_image'] = $fileName;
-
-                    $_SESSION['success'] = 'Dit profilbillede er opdateret.';
-                } else {
-                    $_SESSION['error'] = 'Profilbilledet kunne ikke uploades.';
-                }
-            } else {
-                $_SESSION['error'] = 'Profilbilledet skal være jpg, jpeg, png eller webp.';
+            // Stopper hvis brugeren ikke har valgt et billede
+            if ($image === null) {
+                throw new Exception('Vælg venligst et profilbillede.');
             }
-        } else {
-            $_SESSION['error'] = 'Vælg venligst et profilbillede.';
+
+            // Upload-mappe til profilbilleder
+            $uploadDir = __DIR__ . '/../../public/assets/img/uploads/';
+
+            // Fuld sti til det nye billede
+            $uploadPath = $uploadDir . $image['file_name'];
+
+            // Gemmer billedet i uploads-mappen
+            if (!move_uploaded_file($image['tmp_name'], $uploadPath)) {
+                throw new Exception('Profilbilledet kunne ikke uploades.');
+            }
+
+            // Opdaterer profilbilledet i databasen
+            $this->userModel->updateProfileImage(
+                $userId,
+                $image['file_name']
+            );
+
+            // Opdaterer sessionen så billedet ændres med det samme
+            $_SESSION['user']['user_profile_image'] = $image['file_name'];
+
+            $_SESSION['success'] = 'Dit profilbillede er opdateret.';
+
+        } catch (Exception $e) {
+
+            // Viser fejlbesked hvis upload eller validering fejler
+            $_SESSION['error'] = $e->getMessage();
         }
 
         redirect('/profile');
