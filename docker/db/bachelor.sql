@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Vært: mariadb
--- Genereringstid: 21. 05 2026 kl. 09:26:50
+-- Genereringstid: 28. 05 2026 kl. 09:34:57
 -- Serverversion: 10.6.20-MariaDB-ubu2004
 -- PHP-version: 8.2.27
 
@@ -75,20 +75,21 @@ CREATE TABLE `events` (
   `created_by_fk` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `reminder_sent_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `event_why_join` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Data dump for tabellen `events`
 --
 
-INSERT INTO `events` (`event_pk`, `event_title`, `event_subtitle`, `event_description`, `event_expectations`, `event_date`, `event_time`, `event_end_time`, `event_location`, `category_fk`, `event_image`, `created_by_fk`, `created_at`, `reminder_sent_at`, `deleted_at`) VALUES
-('2327f709-4e02-11f1-975b-0242ac1d0002', 'Karaoke Night', 'Syng dine yndlingssange', 'Tag dine venner med til en sjov karaokeaften med drinks og god stemning.', 'Musik, dans og masser af grin', '2026-06-15', '20:00:00', '23:30:00', 'Downtown Bar', '1', 'karaoke.webp', 1, '2026-05-12 16:46:58', NULL, NULL),
-('2f7ba6e5-4e02-11f1-975b-0242ac1d0002', 'Coding Bootcamp', 'Lær webudvikling på én dag', 'En intensiv workshop hvor du lærer HTML, CSS og JavaScript fra bunden.', 'Praktiske øvelser og nye skills', '2026-07-01', '09:00:00', '16:00:00', 'KEA Guldbergsgade', '2', 'samling-af-mennesker.webp', 1, '2026-05-12 16:47:18', NULL, NULL),
-('912af718-4dff-11f1-975b-0242ac1d0002', 'Sommerfest på taget', 'DJ og drinks hele aftenen', 'Kom og vær med til årets sommerfest med musik, drinks og udsigt over byen.', 'God stemning og fest hele natten', '2026-06-20', '19:00:00', '02:00:00', 'Nørrebro Tagterrasse', '1', 'sommerfest.webp', 1, '2026-05-12 12:39:06', NULL, NULL),
-('df5ef636-4478-11f1-b685-0242ac1d0002', 'Fredagsbar', 'GBG Social inviterer til en hyggelig fredagsbar, h.', 'GBG Social inviterer til en hyggelig fredagsbar, hvor studerende kan mødes og skabe nye relationer i afslappede omgivelser.', 'Kolde drinks i baren\r\nGod musik og stemning\r\nMulighed for at møde nye mennesker\r\nHygge og fællesskab', '2026-06-20', '18:00:00', '23:00:00', 'KEA Kantinen', '1', 'fredagsbar-udenfor.webp', 1, '2026-05-07 12:18:16', NULL, NULL),
-('df5efe72-4478-11f1-b685-0242ac1d0002', 'Fodboldturnering', 'Torsdag d. 5 marts kl. 14:00', 'Kom og vær med til en aktiv dag med fodbold, hvor både begyndere og øvede kan deltage.', 'Holdturnering\r\nPræmier til vinderne\r\nGod energi og fællesskab\r\nMulighed for nye bekendtskaber', '2026-03-05', '14:00:00', '18:00:00', 'KEA Boldbane', '4', 'turnering.webp', 1, '2026-05-07 12:18:16', NULL, NULL),
-('df5effe9-4478-11f1-b685-0242ac1d0002', 'CV Workshop', 'Tirsdag d. 10 marts kl. 10:00', 'Få hjælp til at optimere dit CV og forbedre dine jobmuligheder gennem sparring og feedback.', 'Feedback på CV\r\nTips til ansøgninger\r\nVejledning fra erfarne studerende\r\nMulighed for spørgsmål', '2026-03-10', '10:00:00', '13:00:00', 'Lokale A1', '2', 'workshop.webp', 1, '2026-05-07 12:18:16', NULL, NULL);
+INSERT INTO `events` (`event_pk`, `event_title`, `event_subtitle`, `event_description`, `event_expectations`, `event_date`, `event_time`, `event_end_time`, `event_location`, `category_fk`, `event_image`, `created_by_fk`, `created_at`, `reminder_sent_at`, `deleted_at`, `event_why_join`) VALUES
+('2327f709-4e02-11f1-975b-0242ac1d0002', 'Karaoke Night', 'Klar på en aften fyldt med musik, grin og god stemning?', 'Så tag dine venner under armen og kom med til vores Karaoke Night – en hyggelig og festlig aften, hvor scenen er åben for alle! Uanset om du elsker at synge, eller bare vil nyde stemningen og heppe på dine venner, bliver det en aften fyldt med sjove øjeblikke og fællesskab.\n\nHer handler det ikke om at synge perfekt – det handler om at have det sjovt, skabe gode minder og nyde aftenen sammen. Så find dine yndlingssange frem og gør dig klar til alt fra klassiske hits til guilty pleasures', 'Karaoke med alle de største hits\nGod stemning og hyggeligt fællesskab\nDrinks og festlig atmosfære\nMulighed for at synge solo eller sammen med venner\nSjove øjeblikke og masser af grin\nEn afslappet aften hvor alle kan være med', '2026-06-15', '20:00:00', '23:30:00', 'Downtown Bar', '1', 'karaoke.webp', 1, '2026-05-12 16:46:58', NULL, NULL, 'Karaoke Night er den perfekte mulighed for at koble af, møde nye mennesker og skabe gode oplevelser sammen uden for studiet. Om du går all-in på scenen eller bare nyder stemningen, lover vi en aften med masser af energi, musik og fællesskab'),
+('2f7ba6e5-4e02-11f1-975b-0242ac1d0002', 'Coding Bootcamp', 'Klar til at tage dine coding skills til næste niveau?', 'Kom med til vores Coding Bootcamp – en intensiv og lærerig workshop, hvor du får mulighed for at dykke ned i grundlæggende webudvikling og lære at kode fra bunden. Uanset om du er helt ny inden for programmering eller gerne vil styrke dine færdigheder, er bootcampen skabt til at give dig en stærk start.\n\nI løbet af dagen arbejder vi hands-on med HTML, CSS og JavaScript gennem små opgaver og praktiske øvelser, så du får erfaring med at bygge dine egne webprojekter i et trygt og socialt læringsmiljø.', 'Grundlæggende HTML og opbygning af hjemmesider\nStyling med CSS\nIntroduktion til JavaScript og interaktivitet\nHvordan man arbejder med struktur og design\nGode coding-vaner og tips til videre læring\nPraktisk erfaring gennem øvelser og mini-projekter', '2026-07-01', '09:00:00', '16:00:00', 'KEA Guldbergsgade', '2', 'samling-af-mennesker.webp', 1, '2026-05-12 16:47:18', NULL, NULL, 'Coding Bootcamp er en oplagt mulighed for at lære nye skills, møde andre med samme interesse og få et solidt fundament inden for webudvikling. Du går hjem med ny viden, praktisk erfaring og motivation til at fortsætte din coding-rejse'),
+('912af718-4dff-11f1-975b-0242ac1d0002', 'Sommerfest på taget', 'Sommeren kalder – og det gør festen også', 'Kom med til årets sommerfest på taget, hvor vi samler studerende til en aften fyldt med musik, drinks, solnedgang og fantastisk stemning. Med udsigt over byen og sommer vibes hele aftenen er der lagt op til en uforglemmelig aften med fællesskab, dans og hygge.\n\nTag dine venner med og nyd en afslappet sommeraften på tagterrassen, hvor vi fejrer sommeren sammen med god musik, kolde drinks og masser af gode mennesker.', 'Sommerfest med DJ og god musik\nDrinks og hyggelig stemning\nFlot udsigt over byen fra tagterrassen\nMulighed for at møde nye mennesker\nDansegulv og sommer vibes hele aftenen\nEn afslappet og social aften under åben himmel', '2026-06-20', '19:00:00', '02:00:00', 'Nørrebro Tagterrasse', '1', 'sommerfest.webp', 1, '2026-05-12 12:39:06', NULL, NULL, 'Sommerfest på taget er den perfekte måde at kickstarte sommeren på. Forvent en aften fyldt med energi, grin, musik og nye bekendtskaber i de bedste omgivelser. Så find sommeroutfittet frem og gør dig klar til en aften, du ikke vil gå glip af'),
+('df5ef636-4478-11f1-b685-0242ac1d0002', 'Fredagsbar', 'Start weekenden med god stemning og hyggeligt fællesskab', 'GBG Social inviterer til fredagsbar – en afslappet og hyggelig aften, hvor studerende kan mødes, slappe af efter ugen og skabe nye relationer i uformelle omgivelser.\n\nKom alene eller tag dine venner med til en aften fyldt med gode samtaler, musik og social hygge. Fredagsbaren er det perfekte sted at møde nye mennesker på tværs af studier og nyde en afslappet start på weekenden.', 'Hyggelig fredagsstemning\nMusik og gode vibes\nMulighed for at møde nye mennesker\nDrinks og socialt fællesskab\nAfslappede omgivelser efter en lang uge\nEn perfekt start på weekenden', '2026-06-20', '18:00:00', '23:00:00', 'KEA Kantinen', '1', 'fredagsbar-udenfor.webp', 1, '2026-05-07 12:18:16', NULL, NULL, 'Fredagsbaren handler om fællesskab, gode oplevelser og at skabe relationer uden for undervisningen. Det er en oplagt mulighed for at lære nye mennesker at kende og nyde en hyggelig aften sammen med andre studerende'),
+('df5efe72-4478-11f1-b685-0242ac1d0002', 'Fodboldturnering', 'Kom og vær med til årets fedeste fodboldturnering', 'Er du klar til en dag fyldt med fart, fællesskab og god stemning?\nSå tag dine venner med til vores store fodboldturnering, hvor alle kan være med – uanset niveau! Om du spiller hver weekend eller bare vil have det sjovt og møde nye mennesker, er du mere end velkommen.\n\nVi sørger for en energifyldt dag med spændende kampe, masser af grin og en fantastisk atmosfære. Holdene bliver sammensat, så alle får mulighed for at spille, hygge sig og være en del af fællesskabet.', 'Spændende holdturnering\nPræmier til vinderholdet\nMusik og god stemning\nNye bekendtskaber og stærkt fællesskab\nMasser af aktivitet og sjove oplevelser\nMulighed for både begyndere og øvede', '2026-03-05', '14:00:00', '18:00:00', 'KEA Boldbane', '4', 'turnering.webp', 1, '2026-05-07 12:18:16', NULL, NULL, 'Fodboldturneringen handler om meget mere end bare fodbold. Det er en mulighed for at møde nye mennesker, være aktiv og få en sjov oplevelse sammen med andre studerende i en afslappet og energifyldt atmosfære.\n\nUanset om du spiller fodbold til dagligt eller bare har lyst til at prøve noget nyt, er der plads til alle. Fokus er på fællesskab, god stemning og at have det sjovt sammen – både på og uden for banen.'),
+('df5effe9-4478-11f1-b685-0242ac1d0002', 'CV Workshop', 'Boost dit CV og styrk dine jobmuligheder', 'Vil du gerne gøre dit CV mere professionelt og skille dig ud, når du søger job eller praktik? Så kom med til vores CV Workshop, hvor du får mulighed for at arbejde målrettet med dit CV sammen med andre studerende og få værdifuld feedback undervejs.\n\nWorkshoppen er for alle – både dig der allerede har et CV, og dig der ikke helt ved, hvor du skal starte. Vi hjælper dig med at fremhæve dine kompetencer, erfaringer og styrker, så du står stærkere i din jobsøgning.', 'Sparring og feedback på dit CV\nTips til opbygning og layout\nHjælp til at formulere dine erfaringer professionelt\nGode råd til studiejob, praktik og fremtidige ansøgninger\nInspiration fra andre studerende\nMulighed for at stille spørgsmål og få individuel hjælp', '2026-03-10', '10:00:00', '13:00:00', 'Lokale A1', '2', 'workshop.webp', 1, '2026-05-07 12:18:16', NULL, NULL, 'Et godt CV kan være afgørende, når du søger studiejob, praktik eller dit første fuldtidsjob. Denne workshop giver dig konkrete værktøjer og feedback, som du kan bruge med det samme – og måske endda åbne døren til nye muligheder');
 
 --
 -- Triggers/udløsere `events`
@@ -172,11 +173,9 @@ INSERT INTO `event_registrations` (`registration_pk`, `event_fk`, `user_fk`, `re
 ('07775ced-23fe-4f5f-a9fd-d8d69fbbd4cb', 'df5efe72-4478-11f1-b685-0242ac1d0002', 17, '2026-05-20 12:14:26'),
 ('0b5eee99-a7cc-400c-b9f4-6fbadc128b24', 'df5efe72-4478-11f1-b685-0242ac1d0002', 10, '2026-05-19 12:17:46'),
 ('10af5de4-ecf8-4401-ae3a-b95f524a9c69', 'df5efe72-4478-11f1-b685-0242ac1d0002', 16, '2026-05-20 12:14:07'),
-('13474f9a-ffd9-4dd0-b49e-b1936913f337', 'df5efe72-4478-11f1-b685-0242ac1d0002', 22, '2026-05-20 12:17:39'),
-('1e92b2ec-9f28-41e9-ae6f-4ca5ac99ff23', 'df5efe72-4478-11f1-b685-0242ac1d0002', 20, '2026-05-20 12:16:49'),
+('3345c9049cd3274a26d2b012573adc2c', 'df5efe72-4478-11f1-b685-0242ac1d0002', 3, '2026-05-25 17:48:37'),
 ('34e6b8f9-4484-11f1-b685-0242ac1d0002', 'df5ef636-4478-11f1-b685-0242ac1d0002', 1, '2026-05-07 12:18:16'),
 ('34e703af-4484-11f1-b685-0242ac1d0002', 'df5ef636-4478-11f1-b685-0242ac1d0002', 2, '2026-05-07 12:18:16'),
-('45da3b5a-33ac-4f86-9ed6-2b61a9f1918f', 'df5efe72-4478-11f1-b685-0242ac1d0002', 19, '2026-05-20 12:16:23'),
 ('49c0c3e3-29cd-46cb-8949-72b453b32398', 'df5efe72-4478-11f1-b685-0242ac1d0002', 13, '2026-05-20 12:13:06'),
 ('4ac66ed9-8e68-4928-80a0-4cd5d16181cd', 'df5efe72-4478-11f1-b685-0242ac1d0002', 15, '2026-05-20 12:13:44'),
 ('5c9f2e5a-08a2-4400-991d-da2ee5161190', 'df5efe72-4478-11f1-b685-0242ac1d0002', 9, '2026-05-19 12:17:19'),
@@ -185,8 +184,7 @@ INSERT INTO `event_registrations` (`registration_pk`, `event_fk`, `user_fk`, `re
 ('b54113ea-6a2e-4487-a653-beb3e29d9ad0', 'df5efe72-4478-11f1-b685-0242ac1d0002', 11, '2026-05-19 12:18:08'),
 ('b93b718e-fdcc-409f-b7e5-452d8fe83b9a', 'df5efe72-4478-11f1-b685-0242ac1d0002', 14, '2026-05-20 12:13:26'),
 ('c743effc-1d94-470c-9096-b4cfab596ca6', 'df5efe72-4478-11f1-b685-0242ac1d0002', 12, '2026-05-19 12:18:41'),
-('de6afda5-853d-4771-9194-aef002336f8a', 'df5efe72-4478-11f1-b685-0242ac1d0002', 18, '2026-05-20 12:14:49'),
-('ea801840-e209-45ca-8c53-22d0fb748b57', 'df5efe72-4478-11f1-b685-0242ac1d0002', 21, '2026-05-20 12:17:10');
+('de6afda5-853d-4771-9194-aef002336f8a', 'df5efe72-4478-11f1-b685-0242ac1d0002', 18, '2026-05-20 12:14:49');
 
 -- --------------------------------------------------------
 
@@ -212,7 +210,17 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`member_pk`, `user_fk`, `education_fk`, `semester_fk`, `application_text`, `status`, `approved_by_fk`, `applied_at`, `approved_at`, `deleted_at`) VALUES
-('18109ec1-54f6-11f1-9e03-266b729c1588', 1, 15, 7, NULL, 'approved', 1, '2026-05-21 09:18:56', '2026-05-21 09:18:56', NULL);
+('18109ec1-54f6-11f1-9e03-266b729c1588', 1, 15, 7, NULL, 'approved', 1, '2026-05-21 09:18:56', '2026-05-21 09:18:56', NULL),
+('34477f87d9927a771226841bda8fa5ff', 9, 10, 3, 'mmmm', 'approved', 1, '2026-05-28 08:49:33', '2026-05-28 09:04:42', NULL),
+('53f344ce1426b5557da3651bb66fd3b8', 18, 15, 6, 'mm', 'approved', 1, '2026-05-28 09:03:33', '2026-05-28 09:04:16', NULL),
+('65183913a0c5178be543590abb3f1084', 13, 6, 5, 'mmm', 'approved', 1, '2026-05-28 08:55:56', '2026-05-28 09:04:30', NULL),
+('6da17b8aba15c90c58c0bca0e01049d4', 10, 14, 6, 'tggg', 'approved', 1, '2026-05-28 08:50:51', '2026-05-28 09:04:39', NULL),
+('8a393967826a36dfab23e849228cec32', 14, 7, 3, 'mmm', 'approved', 1, '2026-05-28 08:57:15', '2026-05-28 09:04:27', NULL),
+('9caabc3487343086fc31df3a8a0305a5', 15, 1, 4, 'mmm', 'approved', 1, '2026-05-28 08:59:16', '2026-05-28 09:04:25', NULL),
+('bbe44c3c6ac3a774b3ac888f17edcbc0', 16, 7, 2, 'dd', 'approved', 1, '2026-05-28 09:00:29', '2026-05-28 09:04:22', NULL),
+('bd820d7b58efab2ee8c31044d0abf927', 11, 4, 5, 'mmmm', 'approved', 1, '2026-05-28 08:52:28', '2026-05-28 09:04:36', NULL),
+('dda68203e99e7350c5205a339006bf91', 12, 5, 4, 'mmm', 'approved', 1, '2026-05-28 08:54:23', '2026-05-28 09:04:33', NULL),
+('ff81bd76ffd0a6dc98b07c9f7462c9b9', 17, 11, 3, 'mmm', 'approved', 1, '2026-05-28 09:02:04', '2026-05-28 09:04:20', NULL);
 
 --
 -- Triggers/udløsere `members`
@@ -320,22 +328,18 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_pk`, `user_name`, `user_last_name`, `user_email`, `user_password`, `user_created_at`, `user_updated_at`, `user_deleted_at`, `user_verified_at`, `user_verification_key`, `role_fk`, `user_profile_image`, `failed_login_attempts`, `locked_at`, `login_unlock_key`) VALUES
 (1, 'Admin', 'Strator', 'admin@admin.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-12 07:52:23', NULL, '2026-05-12 07:55:15', NULL, '1', NULL, 0, NULL, NULL),
 (2, 'Naomi', 'Rasmussen', 'n@r.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:20:54', NULL, '2026-05-12 07:52:49', NULL, '3', NULL, 0, NULL, NULL),
-(3, 'Madeleine', 'Madsen', 'm@m.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:24:45', NULL, '2026-05-12 07:53:12', NULL, '3', NULL, 0, NULL, NULL),
+(3, 'Madeleine', 'Madsen', 'm@m.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-27 09:25:12', NULL, '2026-05-12 07:53:12', NULL, '3', NULL, 0, NULL, NULL),
 (4, 'Kamilla', 'Huhnke', 'k@h.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:20:59', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(9, 'Test 1', '1', 'test1@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:24:53', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(10, 'Test 2', '2', 'test2@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:24:57', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(11, 'Test 3', '3', 'test3@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-20 18:33:51', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(12, 'Test 4', '4', 'test4@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:25:13', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(13, 'Test 5', '5', 'test5@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:25:11', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(14, 'Test 6', '6', 'test6@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:25:08', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(15, 'Test 7', '7', 'test7@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:25:06', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(16, 'Test 8', '8', 'test8@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-20 18:58:59', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(17, 'Test 9', '9', 'test9@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:25:01', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(18, 'Test 10', '10', 'test10@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:25:03', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(19, 'Test 11', '11', 'test11@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-19 07:49:47', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(20, 'Test 12', '12', 'test12@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-20 12:16:41', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(21, 'Test 13', '13', 'test13@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-19 07:49:47', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(22, 'Test 14', '14', 'test14@test.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-19 07:49:47', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL);
+(9, 'Louise', 'Hansen', 'medlem1@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:42', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18019d68b536.37522256.png', 0, NULL, NULL),
+(10, 'Tobias', 'Lauridsen', 'medlem2@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:39', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1801eb1a6a31.83134302.png', 0, NULL, NULL),
+(11, 'Mille', 'Johansen', 'medlem3@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:36', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18024c5421c5.50248653.png', 0, NULL, NULL),
+(12, 'Mikkel', 'Koefod', 'medlem4@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:33', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1802bf4ecf26.82750142.png', 0, NULL, NULL),
+(13, 'Sofus', 'Solberg', 'medlem5@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:30', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18031cd7e294.22553788.png', 0, NULL, NULL),
+(14, 'Christian', 'Kruse', 'medlem6@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:27', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18036bca3190.99874384.png', 0, NULL, NULL),
+(15, 'Mikela', 'Vestager', 'medlem7@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:25', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1803e478cd57.07840172.png', 0, NULL, NULL),
+(16, 'Emilie', 'Falch', 'medlem8@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:22', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18042d988eb6.10613413.png', 0, NULL, NULL),
+(17, 'Elias', 'Prahl', 'medlem9@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:20', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18048cc5f296.93770265.png', 0, NULL, NULL),
+(18, 'Sofie', 'Rasmussen', 'medlem10@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:16', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1804e5173a95.37287598.png', 0, NULL, NULL);
 
 --
 -- Begrænsninger for dumpede tabeller
