@@ -96,7 +96,6 @@
   width: fit-content;
   text-orientation: mixed;
   background-image: none;
-  color: var(--font-color-black);
   padding: 0;
 }
 
@@ -221,7 +220,7 @@
   .about-hero-line {
     width: 23.75rem;
     height: 0.125rem;
-    background: var(--font-color-black);
+    background: var(--bg-color-black);
     margin: var(--gap-md) 0;
   }
 
@@ -462,5 +461,15 @@
     width: 2rem;
     height: 2rem;
     object-fit: contain;
+  }
+}
+
+/* ==================================================
+  TABLET / LILLE DESKTOP
+================================================== */
+@media (min-width: 769px) and (max-width: 1500px) {
+
+  .about-header {
+    font-size: var(--font-desktop-h1-special);
   }
 }

@@ -18,7 +18,7 @@
         <h2>Den sociale studenterforening</h2>
 
         <p>
-            Den sociale studenterforening på EK GulbergsGade er et nyt initiativ
+            Den sociale studenterforening på EK Guldbergsgade er et nyt initiativ
             skabt af studerende, for studerende, med fokus på at styrke
             fællesskabet på tværs af uddannelser og årgange.
         </p>

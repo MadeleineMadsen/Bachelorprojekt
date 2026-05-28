@@ -21,7 +21,6 @@
 .form-container select {
   font-family: var(--font-text);
   font-size: var(--font-mobile-text);
-  color: var(--font-color-black);
   width: 100%;
   border: none;
   border-bottom: 0.0625rem solid var(--color-black);
@@ -32,11 +31,6 @@
 
 .form-container select {
   background-color: var(--bg-color-white);
-}
-
-.form-container input::placeholder,
-.form-container select::placeholder {
-  color: var(--font-color-black);
 }
 
 .form-row {
@@ -69,7 +63,6 @@
   font-size: var(--font-mobile-text);
   font-weight: var(--poppins-font-bold);
   margin-top: var(--gap-sm);
-  color: var(--font-color-black);
 }
 
 .form-link-text a {
@@ -98,7 +91,6 @@
 .checkbox-wrapper label {
   font-family: var(--font-text);
   font-size: var(--font-mobile-text);
-  color: var(--font-color-black);
 }
 
 .term_check {
@@ -181,7 +173,6 @@
 .upload-box p {
   font-family: var(--font-text);
   font-size: var(--font-mobile-text);
-  color: var(--font-color-black);
   margin-bottom: var(--gap-sm);
 }
 
@@ -259,7 +250,6 @@
 
   .checkbox-wrapper label {
     font-size: var(--font-desktop-text-small);
-    color: var(--font-color-black);
   }
 
   .term_check {

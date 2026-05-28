@@ -15,7 +15,6 @@
   font-family: var(--font-header);
   font-size: var(--font-mobile-h1);
   font-weight: var(--IBM-font-bold);
-  color: var(--font-color-black);
   margin: 0;
 }
 
@@ -138,7 +137,7 @@
 @media (min-width: 768px) {
   /* ---------- Hero ---------- */
   .members-hero {
-    padding: var(--gap-lg) var(--gap-md);
+    padding: var(--gap-md);
   }
 
   .members-hero h1 {
@@ -205,5 +204,15 @@
 
   .members-link {
     font-size: var(--font-desktop-text-small);
+  }
+}
+
+/* ==================================================
+  TABLET / LILLE DESKTOP
+================================================== */
+@media (min-width: 769px) and (max-width: 1500px) {
+
+  .members-hero h1 {
+    font-size: var(--font-desktop-h1-special);
   }
 }
