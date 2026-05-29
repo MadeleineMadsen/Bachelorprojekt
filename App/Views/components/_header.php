@@ -209,7 +209,7 @@ if ($isLoggedIn) {
                 <nav class="top-nav top-nav-left" aria-label="Hovednavigation venstre">
                     <?php foreach ($leftNavItems as $item): ?>
                         <a href="<?= htmlspecialchars($item['url']) ?>"
-                            class="top-nav-link top-nav-link-left <?= ($currentPage === $item['key']) ? 'active' : '' ?>">
+                            class="top-nav-link top-nav-link-left <?= ($currentPage === $item['key']) ? 'active' : '' ?>" <?= ($currentPage === $item['key']) ? 'aria-current="page"' : '' ?>>
                             <?= htmlspecialchars($item['label']) ?>
                         </a>
                     <?php endforeach; ?>
@@ -220,7 +220,7 @@ if ($isLoggedIn) {
             <nav class="top-nav top-nav-right" aria-label="Hovednavigation højre">
                 <?php foreach ($rightNavItems as $item): ?>
                     <a href="<?= htmlspecialchars($item['url']) ?>"
-                        class="top-nav-link top-nav-link-right <?= ($currentPage === $item['key']) ? 'active' : '' ?>">
+                        class="top-nav-link top-nav-link-right <?= ($currentPage === $item['key']) ? 'active' : '' ?>" <?= ($currentPage === $item['key']) ? 'aria-current="page"' : '' ?>>
                         <?= htmlspecialchars($item['label']) ?>
                     </a>
                 <?php endforeach; ?>
@@ -235,7 +235,7 @@ if ($isLoggedIn) {
                     <!-- Loop gennem links i subnavigationen -->
                     <?php foreach ($subNavItems as $item): ?>
                         <a href="<?= htmlspecialchars($item['url']) ?>"
-                            class="sub-nav-link <?= ($currentPage === $item['key']) ? 'active' : '' ?>">
+                            class="sub-nav-link <?= ($currentPage === $item['key']) ? 'active' : '' ?>" <?= ($currentPage === $item['key']) ? 'aria-current="page"' : '' ?>>
                             <?= htmlspecialchars($item['label']) ?>
 
                             <!-- Badge vises fx ved afventende ansøgninger -->
@@ -255,7 +255,7 @@ if ($isLoggedIn) {
                 <!-- Primære links i mobilmenuen -->
                 <div class="mobile-nav-main">
                     <?php foreach ($leftNavItems as $item): ?>
-                        <a href="<?= htmlspecialchars($item['url']) ?>" class="mobile-nav-link">
+                        <a href="<?= htmlspecialchars($item['url']) ?>" class="mobile-nav-link" <?= ($currentPage === $item['key']) ? 'aria-current="page"' : '' ?>>
                             <?= htmlspecialchars($item['label']) ?>
                         </a>
                     <?php endforeach; ?>
@@ -264,7 +264,7 @@ if ($isLoggedIn) {
                 <!-- Konto-links i mobilmenuen -->
                 <div class="mobile-nav-account">
                     <?php foreach ($rightNavItems as $item): ?>
-                        <a href="<?= htmlspecialchars($item['url']) ?>" class="mobile-nav-link">
+                        <a href="<?= htmlspecialchars($item['url']) ?>" class="mobile-nav-link" <?= ($currentPage === $item['key']) ? 'aria-current="page"' : '' ?>>
                             <?= htmlspecialchars($item['label']) ?>
                         </a>
                     <?php endforeach; ?>
@@ -280,7 +280,7 @@ if ($isLoggedIn) {
             <!-- Loop gennem links i mobil subnavigationen -->
             <?php foreach ($subNavItems as $item): ?>
                 <a href="<?= htmlspecialchars($item['url']) ?>"
-                    class="mobile-bottom-link <?= ($currentPage === $item['key']) ? 'active' : '' ?>">
+                    class="mobile-bottom-link <?= ($currentPage === $item['key']) ? 'active' : '' ?>" <?= ($currentPage === $item['key']) ? 'aria-current="page"' : '' ?>>
 
                     <!-- Aktivt ikon vises på den aktuelle side -->
                     <img src="<?= ($currentPage === $item['key']) ? $item['icon_active'] : $item['icon']; ?>"
