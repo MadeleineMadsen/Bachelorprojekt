@@ -97,6 +97,7 @@
   text-orientation: mixed;
   background-image: none;
   padding: 0;
+  color: var(--font-color-black);
 }
 
 .about-carousel-section {
