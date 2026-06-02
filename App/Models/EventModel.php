@@ -159,8 +159,8 @@ class EventModel
     {
         $db = getDB();
         $stmt = $db->prepare('
-            INSERT INTO events (event_pk, event_title, event_subtitle, event_description, event_expectations, event_date, event_time, event_end_time, event_location, category_fk, event_image, created_by_fk)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO events (event_pk, event_title, event_subtitle, event_description, event_expectations, event_why_join, event_date, event_time, event_end_time, event_location, category_fk, event_image, created_by_fk)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ');
         $stmt->execute([
             $data['event_pk'],
@@ -168,6 +168,7 @@ class EventModel
             $data['event_subtitle'],
             $data['event_description'],
             $data['event_expectations'],
+            $data['event_why_join'],
             $data['event_date'],
             $data['event_time'],
             $data['event_end_time'],
@@ -186,7 +187,7 @@ class EventModel
         // Tilføjer kun event_image til SQL'en hvis der er uploadet et nyt billede
         $stmt = $db->prepare('
             UPDATE events
-            SET event_title = ?, event_subtitle = ?, event_description = ?, event_expectations = ?,
+            SET event_title = ?, event_subtitle = ?, event_description = ?, event_expectations = ?, event_why_join = ?,
                 event_date = ?, event_time = ?, event_end_time = ?, event_location = ?, category_fk = ?
                 ' . ($data['event_image'] !== null ? ', event_image = ?' : '') . '
             WHERE event_pk = ?
@@ -196,6 +197,7 @@ class EventModel
             $data['event_subtitle'],
             $data['event_description'],
             $data['event_expectations'],
+            $data['event_why_join'],
             $data['event_date'],
             $data['event_time'],
             $data['event_end_time'],
