@@ -58,6 +58,13 @@ class AdminEventController
 
         $expectations = validate_text(
             'description-bulletpoints',
+            'Beskrivende punkter',
+            10,
+            2000
+        );
+
+        $whyJoin = validate_text(
+            'why_join',
             'Hvorfor skal du deltage',
             10,
             2000
@@ -106,6 +113,7 @@ class AdminEventController
             'subtitle' => $subtitle,
             'description' => $description,
             'expectations' => $expectations,
+            'whyJoin' => $whyJoin,
             'date' => $date,
             'time' => $time,
             'endTime' => $endTime,
@@ -157,6 +165,7 @@ class AdminEventController
             'currentPage' => 'event_create',
             'isProfileSection' => true,
         ]);
+        unset($_SESSION['old']);
     }
 
     // Validerer adgang og request før event opdateres
@@ -255,6 +264,7 @@ class AdminEventController
             'event_subtitle' => $data['subtitle'],
             'event_description' => $data['description'],
             'event_expectations' => $data['expectations'],
+            'event_why_join' => $data['whyJoin'],
             'event_date' => $data['date'],
             'event_time' => $data['time'],
             'event_end_time' => $data['endTime'],
@@ -278,22 +288,34 @@ class AdminEventController
     // Opretter et nyt event
     public static function create(): void
     {
+        // Upload billede først så det ikke mistes ved valideringsfejl
         try {
-            // Validerer input fra event-formularen
-            $data = self::validateEventInput();
+            $imagePath = self::handleImageUpload();
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
+            $_SESSION['old'] = $_POST;
             redirect('/event_create');
         }
 
-        try {
-            $imagePath = self::handleImageUpload();
+        // Brug tidligere uploadet billede hvis intet nyt er valgt
+        if ($imagePath === null && !empty($_POST['saved_image'])) {
+            $imagePath = $_POST['saved_image'];
+        }
 
-            if ($imagePath === null) {
-                throw new Exception('Du skal uploade et billede.');
-            }
+        try {
+            $data = self::validateEventInput();
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
+            $_SESSION['old'] = $_POST;
+            if ($imagePath !== null) {
+                $_SESSION['old']['saved_image'] = $imagePath;
+            }
+            redirect('/event_create');
+        }
+
+        if ($imagePath === null) {
+            $_SESSION['error'] = 'Du skal uploade et billede.';
+            $_SESSION['old'] = $_POST;
             redirect('/event_create');
         }
 
@@ -305,6 +327,7 @@ class AdminEventController
             'event_subtitle' => $data['subtitle'],
             'event_description' => $data['description'],
             'event_expectations' => $data['expectations'],
+            'event_why_join' => $data['whyJoin'],
             'event_date' => $data['date'],
             'event_time' => $data['time'],
             'event_end_time' => $data['endTime'],

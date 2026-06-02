@@ -27,15 +27,20 @@ $formAction = $isEditing ? '/event_edit' : '';
                     <input type="hidden" name="event_pk" value="<?= htmlspecialchars($event['event_pk']) ?>">
                 <?php endif; ?>
 
+                <!-- Tidligere uploadet billede bevares ved valideringsfejl -->
+                <?php if (!$isEditing && old('saved_image')): ?>
+                    <input type="hidden" name="saved_image" value="<?= e(old('saved_image')) ?>">
+                <?php endif; ?>
+
                 <!-- Basisinformation -->
                 <label for="event_titel" class="hide_label">Titel på event</label>
                 <input id="event_titel" type="text" name="titel" placeholder="Titel på event" required
-                    value="<?= $isEditing ? htmlspecialchars($event['event_title']) : '' ?>">
+                    value="<?= $isEditing ? htmlspecialchars($event['event_title']) : e(old('titel')) ?>">
 
                 <label for="event_dato" class="hide_label">Dato på event</label>
                 <input id="event_dato" type="date" name="date" required
                     min="<?= $isEditing ? '' : date('Y-m-d') ?>"
-                    value="<?= $isEditing ? htmlspecialchars($event['event_date']) : '' ?>">
+                    value="<?= $isEditing ? htmlspecialchars($event['event_date']) : e(old('date')) ?>">
 
                 <!-- Tidspunkt -->
                 <div class="form-row">
@@ -43,33 +48,33 @@ $formAction = $isEditing ? '/event_edit' : '';
                         <small class="form-hint">Starttidspunkt</small>
                         <label for="event_start" class="hide_label">Starttid</label>
                         <input id="event_start" type="time" name="time" placeholder="Starttid" required
-                            value="<?= $isEditing ? htmlspecialchars(substr($event['event_time'], 0, 5)) : '' ?>">
+                            value="<?= $isEditing ? htmlspecialchars(substr($event['event_time'], 0, 5)) : e(old('time')) ?>">
                     </div>
 
                     <div>
                         <small class="form-hint">Sluttidspunkt</small>
                         <label for="event_slut" class="hide_label">Sluttid</label>
                         <input id="event_slut" type="time" name="end_time" placeholder="Sluttid" required
-                            value="<?= $isEditing ? htmlspecialchars(substr($event['event_end_time'] ?? '', 0, 5)) : '' ?>">
+                            value="<?= $isEditing ? htmlspecialchars(substr($event['event_end_time'] ?? '', 0, 5)) : e(old('end_time')) ?>">
                     </div>
                 </div>
 
                 <!-- Lokation og undertitel -->
                 <label for="event_lokation" class="hide_label">Lokation</label>
                 <input id="event_lokation" type="text" name="location" placeholder="Lokation" required
-                    value="<?= $isEditing ? htmlspecialchars($event['event_location']) : '' ?>">
-                
+                    value="<?= $isEditing ? htmlspecialchars($event['event_location']) : e(old('location')) ?>">
+
                 <label for="event_subtitel" class="hide_label">Undertitel på event</label>
                 <input id="event_subtitel" type="text" name="subtitel" placeholder="Undertitel" required
-                    value="<?= $isEditing ? htmlspecialchars($event['event_subtitle'] ?? '') : '' ?>">
+                    value="<?= $isEditing ? htmlspecialchars($event['event_subtitle'] ?? '') : e(old('subtitel')) ?>">
 
                 <!-- Kategori -->
                 <label for="category" class="hide_label">Kategori</label>
                 <select id="category" name="category" required>
-                    <option value="" disabled <?= !$isEditing ? 'selected' : '' ?>>Vælg kategori</option>
+                    <option value="" disabled <?= !$isEditing && old('category') === '' ? 'selected' : '' ?>>Vælg kategori</option>
                     <?php foreach ($categories as $cat): ?>
                         <option value="<?= htmlspecialchars($cat['category_pk']) ?>"
-                            <?= $isEditing && $cat['category_pk'] === $event['category_fk'] ? 'selected' : '' ?>>
+                            <?= ($isEditing && $cat['category_pk'] === $event['category_fk']) || (!$isEditing && old('category') === $cat['category_pk']) ? 'selected' : '' ?>>
                             <?= htmlspecialchars($cat['category_name']) ?>
                         </option>
                     <?php endforeach; ?>
@@ -77,12 +82,16 @@ $formAction = $isEditing ? '/event_edit' : '';
 
                 <!-- Beskrivelse -->
                 <label class="form-label" for="description">Beskrivelse</label>
-                <textarea id="description" name="description" required><?= $isEditing ? htmlspecialchars($event['event_description']) : '' ?></textarea>
+                <textarea id="description" name="description" required><?= $isEditing ? htmlspecialchars($event['event_description']) : e(old('description')) ?></textarea>
 
                 <!-- Beskrivende punkter -->
                 <label class="form-label" for="description-bulletpoints">Beskrivende punkter</label>
                 <small class="form-hint">Skriv ét punkt per linje, hver linje bliver et bullet point.</small>
-                <textarea id="description-bulletpoints" name="description-bulletpoints" required><?= $isEditing ? htmlspecialchars($event['event_expectations'] ?? '') : '' ?></textarea>
+                <textarea id="description-bulletpoints" name="description-bulletpoints" required><?= $isEditing ? htmlspecialchars($event['event_expectations'] ?? '') : e(old('description-bulletpoints')) ?></textarea>
+
+                <!-- Hvorfor skal du deltage -->
+                <label class="form-label" for="why-join">Hvorfor skal du deltage</label>
+                <textarea id="why-join" name="why_join" required><?= $isEditing ? htmlspecialchars($event['event_why_join'] ?? '') : e(old('why_join')) ?></textarea>
 
                 <!-- Billede upload -->
                 <label class="form-label" for="profile_image">Upload billede<?= $isEditing ? ' <small class="form-hint">(valgfrit – behold nuværende hvis tomt)</small>' : '' ?></label>
@@ -91,8 +100,12 @@ $formAction = $isEditing ? '/event_edit' : '';
                     <div class="upload-icon">
                         <img src="/assets/img/icons/upload_picture.svg" alt="Upload billede ikon">
                     </div>
+                    <?php
+                        $hasSavedImage = !$isEditing && old('saved_image') !== '';
+                        $hasEventImage = $isEditing && !empty($event['event_image']);
+                    ?>
                     <p id="uploadText">
-                        <?php if ($isEditing && !empty($event['event_image'])): ?>
+                        <?php if ($hasEventImage || $hasSavedImage): ?>
                             Der er allerede et billede – upload kun hvis du vil skifte det
                         <?php else: ?>
                             Træk og slip et billede her<br>eller klik for at vælge fil
@@ -100,10 +113,14 @@ $formAction = $isEditing ? '/event_edit' : '';
                     </p>
                     <img
                         id="uploadPreview"
-                        src="<?= $isEditing && !empty($event['event_image']) ? '/assets/img/' . htmlspecialchars($event['event_image']) : '' ?>"
+                        src="<?php
+                            if ($hasEventImage) echo '/assets/img/' . htmlspecialchars($event['event_image']);
+                            elseif ($hasSavedImage) echo '/assets/img/' . e(old('saved_image'));
+                            else echo '';
+                        ?>"
                         alt="Billede preview"
                         class="upload-preview"
-                        <?= (!$isEditing || empty($event['event_image'])) ? 'style="display:none"' : '' ?>
+                        <?= (!$hasEventImage && !$hasSavedImage) ? 'style="display:none"' : '' ?>
                     >
                 </label>
                 
