@@ -164,20 +164,20 @@ if ($isLoggedIn) {
     ?>
 
     <!-- Container til succes- og fejlbeskeder -->
-    <div class="toast-container" aria-live="polite" aria-atomic="true">
+    <div class="toast-container">
 
-        <!-- Succesbesked -->
+        <!-- Succesbesked: role="status" læses op roligt, forstyrrer ikke brugeren -->
         <?php if ($successMessage): ?>
-            <div class="toast toast-success">
+            <div class="toast toast-success" role="status" aria-live="polite" aria-atomic="true">
                 <?= e($successMessage) ?>
 
                 <button type="button" class="toast-close" aria-label="Luk besked">×</button>
             </div>
         <?php endif; ?>
 
-        <!-- Fejlbesked -->
+        <!-- Fejlbesked: role="alert" læses op med det samme og afbryder screen reader -->
         <?php if ($errorMessage): ?>
-            <div class="toast toast-error" role="alert">
+            <div class="toast toast-error" role="alert" aria-live="assertive" aria-atomic="true">
                 <?= e($errorMessage) ?>
 
                 <button type="button" class="toast-close" aria-label="Luk besked">×</button>
