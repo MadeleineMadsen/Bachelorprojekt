@@ -3,8 +3,8 @@ $event = $event ?? [];
 $categories = $categories ?? [];
 
 // Tjekker om formularen bruges til at redigere eller oprette et event
-$isEditing = isset($event);
-$formAction = $isEditing ? '/event_edit' : '';
+$isEditing = isset($event['event_pk']);
+$formAction = $isEditing ? '/event_edit' : '/event_create';
 ?>
 
 <!-- Opret/rediger event side -->

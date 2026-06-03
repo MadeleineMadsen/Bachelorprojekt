@@ -6,6 +6,12 @@ use PHPMailer\PHPMailer\Exception;
 require_once __DIR__ . '/../vendor/autoload.php';
 $env = parse_ini_file(__DIR__ . '/.env');
 
+if ($env === false) {
+    throw new RuntimeException('.env kunne ikke indlæses');
+}
+
+$appUrl = rtrim($env['APP_URL'], '/');
+
 // Global mail-helper
 function sendMail(string $toEmail, string $firstName, string $subject, string $body): bool
 {
@@ -15,12 +21,12 @@ function sendMail(string $toEmail, string $firstName, string $subject, string $b
 
     try {
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = $env['SMTP_HOST'];
         $mail->SMTPAuth = true;
         $mail->Username = $env['SMTP_EMAIL'];
         $mail->Password = $env['SMTP_PASSWORD'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+		$mail->Port = (int)$env['SMTP_PORT'];
 
         $mail->setFrom($env['SMTP_EMAIL'], 'GBG Social');
         $mail->addAddress($toEmail, $firstName);
@@ -42,8 +48,9 @@ function sendMail(string $toEmail, string $firstName, string $subject, string $b
 // Send verifikationsmail når bruger opretter sig
 function sendUserVerificationMail(string $toEmail, string $firstName, string $verificationKey): bool
 {
-    $verificationLink = "http://localhost/verify_user?key=" . urlencode($verificationKey);
-
+    global $appUrl;
+	$verificationLink = $appUrl . '/verify_user?key=' . urlencode($verificationKey);
+    
     return sendMail(
         $toEmail,
         $firstName,
@@ -84,6 +91,8 @@ GBG Social"
 // Send mail når ansøgning er godkendt
 function sendMembershipApprovedMail(string $toEmail, string $firstName): bool
 {
+    global $appUrl;
+
     return sendMail(
         $toEmail,
         $firstName,
@@ -95,7 +104,7 @@ Tillykke! Din ansøgning er blevet godkendt.
 Du er nu medlem og vejleder hos GBG Social og kan være med til at skabe fællesskab og gode oplevelser for andre studerende.
 
 Husk at gå ind på eventsiden og tilmelde dig de events, du gerne vil være vejleder på:
-http://localhost/events
+{$appUrl}/events
 
 Venlig hilsen
 GBG Social"
@@ -186,7 +195,9 @@ GBG Social"
 // Send oplåsningsmail når konto er låst
 function sendAccountUnlockMail(string $toEmail, string $firstName, string $unlockKey): bool
 {
-    $unlockLink = "http://localhost/unlock_account?key=" . urlencode($unlockKey);
+    global $appUrl;
+    $unlockLink = $appUrl . '/unlock_account?key=' . urlencode($unlockKey);
+
     return sendMail(
         $toEmail,
         $firstName,
@@ -209,6 +220,8 @@ GBG Social"
 //  Send mail når event opdateres af admin
 function sendEventUpdatedMail(string $toEmail, string $firstName, string $eventTitle): bool
 {
+    global $appUrl;
+
     return sendMail(
         $toEmail,
         $firstName,
@@ -220,7 +233,7 @@ Der kan være ændringer i fx tidspunkt, lokation eller beskrivelse.
 
 Du kan se de opdaterede informationer under Mine Events på hjemmesiden.
 Link:
-http://localhost/mine_events
+{$appUrl}/mine_events
 
 Venlig hilsen
 GBG Social"
@@ -269,8 +282,9 @@ GBG Social"
 // Send mail med link til at nulstille adgangskode
 function sendPasswordResetMail(string $toEmail, string $firstName, string $resetKey): bool
 {
-    $resetLink = "http://localhost/reset_password?key=" . urlencode($resetKey);
-
+    global $appUrl;
+    $resetLink = $appUrl . '/reset_password?key=' . urlencode($resetKey);
+    
     return sendMail(
         $toEmail,
         $firstName,

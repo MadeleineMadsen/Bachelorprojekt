@@ -12,6 +12,10 @@ function getDB(): PDO
         // Henter databaseoplysninger fra .env fil
         $env = parse_ini_file(__DIR__ . '/.env');
 
+        if ($env === false) {
+            throw new RuntimeException('.env kunne ikke indlæses');
+        }
+
         // Opretter PDO forbindelse
         $pdo = new PDO(
             'mysql:host=' . $env['DB_HOST'] . ';dbname=' . $env['DB_NAME'] . ';charset=utf8mb4',
