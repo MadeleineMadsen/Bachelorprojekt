@@ -182,6 +182,10 @@
     padding: var(--gap-md) 0;
   }
 
+  .card-event-list-actions {
+    gap: var(--gap-sm);
+  }
+
   /* ---------- Card image ---------- */
 
   .card-event-list-img-wrap {

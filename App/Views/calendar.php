@@ -149,8 +149,8 @@ $monthNames = [
                 <!-- Kalenderdag -->
                 <button class="calendar-day <?= !$isCurrentMonth ? 'calendar-day-muted' : '' ?>
                 <?= $dateKey && $dateKey === $selectedDate ? 'is-selected' : '' ?>
-                <?= $dateKey && $dateKey === $todayDate ? 'is-today' : '' ?>" type="button"
-                    data-date="<?= $dateKey ?>">
+                <?= $dateKey && $dateKey === $todayDate ? 'is-today' : '' ?>" type="button" data-date="<?= $dateKey ?>"
+                    data-scroll-target="calendar-events">
 
                     <span class="calendar-date">
                         <?= $isCurrentMonth ? $day : '' ?>
@@ -174,7 +174,7 @@ $monthNames = [
         </div>
 
         <!-- Mobil listevisning af events -->
-        <section class="mobile-event-list">
+        <section class="mobile-event-list" id="calendar-events">
             <h2>EVENT</h2>
 
             <!-- Loop gennem events i den viste måned -->

@@ -184,8 +184,9 @@
 
 .button-row {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: var(--gap-sm);
-  align-items: center;
 }
 
 .button-row .btn {
@@ -295,7 +296,6 @@
 
   .profile-button-row {
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
   }
@@ -320,8 +320,9 @@
 
   .button-row {
     display: flex;
-    gap: 3.4375rem;
+    flex-direction: row;
     align-items: center;
+    gap: var(--gap-sm);
   }
 
   .button-row .btn {
@@ -333,7 +334,6 @@
   TABLET / LILLE DESKTOP
 ================================================== */
 @media (min-width: 769px) and (max-width: 1500px) {
-
   .form-title {
     font-size: var(--font-desktop-h1-special);
   }
