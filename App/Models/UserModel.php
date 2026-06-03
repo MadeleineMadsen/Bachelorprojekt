@@ -293,6 +293,59 @@ class UserModel
         return $stmt->execute([':user_pk' => $userId]);
     }
 
+    // Gemmer reset-nøgle og udløbstid på brugerens konto
+    public function savePasswordResetKey(int $userId, string $resetKey): bool
+    {
+        $stmt = $this->db->prepare(
+            "UPDATE users
+            SET password_reset_key = :reset_key,
+                reset_key_expires_at = DATE_ADD(NOW(), INTERVAL 1 HOUR)
+            WHERE user_pk = :user_pk"
+        );
+
+        return $stmt->execute([
+            ':reset_key' => $resetKey,
+            ':user_pk' => $userId
+        ]);
+    }
+
+    // Finder en bruger ud fra reset-nøgle hvis den stadig er gyldig
+    public function findByResetKey(string $key): ?array
+    {
+        $stmt = $this->db->prepare(
+            "SELECT * FROM users
+            WHERE password_reset_key = :key
+                AND reset_key_expires_at > NOW()
+                AND user_deleted_at IS NULL
+            LIMIT 1"
+        );
+
+        $stmt->execute([':key' => $key]);
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $user ?: null;
+    }
+
+    // Sætter ny adgangskode og sletter reset-nøglen
+    public function resetPassword(int $userId, string $password): bool
+    {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $this->db->prepare(
+            "UPDATE users
+            SET user_password = :user_password,
+                password_reset_key = NULL,
+                reset_key_expires_at = NULL
+            WHERE user_pk = :user_pk"
+        );
+
+        return $stmt->execute([
+            ':user_password' => $hashedPassword,
+            ':user_pk' => $userId
+        ]);
+    }
+
     // Låser en konto op via oplåsningslink
     public function unlockAccount(string $key): bool
     {

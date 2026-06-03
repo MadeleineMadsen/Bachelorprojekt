@@ -243,6 +243,116 @@ class AuthController
     }
 
     /* ==================================================
+    GLEMT KODEORD
+    ================================================== */
+
+    // Viser formularen til at anmode om nulstilling af adgangskode
+    public function showForgotPassword(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_csrf();
+            $this->requestPasswordReset();
+            exit;
+        }
+
+        $currentPage = 'forgot_password';
+        $view = '/forgot_password.php';
+
+        load_view($view, [
+            'currentPage' => $currentPage,
+        ]);
+    }
+
+    // Håndterer anmodning om nulstilling sender mail med reset-link
+    private function requestPasswordReset(): void
+    {
+        $email = trim($_POST['user_email'] ?? '');
+
+        $user = $this->userModel->findByEmail($email);
+
+        // Giver samme besked uanset om mailen findes undgår at afsløre kontoer
+        if (!$user) {
+            $_SESSION['success'] = 'Hvis din mail er registreret, har vi sendt et link til dig.';
+            redirect('/login');
+        }
+
+        $resetKey = bin2hex(random_bytes(16));
+        $this->userModel->savePasswordResetKey($user['user_pk'], $resetKey);
+
+        $mailSent = sendPasswordResetMail($user['user_email'], $user['user_name'], $resetKey);
+
+        if (!$mailSent) {
+            $_SESSION['error'] = 'Der skete en fejl. Prøv igen.';
+            redirect('/login');
+        }
+
+        $_SESSION['success'] = 'Hvis din mail er registreret, har vi sendt et link til dig.';
+        redirect('/login');
+    }
+
+    // Viser formularen til at indtaste ny adgangskode via reset-link
+    public function showResetPassword(): void
+    {
+        $key = $_GET['key'] ?? '';
+
+        if (!$key) {
+            $_SESSION['error'] = 'Ugyldigt link';
+            redirect('/login');
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_csrf();
+            $this->resetPassword($key);
+            exit;
+        }
+
+        // Validerer at nøglen stadig er gyldig inden siden vises
+        $user = $this->userModel->findByResetKey($key);
+
+        if (!$user) {
+            $_SESSION['error'] = 'Linket er ugyldigt eller udløbet';
+            redirect('/login');
+        }
+
+        $currentPage = 'reset_password';
+        $view = '/reset_password.php';
+
+        load_view($view, [
+            'currentPage' => $currentPage,
+            'key' => $key,
+        ]);
+    }
+
+    // Sætter ny adgangskode og sletter reset-nøglen
+    private function resetPassword(string $key): void
+    {
+        $user = $this->userModel->findByResetKey($key);
+
+        if (!$user) {
+            $_SESSION['error'] = 'Linket er ugyldigt eller udløbet';
+            redirect('/login');
+        }
+
+        $password = validate_password('user_password');
+        $confirmPassword = validate_password('confirm_password');
+
+        if ($password !== $confirmPassword) {
+            $_SESSION['error'] = 'Adgangskoderne matcher ikke';
+            redirect('/reset_password?key=' . urlencode($key));
+        }
+
+        $updated = $this->userModel->resetPassword($user['user_pk'], $password);
+
+        if ($updated) {
+            $_SESSION['success'] = 'Din adgangskode er nulstillet. Du kan nu logge ind.';
+            redirect('/login');
+        }
+
+        $_SESSION['error'] = 'Der skete en fejl. Prøv igen.';
+        redirect('/reset_password?key=' . urlencode($key));
+    }
+
+    /* ==================================================
     LOGOUT
     ================================================== */
 

@@ -47,6 +47,16 @@ switch ($uri) {
         $authController->unlockAccount();
         exit;
 
+    // GLEMT KODEORD
+    case '/forgot_password':
+        $authController->showForgotPassword();
+        exit;
+
+    // NULSTIL KODEORD
+    case '/reset_password':
+        $authController->showResetPassword();
+        exit;
+
     // LOG UD
     case '/logout':
         $authController->logout();

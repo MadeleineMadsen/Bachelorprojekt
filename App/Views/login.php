@@ -32,6 +32,11 @@
                 Ikke medlem endnu?
                 <a href="/signup">Opret dig her</a>
             </p>
+
+            <!-- Link til kodeordsnulstilling -->
+            <p class="form-link-text">
+                <a href="/forgot_password">Glemt kodeord?</a>
+            </p>
         </section>
     </section>
 </main>

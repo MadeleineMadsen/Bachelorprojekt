@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
@@ -318,28 +318,30 @@ CREATE TABLE `users` (
   `user_profile_image` varchar(255) DEFAULT NULL,
   `failed_login_attempts` int(11) NOT NULL DEFAULT 0,
   `locked_at` timestamp NULL DEFAULT NULL,
-  `login_unlock_key` varchar(32) DEFAULT NULL
+  `login_unlock_key` varchar(32) DEFAULT NULL,
+  `password_reset_key` varchar(32) DEFAULT NULL,
+  `reset_key_expires_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Data dump for tabellen `users`
 --
 
-INSERT INTO `users` (`user_pk`, `user_name`, `user_last_name`, `user_email`, `user_password`, `user_created_at`, `user_updated_at`, `user_deleted_at`, `user_verified_at`, `user_verification_key`, `role_fk`, `user_profile_image`, `failed_login_attempts`, `locked_at`, `login_unlock_key`) VALUES
-(1, 'Admin', 'Strator', 'admin@admin.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-12 07:52:23', NULL, '2026-05-12 07:55:15', NULL, '1', NULL, 0, NULL, NULL),
-(2, 'Naomi', 'Rasmussen', 'n@r.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:20:54', NULL, '2026-05-12 07:52:49', NULL, '3', NULL, 0, NULL, NULL),
-(3, 'Madeleine', 'Madsen', 'm@m.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-27 09:25:12', NULL, '2026-05-12 07:53:12', NULL, '3', NULL, 0, NULL, NULL),
-(4, 'Kamilla', 'Huhnke', 'k@h.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:20:59', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL),
-(9, 'Louise', 'Hansen', 'medlem1@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:42', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18019d68b536.37522256.png', 0, NULL, NULL),
-(10, 'Tobias', 'Lauridsen', 'medlem2@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:39', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1801eb1a6a31.83134302.png', 0, NULL, NULL),
-(11, 'Mille', 'Johansen', 'medlem3@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:36', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18024c5421c5.50248653.png', 0, NULL, NULL),
-(12, 'Mikkel', 'Koefod', 'medlem4@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:33', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1802bf4ecf26.82750142.png', 0, NULL, NULL),
-(13, 'Sofus', 'Solberg', 'medlem5@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:30', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18031cd7e294.22553788.png', 0, NULL, NULL),
-(14, 'Christian', 'Kruse', 'medlem6@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:27', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18036bca3190.99874384.png', 0, NULL, NULL),
-(15, 'Mikela', 'Vestager', 'medlem7@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:25', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1803e478cd57.07840172.png', 0, NULL, NULL),
-(16, 'Emilie', 'Falch', 'medlem8@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:22', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18042d988eb6.10613413.png', 0, NULL, NULL),
-(17, 'Elias', 'Prahl', 'medlem9@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:20', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18048cc5f296.93770265.png', 0, NULL, NULL),
-(18, 'Sofie', 'Rasmussen', 'medlem10@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:16', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1804e5173a95.37287598.png', 0, NULL, NULL);
+INSERT INTO `users` (`user_pk`, `user_name`, `user_last_name`, `user_email`, `user_password`, `user_created_at`, `user_updated_at`, `user_deleted_at`, `user_verified_at`, `user_verification_key`, `role_fk`, `user_profile_image`, `failed_login_attempts`, `locked_at`, `login_unlock_key`, `password_reset_key`, `reset_key_expires_at`) VALUES
+(1, 'Admin', 'Strator', 'admin@admin.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-12 07:52:23', NULL, '2026-05-12 07:55:15', NULL, '1', NULL, 0, NULL, NULL, NULL, NULL),
+(2, 'Naomi', 'Rasmussen', 'n@r.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:20:54', NULL, '2026-05-12 07:52:49', NULL, '3', NULL, 0, NULL, NULL, NULL, NULL),
+(3, 'Madeleine', 'Madsen', 'm@m.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-27 09:25:12', NULL, '2026-05-12 07:53:12', NULL, '3', NULL, 0, NULL, NULL, NULL, NULL),
+(4, 'Kamilla', 'Huhnke', 'k@h.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-21 09:20:59', NULL, '2026-05-12 07:54:15', NULL, '3', NULL, 0, NULL, NULL, NULL, NULL),
+(9, 'Louise', 'Hansen', 'medlem1@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:42', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18019d68b536.37522256.png', 0, NULL, NULL, NULL, NULL),
+(10, 'Tobias', 'Lauridsen', 'medlem2@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:39', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1801eb1a6a31.83134302.png', 0, NULL, NULL, NULL, NULL),
+(11, 'Mille', 'Johansen', 'medlem3@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:36', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18024c5421c5.50248653.png', 0, NULL, NULL, NULL, NULL),
+(12, 'Mikkel', 'Koefod', 'medlem4@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:33', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1802bf4ecf26.82750142.png', 0, NULL, NULL, NULL, NULL),
+(13, 'Sofus', 'Solberg', 'medlem5@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:30', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18031cd7e294.22553788.png', 0, NULL, NULL, NULL, NULL),
+(14, 'Christian', 'Kruse', 'medlem6@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:27', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18036bca3190.99874384.png', 0, NULL, NULL, NULL, NULL),
+(15, 'Mikela', 'Vestager', 'medlem7@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:25', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1803e478cd57.07840172.png', 0, NULL, NULL, NULL, NULL),
+(16, 'Emilie', 'Falch', 'medlem8@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:22', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18042d988eb6.10613413.png', 0, NULL, NULL, NULL, NULL),
+(17, 'Elias', 'Prahl', 'medlem9@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:20', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a18048cc5f296.93770265.png', 0, NULL, NULL, NULL, NULL),
+(18, 'Sofie', 'Rasmussen', 'medlem10@medlem.com', '$2y$10$6XVUYnhke5s.EFQi0.FQ.uET2uiYOZysL.ZUsozMxltUIlG5sgs26', '2026-05-07 12:18:16', '2026-05-28 09:04:16', NULL, '2026-05-12 07:54:15', NULL, '2', 'profile_6a1804e5173a95.37287598.png', 0, NULL, NULL, NULL, NULL);
 
 --
 -- Begrænsninger for dumpede tabeller
@@ -464,3 +466,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

@@ -266,6 +266,32 @@ GBG Social"
     );
 }
 
+// Send mail med link til at nulstille adgangskode
+function sendPasswordResetMail(string $toEmail, string $firstName, string $resetKey): bool
+{
+    $resetLink = "http://localhost/reset_password?key=" . urlencode($resetKey);
+
+    return sendMail(
+        $toEmail,
+        $firstName,
+        'Nulstil din adgangskode hos GBG Social',
+        "Hej {$firstName}
+
+Vi har modtaget en anmodning om at nulstille adgangskoden til din konto hos GBG Social.
+
+Klik på linket herunder for at vælge en ny adgangskode:
+
+{$resetLink}
+
+Linket udløber om 1 time.
+
+Hvis det ikke var dig, der anmodede om at nulstille din adgangskode, kan du ignorere denne mail.
+
+Venlig hilsen
+GBG Social"
+    );
+}
+
 // Send mail 24 timer før eventet finder sted
 function sendEventReminderMail(string $toEmail, string $firstName, string $eventTitle): bool
 {

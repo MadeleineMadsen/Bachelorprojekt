@@ -27,7 +27,7 @@
                 <!-- Email -->
                 <label for="user_email" class="hide_label">Studiemail</label>
                 <input id="user_email" type="email" name="user_email" value="<?= e(old('user_email')) ?>"
-                    placeholder="Studiemail" required>
+                    placeholder="xxxx0000@stud.ek.dk" required>
 
                 <!-- Adgangskode -->
                 <label for="user_password" class="hide_label">Adgangskode</label>

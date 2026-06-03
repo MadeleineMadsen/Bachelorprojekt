@@ -30,7 +30,7 @@
             </div>
 
             <div class="members-stat">
-                <h3>+<?= $memberStats['events_this_year']; ?></h3>
+                <h3><?= $memberStats['events_this_year']; ?></h3>
                 <p>EVENTS OM ÅRET</p>
             </div>
         </div>

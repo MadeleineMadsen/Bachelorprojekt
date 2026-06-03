@@ -33,7 +33,7 @@ if ($isLoggedIn) {
     $rightNavItems = [
         [
             'key' => 'profile',
-            'label' => 'PROFIL',
+            'label' => 'KONTROLPANEL',
             'url' => '/profile'
         ],
         [
