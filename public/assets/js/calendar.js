@@ -59,6 +59,12 @@ calendarDays.forEach((day) => {
     if (!foundEvent && selectedDate) {
       noEvents.style.display = "block";
     }
+
+    // Scroll ned til eventlisten
+    eventList.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   });
 });
 
