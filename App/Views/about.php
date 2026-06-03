@@ -11,7 +11,7 @@
 
             <h2 class="hero-sub sub">DEN SOCIALE STUDENTERFORENING</h2>
 
-            <p class="sub-text">
+            <p class="hero-sub-text">
                 GBG Social er for alle studerende på Guldbergsgade.
                 Vi skaber fællesskab gennem sjove events, gode vibes og uforglemmelige oplevelser.
             </p>
@@ -142,7 +142,8 @@
 
         <h2 class="contact-sub sub">KONTAKT OS</h2>
 
-        <p class="sub-text">Har du spørgsmål, ideer til events eller lyst til at samarbejde? Så ræk endelig ud!</p>
+        <p class="contact-sub-text">Har du spørgsmål, ideer til events eller lyst til at samarbejde? Så ræk endelig ud!
+        </p>
 
         <!-- Mail -->
         <div class="contact-container">

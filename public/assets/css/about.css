@@ -23,7 +23,6 @@
 
 .sub-text {
   font-size: var(--font-mobile-text);
-  margin: 0 var(--gap-sm) var(--gap-sm);
 }
 
 /* ---------- Hero ---------- */
@@ -38,6 +37,10 @@
   background-size: cover;
   background-position: center 25%;
   background-repeat: no-repeat;
+}
+
+.hero-sub-text {
+  margin: var(--gap-sm);
 }
 
 .about-img {
@@ -159,13 +162,17 @@
 }
 
 .contact-sub {
-  margin: var(--gap-md) var(--gap-sm) var(--gap-sm);
+  margin: var(--gap-md) var(--gap-sm) var(--gap-sm) 0;
+}
+
+.contact-sub-text {
+  margin: 0;
 }
 
 .contact-container {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  margin: var(--gap-sm);
+  margin: var(--gap-sm) 0;
   align-items: center;
 }
 
@@ -173,7 +180,7 @@
   width: 100%;
   height: auto;
   display: block;
-  margin-top: var(--gap-sm);
+  margin: var(--gap-sm) 0 var(--gap-md) 0;
 }
 
 /* ==================================================
@@ -214,7 +221,7 @@
 
   .about-hero-line,
   .about-left .sub,
-  .about-left .sub-text {
+  .about-left .hero-sub-text {
     display: block;
   }
 
@@ -228,11 +235,13 @@
   .about-left .sub {
     font-size: var(--font-desktop-h3);
     max-width: 40rem;
+    margin: 0;
     margin-bottom: var(--gap-sm);
   }
 
-  .about-left .sub-text {
+  .about-left .hero-sub-text {
     max-width: 40rem;
+    margin: 0;
   }
 
   .about-right {
@@ -367,38 +376,27 @@
     gap: 0;
     padding: 0;
     margin: var(--gap-lg) 0;
-    align-items: stretch;
+    overflow: hidden;
+  }
+
+  #values .sub,
+  #values .values-container {
+    grid-column: 1;
   }
 
   #values .sub {
-    grid-column: 1;
-    grid-row: 1;
     margin: 0;
     padding: var(--gap-lg) var(--gap-lg) var(--gap-md);
     max-width: none;
   }
 
   #values .values-container {
-    grid-column: 1;
     display: grid;
     grid-template-columns: 4rem 1fr;
     gap: var(--gap-md);
     align-items: center;
     margin: 0;
-    padding: 0 var(--gap-lg) var(--gap-md);
-  }
-
-  #values .values-container:nth-of-type(1) {
-    grid-row: 2;
-  }
-
-  #values .values-container:nth-of-type(2) {
-    grid-row: 3;
-  }
-
-  #values .values-container:nth-of-type(3) {
-    grid-row: 4;
-    padding-bottom: var(--gap-lg);
+    padding: 0 var(--gap-lg) var(--gap-lg);
   }
 
   #values .values-container img {
@@ -411,9 +409,10 @@
     grid-column: 2;
     grid-row: 1 / 5;
     width: 100%;
-    height: 100%;
-    aspect-ratio: 1 / 1;
+    height: 40rem;
     object-fit: cover;
+    object-position: center;
+    aspect-ratio: auto;
   }
 
   /* ---------- Kontakt ---------- */
@@ -431,22 +430,23 @@
     grid-row: 1 / 7;
     width: 100%;
     height: auto;
-    margin-top: 0;
+    margin: 0;
   }
 
   .contact .sub,
-  .contact > .sub-text,
+  .contact > .contact-sub-text,
   .contact-container {
     grid-column: 2;
   }
 
   .contact .sub {
     grid-row: 1;
+    margin: 0;
     margin-bottom: var(--gap-sm);
     max-width: none;
   }
 
-  .contact > .sub-text {
+  .contact > .contact-sub-text {
     grid-row: 2;
     margin-bottom: var(--gap-sm);
     max-width: 32rem;
@@ -469,7 +469,6 @@
   TABLET / LILLE DESKTOP
 ================================================== */
 @media (min-width: 769px) and (max-width: 1500px) {
-
   .about-header {
     font-size: var(--font-desktop-h1-special);
   }
