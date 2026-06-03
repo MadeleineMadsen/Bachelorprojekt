@@ -107,11 +107,6 @@ $showMemberFields = in_array($role, ['1', '2']);
             <!-- Adgangskode -->
             <input type="password" name="user_password" placeholder="Ret adgangskode">
 
-            <!-- Link til kodeordsnulstilling -->
-            <p class="form-link-text">
-                <a href="/forgot_password">Glemt kodeord?</a>
-            </p>
-
             <!-- Knapper -->
             <div class="profile-button-row">
                 <button class="btn btn-primary" type="submit">GEM ÆNDRINGER</button>
