@@ -1,3 +1,7 @@
+<?php
+$events = $events ?? [];
+?>
+
 <!-- Forside -->
 <main class="front-page">
 

@@ -1,4 +1,6 @@
 <?php
+$calendarEvents = $calendarEvents ?? [];
+$isAdmin = $isAdmin ?? false;
 
 // Sætter tidszonen til dansk tid
 date_default_timezone_set('Europe/Copenhagen');

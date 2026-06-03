@@ -1,3 +1,7 @@
+<?php
+$members = $members ?? [];
+?>
+
 <!-- Main wrapper -->
 <main class="main-about">
 

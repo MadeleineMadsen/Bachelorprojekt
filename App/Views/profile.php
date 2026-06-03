@@ -1,4 +1,7 @@
 <?php
+$educations = $educations ?? [];
+$user = $user ?? [];
+$semesters = $semesters ?? [];
 
 // Brugerens rolle
 $role = $user['role_fk'] ?? '3';

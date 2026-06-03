@@ -1,3 +1,7 @@
+<?php
+$event = $event ?? [];
+?>
+
 <!-- Eventkort -->
 <article class="card-event-sm">
 

@@ -1,3 +1,7 @@
+<?php
+$event = $event ?? [];
+?>
+
 <!-- Eventinfo-boks -->
 <aside class="card-event-info">
 

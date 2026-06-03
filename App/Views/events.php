@@ -1,3 +1,8 @@
+<?php
+$categories = $categories ?? [];
+$events = $events ?? [];
+?>
+
 <!-- Events side -->
 <main class="events-page">
 

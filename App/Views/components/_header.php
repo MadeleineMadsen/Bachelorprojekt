@@ -1,4 +1,9 @@
 <?php
+$currentPage = $currentPage ?? '';
+$isLoggedIn = $isLoggedIn ?? false;
+$isUser = $isUser ?? false;
+$isAdmin = $isAdmin ?? false;
+$isProfileSection = $isProfileSection ?? false;
 
 // Links til venstre side af topnavigationen
 $leftNavItems = [

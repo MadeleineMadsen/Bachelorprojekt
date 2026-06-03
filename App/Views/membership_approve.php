@@ -1,3 +1,9 @@
+<?php
+$applications = $applications ?? [];
+$educations = $educations ?? [];
+$members = $members ?? [];
+?>
+
 <!-- Godkend ansøgninger side -->
 <main class="approve-main">
 

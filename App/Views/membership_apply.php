@@ -1,4 +1,7 @@
 <?php
+$memberStats = $memberStats ?? [];
+$educations = $educations ?? [];
+$semesters = $semesters ?? [];
 
 // Tjekker om brugeren allerede har et profilbillede
 $profileImage = $_SESSION['user']['user_profile_image'] ?? null;

@@ -1,3 +1,9 @@
+<?php
+$modalId = $modalId ?? '';
+$formId = $formId ?? '';
+$text = $text ?? '';
+?>
+
 <!-- Bekræftelsesmodal -->
 <dialog class="modal-overlay" id="<?= htmlspecialchars($modalId) ?>">
 

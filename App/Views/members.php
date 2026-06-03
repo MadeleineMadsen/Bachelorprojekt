@@ -1,3 +1,9 @@
+<?php
+$memberStats = $memberStats ?? [];
+$educations = $educations ?? [];
+$members = $members ?? [];
+?>
+
 <!-- Medlemmer side -->
 <main class="members-page">
 

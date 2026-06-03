@@ -1,4 +1,5 @@
 <?php
+$currentPage = $currentPage ?? '';
 
 // Navigation links i footer
 $FooterNavItems = [

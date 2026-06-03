@@ -1,3 +1,7 @@
+<?php
+$event = $event ?? [];
+?>
+
 <!-- Eventkort til eventoversigt -->
 <article class="card-event-list" data-category="<?= htmlspecialchars($event['category_fk'] ?? '') ?>"
     data-title="<?= htmlspecialchars(strtolower($event['event_title'])) ?>">

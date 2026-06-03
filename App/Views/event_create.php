@@ -1,4 +1,6 @@
 <?php
+$event = $event ?? [];
+$categories = $categories ?? [];
 
 // Tjekker om formularen bruges til at redigere eller oprette et event
 $isEditing = isset($event);

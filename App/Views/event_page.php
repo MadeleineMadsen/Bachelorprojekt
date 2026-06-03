@@ -1,3 +1,8 @@
+<?php
+$event = $event ?? [];
+$dato = $dato ?? '';
+?>
+
 <!-- Event side -->
 <main class="event-page">
 
