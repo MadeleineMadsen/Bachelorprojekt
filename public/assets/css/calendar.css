@@ -253,6 +253,10 @@
     font-size: var(--font-desktop-h2);
   }
 
+  .buttons {
+    gap: var(--gap-sm);
+  }
+
   .calendar-actions {
     display: flex;
     align-items: center;
