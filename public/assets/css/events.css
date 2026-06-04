@@ -47,7 +47,7 @@
   border: 0.0625rem solid var(--color-black);
   padding: 0 var(--gap-xs);
   height: var(--btn-height-mobile);
-  background: var(--bg-color-white);
+  background-color: var(--bg-color-white);
   cursor: pointer;
 }
 

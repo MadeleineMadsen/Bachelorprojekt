@@ -10,8 +10,6 @@ if ($env === false) {
     throw new RuntimeException('.env kunne ikke indlæses');
 }
 
-$appUrl = rtrim($env['APP_URL'], '/');
-
 // Global mail-helper
 function sendMail(string $toEmail, string $firstName, string $subject, string $body): bool
 {

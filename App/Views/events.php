@@ -28,7 +28,7 @@ $events = $events ?? [];
 
                 <!-- Søgefelt -->
                 <div class="search-field">
-                    <input type="text" placeholder="SØG">
+                    <input class="events-filter-input" type="text" placeholder="SØG">
 
                     <button type="button" aria-label="Søg">
                         <img src="/assets/img/icons/search.svg" alt="">
@@ -36,9 +36,8 @@ $events = $events ?? [];
                 </div>
 
                 <!-- Kategori filter -->
-                <select class="filter-select">
-                    <option value="" disabled selected hidden>KATEGORIER</option>
-                    <option value="">ALLE</option>
+                <select class="filter-select events-filter-select">
+                    <option value="">ALLE KATEGORIER</option>
 
                     <!-- Loop gennem kategorier -->
                     <?php foreach ($categories as $cat): ?>
@@ -46,8 +45,6 @@ $events = $events ?? [];
                             <?= htmlspecialchars($cat['category_name']) ?>
                         </option>
                     <?php endforeach; ?>
-
-                    <img src="/assets/img/icons/arrow-down.svg" alt="" class="education-filter-arrow">
                 </select>
             </form>
         </div>
