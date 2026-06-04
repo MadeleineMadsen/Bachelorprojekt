@@ -45,6 +45,7 @@ $events = $events ?? [];
                             <?= htmlspecialchars($cat['category_name']) ?>
                         </option>
                     <?php endforeach; ?>
+                    <img src="/assets/img/icons/arrow-down.svg" alt="" class="education-filter-arrow">
                 </select>
             </form>
         </div>
