@@ -199,7 +199,7 @@
   .about-hero {
     display: grid;
     grid-template-columns: 1fr 1.05fr;
-    height: auto;
+    height: 35rem;
     align-items: start;
   }
 
@@ -252,7 +252,7 @@
 
   .about-right img {
     width: 100%;
-    height: 40rem;
+    height: 35rem;
     display: block;
     object-fit: cover;
     object-position: center;

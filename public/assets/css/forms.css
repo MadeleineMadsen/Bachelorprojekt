@@ -130,6 +130,7 @@
   grid-column: 2;
   width: 15rem;
   margin: 1.875rem auto;
+  margin-left: 0;
 }
 
 .profile-admin-container h4,
