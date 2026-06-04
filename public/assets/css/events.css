@@ -43,7 +43,6 @@
 .events-filter-select {
   font-family: var(--font-text);
   font-size: var(--font-mobile-small);
-  font-weight: var(--poppins-font-bold);
   border: 0.0625rem solid var(--color-black);
   padding: 0 var(--gap-xs);
   height: var(--btn-height-mobile);
