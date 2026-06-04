@@ -167,6 +167,7 @@
   font-weight: bold;
   cursor: pointer;
   line-height: 1;
+  color: var(--bg-color-black);
 }
 
 /* ==================================================
