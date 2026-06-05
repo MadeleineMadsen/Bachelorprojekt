@@ -287,14 +287,17 @@ if ($isLoggedIn) {
                 <a href="<?= htmlspecialchars($item['url']) ?>"
                     class="mobile-bottom-link <?= ($currentPage === $item['key']) ? 'active' : '' ?>" <?= ($currentPage === $item['key']) ? 'aria-current="page"' : '' ?>>
 
-                    <!-- Aktivt ikon vises på den aktuelle side -->
-                    <img src="<?= ($currentPage === $item['key']) ? $item['icon_active'] : $item['icon']; ?>"
-                        alt="<?= htmlspecialchars($item['label']) ?>" class="mobile-bottom-icon">
+                    <div class="mobile-icon-wrapper">
+                        <!-- Aktivt ikon vises på den aktuelle side -->
+                        <img src="<?= ($currentPage === $item['key']) ? $item['icon_active'] : $item['icon']; ?>"
+                            alt="<?= htmlspecialchars($item['label']) ?>" class="mobile-bottom-icon">
 
-                    <!-- Badge vises fx ved afventende ansøgninger -->
-                    <?php if (!empty($item['badge'])): ?>
-                        <span class="mobile-nav-badge"><?= htmlspecialchars($item['badge']) ?></span>
-                    <?php endif; ?>
+                        <!-- Badge vises fx ved afventende ansøgninger -->
+                        <?php if (!empty($item['badge'])): ?>
+                            <span class="mobile-nav-badge"><?= htmlspecialchars($item['badge']) ?></span>
+                        <?php endif; ?>
+                    </div>
+                    
                 </a>
             <?php endforeach; ?>
         </nav>

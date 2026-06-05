@@ -157,7 +157,7 @@ class MemberController
             $image = validate_image_upload('profile_image');
 
             if ($image !== null) {
-                $uploadDir = __DIR__ . '/../../public/assets/img/uploads/';
+                $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/assets/img/uploads/';
                 $uploadPath = $uploadDir . $image['file_name'];
 
                 if (!move_uploaded_file($image['tmp_name'], $uploadPath)) {

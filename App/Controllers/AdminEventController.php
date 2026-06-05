@@ -23,7 +23,7 @@ class AdminEventController
         }
 
         // Upload-mappe til eventbilleder
-        $uploadDir = __DIR__ . '/../../public/assets/img/events/';
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/assets/img/events/';
 
         // Opretter upload-mappen hvis den ikke findes
         if (!is_dir($uploadDir)) {

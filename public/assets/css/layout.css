@@ -187,17 +187,26 @@ html {
 }
 
 .mobile-bottom-link {
+  position: relative;
   text-decoration: none;
-  font-size: var(--font-mobile-text);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: var(--gap-md);
+  flex: 1;
   min-height: var(--gap-md);
 }
 
+.mobile-icon-wrapper {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+}
+
 .mobile-bottom-icon {
-  line-height: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
 }
 
 .sub-nav-badge,
@@ -221,8 +230,9 @@ html {
 
 .mobile-nav-badge {
   position: absolute;
-  top: 2.37rem;
-  right: 7.7rem;
+  top: 77%;
+  left: 74%;
+  transform: translate(-45%, -50%);
 }
 
 /* ---------- Footer ---------- */
