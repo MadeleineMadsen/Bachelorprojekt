@@ -233,7 +233,7 @@ Der kan være ændringer i fx tidspunkt, lokation eller beskrivelse.
 
 Du kan se de opdaterede informationer under Mine Events på hjemmesiden.
 Link:
-{$appUrl}/mine_events
+{$appUrl}/my_events
 
 Venlig hilsen
 GBG Social"
