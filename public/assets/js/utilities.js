@@ -159,11 +159,17 @@ const closeModalButtons = document.querySelectorAll("[data-modal-close]");
 
 // Åbner modal
 openModalButtons.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     const modalId = button.dataset.modalOpen;
     const modal = document.getElementById(modalId);
 
-    modal?.classList.add("show");
+    if (modal) {
+      modal.showModal();
+      modal.classList.add("show");
+    }
   });
 });
 
@@ -173,6 +179,7 @@ closeModalButtons.forEach((button) => {
     const modal = button.closest(".modal-overlay");
 
     modal?.classList.remove("show");
+    modal?.close();
   });
 });
 
