@@ -8,7 +8,7 @@
 
     <!-- Formular -->
     <section class="login-content">
-        <h1 class="form-title">NY ADGANGSKODE</h1>
+        <h1 class="form-title">SKIFT KODE</h1>
 
         <section class="form-container login-container">
 
