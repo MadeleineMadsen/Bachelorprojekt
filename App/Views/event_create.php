@@ -110,7 +110,7 @@ $formAction = $isEditing ? '/event_edit' : '/event_create';
                         <?php if ($hasEventImage || $hasSavedImage): ?>
                             Der er allerede et billede – upload kun hvis du vil skifte det
                         <?php else: ?>
-                            Træk og slip et billede her<br>eller klik for at vælge fil
+                            Klik for at vælge fil
                         <?php endif; ?>
                     </p>
                     <img

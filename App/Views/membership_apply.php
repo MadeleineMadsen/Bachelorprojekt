@@ -102,7 +102,7 @@ $hasProfileImage = !empty($profileImage);
             <img src="/assets/img/icons/calendar.svg" alt="Kalender ikon">
 
             <div class="stat-text">
-                <h3>+<?= $memberStats['events_this_year']; ?></h3>
+                <h3><?= $memberStats['events_this_year']; ?></h3>
 
                 <p>EVENTS OM ÅRET</p>
             </div>
@@ -199,7 +199,7 @@ $hasProfileImage = !empty($profileImage);
                         <?php if ($hasProfileImage): ?>
                             Du har allerede et profilbillede<br>Upload kun hvis du vil skifte det
                         <?php else: ?>
-                            Træk og slip et billede her<br>eller klik for at vælge fil
+                            Klik for at vælge fil
                         <?php endif; ?>
                     </p>
 
