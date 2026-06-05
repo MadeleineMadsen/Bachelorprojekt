@@ -64,7 +64,7 @@ $event = $event ?? [];
 
             <!-- Admin kan ikke tilmelde sig events -->
             <?php if (($_SESSION['user']['role_fk'] ?? null) == 1): ?>
-                <button type="submit" class="btn btn-primary" disabled>Tilmeld dig eventet</button>
+                <a href="/event_edit?id=<?= htmlspecialchars($event['event_pk']) ?>" class="btn btn-primary">Rediger event</a>
 
                 <!-- Hvis brugeren allerede er tilmeldt, kan de framelde sig -->
             <?php elseif (!empty($isRegistered)): ?>
