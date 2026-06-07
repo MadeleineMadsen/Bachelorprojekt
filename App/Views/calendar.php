@@ -175,7 +175,7 @@ $monthNames = [
 
         <!-- Mobil listevisning af events -->
         <section class="mobile-event-list" id="calendar-events">
-            <h2>EVENT</h2>
+            <h2>EVENTS</h2>
 
             <!-- Loop gennem events i den viste måned -->
             <?php foreach ($events as $eventDate => $dayEvents): ?>
