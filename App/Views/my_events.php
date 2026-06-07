@@ -8,7 +8,7 @@
 
     <!-- Overskrift -->
     <section class="my-events-filter">
-        <h2 class="events-filter-title">TILMELDTE EVENTS</h2>
+        <h2 class="my-events-filter-title">TILMELDTE EVENTS</h2>
     </section>
 
     <!-- Liste med events -->
