@@ -54,16 +54,20 @@ function sendUserVerificationMail(string $toEmail, string $firstName, string $ve
     return sendMail(
         $toEmail,
         $firstName,
-        'Bekræft din bruger hos GBG Social',
+        'Velkommen til GBG Social – bekræft din mailadresse',
         "Hej {$firstName}
 
-Tak fordi du har oprettet dig hos GBG Social.
+Tak fordi du har oprettet en profil hos GBG Social. Vi er glade for at have dig med.
 
-Klik på linket herunder for at bekræfte din bruger:
+For at aktivere din konto bedes du bekræfte din mailadresse ved at klikke på linket herunder:
 
 {$verificationLink}
 
-Når du har bekræftet din mail, kan du logge ind.
+Når du har bekræftet din mail, er du klar til at logge ind og udforske vores events.
+
+Har du ikke oprettet en profil hos os, kan du se bort fra denne mail.
+
+Vi glæder os til at se dig til et event.
 
 Venlig hilsen
 GBG Social"
@@ -76,12 +80,14 @@ function sendMembershipConfirmationMail(string $toEmail, string $firstName): boo
     return sendMail(
         $toEmail,
         $firstName,
-        'Vi har modtaget din ansøgning',
+        'Vi har modtaget din ansøgning – GBG Social',
         "Hej {$firstName}
 
-Tak for din ansøgning om medlemskab hos GBG Social.
+Tak for din ansøgning om at blive vejleder hos GBG Social.
 
-Vi har modtaget din ansøgning og vender tilbage hurtigst muligt.
+Vi har modtaget din ansøgning og gennemgår den hurtigst muligt. Du vil høre fra os, så snart vi har truffet en beslutning.
+
+I mellemtiden er du selvfølgelig velkommen til at kigge forbi vores events.
 
 Venlig hilsen
 GBG Social"
@@ -96,15 +102,14 @@ function sendMembershipApprovedMail(string $toEmail, string $firstName): bool
     return sendMail(
         $toEmail,
         $firstName,
-        'Tillykke - du er nu medlem af GBG Social',
+        'Din ansøgning er godkendt – velkommen som medlem',
         "Hej {$firstName}
 
-Tillykke! Din ansøgning er blevet godkendt.
+Vi er glade for at kunne fortælle dig, at din ansøgning er blevet godkendt. Du er nu medlem af GBG Social.
 
-Du er nu medlem og vejleder hos GBG Social og kan være med til at skabe fællesskab og gode oplevelser for andre studerende.
+Som medlem er du med til at skabe gode oplevelser og fællesskab for studerende på tværs af uddannelserne. Det sætter vi stor pris på.
 
-Husk at gå ind på eventsiden og tilmelde dig de events, du gerne vil være vejleder på:
-{$appUrl}/events
+Vi glæder os til at se dig.
 
 Venlig hilsen
 GBG Social"
@@ -117,13 +122,12 @@ function sendMembershipRejectedMail(string $toEmail, string $firstName): bool
     return sendMail(
         $toEmail,
         $firstName,
-        'Svar på din ansøgning hos GBG Social',
+        'Svar på din ansøgning – GBG Social',
         "Hej {$firstName}
 
-Tak for din ansøgning om at blive vejleder hos GBG Social.
-
-Vi har desværre valgt ikke at godkende din ansøgning som vejleder denne gang.
-Du er altid velkommen til at ansøge igen senere!
+Vi har desværre ikke mulighed for at optage dig som medlem på nuværende tidspunkt. 
+Det betyder ikke, at du ikke er velkommen hos os du kan stadig deltage i vores events som studerende og være en del af fællesskabet.
+Tak fordi du viste interesse for GBG Social.
 
 Venlig hilsen
 GBG Social"
