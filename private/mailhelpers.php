@@ -126,7 +126,9 @@ function sendMembershipRejectedMail(string $toEmail, string $firstName): bool
         "Hej {$firstName}
 
 Vi har desværre ikke mulighed for at optage dig som medlem på nuværende tidspunkt. 
-Det betyder ikke, at du ikke er velkommen hos os du kan stadig deltage i vores events som studerende og være en del af fællesskabet.
+
+Du kan stadig deltage i vores events som studerende og være en del af fællesskabet.
+
 Tak fordi du viste interesse for GBG Social.
 
 Venlig hilsen
@@ -166,6 +168,7 @@ function sendEventConfirmMail(string $toEmail, string $firstName, string $eventT
 Tak for din tilmelding til eventet {$eventTitle}.
 
 Vi glæder os til at se dig til en hyggelig og social oplevelse sammen med resten af GBG Social.
+
 Du kan altid finde information om eventet på eventsiden.
 
 Hvis du bliver forhindret i at deltage, beder vi dig melde afbud hurtigst muligt.
@@ -189,6 +192,7 @@ function sendEventRemoveMail(string $toEmail, string $firstName, string $eventTi
 Du er nu blevet afmeldt eventet {$eventTitle}.
 
 Vi er kede af, at du ikke længere kan deltage, men håber at se dig til et andet event hos GBG Social snart.
+
 Du kan altid finde kommende events på eventsiden.
 
 Venlig hilsen
@@ -233,9 +237,11 @@ function sendEventUpdatedMail(string $toEmail, string $firstName, string $eventT
         "Hej {$firstName}
 
 Eventet {$eventTitle}, som du er tilmeldt, er blevet opdateret.
+
 Der kan være ændringer i fx tidspunkt, lokation eller beskrivelse.
 
 Du kan se de opdaterede informationer under Mine Events på hjemmesiden.
+
 Link:
 {$appUrl}/my_events
 
@@ -256,6 +262,7 @@ function sendEventDeletedMail(string $toEmail, string $firstName, string $eventT
 Vi er desværre nødt til at aflyse eventet {$eventTitle}.
 
 Vi beklager ulejligheden og håber at se dig til et andet event hos GBG Social snart.
+
 Du kan altid holde øje med kommende events på eventsiden.
 
 Venlig hilsen
